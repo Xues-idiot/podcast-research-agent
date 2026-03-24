@@ -58,7 +58,6 @@ export function StepIndicator({ currentStep, progress }: StepIndicatorProps) {
           {steps.map((step, index) => {
             const isCompleted = index < currentIndex
             const isCurrent = index === currentIndex
-            const isPending = index > currentIndex
 
             return (
               <motion.div

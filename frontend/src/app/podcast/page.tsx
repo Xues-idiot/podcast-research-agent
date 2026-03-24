@@ -8,7 +8,6 @@ import {
   Summary,
   KeyPoints,
   MindMap,
-  Progress,
   Export,
   StepIndicator,
   ErrorDisplay,

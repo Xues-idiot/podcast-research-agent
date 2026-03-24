@@ -2,7 +2,6 @@
 
 import { motion } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { FileText } from "lucide-react"
 
 interface ReportDisplayProps {
   report: {

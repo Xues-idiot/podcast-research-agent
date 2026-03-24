@@ -22,7 +22,6 @@ interface SearchInputProps {
 export function SearchInput({ transcript, onResultClick }: SearchInputProps) {
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<SearchResult[]>([])
-  const [isSearching, setIsSearching] = useState(false)
 
   const handleSearch = useCallback(
     (searchQuery: string) => {
@@ -33,14 +32,12 @@ export function SearchInput({ transcript, onResultClick }: SearchInputProps) {
         return
       }
 
-      setIsSearching(true)
       const lowerQuery = searchQuery.toLowerCase()
       const found = transcript.segments
         .map((seg, index) => ({ segmentIndex: index, ...seg }))
         .filter((seg) => seg.text.toLowerCase().includes(lowerQuery))
 
       setResults(found)
-      setIsSearching(false)
     },
     [transcript]
   )

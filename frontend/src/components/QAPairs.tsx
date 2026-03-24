@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { MessageCircle, ChevronDown, ChevronUp, Brain, Clock, Star } from "lucide-react"
+import { MessageCircle, ChevronDown, ChevronUp, Clock, Star } from "lucide-react"
 
 interface QAPair {
   question: string
