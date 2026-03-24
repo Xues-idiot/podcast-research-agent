@@ -21,7 +21,12 @@ src/echo/
 ├── knowledge/           # 知识库模块 (新增)
 │   ├── __init__.py
 │   ├── entry.py        # Entry模型和EntryStore
-│   └── splitter.py     # TextSplitter分割器
+│   ├── splitter.py     # TextSplitter分割器
+│   ├── bi_encoder.py   # Bi-encoder向量编码
+│   └── retriever.py    # 知识检索器
+├── navigation/          # 时间戳导航模块 (新增)
+│   ├── __init__.py
+│   └── timestamp.py     # 时间戳导航器
 ├── tools/                # 工具模块
 │   ├── downloader.py     # 统一下载接口
 │   ├── bilibili.py       # B站下载
@@ -32,7 +37,9 @@ src/echo/
 └── api/                 # API接口
     ├── research.py       # 研究API路由
     ├── chat.py           # 对话API路由 (新增)
-    └── knowledge.py      # 知识库API路由 (新增)
+    ├── knowledge.py      # 知识库API路由 (新增)
+    ├── sources.py        # 多源聚合API路由 (新增)
+    └── navigation.py     # 时间戳导航API路由 (新增)
 
 echo_cli/                 # CLI入口
 frontend/                  # Next.js前端
@@ -268,6 +275,44 @@ download -> transcribe -> summarize -> keypoint -> mindmap -> link -> report -> 
 
 ### 参考
 - khoj Entry 模型和分割策略
+
+---
+
+## navigation 模块 (时间戳导航)
+
+> 基于关键内容的时间戳跳转，支持按时间戳获取附近的内容片段
+
+### 类型
+- `TimestampEntry` - 时间戳条目 `{timestamp, content, entry_id, type, relevance}`
+- `JumpResult` - 跳转结果 `{target_timestamp, nearby_entries, context_before, context_after, jump_type}`
+
+### TimestampNavigator 类
+- `jump_to(timestamp, window_seconds) -> JumpResult` 跳转到指定时间戳
+- `get_key_moments(num_moments) -> list[TimestampEntry]` 获取关键时刻列表
+- `get_moments_by_keypoints(keypoints) -> list[TimestampEntry]` 根据关键点获取时间戳
+- `get_moments_by_qa(qa_pairs) -> list[TimestampEntry]` 根据问答对获取时间戳
+- `format_timestamp(seconds) -> str` 格式化时间戳 (MM:SS 或 HH:MM:SS)
+- `parse_timestamp(timestamp_str) -> float` 解析时间戳字符串
+
+### API端点
+- `POST /api/navigation/register` - 注册播客时间戳数据
+- `POST /api/navigation/jump` - 跳转到指定时间戳
+- `GET /api/navigation/moments/{podcast_id}` - 获取关键时刻列表
+- `POST /api/navigation/moments/from-keypoints` - 从关键点生成时间戳
+- `POST /api/navigation/moments/from-qa` - 从问答生成时间戳高亮
+- `GET /api/navigation/parse/{timestamp_str}` - 解析时间戳字符串
+- `DELETE /api/navigation/{podcast_id}` - 注销播客
+
+### 前端组件
+- `TimelineNavigation` - 时间轴导航组件，支持播放控制、时间戳跳转、关键时刻列表
+
+### 状态
+- ✅ TimestampNavigator 已实现
+- ✅ Navigation API 已实现
+- ✅ TimelineNavigation 前端组件已实现
+
+### 参考
+- khoj trainOfThoughtVideoPlayer 时间戳导航实现
 
 ---
 

@@ -918,3 +918,208 @@ download, transcribe, summarize, keypoint, mindmap, link, report, qa
 
 ### 提交记录
 - 29个commit，代码已提交
+
+---
+
+## 第169轮迭代 (2026-03-25) - Bi-encoder检索
+
+### 完成内容
+
+#### Bi-encoder 向量编码 (src/echo/knowledge/bi_encoder.py)
+- BiEncoder 类：使用 sentence-transformers 进行嵌入生成
+- encode_texts() - 单文本或批量编码
+- encode_entries() - Entry列表编码
+- search() - 向量相似度检索
+- EmbeddingStore 类：嵌入向量持久化存储
+
+#### 向量检索集成
+- KnowledgeRetriever 集成 BiEncoder
+- Entry 模型支持向量嵌入
+- 支持 min_score 阈值过滤
+
+### 本轮完成
+- [x] Bi-encoder 向量编码
+- [x] 向量相似度检索
+
+### 待完成
+- [ ] 深度文档理解 (RAGFlow)
+- [ ] 引用追踪
+
+### 提交记录
+- 30个commit，代码已提交
+
+---
+
+## 第170轮迭代 (2026-03-25) - 多源聚合
+
+### 完成内容
+
+#### 多源平台支持 (src/echo/sources/)
+- `youtube.py` - YouTube Source (频道/视频/播放列表)
+- `bilibili.py` - Bilibili Source (BV号/b23.tv短链接/用户/合集)
+- `rss.py` - RSS Source (标准RSS 2.0和Atom)
+- `xiaoyuanzhou.py` - 小宇宙播客平台
+- `ximalaya.py` - 喜马拉雅播客平台
+
+#### 源注册系统
+- SourceType 枚举：YOUTUBE, BILIBILI, RSS, XIAOYUANZHOU, XIMALAYA
+- BaseSource 抽象基类
+- SourceRegistry 源注册表
+
+#### API路由 (src/echo/api/sources.py)
+- GET /api/sources/detect - 检测URL来源
+- GET /api/sources/sources - 列出所有源
+- GET /api/sources/channel - 获取频道信息
+- GET /api/sources/episode - 获取单集信息
+- GET /api/sources/audio-url - 获取音频URL
+
+### 本轮完成
+- [x] 5个平台源处理器
+- [x] 统一源注册表
+- [x] API路由
+
+### 提交记录
+- 31个commit，代码已提交
+
+---
+
+## 第171轮迭代 (2026-03-25) - Sub-Agent并行
+
+### 完成内容
+
+#### SubAgent并行执行框架 (src/echo/subagents/)
+- `__init__.py` - SubAgentExecutor 并行执行器
+  - scheduler_pool: 调度池 (默认3)
+  - execution_pool: 执行池 (默认3)
+  - max_concurrent: 最大并发数 (默认3)
+  - TaskStatus: pending/running/completed/failed
+  - TaskResult: 任务结果包装
+- `builtins.py` - 内置Agent实现
+  - TranscriptionAgent, SummarizationAgent, KeyPointAgent
+  - MindMapAgent, KnowledgeLinkAgent, ReportAgent, QAAgent, DownloadAgent
+  - register_builtin_agents() 注册函数
+- `research_graph.py` - 并行研究图
+  - Phase 1: summarize || keypoint (并行)
+  - Phase 2: mindmap || link (并行)
+  - Phase 3: report || qa (并行)
+
+### 本轮完成
+- [x] SubAgent执行框架
+- [x] 内置Agent库
+- [x] 并行研究图
+
+### 提交记录
+- 32个commit，代码已提交
+
+---
+
+## 第172轮迭代 (2026-03-25) - Audio Overview集成
+
+### 完成内容
+
+#### Audio Overview生成器 (src/echo/audio_overview/)
+- `__init__.py` - AudioOverviewGenerator 类
+- AudioStyle: DEEP_DIVE, BRIEF, CRITIQUE, DEBATE
+- AudioLength: SHORT, DEFAULT, LONG
+- AudioOverviewScript, ScriptSegment 数据类
+- generate_script() - 生成对话脚本
+- generate_discussion() - 生成播客讨论
+
+### 本轮完成
+- [x] NotebookLM风格Audio Overview
+- [x] 多种风格和长度
+
+### 提交记录
+- 33个commit，代码已提交
+
+---
+
+## 第173轮迭代 (2026-03-25) - 多格式导出
+
+### 完成内容
+
+#### 增强导出功能
+- **前端 (frontend/src/components/Export.tsx)**
+  - HTML导出 (完整样式模板)
+  - PDF导出 (通过API)
+  - 导出格式切换 (3列网格)
+- **后端 (src/echo/api/research.py)**
+  - POST /api/research/export - 导出研究结果
+  - 支持 PDF 和 HTML 格式
+  - 使用 weasyprint 生成PDF
+
+### 本轮完成
+- [x] HTML导出 (完整样式)
+- [x] PDF导出
+- [x] 导出组件增强
+
+### 提交记录
+- 34个commit，代码已提交
+
+---
+
+## 第174轮迭代 (2026-03-25) - 深度文档理解(RAGFlow)和引用追踪
+
+### 完成内容
+
+#### 知识检索器 (src/echo/knowledge/retriever.py)
+- **KnowledgeRetriever** - 基于向量的语义检索
+  - retrieve() - 基础向量检索
+  - retrieve_with_expansion() - 扩展检索 (包含相邻片段)
+- **HybridRetriever** - 混合检索
+  - 结合向量检索和关键词检索 (BM25)
+- **Citation** - 引用信息数据类
+- **RetrievedContext** - 检索结果包装
+
+#### 对话引用集成 (src/echo/conversation/chat.py)
+- ChatResponse 添加 sources 字段
+- ConversationHandler 集成 KnowledgeRetriever
+- _format_citations() - 格式化引用
+- _build_sources() - 构建来源列表
+
+### 本轮完成
+- [x] KnowledgeRetriever 语义检索
+- [x] HybridRetriever 混合检索
+- [x] 引用追踪功能
+
+### 提交记录
+- 35个commit，代码已提交
+
+---
+
+## 第175轮迭代 (2026-03-25) - 时间戳导航 (khoj)
+
+### 完成内容
+
+#### 时间戳导航器 (src/echo/navigation/)
+- `timestamp.py` - TimestampNavigator 类
+  - jump_to() - 跳转到指定时间戳
+  - get_key_moments() - 获取关键时刻列表
+  - get_moments_by_keypoints() - 关键点→时间戳
+  - get_moments_by_qa() - 问答对→时间戳
+  - format_timestamp() - 时间戳格式化
+  - parse_timestamp() - 时间戳解析
+- `__init__.py` - 模块导出
+
+#### API路由 (src/echo/api/navigation.py)
+- POST /api/navigation/register - 注册播客时间戳数据
+- POST /api/navigation/jump - 跳转到指定时间戳
+- GET /api/navigation/moments/{podcast_id} - 获取关键时刻
+- POST /api/navigation/moments/from-keypoints - 从关键点生成时间戳
+- POST /api/navigation/moments/from-qa - 从问答生成时间戳
+- GET /api/navigation/parse/{timestamp_str} - 解析时间戳字符串
+- DELETE /api/navigation/{podcast_id} - 注销播客
+
+#### 前端组件 (frontend/src/components/TimelineNavigation.tsx)
+- 播放控制条 (播放/暂停/快进/快退)
+- 进度条带时间戳标记
+- 关键时刻列表 (可折叠)
+- 点击跳转功能
+
+### 本轮完成
+- [x] TimestampNavigator 导航器
+- [x] Navigation API 路由
+- [x] TimelineNavigation 前端组件
+
+### 提交记录
+- 36个commit，代码已提交
