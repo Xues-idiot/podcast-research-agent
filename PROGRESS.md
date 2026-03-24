@@ -590,3 +590,26 @@ download, transcribe, summarize, keypoint, mindmap, link, report, qa
 
 ### 提交记录
 - 8个commit，代码已提交
+
+---
+
+## 第153轮迭代 (2026-03-25)
+
+### 完成内容
+
+#### ESLint 配置
+- 创建 `frontend/eslint.config.js` (ESLint flat config)
+- 更新 `frontend/package.json` lint 脚本
+- 修复未使用的变量警告:
+  - page.tsx: 移除未使用的 Progress 导入
+  - QAPairs.tsx: 移除未使用的 Brain 导入
+  - ReportDisplay.tsx: 移除未使用的 FileText 导入
+  - SearchInput.tsx: 移除未使用的 isSearching 状态
+  - StepIndicator.tsx: 移除未使用的 isPending 变量
+
+### 本轮完成
+- [x] 配置前端 ESLint
+- [x] 修复所有 lint 警告
+
+### 提交记录
+- 9个commit，代码已提交
