@@ -156,6 +156,31 @@ echo research <URL> --format markdown
 echo research <URL> --format both
 ```
 
+## Frontend Features
+
+The web interface (http://localhost:3555) provides additional interactive features:
+
+### Transcript Player
+- **Playback Speed**: Adjust playback speed (0.5x - 2x)
+- **Copy to Clipboard**: Hover over any segment to copy text
+- **Language Badge**: Shows detected language (ZH, EN, etc.)
+
+### Mind Map
+- **Expand/Collapse All**: Toggle all branches at once
+- **Individual Branch Toggle**: Click to expand/collapse branches
+
+### Key Points
+- **Copy to Clipboard**: Hover over any point to copy content
+- **Importance Indicator**: Color-coded badges (high/medium/low)
+
+### Export
+- **4 Formats**: JSON, Markdown, CSV, Plain Text
+- **Rich Content**: All formats include summary, keypoints, mindmap, QA pairs
+
+### API Rate Limiting
+- **10 requests per minute** to prevent abuse
+- Returns `429 Too Many Requests` with `Retry-After` header
+
 ## Autonomy Rules
 
 **Run automatically (no confirmation):**
