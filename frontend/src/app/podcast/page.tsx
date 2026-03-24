@@ -18,7 +18,7 @@ import {
   QAPairs,
 } from "@/components"
 import { streamResearch } from "@/lib/api"
-import { Mic, ArrowUp } from "lucide-react"
+import { Mic, ArrowUp, Plus } from "lucide-react"
 
 export default function PodcastPage() {
   const {
@@ -142,6 +142,24 @@ export default function PodcastPage() {
 
         {status === "success" && result && (
           <section className="space-y-6">
+            {/* 新建研究按钮 */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex justify-center"
+            >
+              <button
+                onClick={() => {
+                  reset()
+                  window.scrollTo({ top: 0, behavior: "smooth" })
+                }}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#E67E22]/10 text-[#E67E22] hover:bg-[#E67E22]/20 transition-colors"
+              >
+                <Plus className="w-4 h-4" />
+                新建研究
+              </button>
+            </motion.div>
+
             {/* 转录播放器 */}
             {result.transcript && (
               <TranscriptPlayer transcript={result.transcript} />
