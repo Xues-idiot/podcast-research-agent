@@ -16,6 +16,8 @@ const steps = [
   { key: "keypoint", label: "提取要点" },
   { key: "mindmap", label: "生成思维导图" },
   { key: "link", label: "关联知识" },
+  { key: "report", label: "生成报告" },
+  { key: "qa", label: "生成问答" },
 ]
 
 export function Progress({ currentStep, progress }: ProgressProps) {
