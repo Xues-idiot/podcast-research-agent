@@ -544,3 +544,24 @@ download, transcribe, summarize, keypoint, mindmap, link, report, qa
 - [ ] 实际运行后端 API
 - [ ] 端到端测试
 - [ ] 前端 lint 配置
+
+### 第140-143轮迭代 (2026-03-25)
+| 轮次 | 内容 |
+|------|------|
+| 140 | 最终检查和更新 |
+| 141 | 自主迭代循环 - 组件检查 |
+| 142 | 项目总结检查 |
+| 143 | 更新PROGRESS.md |
+
+### 本轮增强总结 (第126-143轮)
+1. **QA生成增强** - Bloom's taxonomy认知层次（L1-L6）
+2. **Export组件** - 支持QA问答对和报告导出Markdown/CSV
+3. **Progress组件** - 更新为8步流程（与StepIndicator一致）
+4. **ResearchGraph** - 添加current_step字段跟踪进度
+5. **TranscriptPlayer** - 添加语言检测badge显示
+6. **ReportDisplay** - 显示报告标题而非固定文字
+7. **前端构建** - 所有检查通过，构建成功
+
+### 提交记录
+- 7个commit，代码已提交
+- 远程仓库尚未创建（待用户配置）
