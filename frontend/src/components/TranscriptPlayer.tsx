@@ -9,6 +9,7 @@ interface TranscriptPlayerProps {
   transcript: {
     text: string
     segments?: Array<{ start: number; end: number; text: string }>
+    language?: string
   }
 }
 
@@ -36,6 +37,11 @@ export function TranscriptPlayer({ transcript }: TranscriptPlayerProps) {
             <span className="flex items-center gap-2">
               <span className="text-2xl">📝</span>
               转录文本
+              {transcript.language && (
+                <span className="px-2 py-0.5 text-xs rounded-full bg-[#2C3E50]/10 text-[#2C3E50]">
+                  {transcript.language.toUpperCase()}
+                </span>
+              )}
             </span>
             <span className="text-sm font-normal text-[#2C3E50]/50">
               {segments.length > 0 ? `${segments.length} 段` : "全文"}
