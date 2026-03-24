@@ -27,6 +27,9 @@ src/echo/
 ├── navigation/          # 时间戳导航模块 (新增)
 │   ├── __init__.py
 │   └── timestamp.py     # 时间戳导航器
+├── exporters/            # 导出模块 (新增)
+│   ├── __init__.py
+│   └── knowledge_card_exporter.py  # 知识卡片导出器
 ├── tools/                # 工具模块
 │   ├── downloader.py     # 统一下载接口
 │   ├── bilibili.py       # B站下载
@@ -39,7 +42,8 @@ src/echo/
     ├── chat.py           # 对话API路由 (新增)
     ├── knowledge.py      # 知识库API路由 (新增)
     ├── sources.py        # 多源聚合API路由 (新增)
-    └── navigation.py     # 时间戳导航API路由 (新增)
+    ├── navigation.py     # 时间戳导航API路由 (新增)
+    └── export.py         # 导出API路由 (新增)
 
 echo_cli/                 # CLI入口
 frontend/                  # Next.js前端
@@ -313,6 +317,37 @@ download -> transcribe -> summarize -> keypoint -> mindmap -> link -> report -> 
 
 ### 参考
 - khoj trainOfThoughtVideoPlayer 时间戳导航实现
+
+---
+
+## exporters 模块 (知识卡片导出)
+
+> 将知识卡片导出为多种格式，支持引用和时间戳
+
+### 类型
+- `Citation` - 引用信息 `{entry_id, timestamp, formatted_time, content, score}`
+- `KnowledgeCardExport` - 导出的知识卡片 `{keypoint, importance, citations, related_items, confidence, summary}`
+- `KnowledgeCardExporter` - 导出器类
+
+### KnowledgeCardExporter 类
+- `export_json(cards, filename) -> str` 导出为JSON
+- `export_markdown(cards, filename) -> str` 导出为Markdown
+- `export_html(cards, title, filename) -> str` 导出为HTML (完整样式)
+- `export_anki(cards, filename) -> str` 导出为Anki格式 (TSV)
+- `build_cards_from_result(result, entries) -> list[KnowledgeCardExport]` 从结果构建卡片
+- `export_all_formats(result, entries) -> dict` 导出所有格式
+
+### API端点
+- `POST /api/export/knowledge-cards` - 导出知识卡片 (支持 json/markdown/html/pdf/anki)
+- `POST /api/export/knowledge-cards/all` - 导出所有格式
+
+### 状态
+- ✅ KnowledgeCardExporter 已实现
+- ✅ Export API 已实现
+- ✅ 支持多种格式导出 (JSON, Markdown, HTML, PDF, Anki)
+
+### 参考
+- khoj 知识卡片导出
 
 ---
 
