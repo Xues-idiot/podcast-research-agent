@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Play, Pause, SkipBack, SkipForward } from "lucide-react"
+import { Play, Pause, SkipBack, SkipForward, Copy, Check } from "lucide-react"
 
 interface TranscriptPlayerProps {
   transcript: {
@@ -19,8 +19,19 @@ export function TranscriptPlayer({ transcript }: TranscriptPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentSegment, setCurrentSegment] = useState(0)
   const [playbackSpeed, setPlaybackSpeed] = useState(1)
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
   const segments = transcript.segments || []
+
+  const copyToClipboard = async (text: string, index: number) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopiedIndex(index)
+      setTimeout(() => setCopiedIndex(null), 2000)
+    } catch (err) {
+      console.error("Failed to copy:", err)
+    }
+  }
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60)
@@ -112,16 +123,34 @@ export function TranscriptPlayer({ transcript }: TranscriptPlayerProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: currentSegment === index ? 1 : 0.6 }}
                   onClick={() => setCurrentSegment(index)}
-                  className={`p-3 rounded-lg cursor-pointer transition-colors ${
+                  className={`p-3 rounded-lg cursor-pointer transition-colors group ${
                     currentSegment === index
                       ? "bg-[#2C3E50]/10 border-l-2 border-[#2C3E50]"
                       : "hover:bg-[#FAF8F5]"
                   }`}
                 >
-                  <span className="text-xs text-[#E67E22] font-mono mr-2">
-                    {formatTime(segment.start)}
-                  </span>
-                  <span className="text-[#2C3E50]/80">{segment.text}</span>
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1">
+                      <span className="text-xs text-[#E67E22] font-mono mr-2">
+                        {formatTime(segment.start)}
+                      </span>
+                      <span className="text-[#2C3E50]/80">{segment.text}</span>
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        copyToClipboard(segment.text, index)
+                      }}
+                      className="p-1.5 rounded opacity-0 group-hover:opacity-100 hover:bg-[#2C3E50]/10 transition-all"
+                      title="复制文本"
+                    >
+                      {copiedIndex === index ? (
+                        <Check className="w-4 h-4 text-green-600" />
+                      ) : (
+                        <Copy className="w-4 h-4 text-[#2C3E50]/50" />
+                      )}
+                    </button>
+                  </div>
                 </motion.div>
               ))
             ) : (
