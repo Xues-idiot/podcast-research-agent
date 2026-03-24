@@ -24,9 +24,18 @@ src/echo/
     └── research.py       # FastAPI路由
 
 echo_cli/                 # CLI入口
+frontend/                  # Next.js前端
+├── src/
+│   ├── app/             # App Router页面
+│   ├── components/       # React组件 (18个)
+│   ├── lib/             # 工具函数
+│   └── store/           # Zustand状态管理
 tests/
-├── unit/                 # 单元测试
-└── integration/          # 集成测试
+├── unit/               # 单元测试
+└── integration/         # 集成测试
+scripts/                  # 脚本
+├── quickstart.py
+└── api_server.py       # API服务器入口
 ```
 
 ---
@@ -110,13 +119,50 @@ tests/
 ## report-generator 模块
 
 ### 类型
-- `ResearchReport` - 研究报告
+- `ResearchReport` - 研究报告 `{title, content}`
 
 ### 函数
 - `generate_report(summary: Summary, keypoints: KeyPointList, mindmap: MindMap) -> ResearchReport` 生成完整报告
 
 ### 状态
 - ✅ 已实现 `agents/report.py`，已集成到 `graph/research_graph.py`
+
+---
+
+## qa-generator 模块
+
+### 类型
+- `QAPair` - 问答对 `{question, answer, type, level, level_name, knowledge_point, estimated_time, scoring_hint}`
+- `BloomLevel` - Bloom's taxonomy认知层次 (L1-L6)
+
+### 函数
+- `generate_qa(transcript: Transcript, num: int) -> List[QAPair]` 生成问答对
+
+### Bloom's Taxonomy
+- L1 记忆：识别、回忆基本事实
+- L2 理解：解释、总结概念
+- L3 应用：将知识应用于新情境
+- L4 分析：分解和理解结构关系
+- L5 评价：基于标准进行判断
+- L6 创造：综合知识提出新方案
+
+### 状态
+- ✅ 已实现 `agents/qa.py`，已集成到 `graph/research_graph.py`
+
+---
+
+## flashcard-exporter 模块
+
+### 类型
+- `FlashCard` - 闪卡 `{front, back, metadata}`
+
+### 函数
+- `export_json(result: ResearchResult, path: str)` 导出JSON格式
+- `export_markdown(result: ResearchResult, path: str)` 导出Markdown格式
+- `export_html(result: ResearchResult, path: str)` 导出HTML格式
+
+### 状态
+- ✅ 已实现 `agents/flashcard.py`
 
 ---
 
