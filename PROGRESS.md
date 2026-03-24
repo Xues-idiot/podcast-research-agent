@@ -499,6 +499,18 @@ download, transcribe, summarize, keypoint, mindmap, link, report, qa
 | 124 | 最终构建验证 |
 | 125 | 更新 PROGRESS.md |
 
+### 第126-133轮迭代 (2026-03-25)
+| 轮次 | 内容 |
+|------|------|
+| 126 | QA生成Bloom's taxonomy增强 |
+| 127 | 检查Export组件 |
+| 128 | 增强Export支持QA和报告 |
+| 129 | 检查Summary/KeyPoints/MindMap |
+| 130 | 增强ReportDisplay标题显示 |
+| 131 | 检查KnowledgeCards |
+| 132 | 添加TranscriptPlayer语言badge |
+| 133 | 更新PROGRESS.md |
+
 ### 项目完成状态
 
 #### 前端 (✅ 完成)

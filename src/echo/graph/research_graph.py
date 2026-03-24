@@ -25,6 +25,7 @@ class ResearchState(TypedDict):
     report: dict | None
     qa_pairs: list | None
     error: str | None
+    current_step: str | None
 
 
 class ResearchGraph:
@@ -79,6 +80,7 @@ class ResearchGraph:
 
     async def _download_node(self, state: ResearchState) -> ResearchState:
         """下载节点"""
+        state["current_step"] = "download"
         try:
             url = state["url"]
             audio_path = await self.downloader.download(url)
@@ -90,6 +92,7 @@ class ResearchGraph:
 
     async def _transcribe_node(self, state: ResearchState) -> ResearchState:
         """转录节点"""
+        state["current_step"] = "transcribe"
         try:
             audio_path = state.get("audio_path")
             if not audio_path:
@@ -105,6 +108,7 @@ class ResearchGraph:
 
     async def _summarize_node(self, state: ResearchState) -> ResearchState:
         """摘要节点"""
+        state["current_step"] = "summarize"
         try:
             transcript = state.get("transcript")
             if not transcript:
@@ -120,6 +124,7 @@ class ResearchGraph:
 
     async def _keypoint_node(self, state: ResearchState) -> ResearchState:
         """要点节点"""
+        state["current_step"] = "keypoint"
         try:
             transcript = state.get("transcript")
             if not transcript:
@@ -135,6 +140,7 @@ class ResearchGraph:
 
     async def _mindmap_node(self, state: ResearchState) -> ResearchState:
         """思维导图节点"""
+        state["current_step"] = "mindmap"
         try:
             keypoints = state.get("keypoints")
             if not keypoints:
@@ -150,6 +156,7 @@ class ResearchGraph:
 
     async def _link_node(self, state: ResearchState) -> ResearchState:
         """知识关联节点"""
+        state["current_step"] = "link"
         try:
             keypoints = state.get("keypoints")
             if not keypoints:
@@ -165,6 +172,7 @@ class ResearchGraph:
 
     async def _report_node(self, state: ResearchState) -> ResearchState:
         """报告生成节点"""
+        state["current_step"] = "report"
         try:
             summary = state.get("summary")
             keypoints = state.get("keypoints")
@@ -187,6 +195,7 @@ class ResearchGraph:
 
     async def _qa_node(self, state: ResearchState) -> ResearchState:
         """问答生成节点"""
+        state["current_step"] = "qa"
         try:
             transcript = state.get("transcript")
             if not transcript:
@@ -218,6 +227,7 @@ class ResearchGraph:
             report=None,
             qa_pairs=None,
             error=None,
+            current_step=None,
         )
 
         async for state in self.graph.astream(initial_state):
