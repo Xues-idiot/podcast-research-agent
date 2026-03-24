@@ -499,7 +499,7 @@ download, transcribe, summarize, keypoint, mindmap, link, report, qa
 | 124 | 最终构建验证 |
 | 125 | 更新 PROGRESS.md |
 
-### 第126-133轮迭代 (2026-03-25)
+### 第126-139轮迭代 (2026-03-25)
 | 轮次 | 内容 |
 |------|------|
 | 126 | QA生成Bloom's taxonomy增强 |
@@ -510,6 +510,12 @@ download, transcribe, summarize, keypoint, mindmap, link, report, qa
 | 131 | 检查KnowledgeCards |
 | 132 | 添加TranscriptPlayer语言badge |
 | 133 | 更新PROGRESS.md |
+| 134 | 检查Waveform组件 |
+| 135 | 检查API流式响应 |
+| 136 | 修复ResearchGraph current_step |
+| 137 | 检查Progress组件 |
+| 138 | 检查ApiStatus/ErrorDisplay/LoadingSkeleton |
+| 139 | 最终构建验证 |
 
 ### 项目完成状态
 
