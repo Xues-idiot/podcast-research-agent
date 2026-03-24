@@ -336,7 +336,7 @@ uvicorn echo.api.research:router --workers 4
 
 1. **API 密钥保护**: 不要将 `.env` 提交到版本控制
 2. **CORS**: 生产环境建议限制 `allow_origins`
-3. **速率限制**: 建议添加 API 速率限制中间件
+3. **速率限制**: API 已实现内置限流 (每分钟10次请求)
 4. **文件上传**: 注意处理大文件时的资源限制
 
 ---

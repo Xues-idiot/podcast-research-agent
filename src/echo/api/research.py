@@ -1,17 +1,64 @@
 """研究API - FastAPI路由"""
 
 import asyncio
+import time
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
 from typing import Any, AsyncIterator, Optional
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 from echo.client import EchoClient
 from echo.graph.research_graph import ResearchGraph, get_research_graph
+
+
+# 简单的内存限流器
+class RateLimiter:
+    """基于时间的简单限流器"""
+
+    def __init__(self, max_requests: int = 10, window_seconds: int = 60):
+        self.max_requests = max_requests
+        self.window_seconds = window_seconds
+        self._requests: dict[str, list[float]] = {}
+
+    def is_allowed(self, client_id: str) -> bool:
+        """检查是否允许请求"""
+        now = time.time()
+        window_start = now - self.window_seconds
+
+        # 获取或初始化客户端请求记录
+        if client_id not in self._requests:
+            self._requests[client_id] = []
+
+        # 清理过期的请求记录
+        self._requests[client_id] = [
+            t for t in self._requests[client_id] if t > window_start
+        ]
+
+        # 检查是否超过限制
+        if len(self._requests[client_id]) >= self.max_requests:
+            return False
+
+        # 记录本次请求
+        self._requests[client_id].append(now)
+        return True
+
+    def get_retry_after(self, client_id: str) -> int:
+        """获取重试间隔秒数"""
+        if client_id not in self._requests or not self._requests[client_id]:
+            return 0
+
+        oldest = min(self._requests[client_id])
+        elapsed = time.time() - oldest
+        return max(0, int(self.window_seconds - elapsed))
+
+
+# 全局限流器实例 (生产环境应使用Redis)
+rate_limiter = RateLimiter(max_requests=10, window_seconds=60)
 
 
 router = APIRouter(prefix="/api/research", tags=["research"])
@@ -68,7 +115,7 @@ class StatusResponse(BaseModel):
 
 
 @router.post("/start", response_model=StartResponse)
-async def start_research(request: StartRequest):
+async def start_research(request: StartRequest, http_request: Request):
     """
     开始研究任务
 
@@ -77,7 +124,24 @@ async def start_research(request: StartRequest):
 
     Returns:
         任务ID和状态
+
+    限流: 每分钟最多10次请求
     """
+    # 获取客户端标识
+    client_ip = http_request.client.host if http_request.client else "unknown"
+    forwarded = http_request.headers.get("x-forwarded-for")
+    if forwarded:
+        client_ip = forwarded.split(",")[0].strip()
+
+    # 检查限流
+    if not rate_limiter.is_allowed(client_ip):
+        retry_after = rate_limiter.get_retry_after(client_ip)
+        return JSONResponse(
+            status_code=429,
+            content={"error": "请求过于频繁，请稍后再试", "retry_after": retry_after},
+            headers={"Retry-After": str(retry_after)},
+        )
+
     task_id = str(uuid.uuid4())[:8]
 
     task = ResearchTask(
@@ -198,13 +262,29 @@ async def delete_task(task_id: str):
 
 # 流式API - SSE (Server-Sent Events)
 @router.post("/stream")
-async def stream_research(request: StartRequest):
+async def stream_research(request: StartRequest, http_request: Request):
     """
     流式研究（返回实时状态）
 
     使用Server-Sent Events实现流式输出，
     前端可以通过EventSource接收实时进度和结果
+
+    限流: 每分钟最多10次请求
     """
+    # 获取客户端标识 (使用 IP 或 X-Forwarded-For)
+    client_ip = http_request.client.host if http_request.client else "unknown"
+    forwarded = http_request.headers.get("x-forwarded-for")
+    if forwarded:
+        client_ip = forwarded.split(",")[0].strip()
+
+    # 检查限流
+    if not rate_limiter.is_allowed(client_ip):
+        retry_after = rate_limiter.get_retry_after(client_ip)
+        return JSONResponse(
+            status_code=429,
+            content={"error": "请求过于频繁，请稍后再试", "retry_after": retry_after},
+            headers={"Retry-After": str(retry_after)},
+        )
     from fastapi.responses import StreamingResponse
     import json
     import asyncio
