@@ -1,3 +1,8 @@
+---
+name: echo-podcast-research
+description: Echo - 播客研究Agent，让知识回响
+---
+
 # Echo - 播客研究Agent
 
 > 代号 Echo (回声)，意为"让知识回响"
@@ -17,7 +22,7 @@ Echo 是一个开源的播客研究Agent，帮助用户从播客/视频中高效
 - 🎯 **要点提取** - 提取核心观点和关键信息
 - 🧠 **思维导图** - 生成知识结构图
 - 💡 **知识关联** - 与已有知识库关联
-- ❓ **问答生成** - 生成理解性问答对
+- ❓ **问答生成** - 基于Bloom's Taxonomy认知层次生成问答对
 - 🃏 **闪卡导出** - 导出为JSON/Markdown/HTML格式
 - 📄 **报告生成** - 生成完整研究报告
 
@@ -51,6 +56,13 @@ pip install -e ".[api]"
 
 ```bash
 pip install -e ".[all]"
+```
+
+### 前端安装
+
+```bash
+cd frontend
+npm install
 ```
 
 ## 配置
@@ -96,6 +108,12 @@ async def main():
         # 思维导图
         print(result["mindmap"])
 
+        # 问答对
+        for qa in result.get("qa_pairs", []):
+            print(f"Q: {qa['question']}")
+            print(f"A: {qa['answer']}")
+            print(f"Level: {qa.get('level', 'N/A')}")
+
 asyncio.run(main())
 ```
 
@@ -118,12 +136,36 @@ echo research "URL" --format both
 ### API Server
 
 ```bash
-# 启动API服务器
-uvicorn echo.api.research:router --host 0.0.0.0 --port 8000
+# 启动API服务器 (端口8002)
+python scripts/api_server.py
 
-# 或者使用
-python -m echo.api.research
+# 或者使用uvicorn
+uvicorn echo.api.research:router --host 0.0.0.0 --port 8002
 ```
+
+### 前端界面
+
+```bash
+cd frontend
+npm run dev
+# 访问 http://localhost:3555
+```
+
+### SSE流式API
+
+```bash
+# 启动后端后，前端使用SSE接收实时进度
+POST http://localhost:8002/api/research/stream
+Content-Type: application/json
+
+{"url": "https://b23.tv/xxx", "num_keypoints": 5}
+```
+
+事件流格式：
+- `progress` - 当前步骤和进度
+- `complete` - 完成，结果数据
+- `error` - 错误信息
+- `done` - 结束信号
 
 ## 项目结构
 
@@ -142,23 +184,29 @@ src/echo/
 │   ├── mindmap.py         # 思维导图 (LLM)
 │   ├── report.py          # 报告生成 (LLM)
 │   ├── flashcard.py       # 闪卡导出
-│   └── qa.py              # 问答生成
-├── tools/                # 工具模块
+│   └── qa.py             # 问答生成
+├── tools/                 # 工具模块
 │   ├── downloader.py      # 统一下载接口
 │   ├── bilibili.py        # B站下载
 │   ├── youtube.py         # YouTube下载
 │   └── podcast.py         # RSS解析
 ├── graph/                 # LangGraph编排
 │   └── research_graph.py  # 研究流程图
-└── api/                   # API接口
-    └── research.py         # FastAPI路由
+└── api/                  # API接口
+    └── research.py        # FastAPI路由
 
-echo_cli/                   # CLI入口
-tests/                      # 测试
+echo_cli/                  # CLI入口
+frontend/                  # Next.js前端
+├── src/
+│   ├── app/               # App Router页面
+│   ├── components/       # React组件
+│   └── lib/              # 工具函数
+tests/                     # 测试
 ├── unit/
 └── integration/
-scripts/                    # 脚本
+scripts/                   # 脚本
 ├── quickstart.py
+└── api_server.py         # API服务器入口
 ```
 
 ## 开发
@@ -200,7 +248,29 @@ ruff format src/ tests/ && ruff check src/ tests/ && mypy src/echo --ignore-miss
   "mindmap": {
     "root": "AI提升PM效率",
     "branches": [...]
-  }
+  },
+  "knowledge_cards": [
+    {
+      "keypoint": "AI自动化调研",
+      "related": [{"title": "竞品分析方法", "url": "https://..."}],
+      "confidence": 0.85
+    }
+  ],
+  "report": {
+    "title": "AI时代PM效率提升指南",
+    "content": "..."
+  },
+  "qa_pairs": [
+    {
+      "question": "如何用AI提升产品经理工作效率？",
+      "answer": "可以通过AI自动化竞品调研、LLM生成PRD初稿等方式...",
+      "level": "L2",
+      "level_name": "理解",
+      "knowledge_point": "AI应用",
+      "estimated_time": "1-2分钟",
+      "scoring_hint": "答案准确且完整地回应问题即可得分"
+    }
+  ]
 }
 ```
 
@@ -210,4 +280,4 @@ MIT
 
 ---
 
-*代号: Echo | 2026-03-24*
+*代号: Echo | 2026-03-25*
