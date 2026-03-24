@@ -68,6 +68,10 @@ export default function PodcastPage() {
           } else if (event.type === 'complete' && event.result) {
             setProgress(100)
             setResult(event.result)
+            // 滚动到结果区域
+            setTimeout(() => {
+              document.getElementById("results")?.scrollIntoView({ behavior: "smooth" })
+            }, 100)
           } else if (event.type === 'error') {
             throw new Error(event.error || "研究失败")
           }
@@ -141,7 +145,7 @@ export default function PodcastPage() {
         )}
 
         {status === "success" && result && (
-          <section className="space-y-6">
+          <section id="results" className="space-y-6">
             {/* 新建研究按钮 */}
             <motion.div
               initial={{ opacity: 0 }}
