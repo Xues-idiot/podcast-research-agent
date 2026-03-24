@@ -43,7 +43,7 @@ export function ReportDisplay({ report }: ReportDisplayProps) {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <span className="text-2xl">📄</span>
-            研究报告
+            {report.title || "研究报告"}
           </CardTitle>
         </CardHeader>
         <CardContent>
