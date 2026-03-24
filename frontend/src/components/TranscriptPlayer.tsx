@@ -13,9 +13,12 @@ interface TranscriptPlayerProps {
   }
 }
 
+const PLAYBACK_SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2]
+
 export function TranscriptPlayer({ transcript }: TranscriptPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentSegment, setCurrentSegment] = useState(0)
+  const [playbackSpeed, setPlaybackSpeed] = useState(1)
 
   const segments = transcript.segments || []
 
@@ -84,6 +87,19 @@ export function TranscriptPlayer({ transcript }: TranscriptPlayerProps) {
                   </span>
                 )}
               </div>
+
+              {/* 播放速度控制 */}
+              <select
+                value={playbackSpeed}
+                onChange={(e) => setPlaybackSpeed(Number(e.target.value))}
+                className="px-2 py-1 text-sm rounded border border-[#2C3E50]/20 bg-white cursor-pointer"
+              >
+                {PLAYBACK_SPEEDS.map((speed) => (
+                  <option key={speed} value={speed}>
+                    {speed}x
+                  </option>
+                ))}
+              </select>
             </div>
           )}
 
