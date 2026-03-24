@@ -1,0 +1,89 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "echo-podcast-research"
+version = "0.1.0"
+description = "Echo - 播客研究Agent，自动转录、摘要、要点提取"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    { name = "Echo Team" }
+]
+keywords = ["podcast", "transcription", "summarization", "ai", "research"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    # HTTP
+    "httpx>=0.27.0",
+    # AI
+    "openai>=1.0.0",
+    # Transcription
+    "openai-whisper>=1.0.0",
+    # Download
+    "yt-dlp>=2024.0.0",
+    # Config
+    "python-dotenv>=1.0.0",
+    # Data validation
+    "pydantic>=2.0.0",
+    # Search
+    "tavily-python>=0.3.0",
+    # CLI
+    "click>=8.0.0",
+    # RSS
+    "feedparser>=6.0.0",
+    # Graph
+    "langgraph>=0.0.20",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+]
+api = [
+    "fastapi>=0.100.0",
+    "uvicorn>=0.20.0",
+]
+all = [
+    "echo-podcast-research[dev,api]",
+]
+
+[project.scripts]
+echo = "echo_cli.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/echo", "echo_cli"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "echo_cli/",
+    "README.md",
+    "SKILL.md",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_ignores = true
+ignore_missing_imports = true
