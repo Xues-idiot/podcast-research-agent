@@ -4,14 +4,14 @@ import { motion } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import type { ResearchResult } from "@/lib/api"
-import { Download, FileJson, FileText, Table2 } from "lucide-react"
+import { Download, FileJson, FileText, Table2, File } from "lucide-react"
 
 interface ExportProps {
   result: ResearchResult
 }
 
 export function Export({ result }: ExportProps) {
-  const handleExport = async (format: "json" | "markdown" | "csv") => {
+  const handleExport = async (format: "json" | "markdown" | "csv" | "txt") => {
     let content: string
     let filename: string
     let mimeType: string
@@ -24,10 +24,14 @@ export function Export({ result }: ExportProps) {
       content = generateMarkdown(result)
       filename = "research-result.md"
       mimeType = "text/markdown"
-    } else {
+    } else if (format === "csv") {
       content = generateCSV(result)
       filename = "research-result.csv"
       mimeType = "text/csv"
+    } else {
+      content = generatePlainText(result)
+      filename = "research-result.txt"
+      mimeType = "text/plain"
     }
 
     // 创建下载
@@ -127,6 +131,62 @@ export function Export({ result }: ExportProps) {
     return lines.join("\n")
   }
 
+  const generatePlainText = (result: ResearchResult): string => {
+    const lines: string[] = []
+
+    // 标题
+    lines.push(result.summary?.title || "研究报告")
+    lines.push("=".repeat(30))
+    lines.push("")
+
+    // 摘要
+    if (result.summary?.summary) {
+      lines.push("【摘要】")
+      lines.push(result.summary.summary)
+      lines.push("")
+    }
+
+    // 要点
+    if (result.keypoints && result.keypoints.length > 0) {
+      lines.push("【关键要点】")
+      for (let i = 0; i < result.keypoints.length; i++) {
+        lines.push(`${i + 1}. ${result.keypoints[i].content}`)
+      }
+      lines.push("")
+    }
+
+    // 思维导图
+    if (result.mindmap?.root) {
+      lines.push("【思维导图】")
+      lines.push(`主题: ${result.mindmap.root}`)
+      for (const branch of result.mindmap.branches || []) {
+        lines.push(`  - ${branch.title}`)
+        if (branch.children) {
+          for (const child of branch.children) {
+            lines.push(`    * ${child}`)
+          }
+        }
+      }
+      lines.push("")
+    }
+
+    // 问答对
+    if (result.qa_pairs && result.qa_pairs.length > 0) {
+      lines.push("【问答对】")
+      for (let i = 0; i < result.qa_pairs.length; i++) {
+        const qa = result.qa_pairs[i]
+        lines.push(`Q${i + 1}: ${qa.question}`)
+        lines.push(`A: ${qa.answer}`)
+        if (qa.level) {
+          lines.push(`  [${qa.level} ${qa.level_name || ""}]`)
+        }
+        lines.push("")
+      }
+    }
+
+    return lines.join("\n")
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -141,7 +201,7 @@ export function Export({ result }: ExportProps) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-4 gap-3">
             <Button
               variant="outline"
               onClick={() => handleExport("json")}
@@ -167,6 +227,15 @@ export function Export({ result }: ExportProps) {
             >
               <Table2 className="w-6 h-6" />
               <span className="text-xs">CSV</span>
+            </Button>
+
+            <Button
+              variant="outline"
+              onClick={() => handleExport("txt")}
+              className="flex flex-col items-center gap-1 h-auto py-4"
+            >
+              <File className="w-6 h-6" />
+              <span className="text-xs">文本</span>
             </Button>
           </div>
         </CardContent>
