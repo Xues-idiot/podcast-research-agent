@@ -15,6 +15,8 @@ export function MindMap({ mindmap }: MindMapProps) {
     new Set(mindmap.branches.map((_, i) => i))
   )
 
+  const allExpanded = expandedBranches.size === mindmap.branches.length
+
   const toggleBranch = (index: number) => {
     setExpandedBranches((prev) => {
       const next = new Set(prev)
@@ -27,6 +29,14 @@ export function MindMap({ mindmap }: MindMapProps) {
     })
   }
 
+  const toggleAll = () => {
+    if (allExpanded) {
+      setExpandedBranches(new Set())
+    } else {
+      setExpandedBranches(new Set(mindmap.branches.map((_, i) => i)))
+    }
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -35,9 +45,17 @@ export function MindMap({ mindmap }: MindMapProps) {
     >
       <Card className="border-l-4 border-l-[#F5F5DC]">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Brain className="w-6 h-6 text-[#2C3E50]" />
-            思维导图
+          <CardTitle className="flex items-center justify-between">
+            <span className="flex items-center gap-2">
+              <Brain className="w-6 h-6 text-[#2C3E50]" />
+              思维导图
+            </span>
+            <button
+              onClick={toggleAll}
+              className="text-xs px-2 py-1 rounded bg-[#2C3E50]/10 hover:bg-[#2C3E50]/20 text-[#2C3E50] transition-colors"
+            >
+              {allExpanded ? "收起全部" : "展开全部"}
+            </button>
           </CardTitle>
         </CardHeader>
         <CardContent>
