@@ -1,7 +1,7 @@
 "use client"
 
-import { useCallback } from "react"
-import { motion } from "motion/react"
+import { useCallback, useState, useEffect } from "react"
+import { motion, AnimatePresence } from "motion/react"
 import { usePodcastStore } from "@/store/podcast-store"
 import {
   URLInput,
@@ -18,7 +18,7 @@ import {
   QAPairs,
 } from "@/components"
 import { streamResearch } from "@/lib/api"
-import { Mic } from "lucide-react"
+import { Mic, ArrowUp } from "lucide-react"
 
 export default function PodcastPage() {
   const {
@@ -35,6 +35,20 @@ export default function PodcastPage() {
     setCurrentStep,
     reset,
   } = usePodcastStore()
+
+  const [showBackToTop, setShowBackToTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   const handleSubmit = useCallback(
     async (submitUrl: string) => {
@@ -188,6 +202,22 @@ export default function PodcastPage() {
           </p>
         </div>
       </footer>
+
+      {/* 回到顶部按钮 */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={scrollToTop}
+            className="fixed bottom-6 right-6 p-3 rounded-full bg-[#2C3E50] text-white shadow-lg hover:bg-[#34495E] transition-colors"
+            title="回到顶部"
+          >
+            <ArrowUp className="w-5 h-5" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
