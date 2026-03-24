@@ -4,14 +4,14 @@ import { motion } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import type { ResearchResult } from "@/lib/api"
-import { Download, FileJson, FileText, Table2, File } from "lucide-react"
+import { Download, FileJson, FileText, Table2, File, FileCode, Presentation } from "lucide-react"
 
 interface ExportProps {
   result: ResearchResult
 }
 
 export function Export({ result }: ExportProps) {
-  const handleExport = async (format: "json" | "markdown" | "csv" | "txt") => {
+  const handleExport = async (format: "json" | "markdown" | "csv" | "txt" | "html" | "pdf") => {
     let content: string
     let filename: string
     let mimeType: string
@@ -28,6 +28,29 @@ export function Export({ result }: ExportProps) {
       content = generateCSV(result)
       filename = "research-result.csv"
       mimeType = "text/csv"
+    } else if (format === "html") {
+      content = generateHTML(result)
+      filename = "research-result.html"
+      mimeType = "text/html"
+    } else if (format === "pdf") {
+      // PDF需要通过API生成
+      const response = await fetch("/api/research/export", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ result, format: "pdf" }),
+      })
+      if (response.ok) {
+        const blob = await response.blob()
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement("a")
+        a.href = url
+        a.download = "research-result.pdf"
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+        URL.revokeObjectURL(url)
+      }
+      return
     } else {
       content = generatePlainText(result)
       filename = "research-result.txt"
@@ -44,6 +67,107 @@ export function Export({ result }: ExportProps) {
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
+  }
+
+  const generateHTML = (result: ResearchResult): string => {
+    return `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${result.summary?.title || "研究报告"} - Echo</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background: #fafafa; }
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        h1 { color: #2C3E50; font-size: 2em; margin-bottom: 20px; border-bottom: 3px solid #E67E22; padding-bottom: 10px; }
+        h2 { color: #2C3E50; font-size: 1.4em; margin: 20px 0 10px; }
+        h3 { color: #34495e; font-size: 1.1em; margin: 15px 0 8px; }
+        p { margin: 10px 0; }
+        ul, ol { margin: 10px 0 10px 20px; }
+        li { margin: 5px 0; }
+        .highlight { background: #FFF3E0; border-left: 4px solid #E67E22; padding: 10px 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .mindmap { background: #f8f9fa; padding: 15px; border-radius: 8px; }
+        .mindmap-node { font-weight: bold; color: #2C3E50; }
+        .branch { margin-left: 20px; border-left: 2px solid #E67E22; padding-left: 15px; }
+        .qa-card { background: #f8f9fa; border-radius: 8px; padding: 15px; margin: 10px 0; border: 1px solid #e0e0e0; }
+        .qa-question { font-weight: bold; color: #2C3E50; margin-bottom: 8px; }
+        .qa-answer { color: #555; margin-left: 15px; }
+        .qa-meta { font-size: 0.85em; color: #888; margin-top: 5px; }
+        .tag { display: inline-block; background: #E67E22; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-left: 8px; }
+        .report-content { white-space: pre-wrap; background: #f8f9fa; padding: 15px; border-radius: 8px; }
+        .footer { text-align: center; color: #888; font-size: 0.85em; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0; }
+    </style>
+</head>
+<body>
+    <h1>${result.summary?.title || "研究报告"}</h1>
+
+    ${result.summary?.summary ? `
+    <div class="card">
+        <h2>摘要</h2>
+        <div class="highlight">${result.summary.summary}</div>
+    </div>
+    ` : ""}
+
+    ${result.summary?.highlights?.length ? `
+    <div class="card">
+        <h2>亮点</h2>
+        <ul>
+            ${result.summary.highlights.map(h => `<li>${h}</li>`).join("")}
+        </ul>
+    </div>
+    ` : ""}
+
+    ${result.keypoints?.length ? `
+    <div class="card">
+        <h2>关键要点</h2>
+        <ul>
+            ${result.keypoints.map(kp => `<li><strong>${kp.content}</strong>${kp.importance ? `<span class="tag">${kp.importance}</span>` : ""}</li>`).join("")}
+        </ul>
+    </div>
+    ` : ""}
+
+    ${result.mindmap?.root ? `
+    <div class="card">
+        <h2>思维导图</h2>
+        <div class="mindmap">
+            <div class="mindmap-node">${result.mindmap.root}</div>
+            ${result.mindmap.branches?.map(branch => `
+                <div class="branch">
+                    <strong>${branch.title}</strong>
+                    ${branch.children?.length ? `<ul>${branch.children.map(c => `<li>${c}</li>`).join("")}</ul>` : ""}
+                </div>
+            `).join("")}
+        </div>
+    </div>
+    ` : ""}
+
+    ${result.qa_pairs?.length ? `
+    <div class="card">
+        <h2>问答对</h2>
+        ${result.qa_pairs.map((qa, i) => `
+            <div class="qa-card">
+                <div class="qa-question">Q${i + 1}: ${qa.question}</div>
+                <div class="qa-answer">A: ${qa.answer}</div>
+                ${qa.level ? `<div class="qa-meta">认知层次: ${qa.level} - ${qa.level_name || ""}</div>` : ""}
+                ${qa.knowledge_point ? `<div class="qa-meta">知识点: ${qa.knowledge_point}</div>` : ""}
+            </div>
+        `).join("")}
+    </div>
+    ` : ""}
+
+    ${result.report ? `
+    <div class="card">
+        <h2>研究报告</h2>
+        <div class="report-content">${result.report.content || result.report.title || ""}</div>
+    </div>
+    ` : ""}
+
+    <div class="footer">
+        由 Echo 播客研究Agent生成 | ${new Date().toLocaleDateString("zh-CN")}
+    </div>
+</body>
+</html>`
   }
 
   const generateMarkdown = (result: ResearchResult): string => {
@@ -201,7 +325,7 @@ export function Export({ result }: ExportProps) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-3 gap-3">
             <Button
               variant="outline"
               onClick={() => handleExport("json")}
@@ -227,6 +351,24 @@ export function Export({ result }: ExportProps) {
             >
               <Table2 className="w-6 h-6" />
               <span className="text-xs">CSV</span>
+            </Button>
+
+            <Button
+              variant="outline"
+              onClick={() => handleExport("html")}
+              className="flex flex-col items-center gap-1 h-auto py-4"
+            >
+              <FileCode className="w-6 h-6" />
+              <span className="text-xs">HTML</span>
+            </Button>
+
+            <Button
+              variant="outline"
+              onClick={() => handleExport("pdf")}
+              className="flex flex-col items-center gap-1 h-auto py-4"
+            >
+              <Presentation className="w-6 h-6" />
+              <span className="text-xs">PDF</span>
             </Button>
 
             <Button

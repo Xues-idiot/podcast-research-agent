@@ -6,10 +6,11 @@ import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
+from io import BytesIO
 from typing import Any, AsyncIterator, Optional
 
 from fastapi import APIRouter, HTTPException, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel
 
 from echo.client import EchoClient
@@ -342,3 +343,186 @@ async def stream_research(request: StartRequest, http_request: Request):
             "X-Accel-Buffering": "no",
         }
     )
+
+
+class ExportRequest(BaseModel):
+    """导出请求"""
+    result: dict
+    format: str = "pdf"
+
+
+@router.post("/export")
+async def export_result(request: ExportRequest) -> Response:
+    """
+    导出研究结果为不同格式
+
+    Args:
+        request: 包含result和format的请求体
+
+    Returns:
+        文件下载响应
+    """
+    # 生成HTML内容
+    html_content = _generate_html_from_result(request.result)
+
+    if request.format == "pdf":
+        # 使用weasyprint或html2pdf生成PDF
+        try:
+            from weasyprint import HTML
+            pdf_buffer = BytesIO()
+            HTML(string=html_content).write_pdf(pdf_buffer)
+            pdf_buffer.seek(0)
+            return Response(
+                content=pdf_buffer.read(),
+                media_type="application/pdf",
+                headers={
+                    "Content-Disposition": "attachment; filename=research-result.pdf"
+                }
+            )
+        except ImportError:
+            # 如果没有weasyprint，返回HTML
+            return Response(
+                content=html_content.encode("utf-8"),
+                media_type="text/html",
+                headers={
+                    "Content-Disposition": "attachment; filename=research-result.html"
+                }
+            )
+    else:
+        return Response(
+            content=html_content.encode("utf-8"),
+            media_type="text/html",
+            headers={
+                "Content-Disposition": "attachment; filename=research-result.html"
+            }
+        )
+
+
+def _generate_html_from_result(result: dict) -> str:
+    """将研究结果生成为HTML"""
+    title = result.get("summary", {}).get("title", "研究报告")
+    summary_text = result.get("summary", {}).get("summary", "")
+    highlights = result.get("summary", {}).get("highlights", [])
+    keypoints = result.get("keypoints", [])
+    mindmap = result.get("mindmap", {})
+    qa_pairs = result.get("qa_pairs", [])
+    report = result.get("report", {})
+
+    html_parts = [
+        "<!DOCTYPE html>",
+        "<html lang='zh-CN'>",
+        "<head>",
+        "    <meta charset='UTF-8'>",
+        "    <meta name='viewport' content='width=device-width, initial-scale=1.0'>",
+        f"    <title>{title} - Echo</title>",
+        "    <style>",
+        "        * { box-sizing: border-box; margin: 0; padding: 0; }",
+        "        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background: #fafafa; }",
+        "        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }",
+        "        h1 { color: #2C3E50; font-size: 2em; margin-bottom: 20px; border-bottom: 3px solid #E67E22; padding-bottom: 10px; }",
+        "        h2 { color: #2C3E50; font-size: 1.4em; margin: 20px 0 10px; }",
+        "        .highlight { background: #FFF3E0; border-left: 4px solid #E67E22; padding: 10px 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }",
+        "        ul { margin: 10px 0 10px 20px; }",
+        "        li { margin: 5px 0; }",
+        "        .tag { display: inline-block; background: #E67E22; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-left: 8px; }",
+        "        .qa-card { background: #f8f9fa; border-radius: 8px; padding: 15px; margin: 10px 0; border: 1px solid #e0e0e0; }",
+        "        .qa-question { font-weight: bold; color: #2C3E50; margin-bottom: 8px; }",
+        "        .qa-answer { color: #555; margin-left: 15px; }",
+        "        .report-content { white-space: pre-wrap; background: #f8f9fa; padding: 15px; border-radius: 8px; }",
+        "        .footer { text-align: center; color: #888; font-size: 0.85em; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0; }",
+        "    </style>",
+        "</head>",
+        "<body>",
+        f"    <h1>{title}</h1>",
+    ]
+
+    # 摘要
+    if summary_text:
+        html_parts.extend([
+            "    <div class='card'>",
+            "        <h2>摘要</h2>",
+            f"        <div class='highlight'>{summary_text}</div>",
+            "    </div>",
+        ])
+
+    # 亮点
+    if highlights:
+        html_parts.append("    <div class='card'>")
+        html_parts.append("        <h2>亮点</h2>")
+        html_parts.append("        <ul>")
+        for h in highlights:
+            html_parts.append(f"            <li>{h}</li>")
+        html_parts.extend(["        </ul>", "    </div>"])
+
+    # 要点
+    if keypoints:
+        html_parts.append("    <div class='card'>")
+        html_parts.append("        <h2>关键要点</h2>")
+        html_parts.append("        <ul>")
+        for kp in keypoints:
+            content = kp.get("content", kp) if isinstance(kp, dict) else kp
+            importance = kp.get("importance", "") if isinstance(kp, dict) else ""
+            tag = f"<span class='tag'>{importance}</span>" if importance else ""
+            html_parts.append(f"            <li><strong>{content}</strong>{tag}</li>")
+        html_parts.extend(["        </ul>", "    </div>"])
+
+    # 思维导图
+    if mindmap and mindmap.get("root"):
+        html_parts.extend([
+            "    <div class='card'>",
+            "        <h2>思维导图</h2>",
+            f"        <div class='highlight'><strong>主题:</strong> {mindmap['root']}</div>",
+        ])
+        for branch in mindmap.get("branches", []):
+            branch_title = branch.get("title", "")
+            children = branch.get("children", [])
+            html_parts.append(f"        <div style='margin-left: 20px; margin-top: 10px;'><strong>{branch_title}</strong>")
+            if children:
+                html_parts.append("            <ul>")
+                for child in children:
+                    html_parts.append(f"                <li>{child}</li>")
+                html_parts.append("            </ul>")
+            html_parts.append("        </div>")
+        html_parts.append("    </div>")
+
+    # 问答对
+    if qa_pairs:
+        html_parts.append("    <div class='card'>")
+        html_parts.append("        <h2>问答对</h2>")
+        for i, qa in enumerate(qa_pairs, 1):
+            question = qa.get("question", "")
+            answer = qa.get("answer", "")
+            level = qa.get("level", "")
+            level_name = qa.get("level_name", "")
+            html_parts.extend([
+                f"        <div class='qa-card'>",
+                f"            <div class='qa-question'>Q{i}: {question}</div>",
+                f"            <div class='qa-answer'>A: {answer}</div>",
+            ])
+            if level:
+                html_parts.append(f"            <div style='font-size:0.85em; color:#888; margin-top:5px;'>认知层次: {level} - {level_name}</div>")
+            html_parts.append("        </div>")
+        html_parts.append("    </div>")
+
+    # 报告
+    if report:
+        content = report.get("content", "")
+        report_title = report.get("title", "报告")
+        if content:
+            html_parts.extend([
+                "    <div class='card'>",
+                f"        <h2>{report_title}</h2>",
+                f"        <div class='report-content'>{content}</div>",
+                "    </div>",
+            ])
+
+    # 页脚
+    html_parts.extend([
+        "    <div class='footer'>",
+        f"        由 Echo 播客研究Agent生成 | {datetime.now().strftime('%Y-%m-%d')}",
+        "    </div>",
+        "</body>",
+        "</html>",
+    ])
+
+    return "\n".join(html_parts)
