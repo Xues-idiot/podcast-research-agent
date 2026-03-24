@@ -119,9 +119,20 @@ echo info "https://youtube.com/watch?v=xxx"
         }
     ],
     "report": {
-        "content": "...",
-        "title": "..."
-    }
+        "title": "...",
+        "content": "..."
+    },
+    "qa_pairs": [
+        {
+            "question": "...",
+            "answer": "...",
+            "level": "L2",           # Bloom's taxonomy level
+            "level_name": "理解",
+            "knowledge_point": "...",
+            "estimated_time": "1-2分钟",
+            "scoring_hint": "..."
+        }
+    ]
 }
 ```
 
@@ -166,6 +177,8 @@ echo research <URL> --format both
 | Keypoints | 10-30s |
 | Mindmap | 10-30s |
 | Knowledge Link | 30-60s |
+| Report | 10-30s |
+| QA Generation | 10-30s |
 
 **Total: ~5-20 minutes depending on video length**
 
