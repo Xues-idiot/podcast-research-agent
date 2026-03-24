@@ -13,6 +13,11 @@ src/echo/
 │   ├── keypoint.py       # 要点提取 (LLM)
 │   ├── linker.py         # 知识关联 (Tavily)
 │   └── mindmap.py        # 思维导图 (LLM)
+├── conversation/         # 对话模块 (新增)
+│   ├── __init__.py
+│   ├── chat.py          # 对话处理器
+│   ├── history.py       # 对话历史存储
+│   └── prompts.py       # 提示词模板
 ├── tools/                # 工具模块
 │   ├── downloader.py     # 统一下载接口
 │   ├── bilibili.py       # B站下载
@@ -21,13 +26,14 @@ src/echo/
 ├── graph/                # LangGraph编排
 │   └── research_graph.py # 研究流程图
 └── api/                 # API接口
-    └── research.py       # FastAPI路由
+    ├── research.py       # 研究API路由
+    └── chat.py           # 对话API路由 (新增)
 
 echo_cli/                 # CLI入口
 frontend/                  # Next.js前端
 ├── src/
 │   ├── app/             # App Router页面
-│   ├── components/       # React组件 (18个)
+│   ├── components/       # React组件 (19个, 新增Chat)
 │   ├── lib/             # 工具函数
 │   └── store/           # Zustand状态管理
 tests/
@@ -178,6 +184,44 @@ download -> transcribe -> summarize -> keypoint -> mindmap -> link -> report -> 
 
 ### 状态
 - ✅ 完整流程已实现，8个节点全部集成
+
+---
+
+## conversation 模块 (对话式问答)
+
+> 基于播客研究结果的对话式问答功能，支持多轮对话和引用溯源
+
+### 类型
+- `ChatMessage` - 对话消息 `{role, content, timestamp, references}`
+- `ChatResponse` - 聊天响应 `{answer, references, conversation_id}`
+
+### 函数
+- `ConversationHandler(research_result) -> handler` 创建对话处理器
+- `handler.chat(query, stream) -> AsyncIterator[ChatResponse]` 处理对话
+- `handler.get_conversation_id() -> str` 获取对话ID
+- `handler.clear_history()` 清除对话历史
+
+### ConversationHistory 类
+- `add(message)` 添加消息
+- `get_recent(n)` 获取最近n条消息
+- `get_all()` 获取所有消息
+- `export_markdown()` 导出为Markdown
+- 持久化到 `~/.echo/conversations/{id}.json`
+
+### API端点
+- `POST /api/chat/chat` - 对话接口 (支持流式SSE)
+- `DELETE /api/chat/conversation/{id}` - 删除对话
+- `GET /api/chat/conversation/{id}/history` - 获取历史
+- `POST /api/chat/conversation/{id}/export` - 导出对话
+
+### 状态
+- ✅ 基础对话处理器已实现
+- ✅ 对话历史持久化已实现
+- ⚠️ 向量检索待集成 (TODO)
+- ⚠️ MiniMax API集成待完成 (TODO)
+
+### 参考
+- khoj 对话系统架构
 
 ---
 

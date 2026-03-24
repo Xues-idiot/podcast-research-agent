@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useState, useEffect } from "react"
+import { useCallback, useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { usePodcastStore } from "@/store/podcast-store"
 import {
@@ -16,6 +16,7 @@ import {
   ApiStatus,
   TranscriptPlayer,
   QAPairs,
+  Chat,
 } from "@/components"
 import { streamResearch } from "@/lib/api"
 import { Mic, ArrowUp, Plus } from "lucide-react"
@@ -38,7 +39,7 @@ export default function PodcastPage() {
 
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [researchTime, setResearchTime] = useState<number | null>(null)
-  const [startTime, setStartTime] = useState<number | null>(null)
+  const startTimeRef = useRef<number | null>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +56,7 @@ export default function PodcastPage() {
   const handleSubmit = useCallback(
     async (submitUrl: string) => {
       reset()
-      setStartTime(Date.now())
+      startTimeRef.current = Date.now()
       setResearchTime(null)
       setStatus("loading")
       setProgress(0)
@@ -73,8 +74,8 @@ export default function PodcastPage() {
             setProgress(100)
             setResult(event.result)
             // 计算研究耗时
-            if (startTime) {
-              setResearchTime(Date.now() - startTime)
+            if (startTimeRef.current) {
+              setResearchTime(Date.now() - startTimeRef.current)
             }
             // 滚动到结果区域
             setTimeout(() => {
@@ -204,6 +205,9 @@ export default function PodcastPage() {
             {result.qa_pairs && result.qa_pairs.length > 0 && (
               <QAPairs qaPairs={result.qa_pairs} />
             )}
+
+            {/* 对话问答 */}
+            <Chat researchResult={result} />
 
             {/* 报告 */}
             {result.report && <ReportDisplay report={result.report} />}

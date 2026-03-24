@@ -837,3 +837,44 @@ download, transcribe, summarize, keypoint, mindmap, link, report, qa
 
 ### 提交记录
 - 22个commit，代码已提交
+
+---
+
+## 第167轮迭代 (2026-03-25) - 对话式问答功能
+
+### 完成内容
+
+#### 对话式问答模块 (新增)
+基于 khoj 参考实现，新增对话模块：
+
+**后端 (src/echo/conversation/)**:
+- `chat.py` - ConversationHandler 处理对话，支持流式输出
+- `history.py` - ConversationHistory 管理对话历史，持久化到文件系统
+- `prompts.py` - 提示词模板
+
+**API (src/echo/api/chat.py)**:
+- `POST /api/chat/chat` - 对话接口 (支持流式SSE)
+- `DELETE /api/chat/conversation/{id}` - 删除对话
+- `GET /api/chat/conversation/{id}/history` - 获取历史
+- `POST /api/chat/conversation/{id}/export` - 导出对话
+
+**前端 (frontend/src/components/Chat.tsx)**:
+- 对话问答组件
+- 消息列表展示
+- 流式输出支持
+- 清空/导出对话功能
+
+**架构更新 (ARCHITECTURE.md)**:
+- 添加 conversation 模块文档
+- 更新项目结构
+
+### 本轮完成
+- [x] 实现对话式问答功能
+
+### 待完成
+- [ ] 集成 MiniMax API 进行实际生成
+- [ ] 实现向量检索 (Bi-encoder)
+- [ ] 添加引用溯源功能
+
+### 提交记录
+- 28个commit，代码已提交
