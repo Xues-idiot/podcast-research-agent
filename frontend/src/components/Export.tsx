@@ -68,16 +68,62 @@ export function Export({ result }: ExportProps) {
           lines.push(`- ${child}`)
         }
       }
+      lines.push("")
+    }
+
+    // 问答对
+    if (result.qa_pairs && result.qa_pairs.length > 0) {
+      lines.push("## 问答对")
+      lines.push("")
+      for (let i = 0; i < result.qa_pairs.length; i++) {
+        const qa = result.qa_pairs[i]
+        lines.push(`### Q${i + 1}: ${qa.question}`)
+        lines.push("")
+        lines.push(`**A:** ${qa.answer}`)
+        lines.push("")
+        if (qa.level) {
+          lines.push(`*认知层次: ${qa.level} - ${qa.level_name || ""}*`)
+          lines.push("")
+        }
+        if (qa.knowledge_point) {
+          lines.push(`*知识点: ${qa.knowledge_point}*`)
+          lines.push("")
+        }
+        if (qa.scoring_hint) {
+          lines.push(`*评分提示: ${qa.scoring_hint}*`)
+          lines.push("")
+        }
+        lines.push("---")
+        lines.push("")
+      }
+    }
+
+    // 报告
+    if (result.report) {
+      lines.push("## 研究报告")
+      lines.push("")
+      lines.push(`### ${result.report.title || "报告"}`)
+      lines.push("")
+      lines.push(result.report.content || "")
+      lines.push("")
     }
 
     return lines.join("\n")
   }
 
   const generateCSV = (result: ResearchResult): string => {
-    const lines = ["问题,答案,重要性"]
+    const lines = ["类型,问题,答案,认知层次,知识点,预计时间"]
+
+    // 要点
     for (const kp of result.keypoints || []) {
-      lines.push(`"${kp.content.replace(/"/g, '""')}","","${kp.importance}"`)
+      lines.push(`"要点","${kp.content.replace(/"/g, '""')}","","","${kp.importance || ""}"`)
     }
+
+    // 问答对
+    for (const qa of result.qa_pairs || []) {
+      lines.push(`"问答","${qa.question.replace(/"/g, '""')}","${qa.answer.replace(/"/g, '""')}","${qa.level || ""} ${qa.level_name || ""}","${qa.knowledge_point || ""}","${qa.estimated_time || ""}"`)
+    }
+
     return lines.join("\n")
   }
 
