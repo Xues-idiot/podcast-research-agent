@@ -175,6 +175,32 @@ async def call_api():
         return result_response.json()
 ```
 
+### 8. 使用流式API (SSE)
+
+```python
+import httpx
+import json
+
+async def stream_research():
+    """使用SSE流式接收研究进度"""
+    async with httpx.AsyncClient(timeout=600.0) as client:
+        async with client.stream(
+            "POST",
+            "http://localhost:8002/api/research/stream",
+            json={"url": "https://b23.tv/BVxxx", "num_keypoints": 5}
+        ) as response:
+            async for line in response.aiter_lines():
+                if line.startswith("data:"):
+                    data = json.loads(line[5:])
+                    if data["type"] == "progress":
+                        print(f"进度: {data['progress']}% - {data.get('current_step', '')}")
+                    elif data["type"] == "complete":
+                        print("研究完成!")
+                        return data["result"]
+                    elif data["type"] == "error":
+                        print(f"错误: {data['error']}")
+```
+
 ## CLI使用
 
 ```bash
