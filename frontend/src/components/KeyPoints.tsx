@@ -1,8 +1,10 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import type { ResearchResult } from "@/lib/api"
+import { Copy, Check } from "lucide-react"
 
 interface KeyPointsProps {
   keypoints: ResearchResult["keypoints"]
@@ -15,6 +17,18 @@ const importanceColors = {
 }
 
 export function KeyPoints({ keypoints }: KeyPointsProps) {
+  const [copiedId, setCopiedId] = useState<number | null>(null)
+
+  const copyToClipboard = async (text: string, id: number) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopiedId(id)
+      setTimeout(() => setCopiedId(null), 2000)
+    } catch (err) {
+      console.error("Failed to copy:", err)
+    }
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -36,7 +50,7 @@ export function KeyPoints({ keypoints }: KeyPointsProps) {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                className="flex items-start gap-3 p-3 rounded-lg bg-[#FAF8F5] hover:bg-[#F5F5DC]/30 transition-colors"
+                className="flex items-start gap-3 p-3 rounded-lg bg-[#FAF8F5] hover:bg-[#F5F5DC]/30 transition-colors group"
               >
                 <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#2C3E50] text-white flex items-center justify-center font-bold text-sm">
                   {point.id}
@@ -51,6 +65,17 @@ export function KeyPoints({ keypoints }: KeyPointsProps) {
                     {point.importance === "high" ? "高重要性" : point.importance === "low" ? "低重要性" : "中等重要性"}
                   </span>
                 </div>
+                <button
+                  onClick={() => copyToClipboard(point.content, point.id)}
+                  className="p-1.5 rounded opacity-0 group-hover:opacity-100 hover:bg-[#2C3E50]/10 transition-all"
+                  title="复制要点"
+                >
+                  {copiedId === point.id ? (
+                    <Check className="w-4 h-4 text-green-600" />
+                  ) : (
+                    <Copy className="w-4 h-4 text-[#2C3E50]/50" />
+                  )}
+                </button>
               </motion.div>
             ))}
           </div>
