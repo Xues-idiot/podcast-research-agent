@@ -37,6 +37,8 @@ export default function PodcastPage() {
   } = usePodcastStore()
 
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [researchTime, setResearchTime] = useState<number | null>(null)
+  const [startTime, setStartTime] = useState<number | null>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,6 +55,8 @@ export default function PodcastPage() {
   const handleSubmit = useCallback(
     async (submitUrl: string) => {
       reset()
+      setStartTime(Date.now())
+      setResearchTime(null)
       setStatus("loading")
       setProgress(0)
       setCurrentStep("download")
@@ -68,6 +72,10 @@ export default function PodcastPage() {
           } else if (event.type === 'complete' && event.result) {
             setProgress(100)
             setResult(event.result)
+            // 计算研究耗时
+            if (startTime) {
+              setResearchTime(Date.now() - startTime)
+            }
             // 滚动到结果区域
             setTimeout(() => {
               document.getElementById("results")?.scrollIntoView({ behavior: "smooth" })
@@ -146,12 +154,17 @@ export default function PodcastPage() {
 
         {status === "success" && result && (
           <section id="results" className="space-y-6">
-            {/* 新建研究按钮 */}
+            {/* 新建研究按钮和研究耗时 */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="flex justify-center"
+              className="flex justify-between items-center"
             >
+              {researchTime && (
+                <span className="text-sm text-[#2C3E50]/50">
+                  研究耗时: {(researchTime / 1000).toFixed(1)}秒
+                </span>
+              )}
               <button
                 onClick={() => {
                   reset()
