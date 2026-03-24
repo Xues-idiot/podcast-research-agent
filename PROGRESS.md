@@ -804,3 +804,19 @@ download, transcribe, summarize, keypoint, mindmap, link, report, qa
 
 ### 提交记录
 - 20个commit，代码已提交
+
+---
+
+## 第165轮迭代 (2026-03-25)
+
+### 完成内容
+
+#### 自动滚动到结果
+- 添加 results 区域 id
+- 研究完成时自动滚动到结果区域
+
+### 本轮完成
+- [x] 添加自动滚动功能
+
+### 提交记录
+- 21个commit，代码已提交
