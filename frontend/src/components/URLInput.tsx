@@ -4,16 +4,40 @@ import { useState } from "react"
 import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Search, Loader2 } from "lucide-react"
+import { Search, Loader2, AlertCircle } from "lucide-react"
 import { usePodcastStore } from "@/store/podcast-store"
 
 interface URLInputProps {
   onSubmit: (url: string) => Promise<void>
 }
 
+const PLATFORM_PATTERNS = [
+  { name: "B站", patterns: ["bilibili.com", "b23.tv"] },
+  { name: "YouTube", patterns: ["youtube.com", "youtu.be"] },
+  { name: "抖音", patterns: ["douyin.com", "huoshan.com"] },
+  { name: "微信", patterns: ["weixin.qq.com"] },
+  { name: "小红书", patterns: ["xiaohongshu.com", "xhslink.com"] },
+  { name: "RSS", patterns: [".xml", ".rss", "feed"] },
+]
+
+function detectPlatform(url: string): string | null {
+  const lower = url.toLowerCase()
+  for (const platform of PLATFORM_PATTERNS) {
+    for (const pattern of platform.patterns) {
+      if (lower.includes(pattern)) {
+        return platform.name
+      }
+    }
+  }
+  return null
+}
+
 export function URLInput({ onSubmit }: URLInputProps) {
   const [loading, setLoading] = useState(false)
   const { url, setUrl, status } = usePodcastStore()
+
+  const platform = url.trim() ? detectPlatform(url) : null
+  const isUnknownPlatform = url.trim() && !platform
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -47,6 +71,12 @@ export function URLInput({ onSubmit }: URLInputProps) {
           className="pl-12 h-12 text-base"
           disabled={isLoading}
         />
+        {isUnknownPlatform && (
+          <div className="absolute -bottom-6 left-0 flex items-center gap-1 text-xs text-yellow-600">
+            <AlertCircle className="w-3 h-3" />
+            <span>未知平台，可能无法处理</span>
+          </div>
+        )}
       </div>
       <Button
         type="submit"
