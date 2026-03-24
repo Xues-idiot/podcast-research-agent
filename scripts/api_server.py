@@ -13,6 +13,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from echo.api.research import router as research_router
+from echo.api.chat import router as chat_router
+from echo.api.knowledge import router as knowledge_router
+from echo.api.sources import router as sources_router
 
 
 def create_app() -> FastAPI:
@@ -34,6 +37,9 @@ def create_app() -> FastAPI:
 
     # 注册路由
     app.include_router(research_router)
+    app.include_router(chat_router)
+    app.include_router(knowledge_router)
+    app.include_router(sources_router)
 
     @app.get("/")
     async def root():
