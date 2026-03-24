@@ -2,5 +2,6 @@
 
 from .entry import Entry, EntryStore
 from .splitter import TextSplitter
+from .bi_encoder import BiEncoder, EmbeddingStore
 
-__all__ = ["Entry", "EntryStore", "TextSplitter"]
+__all__ = ["Entry", "EntryStore", "TextSplitter", "BiEncoder", "EmbeddingStore"]

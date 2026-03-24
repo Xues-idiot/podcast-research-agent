@@ -878,3 +878,43 @@ download, transcribe, summarize, keypoint, mindmap, link, report, qa
 
 ### 提交记录
 - 28个commit，代码已提交
+
+---
+
+## 第168轮迭代 (2026-03-25) - 转录→Entry管道
+
+### 完成内容
+
+#### 知识库 Entry 模块 (新增)
+基于 khoj 参考实现，新增知识库模块：
+
+**后端 (src/echo/knowledge/)**:
+- `entry.py` - Entry 模型和 EntryStore 存储管理
+  - Entry: 最小检索单元，包含 raw/compiled 文本、时间戳、元数据
+  - EntryStore: 持久化存储，支持时间范围检索、关键词搜索
+- `splitter.py` - TextSplitter 文本分割器
+  - split_transcript: 按时间窗口分割转录
+  - split_text: 递归字符分割
+  - RecursiveTextSplitter: 带重叠的递归分割
+
+**API (src/echo/api/knowledge.py)**:
+- POST /api/knowledge/entries - 从转录创建Entry
+- GET /api/knowledge/entries/{podcast_id} - 获取所有Entry
+- GET /api/knowledge/entries/{podcast_id}/time-range - 按时间范围获取
+- DELETE /api/knowledge/entries/{podcast_id} - 删除Entry
+- POST /api/knowledge/search - 搜索Entry (TODO: 向量检索)
+- GET /api/knowledge/podcasts - 列出已存储播客
+
+**架构更新 (ARCHITECTURE.md)**:
+- 添加 knowledge 模块文档
+- 更新项目结构
+
+### 本轮完成
+- [x] 实现转录→Entry管道
+
+### 待完成
+- [ ] 向量嵌入生成 (Bi-encoder)
+- [ ] 向量相似度检索
+
+### 提交记录
+- 29个commit，代码已提交

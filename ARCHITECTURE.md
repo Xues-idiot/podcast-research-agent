@@ -18,6 +18,10 @@ src/echo/
 │   ├── chat.py          # 对话处理器
 │   ├── history.py       # 对话历史存储
 │   └── prompts.py       # 提示词模板
+├── knowledge/           # 知识库模块 (新增)
+│   ├── __init__.py
+│   ├── entry.py        # Entry模型和EntryStore
+│   └── splitter.py     # TextSplitter分割器
 ├── tools/                # 工具模块
 │   ├── downloader.py     # 统一下载接口
 │   ├── bilibili.py       # B站下载
@@ -27,7 +31,8 @@ src/echo/
 │   └── research_graph.py # 研究流程图
 └── api/                 # API接口
     ├── research.py       # 研究API路由
-    └── chat.py           # 对话API路由 (新增)
+    ├── chat.py           # 对话API路由 (新增)
+    └── knowledge.py      # 知识库API路由 (新增)
 
 echo_cli/                 # CLI入口
 frontend/                  # Next.js前端
@@ -222,6 +227,47 @@ download -> transcribe -> summarize -> keypoint -> mindmap -> link -> report -> 
 
 ### 参考
 - khoj 对话系统架构
+
+---
+
+## knowledge 模块 (知识库 Entry)
+
+> 将播客转录分割成可检索的 Entry，支持向量检索
+
+### 类型
+- `Entry` - 最小检索单元 `{id, podcast_id, raw, compiled, start_time, end_time, metadata}`
+- `EntryStore` - Entry 持久化存储管理器
+
+### EntryStore 类
+- `add_entries(podcast_id, entries)` 添加Entry
+- `get_entries(podcast_id)` 获取所有Entry
+- `get_entries_by_time_range(podcast_id, start, end)` 按时间范围获取
+- `search(podcast_id, query, top_k)` 关键词搜索
+- `delete_entries(podcast_id)` 删除Entry
+- 持久化到 `~/.echo/knowledge/{podcast_id}.json`
+
+### TextSplitter 类
+- `split_transcript(podcast_id, segments, min_duration, max_duration)` 按时间窗口分割
+- `split_text(text)` 递归字符分割
+- `RecursiveTextSplitter` 带重叠的递归分割
+
+### API端点
+- `POST /api/knowledge/entries` - 从转录创建Entry
+- `GET /api/knowledge/entries/{podcast_id}` - 获取所有Entry
+- `GET /api/knowledge/entries/{podcast_id}/time-range` - 按时间范围获取
+- `DELETE /api/knowledge/entries/{podcast_id}` - 删除Entry
+- `POST /api/knowledge/search` - 搜索Entry
+- `GET /api/knowledge/podcasts` - 列出已存储播客
+
+### 状态
+- ✅ Entry 模型已实现
+- ✅ EntryStore 持久化已实现
+- ✅ TextSplitter 分割器已实现
+- ⚠️ 向量嵌入待集成 (Bi-encoder TODO)
+- ⚠️ 向量检索待集成 (TODO)
+
+### 参考
+- khoj Entry 模型和分割策略
 
 ---
 
