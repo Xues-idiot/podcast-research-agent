@@ -565,3 +565,28 @@ download, transcribe, summarize, keypoint, mindmap, link, report, qa
 ### 提交记录
 - 7个commit，代码已提交
 - 远程仓库尚未创建（待用户配置）
+
+---
+
+## 第152轮迭代 (2026-03-25)
+
+### 完成内容
+
+#### 部署文档
+- 创建 `docs/deployment.md` - 完整部署指南
+- 包含环境要求、依赖安装、开发/生产部署
+- Docker 部署配置
+- 常见问题解答
+- 性能优化建议
+
+#### 端到端测试脚本
+- 创建 `scripts/test_e2e.py` - 直接测试完整流程
+- 创建 `scripts/test_streaming_api.py` - 测试 SSE 流式 API
+- 更新 `docs/deployment.md` 添加测试说明
+
+### 本轮完成
+- [x] 完善部署文档 (P0 item)
+- [x] 添加端到端测试脚本
+
+### 提交记录
+- 8个commit，代码已提交
