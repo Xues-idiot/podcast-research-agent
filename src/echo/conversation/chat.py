@@ -25,6 +25,7 @@ class ChatResponse:
     answer: str
     references: list[dict] = field(default_factory=list)
     conversation_id: str = ""
+    sources: list[dict] = field(default_factory=list)  # 引用来源
 
 
 class ConversationHandler:
@@ -32,20 +33,33 @@ class ConversationHandler:
 
     基于播客研究结果的对话式问答，支持：
     - 多轮对话记忆
-    - 引用溯源
+    - 引用溯源 (基于知识检索)
     - 流式输出
     """
 
-    def __init__(self, research_result: dict):
+    def __init__(
+        self,
+        research_result: dict,
+        entries: Optional[list] = None,
+        use_retriever: bool = True,
+    ):
         """初始化对话处理器
 
         Args:
             research_result: 研究结果，包含 transcript, summary, keypoints, mindmap 等
+            entries: 可选的 Entry 列表，用于向量检索
+            use_retriever: 是否使用知识检索器 (默认True)
         """
         self.research_result = research_result
         self.conversation_id = str(uuid.uuid4())[:8]
         self.history = ConversationHistory(self.conversation_id)
         self._context = self._build_context()
+
+        # 初始化知识检索器
+        self._retriever = None
+        if use_retriever and entries:
+            from echo.knowledge import KnowledgeRetriever
+            self._retriever = KnowledgeRetriever(entries)
 
     def _build_context(self) -> str:
         """从研究结果构建上下文"""
@@ -92,33 +106,41 @@ class ConversationHandler:
             ChatResponse: 回答片段
         """
         # 检索相关上下文
-        relevant_context = self._retrieve_context(query)
+        retrieved_context = self._retrieve_context(query)
 
         # 构建提示词
         conversation_history = self.history.get_recent(5)
         user_prompt = generate_user_prompt(
             query=query,
-            context=relevant_context,
+            context=retrieved_context.context_text,
             conversation_history=conversation_history
         )
 
+        # 提取引用信息
+        citations = self._format_citations(retrieved_context)
+
         # 生成回答
         if stream:
-            async for chunk in self._stream_generate(user_prompt):
+            async for chunk in self._stream_generate(user_prompt, citations):
                 yield chunk
         else:
             answer = await self._generate(user_prompt)
             yield ChatResponse(
                 answer=answer,
-                references=self._extract_references(relevant_context),
-                conversation_id=self.conversation_id
+                references=citations,
+                conversation_id=self.conversation_id,
+                sources=self._build_sources(retrieved_context),
             )
 
         # 保存对话历史
         self.history.add(ChatMessage(role="user", content=query))
         self.history.add(ChatMessage(role="assistant", content=await self._generate(user_prompt)))
 
-    async def _stream_generate(self, prompt: str) -> AsyncIterator[ChatResponse]:
+    async def _stream_generate(
+        self,
+        prompt: str,
+        citations: list[dict],
+    ) -> AsyncIterator[ChatResponse]:
         """流式生成回答"""
         # TODO: 集成 MiniMax API 进行流式生成
         # 模拟流式输出
@@ -128,7 +150,8 @@ class ConversationHandler:
             await asyncio.sleep(0.05)  # 模拟延迟
             yield ChatResponse(
                 answer=full_answer[i:i+10],
-                conversation_id=self.conversation_id
+                conversation_id=self.conversation_id,
+                references=citations if i + 10 >= len(full_answer) else [],
             )
 
     async def _generate(self, prompt: str) -> str:
@@ -137,17 +160,53 @@ class ConversationHandler:
         # 暂时返回模拟回答
         return f"这是基于播客内容的回答。关于您的问题，我需要查阅相关资料后给出准确的答复。"
 
-    def _retrieve_context(self, query: str) -> str:
-        """检索相关上下文（简单关键词匹配）"""
-        # 简单实现：直接返回全部上下文
-        # TODO: 实现向量检索
-        return self._context
+    def _retrieve_context(self, query: str):
+        """检索相关上下文（使用知识检索器）"""
+        if self._retriever:
+            return self._retriever.retrieve_with_expansion(query, top_k=5, expand_window=1)
+        else:
+            # 回退到简单实现
+            from echo.knowledge import RetrievedContext
+            return RetrievedContext(
+                query=query,
+                context_text=self._context,
+                citations=[],
+                total_score=0.0,
+            )
 
-    def _extract_references(self, context: str) -> list[dict]:
-        """提取引用"""
-        # 简单实现：返回空引用
-        # TODO: 实现精确引用追踪
-        return []
+    def _format_citations(self, retrieved_context) -> list[dict]:
+        """格式化引用信息"""
+        if not retrieved_context.citations:
+            return []
+
+        citations = []
+        for i, c in enumerate(retrieved_context.citations, 1):
+            citations.append({
+                "id": i,
+                "entry_id": c.entry_id,
+                "start_time": c.start_time,
+                "end_time": c.end_time,
+                "score": c.score,
+                "content": c.content,
+            })
+        return citations
+
+    def _build_sources(self, retrieved_context) -> list[dict]:
+        """构建来源列表"""
+        if not retrieved_context.citations:
+            return []
+
+        sources = []
+        for c in retrieved_context.citations:
+            start_min = int(c.start_time // 60)
+            start_sec = int(c.start_time % 60)
+            sources.append({
+                "id": c.entry_id,
+                "time": f"{start_min:02d}:{start_sec:02d}",
+                "text": c.content[:100] + "..." if len(c.content) > 100 else c.content,
+                "relevance": f"{c.score:.0%}",
+            })
+        return sources
 
     def get_conversation_id(self) -> str:
         """获取对话ID"""
