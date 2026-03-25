@@ -30,6 +30,9 @@ src/echo/
 ├── exporters/            # 导出模块 (新增)
 │   ├── __init__.py
 │   └── knowledge_card_exporter.py  # 知识卡片导出器
+├── research/             # 研究模块 (新增)
+│   ├── __init__.py
+│   └── researcher.py     # 研究代理
 ├── memory/               # 记忆模块 (新增)
 │   ├── __init__.py
 │   ├── memory_store.py  # 记忆存储管理
@@ -49,6 +52,7 @@ src/echo/
     ├── navigation.py     # 时间戳导航API路由 (新增)
     ├── export.py         # 导出API路由 (新增)
     └── memory.py         # 记忆API路由 (新增)
+    └── research_api.py   # Web研究API路由 (新增)
 
 echo_cli/                 # CLI入口
 frontend/                  # Next.js前端
@@ -353,6 +357,41 @@ download -> transcribe -> summarize -> keypoint -> mindmap -> link -> report -> 
 
 ### 参考
 - khoj 知识卡片导出
+
+---
+
+## research 模块 (Web研究)
+
+> 结合播客内容和Web搜索的增强研究能力
+
+### 类型
+- `WebSource` - Web来源 `{url, title, content, published_date, score}`
+- `ResearchResult` - 研究结果 `{query, answer, sources, podcast_insights, combined_analysis}`
+- `ResearchAgent` - 研究代理
+- `DeepResearcher` - 深度研究代理
+
+### ResearchAgent 类
+- `research(query, podcast_content, num_results) -> ResearchResult` 执行研究
+- `_search_web(query, num_results) -> list[WebSource]` Web搜索
+- `_analyze_with_podcast(query, podcast_content, sources) -> list[str]` 结合播客分析
+- `_generate_analysis(query, sources, podcast_insights) -> str` 生成综合分析
+
+### DeepResearcher 类
+- `deep_research(topic, podcast_content, angles) -> dict` 多角度深度研究
+
+### API端点
+- `POST /api/research/search` - 执行Web研究
+- `POST /api/research/deep` - 执行深度研究
+- `GET /api/research/sources` - 列出可用来源
+
+### 状态
+- ✅ ResearchAgent 研究代理已实现
+- ✅ DeepResearcher 深度研究代理已实现
+- ✅ Research API 路由已实现
+- ⚠️ Tavily API 需要配置
+
+### 参考
+- notebooklm-py Research API
 
 ---
 
