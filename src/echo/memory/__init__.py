@@ -6,11 +6,12 @@
 - 记忆持久化
 """
 
-from .memory_store import MemoryStore, UserMemory
+from .memory_store import MemoryStore, UserMemory, Fact
 from .memory_updater import MemoryUpdater
 
 __all__ = [
     "MemoryStore",
     "UserMemory",
+    "Fact",
     "MemoryUpdater",
 ]
