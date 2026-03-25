@@ -439,6 +439,33 @@ download -> transcribe -> summarize -> keypoint -> mindmap -> link -> report -> 
 
 ---
 
+## agents/rag_agent.py (Agent+RAG融合)
+
+> 结合Agent能力和RAG检索，增强研究能力。参考 RAGFlow 的 Agent+RAG 融合架构。
+
+### 类型
+- `AgentConfig` - Agent配置 `{model_name, temperature, max_tokens, enable_rag, enable_citation, retrieval_top_k}`
+- `RAGResponse` - RAG增强响应 `{answer, citations, sources, retrieved_context, agent_metadata}`
+
+### RAGAgent 类
+- `query(query, podcast_id, stream) -> RAGResponse` 执行RAG增强查询
+- `batch_query(queries, podcast_id) -> list[RAGResponse]` 批量查询
+- `set_retriever(retriever)` 设置知识检索器
+- `set_conversation(handler)` 设置对话处理器
+
+### ResearchRAGAgent 类 (RAGAgent子类)
+- `research_query(query, podcast_content, podcast_id) -> RAGResponse` 结合播客内容的研究查询
+
+### 状态
+- ✅ RAGAgent 已实现
+- ✅ ResearchRAGAgent 已实现
+- ✅ 支持知识库检索和对话生成融合
+
+### 参考
+- RAGFlow Agent+RAG融合架构
+
+---
+
 ## 配置
 
 ### 环境变量
@@ -451,4 +478,4 @@ TAVILY_API_KEY      # Tavily API密钥
 
 ---
 
-*架构文档 | Echo | 2026-03-24 | 第1轮更新*
+*架构文档 | Echo | 2026-03-25 | 第2轮更新*

@@ -1123,3 +1123,279 @@ download, transcribe, summarize, keypoint, mindmap, link, report, qa
 
 ### 提交记录
 - 36个commit，代码已提交
+
+---
+
+## 第176轮迭代 (2026-03-25) - 知识卡片导出 (khoj)
+
+### 完成内容
+
+#### 知识卡片导出器 (src/echo/exporters/)
+- `__init__.py` - 模块入口
+- `knowledge_card_exporter.py` - KnowledgeCardExporter 类
+  - export_json() - JSON格式导出
+  - export_markdown() - Markdown格式导出
+  - export_html() - 完整样式HTML导出
+  - export_anki() - Anki闪卡格式(TSV)导出
+  - build_cards_from_result() - 从研究结果构建卡片
+  - export_all_formats() - 导出所有格式
+- `Citation` - 引用信息数据类
+
+#### API路由 (src/echo/api/export.py)
+- POST /api/export/knowledge-cards - 导出知识卡片
+  - 支持格式: json/markdown/html/pdf/anki
+- POST /api/export/knowledge-cards/all - 导出所有格式
+
+### 本轮完成
+- [x] KnowledgeCardExporter 导出器
+- [x] Export API 路由
+- [x] 多种格式支持
+
+### 提交记录
+- 37个commit，代码已提交
+
+---
+
+## 第177轮迭代 (2026-03-25) - Skills系统 (deer-flow)
+
+### 完成内容
+
+#### Skills系统 (src/echo/skills/)
+- `skill.py` - Skill 和 SkillRegistry 类
+  - Skill: name, description, instructions, parameters
+  - SkillRegistry: 注册、加载、发现技能
+  - load_skills_from_directory() - 从目录加载
+  - load_builtin_skills() - 加载内置技能
+- `__init__.py` - 模块入口
+- `public/podcast-generation/SKILL.md` - 内置播客生成技能
+
+#### 架构更新
+- 更新 ARCHITECTURE.md 添加 skills 模块文档
+
+### 本轮完成
+- [x] Skills 框架实现
+- [x] 内置技能加载
+- [x] SkillRegistry 注册表
+
+### 提交记录
+- 38个commit，代码已提交
+
+---
+
+## 第178轮迭代 (2026-03-25) - 记忆系统 (deer-flow)
+
+### 完成内容
+
+#### 记忆系统 (src/echo/memory/)
+- `memory_store.py` - MemoryStore 和 UserMemory 类
+  - Fact: 记忆事实 (id, content, category, confidence)
+  - UserMemory: 用户记忆 (work_context, personal_context, top_of_mind, facts)
+  - MemoryStore: get_memory(), update_memory(), add_fact(), get_recent_facts(), inject_into_context()
+- `memory_updater.py` - MemoryUpdater 类
+  - learn_podcast_preference() - 学习播客偏好
+  - learn_export_preference() - 学习导出偏好
+  - learn_research_topic() - 学习研究主题
+  - get_personalized_context() - 获取个性化上下文
+
+#### API路由 (src/echo/api/memory.py)
+- GET /api/memory/{user_id} - 获取用户记忆
+- POST /api/memory/update - 更新记忆字段
+- POST /api/memory/facts - 添加事实
+- GET /api/memory/{user_id}/facts - 获取事实列表
+- POST /api/memory/learn - 学习偏好
+- GET /api/memory/{user_id}/context - 获取个性化上下文
+- DELETE /api/memory/{user_id} - 清除记忆
+
+#### 架构更新
+- 更新 ARCHITECTURE.md 添加 memory 模块文档
+
+### 本轮完成
+- [x] MemoryStore 记忆存储
+- [x] MemoryUpdater 记忆更新
+- [x] Memory API 路由
+
+### 待完成
+- [ ] LLM驱动的自动记忆更新接入 MiniMax API
+
+### 提交记录
+- 39个commit，代码已提交
+
+---
+
+## 第179轮迭代 (2026-03-25) - Research API (notebooklm-py)
+
+### 完成内容
+
+#### 研究代理 (src/echo/research/)
+- `researcher.py` - ResearchAgent 和 DeepResearcher 类
+  - ResearchAgent: research() - 执行Web研究
+  - DeepResearcher: deep_research() - 多角度深度研究
+  - WebSource, ResearchResult 数据类
+
+#### API路由 (src/echo/api/research_api.py)
+- POST /api/research/search - 执行Web研究
+- POST /api/research/deep - 执行深度研究
+- GET /api/research/sources - 列出可用来源
+
+#### 架构更新
+- 更新 ARCHITECTURE.md 添加 research 模块文档
+
+### 本轮完成
+- [x] ResearchAgent 研究代理
+- [x] DeepResearcher 深度研究
+- [x] Research API 路由
+
+### 待完成
+- [ ] Tavily API 需要配置
+
+### 提交记录
+- 40个commit，代码已提交
+
+---
+
+## 第180轮迭代 (2026-03-25) - Agent+RAG融合 (RAGFlow)
+
+### 完成内容
+
+#### RAG Agent (src/echo/agents/rag_agent.py)
+- `AgentConfig` - Agent配置
+  - model_name, temperature, max_tokens
+  - enable_rag, enable_citation, retrieval_top_k
+- `RAGResponse` - RAG增强响应
+  - answer, citations, sources, retrieved_context, agent_metadata
+- `RAGAgent` - RAG增强Agent
+  - query() - RAG增强查询
+  - batch_query() - 批量查询
+  - set_retriever() - 设置知识检索器
+  - set_conversation() - 设置对话处理器
+- `ResearchRAGAgent` - 研究增强RAG Agent
+  - research_query() - 结合播客内容的研究查询
+
+#### 模块导出更新
+- 更新 src/echo/agents/__init__.py 导出 RAGAgent, ResearchRAGAgent
+
+#### 架构更新
+- 更新 ARCHITECTURE.md 添加 agents/rag_agent.py 文档
+
+### 本轮完成
+- [x] RAGAgent 实现
+- [x] ResearchRAGAgent 实现
+- [x] Agent+RAG 融合架构
+
+### 提交记录
+- 41个commit，代码已提交
+
+---
+
+## 最终审核
+
+### 完成状态总览
+
+#### 核心模块 (✅)
+- [x] config.py - 配置管理
+- [x] client.py - EchoClient 主客户端
+- [x] types.py - 数据类型定义
+- [x] exceptions.py - 异常定义
+- [x] logging.py - 日志模块
+- [x] cache.py - 缓存模块
+- [x] validators.py - URL验证器
+
+#### Agents (✅ 10个)
+- [x] transcriber.py - Whisper音频转录
+- [x] summarizer.py - LLM摘要生成
+- [x] keypoint.py - 要点提取
+- [x] linker.py - Tavily知识关联
+- [x] mindmap.py - 思维导图生成
+- [x] report.py - 报告生成
+- [x] flashcard.py - 闪卡导出
+- [x] qa.py - 问答对生成 (Bloom's taxonomy)
+- [x] rag_agent.py - RAG Agent (Agent+RAG融合)
+
+#### 知识库模块 (✅)
+- [x] entry.py - Entry模型和EntryStore
+- [x] splitter.py - TextSplitter文本分割器
+- [x] bi_encoder.py - Bi-encoder向量编码
+- [x] retriever.py - 知识检索器 (HybridRetriever)
+
+#### 对话模块 (✅)
+- [x] chat.py - ConversationHandler
+- [x] history.py - ConversationHistory
+- [x] prompts.py - 提示词模板
+
+#### 导航模块 (✅)
+- [x] timestamp.py - TimestampNavigator
+
+#### 导出模块 (✅)
+- [x] knowledge_card_exporter.py - KnowledgeCardExporter
+
+#### Skills模块 (✅)
+- [x] skill.py - Skill和SkillRegistry
+
+#### 记忆模块 (✅)
+- [x] memory_store.py - MemoryStore
+- [x] memory_updater.py - MemoryUpdater
+
+#### 研究模块 (✅)
+- [x] researcher.py - ResearchAgent, DeepResearcher
+
+#### Tools (✅)
+- [x] downloader.py - 统一下载接口
+- [x] bilibili.py - B站下载
+- [x] youtube.py - YouTube下载
+- [x] podcast.py - RSS播客解析
+
+#### Sources (✅ 5个)
+- [x] youtube.py - YouTube源
+- [x] bilibili.py - B站源
+- [x] rss.py - RSS源
+- [x] xiaoyuanzhou.py - 小宇宙源
+- [x] ximalaya.py - 喜马拉雅源
+
+#### SubAgent (✅)
+- [x] subagents/__init__.py - SubAgentExecutor
+- [x] builtins.py - 内置Agent库
+- [x] research_graph.py - 并行研究图
+
+#### Audio Overview (✅)
+- [x] audio_overview/__init__.py - AudioOverviewGenerator
+
+#### API路由 (✅ 8个)
+- [x] research.py - 研究API
+- [x] research_api.py - Web研究API
+- [x] chat.py - 对话API
+- [x] knowledge.py - 知识库API
+- [x] sources.py - 多源聚合API
+- [x] navigation.py - 导航API
+- [x] export.py - 导出API
+- [x] memory.py - 记忆API
+
+#### 前端组件 (✅ 19个)
+- URLInput, Summary, KeyPoints, MindMap, Progress, Export
+- PlatformBadge, ApiStatus, TranscriptPlayer, ErrorDisplay
+- LoadingSkeleton, QAPairs, KnowledgeCards, Waveform
+- StepIndicator, SearchInput, ReportDisplay, VoiceAvatar, TimelineNavigation
+
+#### 文档 (✅)
+- [x] README.md
+- [x] SKILL.md
+- [x] ARCHITECTURE.md
+- [x] docs/examples.md
+- [x] docs/deployment.md
+- [x] _LEARNING.md
+- [x] PROGRESS.md
+
+#### CI/CD (✅)
+- [x] test.yml - 测试流程
+- [x] lint.yml - 代码检查流程
+
+#### 待验证
+- [ ] 实际运行后端 API
+- [ ] 端到端测试
+- [ ] 前端 lint 配置
+
+### 提交记录
+- 41个commit，代码已提交
+
+---
+
+*代号: Echo | 180轮迭代完成 | 2026-03-25*

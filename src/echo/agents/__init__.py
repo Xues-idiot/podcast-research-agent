@@ -8,6 +8,7 @@ from echo.agents.mindmap import MindMapGenerator
 from echo.agents.report import ReportGenerator
 from echo.agents.qa import QAGenerator
 from echo.agents.flashcard import FlashCardGenerator
+from echo.agents.rag_agent import RAGAgent, ResearchRAGAgent, AgentConfig
 
 __all__ = [
     "Transcriber",
@@ -18,4 +19,7 @@ __all__ = [
     "ReportGenerator",
     "QAGenerator",
     "FlashCardGenerator",
+    "RAGAgent",
+    "ResearchRAGAgent",
+    "AgentConfig",
 ]
