@@ -1,11 +1,12 @@
 "use client"
 
 import { motion } from "motion/react"
-import { Download, FileText, Sparkles, List, Network, Link2, FileCheck, MessageCircle, CheckCircle2 } from "lucide-react"
+import { Download, FileText, Sparkles, List, Network, Link2, FileCheck, MessageCircle, CheckCircle2, Loader2 } from "lucide-react"
 
 interface Step {
   id: string
   label: string
+  description: string
   icon: React.ReactNode
 }
 
@@ -15,20 +16,21 @@ interface StepIndicatorProps {
 }
 
 const steps: Step[] = [
-  { id: "download", label: "下载", icon: <Download className="w-4 h-4" /> },
-  { id: "transcribe", label: "转录", icon: <FileText className="w-4 h-4" /> },
-  { id: "summarize", label: "摘要", icon: <Sparkles className="w-4 h-4" /> },
-  { id: "keypoint", label: "要点", icon: <List className="w-4 h-4" /> },
-  { id: "mindmap", label: "导图", icon: <Network className="w-4 h-4" /> },
-  { id: "link", label: "链接", icon: <Link2 className="w-4 h-4" /> },
-  { id: "report", label: "报告", icon: <FileCheck className="w-4 h-4" /> },
-  { id: "qa", label: "问答", icon: <MessageCircle className="w-4 h-4" /> },
+  { id: "download", label: "下载", description: "正在下载音视频...", icon: <Download className="w-4 h-4" /> },
+  { id: "transcribe", label: "转录", description: "正在识别语音内容...", icon: <FileText className="w-4 h-4" /> },
+  { id: "summarize", label: "摘要", description: "正在生成内容摘要...", icon: <Sparkles className="w-4 h-4" /> },
+  { id: "keypoint", label: "要点", description: "正在提取关键要点...", icon: <List className="w-4 h-4" /> },
+  { id: "mindmap", label: "导图", description: "正在构建思维导图...", icon: <Network className="w-4 h-4" /> },
+  { id: "link", label: "链接", description: "正在关联知识卡片...", icon: <Link2 className="w-4 h-4" /> },
+  { id: "report", label: "报告", description: "正在生成研究报告...", icon: <FileCheck className="w-4 h-4" /> },
+  { id: "qa", label: "问答", description: "正在生成问答对...", icon: <MessageCircle className="w-4 h-4" /> },
 ]
 
 const stepOrder = steps.map((s) => s.id)
 
 export function StepIndicator({ currentStep, progress }: StepIndicatorProps) {
   const currentIndex = stepOrder.indexOf(currentStep)
+  const currentStepInfo = steps.find((s) => s.id === currentStep)
 
   return (
     <motion.div
@@ -37,7 +39,20 @@ export function StepIndicator({ currentStep, progress }: StepIndicatorProps) {
       className="bg-white rounded-xl p-4 border border-[#2C3E50]/10"
     >
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-medium text-[#2C3E50]">研究进度</h3>
+        <div className="flex items-center gap-2">
+          <h3 className="text-sm font-medium text-[#2C3E50]">研究进度</h3>
+          {currentStepInfo && currentIndex >= 0 && (
+            <motion.span
+              key={currentStep}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-xs text-[#E67E22] flex items-center gap-1"
+            >
+              <Loader2 className="w-3 h-3 animate-spin" />
+              {currentStepInfo.description}
+            </motion.span>
+          )}
+        </div>
         <span className="text-sm font-bold text-[#E67E22]">{progress}%</span>
       </div>
 
