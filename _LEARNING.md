@@ -181,4 +181,151 @@ async with await NotebookLMClient.from_storage() as client:
 
 ---
 
-*代号: Echo | 第3轮学习完毕 | 2026-03-25*
+---
+
+## 第4轮学习 (2026-03-25) - 杀手锏审视
+
+### 核心问题发现
+
+#### 1. 关键时刻提取是"假的"
+**问题**: `TimestampNavigator.get_key_moments()` 只是均匀采样，不是真正的智能分析
+```python
+# 当前实现：均匀采样
+interval = total_duration / (num_moments + 1)
+for i in range(1, num_moments + 1):
+    target_time = interval * i  # 每个时间点都一样间隔
+```
+
+**真正应该做的**:
+- 基于话题变化检测（segment embedding突变）
+- 基于关键词出现频率
+- 基于LLM分析哪些是真正重要的点
+
+#### 2. 对话没有上下文
+**问题**: Chat API的 `research_result` 参数没有正确传递
+```python
+# chat.py 第58行
+async def chat(request: ChatRequest, research_result: dict):  # 这个参数从哪来？
+```
+
+前端调用时没有传递 research_result，导致 ConversationHandler 没有上下文。
+
+#### 3. 现有组件可能不需要
+用产品思维重新评估：
+- ❓ VoiceAvatar - 真的需要吗？Audio Overview 才有价值
+- ❓ Waveform - 好看但功能呢？关键时刻提取才是核心
+- ❓ StepIndicator - 8步真的需要吗？可能太复杂
+
+### 杀手锏现状
+
+| 杀手锏 | 当前状态 | 问题 |
+|---------|----------|------|
+| 时间戳导航 | 有组件 | 关键时刻是均匀采样，不是真智能 |
+| 对话式回顾 | 有组件 | 没有正确传递上下文 |
+| Anki导出 | 有组件 | 功能完整，但导出的数据是捏造的 |
+
+### 下一步改进计划
+
+1. **修复关键时刻提取** - 让它真正智能
+2. **修复对话上下文传递** - 让对话真的基于播客内容
+3. **重新评估组件必要性** - 删掉不重要的
+
+---
+
+*代号: Echo | 第4轮学习完毕 | 2026-03-25*
+
+---
+
+## 第5轮学习 (2026-03-25) - 杀手锏修复
+
+### 修复1: 对话上下文传递
+
+**问题**: 前端收到 `researchResult` 但没有发送给后端，后端 API 参数也无法接收
+
+**修复**:
+1. `src/echo/api/chat.py` - `ChatRequest` 添加 `research_result` 字段
+2. `frontend/src/components/Chat.tsx` - 修复 `_researchResult` → 使用 `researchResult` 并发送到 API
+
+**修复前**:
+```python
+# api/chat.py - research_result 是函数参数，FastAPI无法注入
+async def chat(request: ChatRequest, research_result: dict):
+```
+
+```typescript
+// Chat.tsx - 只接收不用
+export function Chat({ researchResult: _researchResult }: ChatProps) {
+  // TODO: 将 researchResult 传递给后端用于上下文检索
+```
+
+**修复后**:
+```python
+# api/chat.py - research_result 在请求体中
+class ChatRequest(BaseModel):
+    query: str
+    conversation_id: Optional[str] = None
+    stream: bool = True
+    research_result: Optional[dict] = None  # 新增
+```
+
+```typescript
+// Chat.tsx - 正确传递
+export function Chat({ researchResult }: ChatProps) {
+  // ... 发送到 API
+  body: JSON.stringify({
+    query: userMessage.content,
+    conversation_id: conversationId,
+    stream: true,
+    research_result: researchResult  // 传递研究结果用于上下文检索
+  })
+```
+
+### 修复2: 时间戳导航智能分析
+
+**问题**: `get_key_moments()` 使用均匀采样，不是真正的智能分析
+
+**修复**: 重写算法，实现三层评分机制:
+
+1. **内容特征评分** (`_calculate_importance_score`)
+   - 长度评分：100-500字符最佳
+   - 问号评分：有问题的地方通常重要
+   - 数字评分：含数据的句子是重点
+   - 关键词评分：关键词出现加分
+   - 位置评分：开头和结尾略高
+
+2. **话题变化检测** (`_detect_topic_changes`)
+   - 比较相邻entry的词重叠度
+   - 相似度突然下降=话题变化点
+   - 话题变化点加分
+
+3. **去重过滤** (`_filter_close_moments`)
+   - 30秒内的时刻只保留一个
+   - 保证关键时刻分布均匀
+
+### 修复后的杀手锏状态
+
+| 杀手锏 | 修复前 | 修复后 |
+|--------|--------|--------|
+| 时间戳导航 | 均匀采样（假） | 智能分析（真） |
+| 对话式回顾 | 不传上下文 | 正确传递research_result |
+| Anki导出 | 数据捏造 | 功能完整 |
+
+### 验证结果
+
+- 所有24个测试通过 ✅
+- 前端构建成功 (5个路由) ✅
+  - `/podcast` - 研究页
+  - `/knowledge` - 知识库
+  - `/export` - 导出管理
+  - `/history` - 历史记录
+  - `/_not-found` - 404
+
+### 待办
+
+- [ ] Sigma Skills 深入学习（用户提示在 `D:\PM-AI-Workstation\01-ai-agents\pm-agent-forge\skills`）
+- [ ] 组件必要性重新评估（VoiceAvatar, Waveform, StepIndicator）
+- [ ] 杀手锏2: Audio Overview 实现（TTS）
+
+---
+
+*代号: Echo | 第5轮学习完毕 | 2026-03-25*

@@ -20,6 +20,8 @@ class ChatRequest(BaseModel):
     query: str
     conversation_id: Optional[str] = None
     stream: bool = True
+    # 研究结果，用于提供对话上下文（可选，优先使用已有对话）
+    research_result: Optional[dict] = None
 
 
 class ChatResponse(BaseModel):
@@ -55,12 +57,11 @@ def get_or_create_handler(
 
 
 @router.post("/chat")
-async def chat(request: ChatRequest, research_result: dict):
+async def chat(request: ChatRequest):
     """对话接口
 
     Args:
-        request: 聊天请求，包含 query, conversation_id, stream
-        research_result: 研究结果（从之前的research API获取）
+        request: 聊天请求，包含 query, conversation_id, stream, research_result
 
     Returns:
         流式或非流式的回答
@@ -69,9 +70,11 @@ async def chat(request: ChatRequest, research_result: dict):
         raise HTTPException(status_code=400, detail="Query cannot be empty")
 
     # 获取或创建处理器
+    # 如果请求中有 research_result 且没有 conversation_id，使用新的研究结果
+    research_data = request.research_result if request.research_result else {}
     handler, conversation_id = get_or_create_handler(
         request.conversation_id,
-        research_result
+        research_data
     )
 
     if request.stream:

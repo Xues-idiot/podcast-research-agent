@@ -23,9 +23,7 @@ interface ChatProps {
   }
 }
 
-export function Chat({ researchResult: _researchResult }: ChatProps) {
-  // TODO: 将 researchResult 传递给后端用于上下文检索
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function Chat({ researchResult }: ChatProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -63,7 +61,8 @@ export function Chat({ researchResult: _researchResult }: ChatProps) {
         body: JSON.stringify({
           query: userMessage.content,
           conversation_id: conversationId,
-          stream: true
+          stream: true,
+          research_result: researchResult  // 传递研究结果用于上下文检索
         })
       })
 
