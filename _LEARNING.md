@@ -329,10 +329,24 @@ export function Chat({ researchResult }: ChatProps) {
 
 **验证**: 前端构建成功 (5路由)，JS bundle略减小
 
+### Sigma Skills 研究发现
+
+**已研究**:
+- `key-moment-extraction` - 关键时刻提取应考虑音频特征（兴奋度、笑声检测）
+- `q-a-extraction` - 可用正则模式匹配作为LLM补充
+- `structured-output` - 可扩展到Notion/Obsidian格式
+- `knowledge-graph` - 实体识别、关系抽取
+
+**Echo当前水平**:
+- ✅ 关键时刻：已实现智能分析（文本特征）
+- ❌ 音频特征：没有兴奋度/笑声检测
+- ✅ Anki导出：数据真实，非捏造
+
 ### 待办
 
-- [ ] Sigma Skills 深入学习（skills在 `D:\PM-AI-Workstation\01-ai-agents\pm-agent-forge\skills`）
-- [ ] 杀手锏2: Audio Overview 实现（TTS）
+- [ ] Audio Overview (TTS) - NotebookLM的核心杀手锏
+- [ ] 音频特征分析（兴奋度检测）
+- [ ] Notion/Obsidian 导出格式
 
 ---
 
