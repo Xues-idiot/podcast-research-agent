@@ -11,6 +11,7 @@ import {
   Export,
   StepIndicator,
   ErrorDisplay,
+  LoadingSkeleton,
   KnowledgeCards,
   ReportDisplay,
   ApiStatus,
@@ -150,8 +151,9 @@ export default function PodcastPage() {
 
         {/* 结果区域 */}
         {status === "loading" && (
-          <section className="mb-8">
+          <section className="mb-8 space-y-6">
             <StepIndicator currentStep={currentStep} progress={progress} />
+            <LoadingSkeleton type="full" />
           </section>
         )}
 
