@@ -23,6 +23,7 @@ import {
 import { streamResearch } from "@/lib/api"
 import { Mic, ArrowUp, Plus } from "lucide-react"
 import { ThemeToggle } from "@/components/ThemeToggle"
+import { useKeyboardNavigation } from "@/components/KeyboardNav"
 
 export default function PodcastPage() {
   const {
@@ -50,30 +51,20 @@ export default function PodcastPage() {
       setShowBackToTop(window.scrollY > 400)
     }
     window.addEventListener("scroll", handleScroll)
-
-    // Keyboard shortcuts
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Skip if user is typing in an input
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
-
-      // '/' to focus search
-      if (e.key === "/" && status !== "loading") {
-        e.preventDefault()
-        document.querySelector<HTMLInputElement>('input[type="url"]')?.focus()
-      }
-      // '?' to show shortcuts help (future)
-      // 'Escape' to scroll to top
-      if (e.key === "Escape") {
-        scrollToTop()
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown)
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("keydown", handleKeyDown)
-    }
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Keyboard navigation
+  const scrollToResults = () => {
+    document.getElementById("results")?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useKeyboardNavigation({
+    onNextSection: result ? scrollToResults : undefined,
+    onPrevSection: () => window.scrollTo({ top: 0, behavior: "smooth" }),
+    onFocusSearch: () => document.querySelector<HTMLInputElement>('input[type="url"]')?.focus(),
+    enabled: true
+  })
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
