@@ -1,17 +1,40 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import type { ResearchResult } from "@/lib/api"
-import { Download, FileJson, FileText, Table2, File, FileCode, Presentation } from "lucide-react"
+import { Download, FileJson, FileText, Table2, File, FileCode, Presentation, Eye } from "lucide-react"
 
 interface ExportProps {
   result: ResearchResult
 }
 
 export function Export({ result }: ExportProps) {
+  const [previewFormat, setPreviewFormat] = useState<string | null>(null)
+
+  const getExportPreview = (format: string): string => {
+    switch (format) {
+      case "json":
+        return `包含: 摘要(${result.summary ? 1 : 0}), 要点(${result.keypoints?.length || 0}), 思维导图(${result.mindmap ? 1 : 0}), 问答(${result.qa_pairs?.length || 0})`
+      case "markdown":
+        return `Markdown格式，适合阅读和笔记整理`
+      case "csv":
+        return `表格格式，要点+问答共${(result.keypoints?.length || 0) + (result.qa_pairs?.length || 0)}条`
+      case "html":
+        return `完整样式，浏览器直接打开即可`
+      case "pdf":
+        return `通过服务器生成PDF文档`
+      case "txt":
+        return `纯文本格式，通用性最强`
+      default:
+        return ""
+    }
+  }
+
   const handleExport = async (format: "json" | "markdown" | "csv" | "txt" | "html" | "pdf") => {
+    setPreviewFormat(null) // Close preview on export
     let content: string
     let filename: string
     let mimeType: string
@@ -326,59 +349,41 @@ export function Export({ result }: ExportProps) {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-3 gap-3">
-            <Button
-              variant="outline"
-              onClick={() => handleExport("json")}
-              className="flex flex-col items-center gap-1 h-auto py-4"
-            >
-              <FileJson className="w-6 h-6" />
-              <span className="text-xs">JSON</span>
-            </Button>
+            {previewFormat && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="col-span-3 p-3 bg-[#FAF8F5] rounded-lg text-sm text-[#2C3E50]/70 mb-2"
+              >
+                {getExportPreview(previewFormat)}
+              </motion.div>
+            )}
 
-            <Button
-              variant="outline"
-              onClick={() => handleExport("markdown")}
-              className="flex flex-col items-center gap-1 h-auto py-4"
-            >
-              <FileText className="w-6 h-6" />
-              <span className="text-xs">Markdown</span>
-            </Button>
-
-            <Button
-              variant="outline"
-              onClick={() => handleExport("csv")}
-              className="flex flex-col items-center gap-1 h-auto py-4"
-            >
-              <Table2 className="w-6 h-6" />
-              <span className="text-xs">CSV</span>
-            </Button>
-
-            <Button
-              variant="outline"
-              onClick={() => handleExport("html")}
-              className="flex flex-col items-center gap-1 h-auto py-4"
-            >
-              <FileCode className="w-6 h-6" />
-              <span className="text-xs">HTML</span>
-            </Button>
-
-            <Button
-              variant="outline"
-              onClick={() => handleExport("pdf")}
-              className="flex flex-col items-center gap-1 h-auto py-4"
-            >
-              <Presentation className="w-6 h-6" />
-              <span className="text-xs">PDF</span>
-            </Button>
-
-            <Button
-              variant="outline"
-              onClick={() => handleExport("txt")}
-              className="flex flex-col items-center gap-1 h-auto py-4"
-            >
-              <File className="w-6 h-6" />
-              <span className="text-xs">文本</span>
-            </Button>
+            {[
+              { format: "json", icon: FileJson, label: "JSON" },
+              { format: "markdown", icon: FileText, label: "Markdown" },
+              { format: "csv", icon: Table2, label: "CSV" },
+              { format: "html", icon: FileCode, label: "HTML" },
+              { format: "pdf", icon: Presentation, label: "PDF" },
+              { format: "txt", icon: File, label: "文本" },
+            ].map(({ format, icon: Icon, label }) => (
+              <motion.div
+                key={format}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  variant="outline"
+                  onClick={() => handleExport(format as any)}
+                  onMouseEnter={() => setPreviewFormat(format)}
+                  onMouseLeave={() => setPreviewFormat(null)}
+                  className="flex flex-col items-center gap-1 h-auto py-4 w-full relative"
+                >
+                  <Icon className={`w-6 h-6 ${previewFormat === format ? 'text-[#E67E22]' : ''}`} />
+                  <span className="text-xs">{label}</span>
+                </Button>
+              </motion.div>
+            ))}
           </div>
         </CardContent>
       </Card>
