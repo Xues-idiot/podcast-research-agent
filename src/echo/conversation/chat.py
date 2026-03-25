@@ -4,9 +4,12 @@ import asyncio
 import uuid
 from typing import Any, AsyncIterator, Optional
 
+from openai import AsyncOpenAI
+
 from echo.conversation.history import ConversationHistory
 from echo.conversation.prompts import SYSTEM_PROMPT, generate_user_prompt
 from echo.conversation.types import ChatMessage, ChatResponse
+from echo.config import config
 
 
 class ConversationHandler:
@@ -35,6 +38,13 @@ class ConversationHandler:
         self.conversation_id = str(uuid.uuid4())[:8]
         self.history = ConversationHistory(self.conversation_id)
         self._context = self._build_context()
+
+        # 初始化LLM客户端
+        self._client = AsyncOpenAI(
+            api_key=config.minimax.api_key,
+            base_url=config.minimax.base_url,
+        )
+        self._model = config.minimax.model
 
         # 初始化知识检索器
         self._retriever = None
@@ -100,22 +110,26 @@ class ConversationHandler:
         # 提取引用信息
         citations = self._format_citations(retrieved_context)
 
+        # 保存用户消息
+        self.history.add(ChatMessage(role="user", content=query))
+
         # 生成回答
         if stream:
+            full_answer = ""
             async for chunk in self._stream_generate(user_prompt, citations):
+                full_answer += chunk.answer
                 yield chunk
+            # 保存助手消息
+            self.history.add(ChatMessage(role="assistant", content=full_answer))
         else:
             answer = await self._generate(user_prompt)
+            self.history.add(ChatMessage(role="assistant", content=answer))
             yield ChatResponse(
                 answer=answer,
                 references=citations,
                 conversation_id=self.conversation_id,
                 sources=self._build_sources(retrieved_context),
             )
-
-        # 保存对话历史
-        self.history.add(ChatMessage(role="user", content=query))
-        self.history.add(ChatMessage(role="assistant", content=await self._generate(user_prompt)))
 
     async def _stream_generate(
         self,
@@ -137,9 +151,20 @@ class ConversationHandler:
 
     async def _generate(self, prompt: str) -> str:
         """生成回答"""
-        # TODO: 调用 MiniMax API
-        # 暂时返回模拟回答
-        return f"这是基于播客内容的回答。关于您的问题，我需要查阅相关资料后给出准确的答复。"
+        try:
+            response = await self._client.chat.completions.create(
+                model=self._model,
+                messages=[
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=0.7,
+                max_tokens=2000,
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            print(f"LLM生成失败: {e}")
+            return f"抱歉，生成回答时遇到了问题。请稍后重试。"
 
     def _retrieve_context(self, query: str):
         """检索相关上下文（使用知识检索器）"""
