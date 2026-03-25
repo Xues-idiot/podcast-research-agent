@@ -1,8 +1,9 @@
 "use client"
 
+import { useState, useRef, useEffect } from "react"
 import { motion } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Play, Pause, Clock, User } from "lucide-react"
+import { Play, Pause, Clock, User, Volume2, VolumeX } from "lucide-react"
 
 interface AudioOverviewProps {
   audioOverview: {
@@ -15,10 +16,18 @@ interface AudioOverviewProps {
     }>
     total_duration_seconds: number
     style: string
+    audio_url?: string
   }
 }
 
 export function AudioOverview({ audioOverview }: AudioOverviewProps) {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isMuted, setIsMuted] = useState(false)
+  const [currentSegment, setCurrentSegment] = useState(0)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  const hasAudio = !!audioOverview.audio_url
+
   const formatDuration = (seconds: number) => {
     const mins = Math.floor(seconds / 60)
     const secs = seconds % 60
@@ -26,6 +35,35 @@ export function AudioOverview({ audioOverview }: AudioOverviewProps) {
   }
 
   const totalMins = Math.floor(audioOverview.total_duration_seconds / 60)
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.muted = isMuted
+    }
+  }, [isMuted])
+
+  const togglePlay = () => {
+    if (!audioRef.current) return
+    if (isPlaying) {
+      audioRef.current.pause()
+    } else {
+      audioRef.current.play()
+    }
+    setIsPlaying(!isPlaying)
+  }
+
+  const handleEnded = () => {
+    setIsPlaying(false)
+    setCurrentSegment(0)
+  }
+
+  const handleTimeUpdate = () => {
+    if (!audioRef.current) return
+    const currentTime = audioRef.current.currentTime
+    const totalDuration = audioOverview.total_duration_seconds
+    const segmentIndex = Math.floor((currentTime / totalDuration) * audioOverview.segments.length)
+    setCurrentSegment(Math.min(segmentIndex, audioOverview.segments.length - 1))
+  }
 
   return (
     <motion.div
@@ -57,16 +95,57 @@ export function AudioOverview({ audioOverview }: AudioOverviewProps) {
             {audioOverview.title}
           </h3>
 
-          {/* 播放提示（暂不支持实际播放） */}
-          <div className="flex items-center gap-3 p-3 bg-[#9B59B6]/5 rounded-lg mb-4">
-            <div className="p-2 rounded-full bg-[#9B59B6]/10">
-              <Play className="w-5 h-5 text-[#9B59B6]" />
+          {/* 音频播放控制 */}
+          {hasAudio && (
+            <div className="flex items-center gap-3 p-3 bg-[#9B59B6]/5 rounded-lg mb-4">
+              <audio
+                ref={audioRef}
+                src={audioOverview.audio_url}
+                onEnded={handleEnded}
+                onTimeUpdate={handleTimeUpdate}
+              />
+              <button
+                onClick={togglePlay}
+                className="p-2 rounded-full bg-[#9B59B6] text-white hover:bg-[#8E44AD] transition-colors"
+              >
+                {isPlaying ? (
+                  <Pause className="w-5 h-5" />
+                ) : (
+                  <Play className="w-5 h-5" />
+                )}
+              </button>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-[#2C3E50]">
+                  {isPlaying ? "正在播放..." : "点击播放AI播客"}
+                </p>
+                <p className="text-xs text-[#2C3E50]/50">
+                  {audioOverview.segments[currentSegment]?.speaker} · {audioOverview.segments[currentSegment]?.content?.slice(0, 30)}...
+                </p>
+              </div>
+              <button
+                onClick={() => setIsMuted(!isMuted)}
+                className="p-2 rounded-full hover:bg-[#9B59B6]/10 transition-colors"
+              >
+                {isMuted ? (
+                  <VolumeX className="w-5 h-5 text-[#9B59B6]" />
+                ) : (
+                  <Volume2 className="w-5 h-5 text-[#9B59B6]" />
+                )}
+              </button>
             </div>
-            <div className="flex-1">
-              <p className="text-sm font-medium text-[#2C3E50]">即将支持TTS播放</p>
-              <p className="text-xs text-[#2C3E50]/50">当前显示脚本内容</p>
+          )}
+
+          {!hasAudio && (
+            <div className="flex items-center gap-3 p-3 bg-[#9B59B6]/5 rounded-lg mb-4">
+              <div className="p-2 rounded-full bg-[#9B59B6]/10">
+                <Play className="w-5 h-5 text-[#9B59B6]" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-[#2C3E50]">即将支持TTS播放</p>
+                <p className="text-xs text-[#2C3E50]/50">当前显示脚本内容</p>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* 对话片段 */}
           <div className="space-y-3 max-h-96 overflow-y-auto">
