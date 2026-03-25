@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mic, Sparkles, Clock, MessageCircle, BookOpen, Download, ArrowRight, Brain, Zap, Shield } from 'lucide-react'
+import { Mic, Sparkles, Clock, MessageCircle, BookOpen, Download, ArrowRight, Brain, Zap } from 'lucide-react'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
 export default function Home() {

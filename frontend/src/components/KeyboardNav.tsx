@@ -14,7 +14,6 @@ export function useKeyboardNavigation(options: KeyboardNavOptions = {}) {
   const {
     onNextSection,
     onPrevSection,
-    onFocusSearch,
     onToggleTheme,
     enabled = true
   } = options

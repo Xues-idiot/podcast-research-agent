@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import type { ResearchResult } from "@/lib/api"
-import { ChevronDown, ChevronRight, Brain, ZoomIn, ZoomOut, Maximize2 } from "lucide-react"
+import { ChevronDown, ChevronRight, Brain, Maximize2 } from "lucide-react"
 
 interface MindMapProps {
   mindmap: ResearchResult["mindmap"]

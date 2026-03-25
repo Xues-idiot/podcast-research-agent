@@ -5,7 +5,7 @@ import { motion } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import type { ResearchResult } from "@/lib/api"
-import { Download, FileJson, FileText, Table2, File, FileCode, Presentation, Eye } from "lucide-react"
+import { Download, FileJson, FileText, Table2, File, FileCode, Presentation } from "lucide-react"
 
 type ExportFormat = "json" | "markdown" | "csv" | "txt" | "html" | "pdf"
 
