@@ -7,6 +7,17 @@ import { Button } from "@/components/ui/button"
 import type { ResearchResult } from "@/lib/api"
 import { Download, FileJson, FileText, Table2, File, FileCode, Presentation, Eye } from "lucide-react"
 
+type ExportFormat = "json" | "markdown" | "csv" | "txt" | "html" | "pdf"
+
+const EXPORT_FORMATS: Array<{ format: ExportFormat; icon: typeof FileJson; label: string }> = [
+  { format: "json", icon: FileJson, label: "JSON" },
+  { format: "markdown", icon: FileText, label: "Markdown" },
+  { format: "csv", icon: Table2, label: "CSV" },
+  { format: "html", icon: FileCode, label: "HTML" },
+  { format: "pdf", icon: Presentation, label: "PDF" },
+  { format: "txt", icon: File, label: "文本" },
+]
+
 interface ExportProps {
   result: ResearchResult
 }
@@ -359,14 +370,7 @@ export function Export({ result }: ExportProps) {
               </motion.div>
             )}
 
-            {[
-              { format: "json", icon: FileJson, label: "JSON" },
-              { format: "markdown", icon: FileText, label: "Markdown" },
-              { format: "csv", icon: Table2, label: "CSV" },
-              { format: "html", icon: FileCode, label: "HTML" },
-              { format: "pdf", icon: Presentation, label: "PDF" },
-              { format: "txt", icon: File, label: "文本" },
-            ].map(({ format, icon: Icon, label }) => (
+            {EXPORT_FORMATS.map(({ format, icon: Icon, label }) => (
               <motion.div
                 key={format}
                 whileHover={{ scale: 1.02 }}
@@ -374,7 +378,7 @@ export function Export({ result }: ExportProps) {
               >
                 <Button
                   variant="outline"
-                  onClick={() => handleExport(format as any)}
+                  onClick={() => handleExport(format)}
                   onMouseEnter={() => setPreviewFormat(format)}
                   onMouseLeave={() => setPreviewFormat(null)}
                   className="flex flex-col items-center gap-1 h-auto py-4 w-full relative"

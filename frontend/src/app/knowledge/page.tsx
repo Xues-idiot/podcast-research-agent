@@ -15,10 +15,21 @@ interface Podcast {
   created_at: string
 }
 
+interface Entry {
+  id?: string
+  entry_id: string
+  podcast_id: string
+  content: string
+  compiled?: string
+  raw?: string
+  start_time: number
+  end_time: number
+}
+
 export default function KnowledgePage() {
   const [podcasts, setPodcasts] = useState<Podcast[]>([])
   const [selectedPodcast, setSelectedPodcast] = useState<string | null>(null)
-  const [entries, setEntries] = useState<any[]>([])
+  const [entries, setEntries] = useState<Entry[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
 
