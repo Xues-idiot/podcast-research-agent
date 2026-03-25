@@ -342,9 +342,38 @@ export function Chat({ researchResult }: ChatProps) {
 - ❌ 音频特征：没有兴奋度/笑声检测
 - ✅ Anki导出：数据真实，非捏造
 
+### Audio Overview 修复（第6轮）
+
+**问题**: client.py 调用了不存在的方法 `generate_discussion`
+
+**修复**:
+```python
+# 错误调用
+audio_overview = await self.audio_overview_gen.generate_discussion(...)
+
+# 正确调用
+audio_overview_script = await self.audio_overview_gen.generate(
+    transcript=transcript,
+    summary=summary,
+    keypoints=keypoints,
+)
+# 转换为可序列化格式
+audio_overview = {
+    "title": audio_overview_script.title,
+    "script": self.audio_overview_gen.script_to_text(audio_overview_script),
+    "segments": [...],
+    ...
+}
+```
+
+**当前状态**:
+- ✅ 脚本生成：已实现（双人对谈形式）
+- ❌ TTS语音：未实现（需要TTS API）
+- 📝 NotebookLM Audio Overview = 脚本 + TTS
+
 ### 待办
 
-- [ ] Audio Overview (TTS) - NotebookLM的核心杀手锏
+- [ ] TTS语音合成（MiniMax / Azure TTS）
 - [ ] 音频特征分析（兴奋度检测）
 - [ ] Notion/Obsidian 导出格式
 

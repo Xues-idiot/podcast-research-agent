@@ -17,7 +17,7 @@ from echo.agents.rag_agent import ResearchRAGAgent, AgentConfig
 from echo.tools.downloader import VideoDownloader
 from echo.knowledge import EntryStore, TextSplitter
 from echo.memory import MemoryUpdater, MemoryStore
-from echo.audio_overview import AudioOverviewGenerator
+from echo.audio_overview import AudioOverviewGenerator, AudioStyle
 
 
 class EchoClient:
@@ -96,11 +96,26 @@ class EchoClient:
         qa_pairs = await self.qa_gen.generate(transcript, num_keypoints)
 
         # 10. 音频概览生成 (NotebookLM风格)
-        audio_overview = await self.audio_overview_gen.generate_discussion(
+        audio_overview_script = await self.audio_overview_gen.generate(
+            transcript=transcript,
             summary=summary,
             keypoints=keypoints,
-            style="deep_dive",
         )
+        # 转换为可序列化的字典格式
+        audio_overview = {
+            "title": audio_overview_script.title,
+            "script": self.audio_overview_gen.script_to_text(audio_overview_script),
+            "segments": [
+                {
+                    "speaker": seg.speaker,
+                    "content": seg.content,
+                    "duration_seconds": seg.duration_seconds,
+                }
+                for seg in audio_overview_script.segments
+            ],
+            "total_duration_seconds": audio_overview_script.total_duration_seconds,
+            "style": audio_overview_script.style.value,
+        }
 
         # 11. 更新记忆 (学习用户偏好)
         await self.memory_updater.learn_research_topic(
