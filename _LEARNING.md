@@ -320,10 +320,18 @@ export function Chat({ researchResult }: ChatProps) {
   - `/history` - 历史记录
   - `/_not-found` - 404
 
+### 组件清理（第5轮补充）
+
+**删除未使用的组件**:
+- `VoiceAvatar.tsx` - 未被任何页面使用 ❌ 删除
+- `Waveform.tsx` - 未被任何页面使用 ❌ 删除
+- `StepIndicator` - ✅ 保留（进度提示有价值）
+
+**验证**: 前端构建成功 (5路由)，JS bundle略减小
+
 ### 待办
 
-- [ ] Sigma Skills 深入学习（用户提示在 `D:\PM-AI-Workstation\01-ai-agents\pm-agent-forge\skills`）
-- [ ] 组件必要性重新评估（VoiceAvatar, Waveform, StepIndicator）
+- [ ] Sigma Skills 深入学习（skills在 `D:\PM-AI-Workstation\01-ai-agents\pm-agent-forge\skills`）
 - [ ] 杀手锏2: Audio Overview 实现（TTS）
 
 ---
