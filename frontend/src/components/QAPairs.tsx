@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { MessageCircle, ChevronDown, ChevronUp, Clock, Star } from "lucide-react"
+import { MessageCircle, ChevronDown, ChevronUp, Clock, Star, Copy, Check, HelpCircle } from "lucide-react"
 
 interface QAPair {
   question: string
@@ -32,9 +32,20 @@ interface QAPairsProps {
 
 export function QAPairs({ qaPairs }: QAPairsProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
+  }
+
+  const copyQA = async (qa: QAPair, index: number) => {
+    try {
+      await navigator.clipboard.writeText(`Q: ${qa.question}\n\nA: ${qa.answer}`)
+      setCopiedIndex(index)
+      setTimeout(() => setCopiedIndex(null), 2000)
+    } catch (err) {
+      console.error("Failed to copy:", err)
+    }
   }
 
   return (
@@ -106,9 +117,20 @@ export function QAPairs({ qaPairs }: QAPairsProps) {
                       <div className="p-4 bg-[#FAF8F5] border-t border-[#2C3E50]/10 space-y-3">
                         <div className="flex items-start gap-2">
                           <MessageCircle className="w-4 h-4 text-[#E67E22] mt-1 flex-shrink-0" />
-                          <span className="text-[#2C3E50]/80 leading-relaxed">
+                          <span className="text-[#2C3E50]/80 leading-relaxed flex-1">
                             {qa.answer}
                           </span>
+                          <button
+                            onClick={() => copyQA(qa, index)}
+                            className="p-1 rounded hover:bg-[#2C3E50]/10 transition-colors"
+                            title="复制问答"
+                          >
+                            {copiedIndex === index ? (
+                              <Check className="w-4 h-4 text-green-500" />
+                            ) : (
+                              <Copy className="w-4 h-4 text-[#2C3E50]/50" />
+                            )}
+                          </button>
                         </div>
 
                         {qa.scoring_hint && (
