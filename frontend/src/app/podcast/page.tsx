@@ -17,6 +17,7 @@ import {
   TranscriptPlayer,
   QAPairs,
   Chat,
+  AudioOverview,
 } from "@/components"
 import { streamResearch } from "@/lib/api"
 import { Mic, ArrowUp, Plus } from "lucide-react"
@@ -210,6 +211,11 @@ export default function PodcastPage() {
             {/* 问答对 */}
             {result.qa_pairs && result.qa_pairs.length > 0 && (
               <QAPairs qaPairs={result.qa_pairs} />
+            )}
+
+            {/* AI播客讨论 */}
+            {result.audio_overview && (
+              <AudioOverview audioOverview={result.audio_overview} />
             )}
 
             {/* 对话问答 */}
