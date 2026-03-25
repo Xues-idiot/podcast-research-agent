@@ -5,14 +5,16 @@
 功能:
 - 根据播客内容生成双人对讨论脚本
 - 支持多种讨论风格 (深入讨论、简短总结、评论、辩论)
-- 可选: TTS语音合成生成音频
+- TTS语音合成生成音频（可选）
 
 参考: notebooklm-py Audio Overview实现
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional
+from typing import Optional, AsyncIterator
+import base64
+import hashlib
 
 import asyncio
 from pathlib import Path
@@ -33,6 +35,14 @@ class AudioLength(Enum):
     LONG = "long"  # 6-10分钟
 
 
+class AudioVoice(Enum):
+    """语音选项"""
+    MALE_HOST_A = "male-qnq"  # 男声-主机A
+    FEMALE_HOST_A = "female-qnq"  # 女声-主机A
+    MALE_HOST_B = "male-tian"  # 男声-主机B
+    FEMALE_HOST_B = "female-tian"  # 女声-主机B
+
+
 @dataclass
 class AudioOverviewScript:
     """Audio Overview脚本"""
@@ -50,6 +60,14 @@ class ScriptSegment:
     speaker: str  # 发言人
     content: str  # 内容
     duration_seconds: int  # 预估时长
+
+
+@dataclass
+class AudioOverviewResult:
+    """Audio Overview结果（包含脚本和音频）"""
+    script: AudioOverviewScript
+    audio_data: Optional[bytes] = None  # MP3音频数据
+    audio_url: Optional[str] = None  # 音频URL（如果已保存）
 
 
 class AudioOverviewGenerator:
@@ -76,6 +94,114 @@ class AudioOverviewGenerator:
                 base_url=self.llm_config.get("base_url", "https://api.minimaxi.com/anthropic"),
             )
         return self._client
+
+    async def synthesize_speech(
+        self,
+        text: str,
+        voice: str = "male-qnq",
+        speed: float = 1.0,
+        output_path: Optional[str] = None,
+    ) -> bytes:
+        """将文本转换为语音
+
+        Args:
+            text: 要转换的文本
+            voice: 语音选项 (male-qnq, female-qnq, male-tian, female-tian)
+            speed: 语速 (0.5-2.0)
+            output_path: 可选的输出路径
+
+        Returns:
+            bytes: MP3音频数据
+        """
+        import requests
+
+        url = f"{self.llm_config.get('base_url', 'https://api.minimaxi.com').replace('/anthropic', '')}/v1/t2a_speech"
+
+        headers = {
+            "Authorization": f"Bearer {self.llm_config.get('api_key')}",
+            "Content-Type": "application/json",
+        }
+
+        payload = {
+            "model": "speech-01",
+            "text": text,
+            "voice_setting": {
+                "voice_id": voice,
+                "speed": speed,
+            },
+            "output_format": {
+                "format": "mp3",
+            },
+        }
+
+        response = requests.post(url, json=payload, headers=headers, timeout=60)
+
+        if response.status_code != 200:
+            raise Exception(f"TTS synthesis failed: {response.status_code} - {response.text}")
+
+        if output_path:
+            Path(output_path).write_bytes(response.content)
+
+        return response.content
+
+    async def synthesize_script(
+        self,
+        script: AudioOverviewScript,
+        host_a_voice: str = "male-qnq",
+        host_b_voice: str = "female-tian",
+        output_dir: Optional[str] = None,
+    ) -> AudioOverviewResult:
+        """为脚本生成TTS语音
+
+        Args:
+            script: 音频脚本
+            host_a_voice: 主机A的语音
+            host_b_voice: 主机B的语音
+            output_dir: 可选的输出目录
+
+        Returns:
+            AudioOverviewResult: 包含脚本和音频数据的结果
+        """
+        all_audio = []
+        audio_segments = []
+
+        for i, segment in enumerate(script.segments):
+            voice = host_a_voice if segment.speaker == "Host A" else host_b_voice
+
+            try:
+                audio_data = await self.synthesize_speech(
+                    text=segment.content,
+                    voice=voice,
+                    speed=1.0,
+                )
+                all_audio.append(audio_data)
+                audio_segments.append({
+                    "index": i,
+                    "speaker": segment.speaker,
+                    "audio_length": len(audio_data),
+                    "duration_seconds": segment.duration_seconds,
+                })
+            except Exception as e:
+                print(f"Warning: Failed to synthesize segment {i}: {e}")
+
+        # 合并所有音频片段
+        if all_audio:
+            combined_audio = b"".join(all_audio)
+        else:
+            combined_audio = None
+
+        # 如果有输出目录，保存文件
+        audio_url = None
+        if output_dir and combined_audio:
+            output_path = Path(output_dir) / f"audio_overview_{script.title[:20]}.mp3"
+            output_path.write_bytes(combined_audio)
+            audio_url = str(output_path)
+
+        return AudioOverviewResult(
+            script=script,
+            audio_data=combined_audio,
+            audio_url=audio_url,
+        )
 
     async def generate(
         self,
@@ -307,6 +433,7 @@ async def generate_audio_overview(
     style: AudioStyle = AudioStyle.DEEP_DIVE,
     length: AudioLength = AudioLength.DEFAULT,
     output_path: Optional[str] = None,
+    synthesize: bool = False,
 ) -> AudioOverviewScript:
     """便捷函数：生成Audio Overview
 
@@ -315,9 +442,10 @@ async def generate_audio_overview(
         style: 讨论风格
         length: 音频长度
         output_path: 可选的输出路径
+        synthesize: 是否同时合成TTS语音
 
     Returns:
-        AudioOverviewScript
+        AudioOverviewScript (如果synthesize=True，返回AudioOverviewResult)
     """
     from echo.config import config
 
@@ -339,5 +467,11 @@ async def generate_audio_overview(
     if output_path:
         text = generator.script_to_text(script)
         Path(output_path).write_text(text, encoding="utf-8")
+
+    # 如果需要TTS合成
+    if synthesize:
+        output_dir = str(Path(output_path).parent) if output_path else None
+        result = await generator.synthesize_script(script, output_dir=output_dir)
+        return result
 
     return script
