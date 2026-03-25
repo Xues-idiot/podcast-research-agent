@@ -142,6 +142,7 @@ async def list_conversations():
 
 
 @router.delete("/conversation/{conversation_id}")
+async def delete_conversation(conversation_id: str):
     """删除对话"""
     if conversation_id in _active_handlers:
         handler = _active_handlers[conversation_id]
