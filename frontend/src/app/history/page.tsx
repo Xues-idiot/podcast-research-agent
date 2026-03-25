@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Mic, History, MessageCircle, Trash2, ExternalLink, ArrowLeft } from 'lucide-react'
@@ -29,7 +29,7 @@ export default function HistoryPage() {
     loadData()
   }, [activeTab])
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     setLoading(true)
     try {
       if (activeTab === 'research') {
@@ -46,7 +46,7 @@ export default function HistoryPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [activeTab])
 
   const deleteTask = async (taskId: string) => {
     if (!confirm('确定要删除这个研究记录吗？')) return

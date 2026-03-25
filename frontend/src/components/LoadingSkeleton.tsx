@@ -32,17 +32,6 @@ export function LoadingSkeleton({ type = "full", stepHint }: LoadingSkeletonProp
     </motion.div>
   )
 
-  const CircleSkeleton = ({ size = 40, color = "#2C3E50" }: { size?: number, color?: string }) => (
-    <motion.div
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      className={`w-${size/4} h-${size/4} rounded-full relative overflow-hidden`}
-      style={{ width: size, height: size, backgroundColor: `${color}20` }}
-    >
-      {shimmer}
-    </motion.div>
-  )
-
   if (type === "summary") {
     return (
       <motion.div

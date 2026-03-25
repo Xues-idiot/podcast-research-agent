@@ -41,14 +41,6 @@ export function ProgressBar() {
 
     // Simulate progress for streaming responses
     let progressInterval: NodeJS.Timeout | null = null
-    const startProgress = () => {
-      progressInterval = setInterval(() => {
-        setProgress((prev) => {
-          if (prev >= 90) return prev
-          return prev + Math.random() * 10
-        })
-      }, 500)
-    }
 
     const stopProgress = () => {
       if (progressInterval) {

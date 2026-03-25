@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useMemo } from "react"
 import { motion } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Play, Pause, SkipBack, SkipForward, Copy, Check } from "lucide-react"
@@ -26,7 +26,7 @@ export function TranscriptPlayer({ transcript, highlightTimestamp, onTimestampCl
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
   const segmentRefs = useRef<(HTMLDivElement | null)[]>([])
 
-  const segments = transcript.segments || []
+  const segments = useMemo(() => transcript.segments || [], [transcript.segments])
 
   // 当highlightTimestamp变化时，自动滚动到对应片段
   useEffect(() => {

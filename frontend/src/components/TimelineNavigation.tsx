@@ -29,7 +29,6 @@ interface TimelineNavigationProps {
     compiled: string
     raw: string
   }>
-  keypoints?: Array<{ id: number; content: string; importance: string }>
 }
 
 export function TimelineNavigation({
@@ -40,7 +39,6 @@ export function TimelineNavigation({
   onPlayPause,
   isPlaying,
   entries = [],
-  keypoints = [],
 }: TimelineNavigationProps) {
   const [moments, setMoments] = useState<TimelineEntry[]>([])
   const [isExpanded, setIsExpanded] = useState(false)
