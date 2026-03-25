@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Mic, History, MessageCircle, Trash2, ExternalLink, ArrowLeft } from 'lucide-react'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 interface Task {
   task_id: string
@@ -101,6 +102,7 @@ export default function HistoryPage() {
               </a>
             </div>
             <nav className="flex items-center gap-4">
+              <ThemeToggle />
               <a href="/podcast" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">研究</a>
               <a href="/knowledge" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">知识库</a>
               <a href="/export" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">导出</a>

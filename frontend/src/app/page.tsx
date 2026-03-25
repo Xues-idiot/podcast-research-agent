@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Mic, Sparkles, Clock, MessageCircle, BookOpen, Download, ArrowRight, Brain, Zap, Shield } from 'lucide-react'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
             </div>
           </div>
           <nav className="flex items-center gap-4">
+            <ThemeToggle />
             <Link href="/podcast" className="text-sm font-medium text-[#2C3E50] hover:text-[#E67E22]">研究</Link>
             <Link href="/knowledge" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">知识库</Link>
             <Link href="/export" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">导出</Link>

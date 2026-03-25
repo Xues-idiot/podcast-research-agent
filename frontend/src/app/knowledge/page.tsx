@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Mic, Search, Trash2, BookOpen, Clock, ArrowLeft } from 'lucide-react'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 interface Podcast {
   podcast_id: string
@@ -115,6 +116,7 @@ export default function KnowledgePage() {
               </a>
             </div>
             <nav className="flex items-center gap-4">
+              <ThemeToggle />
               <a href="/podcast" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">研究</a>
               <a href="/knowledge" className="text-sm font-medium text-[#2C3E50] hover:text-[#E67E22]">知识库</a>
               <a href="/export" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">导出</a>
