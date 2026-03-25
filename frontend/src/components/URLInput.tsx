@@ -65,7 +65,7 @@ export function URLInput({ onSubmit }: URLInputProps) {
         <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#2C3E50]/50 z-10" />
         <Input
           type="url"
-          placeholder="输入B站/YouTube视频链接或播客RSS地址..."
+          placeholder="输入B站/YouTube视频链接或播客RSS地址... (按 / 聚焦)"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           className="pl-12 h-12 text-base pr-24"

@@ -49,7 +49,29 @@ export default function PodcastPage() {
       setShowBackToTop(window.scrollY > 400)
     }
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+
+    // Keyboard shortcuts
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Skip if user is typing in an input
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return
+
+      // '/' to focus search
+      if (e.key === "/" && status !== "loading") {
+        e.preventDefault()
+        document.querySelector<HTMLInputElement>('input[type="url"]')?.focus()
+      }
+      // '?' to show shortcuts help (future)
+      // 'Escape' to scroll to top
+      if (e.key === "Escape") {
+        scrollToTop()
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("keydown", handleKeyDown)
+    }
   }, [])
 
   const scrollToTop = () => {
