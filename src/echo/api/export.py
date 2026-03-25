@@ -33,8 +33,10 @@ async def export_knowledge_cards(request: ExportRequest):
     if request.format == "json":
         cards = exporter.build_cards_from_result(request.result, request.entries)
         data = exporter.export_json(cards)
+        with open(data, "rb") as f:
+            content = f.read()
         return Response(
-            content=open(data, "rb").read(),
+            content=content,
             media_type="application/json",
             headers={"Content-Disposition": "attachment; filename=knowledge_cards.json"},
         )
@@ -42,8 +44,10 @@ async def export_knowledge_cards(request: ExportRequest):
     elif request.format == "markdown":
         cards = exporter.build_cards_from_result(request.result, request.entries)
         data = exporter.export_markdown(cards)
+        with open(data, "rb") as f:
+            content = f.read()
         return Response(
-            content=open(data, "rb").read(),
+            content=content,
             media_type="text/markdown",
             headers={"Content-Disposition": "attachment; filename=knowledge_cards.md"},
         )
@@ -52,8 +56,10 @@ async def export_knowledge_cards(request: ExportRequest):
         cards = exporter.build_cards_from_result(request.result, request.entries)
         title = request.result.get("summary", {}).get("title", "知识卡片")
         data = exporter.export_html(cards, title=title)
+        with open(data, "rb") as f:
+            content = f.read()
         return Response(
-            content=open(data, "rb").read(),
+            content=content,
             media_type="text/html",
             headers={"Content-Disposition": "attachment; filename=knowledge_cards.html"},
         )
@@ -83,8 +89,10 @@ async def export_knowledge_cards(request: ExportRequest):
     elif request.format == "anki":
         cards = exporter.build_cards_from_result(request.result, request.entries)
         data = exporter.export_anki(cards)
+        with open(data, "rb") as f:
+            content = f.read()
         return Response(
-            content=open(data, "rb").read(),
+            content=content,
             media_type="text/tab-separated-values",
             headers={"Content-Disposition": "attachment; filename=knowledge_cards.tsv"},
         )
