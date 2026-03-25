@@ -7,7 +7,7 @@ from echo.agents.linker import KnowledgeLinker
 from echo.agents.mindmap import MindMapGenerator
 from echo.agents.report import ReportGenerator
 from echo.agents.qa import QAGenerator
-from echo.agents.flashcard import FlashCardGenerator
+from echo.agents.flashcard import Exporter
 from echo.agents.rag_agent import RAGAgent, ResearchRAGAgent, AgentConfig
 
 __all__ = [
@@ -18,7 +18,7 @@ __all__ = [
     "MindMapGenerator",
     "ReportGenerator",
     "QAGenerator",
-    "FlashCardGenerator",
+    "Exporter",
     "RAGAgent",
     "ResearchRAGAgent",
     "AgentConfig",

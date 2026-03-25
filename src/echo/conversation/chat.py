@@ -2,30 +2,11 @@
 
 import asyncio
 import uuid
-from dataclasses import dataclass, field
-from datetime import datetime
 from typing import Any, AsyncIterator, Optional
 
 from echo.conversation.history import ConversationHistory
 from echo.conversation.prompts import SYSTEM_PROMPT, generate_user_prompt
-
-
-@dataclass
-class ChatMessage:
-    """对话消息"""
-    role: str  # "user" or "assistant"
-    content: str
-    timestamp: datetime = field(default_factory=datetime.now)
-    references: list[dict] = field(default_factory=list)
-
-
-@dataclass
-class ChatResponse:
-    """聊天响应"""
-    answer: str
-    references: list[dict] = field(default_factory=list)
-    conversation_id: str = ""
-    sources: list[dict] = field(default_factory=list)  # 引用来源
+from echo.conversation.types import ChatMessage, ChatResponse
 
 
 class ConversationHandler:

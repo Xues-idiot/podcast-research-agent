@@ -7,7 +7,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
-from echo.conversation.chat import ChatMessage
+from echo.conversation.types import ChatMessage
 
 
 class ConversationHistory:

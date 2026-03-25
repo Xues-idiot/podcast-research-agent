@@ -24,7 +24,7 @@ class TestExporter:
         path = exporter.export_json(mock_research_result, "test.json")
         assert Path(path).exists()
 
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             data = json.load(f)
             assert "summary" in data
 
@@ -33,7 +33,7 @@ class TestExporter:
         path = exporter.export_markdown(mock_research_result, "test.md")
         assert Path(path).exists()
 
-        content = Path(path).read_text()
+        content = Path(path).read_text(encoding="utf-8")
         assert "测试摘要标题" in content
         assert "要点内容1" in content
 
@@ -42,7 +42,7 @@ class TestExporter:
         path = exporter.export_csv(mock_research_result, "test.csv")
         assert Path(path).exists()
 
-        content = Path(path).read_text()
+        content = Path(path).read_text(encoding="utf-8")
         assert "要点内容1" in content
         assert "high" in content
 
@@ -51,7 +51,7 @@ class TestExporter:
         path = exporter.export_flashcards(mock_research_result, "cards.json", format="json")
         assert Path(path).exists()
 
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             data = json.load(f)
             assert len(data) > 0
             assert "front" in data[0]
@@ -61,7 +61,7 @@ class TestExporter:
         path = exporter.export_flashcards(mock_research_result, "cards.md", format="markdown")
         assert Path(path).exists()
 
-        content = Path(path).read_text()
+        content = Path(path).read_text(encoding="utf-8")
         assert "闪卡" in content
 
     def test_export_flashcards_html(self, exporter, mock_research_result):
@@ -69,7 +69,7 @@ class TestExporter:
         path = exporter.export_flashcards(mock_research_result, "cards.html", format="html")
         assert Path(path).exists()
 
-        content = Path(path).read_text()
+        content = Path(path).read_text(encoding="utf-8")
         assert "<html>" in content
         assert "flashcard" in content
 
@@ -78,7 +78,7 @@ class TestExporter:
         path = exporter.export_mindmap_json(mock_research_result, "mindmap.json")
         assert Path(path).exists()
 
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             data = json.load(f)
             assert data["root"] == "测试主题"
 
