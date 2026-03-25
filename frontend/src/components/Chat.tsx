@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Send, Bot, User, Trash2, Download } from "lucide-react"
+import { Send, Bot, User, Trash2, Download, Copy, Check, Loader2 } from "lucide-react"
 
 interface Message {
   id: string
@@ -28,10 +28,21 @@ export function Chat({ researchResult }: ChatProps) {
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [conversationId, setConversationId] = useState<string | null>(null)
+  const [copiedId, setCopiedId] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  const copyToClipboard = async (text: string, id: string) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopiedId(id)
+      setTimeout(() => setCopiedId(null), 2000)
+    } catch (err) {
+      console.error("Failed to copy:", err)
+    }
   }
 
   useEffect(() => {
@@ -225,15 +236,33 @@ export function Chat({ researchResult }: ChatProps) {
                       <div className={`flex-1 max-w-[80%] ${
                         message.role === "user" ? "text-right" : ""
                       }`}>
-                        <div className={`inline-block p-3 rounded-lg ${
+                        <div className={`group relative inline-block p-3 rounded-lg ${
                           message.role === "user"
                             ? "bg-[#E67E22]/10 text-[#2C3E50]"
                             : "bg-[#FAF8F5] text-[#2C3E50]"
                         }`}>
-                          <p className="whitespace-pre-wrap">{message.content}</p>
+                          <p className="whitespace-pre-wrap">{message.content || (message.role === "assistant" && isLoading && message.id === messages[messages.length - 1]?.id ? "思考中..." : "")}</p>
+                          {message.content && (
+                            <button
+                              onClick={() => copyToClipboard(message.content, message.id)}
+                              className="absolute top-2 right-2 p-1 rounded opacity-0 group-hover:opacity-100 hover:bg-[#2C3E50]/10 transition-all"
+                              title="复制"
+                            >
+                              {copiedId === message.id ? (
+                                <Check className="w-3 h-3 text-green-600" />
+                              ) : (
+                                <Copy className="w-3 h-3 text-[#2C3E50]/50" />
+                              )}
+                            </button>
+                          )}
                         </div>
                         <p className="text-xs text-[#2C3E50]/50 mt-1">
                           {message.timestamp.toLocaleTimeString()}
+                          {message.role === "assistant" && isLoading && message.id === messages[messages.length - 1]?.id && (
+                            <span className="ml-2 inline-flex items-center gap-1 text-[#E67E22]">
+                              <Loader2 className="w-3 h-3 animate-spin" /> 正在输入
+                            </span>
+                          )}
                         </p>
                       </div>
                     </motion.div>
