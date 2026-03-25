@@ -40,6 +40,7 @@ export default function PodcastPage() {
 
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [researchTime, setResearchTime] = useState<number | null>(null)
+  const [highlightTimestamp, setHighlightTimestamp] = useState<number | undefined>()
   const startTimeRef = useRef<number | null>(null)
 
   useEffect(() => {
@@ -187,15 +188,27 @@ export default function PodcastPage() {
 
             {/* 转录播放器 */}
             {result.transcript && (
-              <TranscriptPlayer transcript={result.transcript} />
+              <div id="transcript-player">
+                <TranscriptPlayer
+                  transcript={result.transcript}
+                  highlightTimestamp={highlightTimestamp}
+                />
+              </div>
             )}
 
             {/* 摘要 */}
             {result.summary && <Summary summary={result.summary} />}
 
-            {/* 要点 */}
+            {/* 要点 - 点击时间戳可跳转 */}
             {result.keypoints && result.keypoints.length > 0 && (
-              <KeyPoints keypoints={result.keypoints} />
+              <KeyPoints
+                keypoints={result.keypoints}
+                onTimestampClick={(ts) => {
+                  setHighlightTimestamp(ts)
+                  // 滚动到转录播放器
+                  document.getElementById("transcript-player")?.scrollIntoView({ behavior: "smooth" })
+                }}
+              />
             )}
 
             {/* 思维导图 */}

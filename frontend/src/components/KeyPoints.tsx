@@ -8,6 +8,7 @@ import { Copy, Check, Clock } from "lucide-react"
 
 interface KeyPointsProps {
   keypoints: ResearchResult["keypoints"]
+  onTimestampClick?: (timestamp: number) => void
 }
 
 const importanceColors = {
@@ -16,7 +17,7 @@ const importanceColors = {
   low: "bg-green-100 text-green-700 border-green-200",
 }
 
-export function KeyPoints({ keypoints }: KeyPointsProps) {
+export function KeyPoints({ keypoints, onTimestampClick }: KeyPointsProps) {
   const [copiedId, setCopiedId] = useState<number | null>(null)
 
   const copyToClipboard = async (text: string, id: number) => {
@@ -71,12 +72,16 @@ export function KeyPoints({ keypoints }: KeyPointsProps) {
                     >
                       {point.importance === "high" ? "高重要性" : point.importance === "low" ? "低重要性" : "中等重要性"}
                     </span>
-                    {/* 时间戳显示（如果有） */}
+                    {/* 时间戳显示（如果有，可点击跳转） */}
                     {point.timestamp && (
-                      <span className="flex items-center gap-1 px-2 py-0.5 text-xs rounded-full bg-[#2C3E50]/10 text-[#2C3E50]/70">
+                      <button
+                        onClick={() => onTimestampClick?.(point.timestamp!)}
+                        className="flex items-center gap-1 px-2 py-0.5 text-xs rounded-full bg-[#2C3E50]/10 text-[#2C3E50]/70 hover:bg-[#2C3E50]/20 transition-colors cursor-pointer"
+                        title="跳转到对应段落"
+                      >
                         <Clock className="w-3 h-3" />
                         {formatTimestamp(point.timestamp)}
-                      </span>
+                      </button>
                     )}
                   </div>
                 </div>

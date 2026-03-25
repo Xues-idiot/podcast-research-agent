@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Play, Pause, SkipBack, SkipForward, Copy, Check } from "lucide-react"
@@ -11,17 +11,38 @@ interface TranscriptPlayerProps {
     segments?: Array<{ start: number; end: number; text: string }>
     language?: string
   }
+  /** 外部传入的时间戳（秒），用于跳转高亮 */
+  highlightTimestamp?: number
+  /** 跳转回调 */
+  onTimestampClick?: (timestamp: number) => void
 }
 
 const PLAYBACK_SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2]
 
-export function TranscriptPlayer({ transcript }: TranscriptPlayerProps) {
+export function TranscriptPlayer({ transcript, highlightTimestamp, onTimestampClick }: TranscriptPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentSegment, setCurrentSegment] = useState(0)
   const [playbackSpeed, setPlaybackSpeed] = useState(1)
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+  const segmentRefs = useRef<(HTMLDivElement | null)[]>([])
 
   const segments = transcript.segments || []
+
+  // 当highlightTimestamp变化时，自动滚动到对应片段
+  useEffect(() => {
+    if (highlightTimestamp !== undefined && segments.length > 0) {
+      const idx = segments.findIndex(
+        seg => seg.start <= highlightTimestamp && seg.end >= highlightTimestamp
+      )
+      if (idx >= 0) {
+        setCurrentSegment(idx)
+        // 滚动到对应片段
+        setTimeout(() => {
+          segmentRefs.current[idx]?.scrollIntoView({ behavior: "smooth", block: "center" })
+        }, 100)
+      }
+    }
+  }, [highlightTimestamp, segments])
 
   const copyToClipboard = async (text: string, index: number) => {
     try {
@@ -120,6 +141,7 @@ export function TranscriptPlayer({ transcript }: TranscriptPlayerProps) {
               segments.map((segment, index) => (
                 <motion.div
                   key={index}
+                  ref={(el) => { segmentRefs.current[index] = el }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: currentSegment === index ? 1 : 0.6 }}
                   onClick={() => setCurrentSegment(index)}
