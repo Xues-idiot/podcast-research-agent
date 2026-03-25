@@ -125,8 +125,23 @@ async def chat(request: ChatRequest):
         )
 
 
+@router.get("/conversations")
+async def list_conversations():
+    """获取所有对话列表"""
+    return {
+        "conversations": [
+            {
+                "id": conv_id,
+                "message_count": len(handler.history.get_all()),
+                "created_at": handler.history.get_all()[0].timestamp.isoformat() if handler.history.get_all() else None,
+                "last_message": handler.history.get_all()[-1].content[:50] if handler.history.get_all() else None
+            }
+            for conv_id, handler in _active_handlers.items()
+        ]
+    }
+
+
 @router.delete("/conversation/{conversation_id}")
-async def delete_conversation(conversation_id: str):
     """删除对话"""
     if conversation_id in _active_handlers:
         handler = _active_handlers[conversation_id]
