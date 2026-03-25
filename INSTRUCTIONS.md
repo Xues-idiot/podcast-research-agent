@@ -279,11 +279,12 @@ _reference/
 
 ### 环境变量 (.env)
 ```
-MINIMAX_API_KEY=sk-cp-VcIZBwmaK5F8jNkpaJ4vvxjCoVSujEVSRyMhn-Xu2aaOth6JbMXVOcRt8pZ9ZFsqTcZ8MESiP8VP833TvcibXmw3hdOS9Evr5wcIN3eCjPoYbkQuxOyFz9s
+# 请替换为你的实际API Key
+MINIMAX_API_KEY=your_minimax_api_key_here
 MINIMAX_BASE_URL=https://api.minimaxi.com/anthropic
 MINIMAX_MODEL=MiniMax-M2.7
-TAVILY_API_KEY=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
-GITHUB_TOKEN=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
+TAVILY_API_KEY=your_tavily_api_key_here
+GITHUB_TOKEN=your_github_token_here
 ```
 
 ### Sigma Skills 参考
