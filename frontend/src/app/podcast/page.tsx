@@ -114,7 +114,13 @@ export default function PodcastPage() {
                 <p className="text-xs text-[#2C3E50]/60">播客研究Agent · 让知识回响</p>
               </div>
             </div>
-            <ApiStatus />
+            <nav className="flex items-center gap-4">
+              <a href="/podcast" className="text-sm font-medium text-[#2C3E50] hover:text-[#E67E22]">研究</a>
+              <a href="/knowledge" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">知识库</a>
+              <a href="/export" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">导出</a>
+              <a href="/history" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">历史</a>
+              <ApiStatus />
+            </nav>
           </div>
         </div>
       </header>

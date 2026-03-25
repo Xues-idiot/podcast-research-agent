@@ -41,7 +41,7 @@ class EchoClient:
 
         # 知识库组件
         self.entry_store = EntryStore()
-        self.splitter = TextSplitter(min_duration=30, max_duration=120)
+        self.splitter = TextSplitter(chunk_size=500, chunk_overlap=50)
 
         # RAG Agent (用于深度研究)
         self.research_rag_agent = ResearchRAGAgent(
@@ -121,7 +121,7 @@ class EchoClient:
             "podcast_id": podcast_id,
         }
 
-    async def _create_entries(self, podcast_id: str, transcript: dict) -> list:
+    async def _create_entries(self, podcast_id: str, transcript) -> list:
         """从转录创建知识库 Entry"""
         try:
             segments = transcript.get("segments", [])
@@ -131,7 +131,9 @@ class EchoClient:
             # 使用 TextSplitter 分割转录
             entry_data = self.splitter.split_transcript(
                 podcast_id=podcast_id,
-                segments=segments,
+                transcript_segments=segments,
+                min_duration=30.0,
+                max_duration=120.0,
             )
 
             # 添加到存储
