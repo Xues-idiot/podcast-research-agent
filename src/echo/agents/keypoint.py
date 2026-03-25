@@ -1,6 +1,7 @@
 """要点生成Agent - 提取关键要点"""
 
-from typing import List
+from typing import List, Optional
+import re
 
 from openai import AsyncOpenAI
 
@@ -20,11 +21,13 @@ class KeyPointGenerator:
 2. 每个要点用简洁的语言描述核心观点
 3. 标注每个要点的重要性（高/中/低）
 4. 说明每个要点可以应用在什么场景
+5. 标注每个要点在原文中的位置（用于跳转时间戳）
 
 输出格式：
-- 要点编号和内容
-- 重要性等级
-- 应用场景
+每个要点格式：###KEYPOINT###|序号|内容|重要性|应用场景|原文位置描述
+例如：###KEYPOINT###|1|AI将改变教育方式|高|在线教育产品设计|第三章讨论教育创新的部分
+
+位置描述用于帮助定位时间戳，描述要简洁（如：开头介绍、第三章教育讨论、结尾总结等）
 """
 
     def __init__(self, config: MiniMaxConfig):
@@ -34,16 +37,22 @@ class KeyPointGenerator:
         )
         self.model = config.model
 
-    async def generate(self, transcript: dict, num: int = 5) -> List[dict]:
+    async def generate(
+        self,
+        transcript: dict,
+        num: int = 5,
+        segments: Optional[List[dict]] = None,
+    ) -> List[dict]:
         """
         生成要点列表
 
         Args:
             transcript: 转录结果
             num: 要点数量
+            segments: 可选的转录片段列表，用于时间戳匹配
 
         Returns:
-            要点列表，每项包含 content, importance, applications
+            要点列表，每项包含 content, importance, applications, timestamp
         """
         text = transcript.get("text", "")
 
@@ -63,30 +72,123 @@ class KeyPointGenerator:
 
         content = response.choices[0].message.content
 
-        return self._parse_keypoints(content, num)
+        keypoints = self._parse_keypoints(content, num)
+
+        # 如果有segments，尝试匹配时间戳
+        if segments and keypoints:
+            keypoints = self._match_timestamps(keypoints, segments)
+
+        return keypoints
 
     def _parse_keypoints(self, content: str, num: int) -> List[dict]:
         """解析LLM输出为要点列表"""
-        lines = content.strip().split("\n")
         keypoints = []
 
-        for line in lines:
-            line = line.strip()
-            if not line:
+        # 按 ###KEYPOINT### 分隔
+        parts = content.split("###KEYPOINT###")
+
+        for part in parts[1:]:  # 跳过第一个空部分
+            part = part.strip()
+            if not part:
                 continue
 
-            # 匹配 "1. ..." 格式
-            if line and line[0].isdigit() and ". " in line:
-                parts = line.split(". ", 1)
-                if len(parts) == 2:
-                    keypoints.append({
-                        "id": int(parts[0]),
-                        "content": parts[1],
-                        "importance": "medium",  # 默认值
-                        "applications": [],
-                    })
+            # 解析格式：|序号|内容|重要性|应用场景|位置描述
+            match = re.match(r'\|(\d+)\|(.+?)\|(\w+)\|(.+?)\|(.*)', part, re.DOTALL)
+            if match:
+                id_, content_text, importance, apps, location = match.groups()
+                keypoints.append({
+                    "id": int(id_),
+                    "content": content_text.strip(),
+                    "importance": importance.lower() if importance.lower() in ["高", "中", "低"] else "medium",
+                    "applications": apps.strip(),
+                    "location": location.strip(),
+                    "timestamp": None,  # 稍后填充
+                })
+
+        # 如果解析失败，尝试简单解析
+        if not keypoints:
+            lines = content.strip().split("\n")
+            for line in lines:
+                line = line.strip()
+                if not line:
+                    continue
+                if line and line[0].isdigit() and ". " in line:
+                    parts = line.split(". ", 1)
+                    if len(parts) == 2:
+                        keypoints.append({
+                            "id": int(parts[0]),
+                            "content": parts[1],
+                            "importance": "medium",
+                            "applications": [],
+                            "location": "",
+                            "timestamp": None,
+                        })
 
         return keypoints[:num]
+
+    def _match_timestamps(
+        self,
+        keypoints: List[dict],
+        segments: List[dict],
+    ) -> List[dict]:
+        """根据位置描述匹配时间戳"""
+        if not segments:
+            return keypoints
+
+        for kp in keypoints:
+            location = kp.get("location", "").lower()
+            timestamp = self._find_best_timestamp(location, segments)
+            kp["timestamp"] = timestamp
+
+        return keypoints
+
+    def _find_best_timestamp(
+        self,
+        location: str,
+        segments: List[dict],
+    ) -> Optional[float]:
+        """根据位置描述找到最匹配的时间戳"""
+        if not location or not segments:
+            return None
+
+        location_keywords = {
+            "开头": 0,
+            "开始": 0,
+            "介绍": 0,
+            "intro": 0,
+            "结尾": -1,
+            "总结": -1,
+            "结语": -1,
+            "outro": -1,
+            "中间": len(segments) // 2,
+            "中段": len(segments) // 2,
+        }
+
+        # 检查关键词
+        for keyword, preferred_idx in location_keywords.items():
+            if keyword in location:
+                if preferred_idx < 0:
+                    preferred_idx = len(segments) + preferred_idx
+                if 0 <= preferred_idx < len(segments):
+                    return segments[preferred_idx].get("start")
+
+        # 计算文字相似度
+        location_words = set(location.split())
+        best_idx = 0
+        best_score = 0
+
+        for i, seg in enumerate(segments):
+            seg_text = seg.get("text", "").lower()
+            seg_words = set(seg_text.split())
+            overlap = len(location_words & seg_words)
+            if overlap > best_score:
+                best_score = overlap
+                best_idx = i
+
+        if best_score > 0 and best_idx < len(segments):
+            return segments[best_idx].get("start")
+
+        return None
 
     async def score(self, keypoints: List[dict]) -> List[dict]:
         """

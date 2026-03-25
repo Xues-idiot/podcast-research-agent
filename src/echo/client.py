@@ -80,8 +80,9 @@ class EchoClient:
         # 4. 摘要
         summary = await self.summarizer.summarize(transcript)
 
-        # 5. 要点提取
-        keypoints = await self.keypoint_gen.generate(transcript, num_keypoints)
+        # 5. 要点提取（传入segments用于时间戳匹配）
+        segments = transcript.get("segments", [])
+        keypoints = await self.keypoint_gen.generate(transcript, num_keypoints, segments=segments)
 
         # 6. 思维导图
         mindmap = await self.mindmap_gen.generate(keypoints)

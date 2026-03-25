@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import type { ResearchResult } from "@/lib/api"
-import { Copy, Check } from "lucide-react"
+import { Copy, Check, Clock } from "lucide-react"
 
 interface KeyPointsProps {
   keypoints: ResearchResult["keypoints"]
@@ -27,6 +27,12 @@ export function KeyPoints({ keypoints }: KeyPointsProps) {
     } catch (err) {
       console.error("Failed to copy:", err)
     }
+  }
+
+  const formatTimestamp = (seconds: number) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = Math.floor(seconds % 60)
+    return `${mins}:${secs.toString().padStart(2, "0")}`
   }
 
   return (
@@ -57,13 +63,22 @@ export function KeyPoints({ keypoints }: KeyPointsProps) {
                 </span>
                 <div className="flex-1">
                   <p className="text-[#2C3E50] font-medium">{point.content}</p>
-                  <span
-                    className={`inline-block mt-1 px-2 py-0.5 text-xs rounded-full border ${
-                      importanceColors[point.importance as keyof typeof importanceColors] || importanceColors.medium
-                    }`}
-                  >
-                    {point.importance === "high" ? "高重要性" : point.importance === "low" ? "低重要性" : "中等重要性"}
-                  </span>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span
+                      className={`px-2 py-0.5 text-xs rounded-full border ${
+                        importanceColors[point.importance as keyof typeof importanceColors] || importanceColors.medium
+                      }`}
+                    >
+                      {point.importance === "high" ? "高重要性" : point.importance === "low" ? "低重要性" : "中等重要性"}
+                    </span>
+                    {/* 时间戳显示（如果有） */}
+                    {point.timestamp && (
+                      <span className="flex items-center gap-1 px-2 py-0.5 text-xs rounded-full bg-[#2C3E50]/10 text-[#2C3E50]/70">
+                        <Clock className="w-3 h-3" />
+                        {formatTimestamp(point.timestamp)}
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <button
                   onClick={() => copyToClipboard(point.content, point.id)}
