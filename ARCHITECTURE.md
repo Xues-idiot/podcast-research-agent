@@ -30,6 +30,10 @@ src/echo/
 ├── exporters/            # 导出模块 (新增)
 │   ├── __init__.py
 │   └── knowledge_card_exporter.py  # 知识卡片导出器
+├── memory/               # 记忆模块 (新增)
+│   ├── __init__.py
+│   ├── memory_store.py  # 记忆存储管理
+│   └── memory_updater.py # LLM驱动的记忆更新
 ├── tools/                # 工具模块
 │   ├── downloader.py     # 统一下载接口
 │   ├── bilibili.py       # B站下载
@@ -43,7 +47,8 @@ src/echo/
     ├── knowledge.py      # 知识库API路由 (新增)
     ├── sources.py        # 多源聚合API路由 (新增)
     ├── navigation.py     # 时间戳导航API路由 (新增)
-    └── export.py         # 导出API路由 (新增)
+    ├── export.py         # 导出API路由 (新增)
+    └── memory.py         # 记忆API路由 (新增)
 
 echo_cli/                 # CLI入口
 frontend/                  # Next.js前端
@@ -348,6 +353,50 @@ download -> transcribe -> summarize -> keypoint -> mindmap -> link -> report -> 
 
 ### 参考
 - khoj 知识卡片导出
+
+---
+
+## memory 模块 (记忆系统)
+
+> 跨会话用户偏好学习，参考 deer-flow 的记忆系统设计
+
+### 类型
+- `Fact` - 记忆事实 `{id, content, category, confidence, created_at, source}`
+- `UserMemory` - 用户记忆 `{user_id, work_context, personal_context, top_of_mind, recent_months, facts}`
+- `MemoryStore` - 记忆存储管理器
+- `MemoryUpdater` - LLM驱动的记忆更新器
+
+### MemoryStore 类
+- `get_memory(user_id) -> UserMemory` 获取用户记忆
+- `update_memory(user_id, **kwargs) -> UserMemory` 更新记忆字段
+- `add_fact(user_id, content, category, confidence, source) -> Fact` 添加事实
+- `get_facts(user_id, category, min_confidence) -> list[Fact]` 获取事实列表
+- `get_recent_facts(user_id, top_k) -> list[Fact]` 获取重要事实
+- `inject_into_context(user_id) -> str` 生成注入文本
+
+### MemoryUpdater 类
+- `learn_podcast_preference(user_id, podcast_info)` 学习播客偏好
+- `learn_export_preference(user_id, format_type)` 学习导出偏好
+- `learn_research_topic(user_id, topic)` 学习研究主题
+- `get_personalized_context(user_id) -> str` 获取个性化上下文
+
+### API端点
+- `GET /api/memory/{user_id}` - 获取用户记忆
+- `POST /api/memory/update` - 更新记忆
+- `POST /api/memory/facts` - 添加事实
+- `GET /api/memory/{user_id}/facts` - 获取事实列表
+- `POST /api/memory/learn` - 学习偏好
+- `GET /api/memory/{user_id}/context` - 获取个性化上下文
+- `DELETE /api/memory/{user_id}` - 清除记忆
+
+### 状态
+- ✅ MemoryStore 记忆存储已实现
+- ✅ MemoryUpdater 记忆更新已实现
+- ✅ Memory API 路由已实现
+- ⚠️ LLM驱动的自动记忆更新待接入 MiniMax API
+
+### 参考
+- deer-flow 记忆系统
 
 ---
 

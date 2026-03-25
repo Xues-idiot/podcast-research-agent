@@ -6,6 +6,7 @@ from echo.api.knowledge import router as knowledge_router
 from echo.api.sources import router as sources_router
 from echo.api.navigation import router as navigation_router
 from echo.api.export import router as export_router
+from echo.api.memory import router as memory_router
 
 __all__ = [
     "research_router",
@@ -14,4 +15,5 @@ __all__ = [
     "sources_router",
     "navigation_router",
     "export_router",
+    "memory_router",
 ]
