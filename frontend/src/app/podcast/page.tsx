@@ -22,6 +22,7 @@ import {
 } from "@/components"
 import { streamResearch } from "@/lib/api"
 import { Mic, ArrowUp, Plus } from "lucide-react"
+import { ThemeToggle } from "@/components/ThemeToggle"
 
 export default function PodcastPage() {
   const {
@@ -140,6 +141,7 @@ export default function PodcastPage() {
               </div>
             </div>
             <nav className="flex items-center gap-4">
+              <ThemeToggle />
               <a href="/podcast" className="text-sm font-medium text-[#2C3E50] hover:text-[#E67E22]">研究</a>
               <a href="/knowledge" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">知识库</a>
               <a href="/export" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">导出</a>

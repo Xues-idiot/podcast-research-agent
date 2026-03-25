@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="zh">
+    <html lang="zh" suppressHydrationWarning>
       <body className="antialiased">
         <ToastProvider>
           <ProgressBar />
