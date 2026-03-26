@@ -119,9 +119,7 @@ class RAGAgent:
             try:
                 async for event in self._conversation.chat(
                     query=query,
-                    entries=[],  # 可以传入相关entries
                     stream=stream,
-                    use_retriever=False,  # 已经在retriever中处理了
                 ):
                     if not stream:
                         if hasattr(event, 'answer'):
