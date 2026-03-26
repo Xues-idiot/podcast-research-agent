@@ -161,7 +161,7 @@ class ConversationHandler:
                 temperature=0.7,
                 max_tokens=2000,
             )
-            return response.choices[0].message.content
+            return response.choices[0].message.content or ""
         except Exception as e:
             print(f"LLM生成失败: {e}")
             return f"抱歉，生成回答时遇到了问题。请稍后重试。"

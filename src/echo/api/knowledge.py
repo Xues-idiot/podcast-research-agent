@@ -161,9 +161,26 @@ async def search_entries(request: SearchRequest):
 async def list_podcasts():
     """列出所有已存储的播客"""
     podcast_ids = _entry_store.list_podcasts()
+
+    # 构建播客列表，包含元数据
+    podcasts = []
+    for pid in podcast_ids:
+        entries = _entry_store.get_entries(pid)
+        # 获取第一个entry的时间作为创建时间
+        created_at = entries[0].created_at.isoformat() if entries else None
+        podcasts.append({
+            "id": pid,
+            "podcast_id": pid,
+            "title": pid,  # TODO: 从研究结果中获取真实标题
+            "url": "",
+            "platform": "",
+            "created_at": created_at,
+            "entry_count": len(entries)
+        })
+
     return {
-        "podcasts": podcast_ids,
-        "count": len(podcast_ids)
+        "podcasts": podcasts,
+        "count": len(podcasts)
     }
 
 
