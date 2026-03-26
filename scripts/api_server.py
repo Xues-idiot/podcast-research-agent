@@ -16,6 +16,9 @@ from echo.api.research import router as research_router
 from echo.api.chat import router as chat_router
 from echo.api.knowledge import router as knowledge_router
 from echo.api.sources import router as sources_router
+from echo.api.export import router as export_router
+from echo.api.navigation import router as navigation_router
+from echo.api.memory import router as memory_router
 
 
 def create_app() -> FastAPI:
@@ -40,6 +43,9 @@ def create_app() -> FastAPI:
     app.include_router(chat_router)
     app.include_router(knowledge_router)
     app.include_router(sources_router)
+    app.include_router(export_router)
+    app.include_router(navigation_router)
+    app.include_router(memory_router)
 
     @app.get("/")
     async def root():
