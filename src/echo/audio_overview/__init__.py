@@ -242,7 +242,7 @@ class AudioOverviewGenerator:
             max_tokens=4000,
         )
 
-        script_text = response.choices[0].message.content
+        script_text = response.choices[0].message.content or ""
 
         # 解析脚本
         script = self._parse_script(script_text, style, language)
