@@ -153,8 +153,9 @@ class EchoClient:
             )
 
             # 添加到存储
-            entries = self.entry_store.add_entries(podcast_id, entry_data)
-            return entries
+            self.entry_store.add_entries(podcast_id, entry_data)
+            # 返回添加的entries
+            return entry_data
         except Exception as e:
             print(f"创建Entry失败: {e}")
             return []
