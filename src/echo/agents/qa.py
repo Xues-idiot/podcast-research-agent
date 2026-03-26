@@ -107,7 +107,7 @@ class QAGenerator:
             temperature=0.7,
         )
 
-        content = response.choices[0].message.content
+        content = response.choices[0].message.content or ""
 
         return self._parse_qa(content)
 

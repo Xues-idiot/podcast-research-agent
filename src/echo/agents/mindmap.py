@@ -70,7 +70,7 @@ class MindMapGenerator:
             temperature=0.5,
         )
 
-        content = response.choices[0].message.content
+        content = response.choices[0].message.content or ""
 
         return self._parse_mindmap(content)
 

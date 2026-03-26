@@ -87,7 +87,7 @@ class ReportGenerator:
             temperature=0.7,
         )
 
-        content = response.choices[0].message.content
+        content = response.choices[0].message.content or ""
 
         return {
             "content": content,

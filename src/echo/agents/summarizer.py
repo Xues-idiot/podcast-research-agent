@@ -66,7 +66,7 @@ class Summarizer:
             temperature=0.7,
         )
 
-        content = response.choices[0].message.content
+        content = response.choices[0].message.content or ""
 
         # 解析LLM输出为结构化数据
         # 简单解析，实际可能需要更 robust 的解析

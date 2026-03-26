@@ -70,7 +70,7 @@ class KeyPointGenerator:
             temperature=0.7,
         )
 
-        content = response.choices[0].message.content
+        content = response.choices[0].message.content or ""
 
         keypoints = self._parse_keypoints(content, num)
 
