@@ -69,11 +69,26 @@ class Summarizer:
         content = response.choices[0].message.content or ""
 
         # 解析LLM输出为结构化数据
-        # 简单解析，实际可能需要更 robust 的解析
-        return self._parse_summary(content, language)
+        # 优先尝试 JSON 解析，失败后回退到文本解析
+        try:
+            import json, re
+            # 尝试提取 JSON
+            json_match = re.search(r'\{[\s\S]*\}', content)
+            if json_match:
+                data = json.loads(json_match.group())
+                return {
+                    "title": data.get("title", ""),
+                    "summary": data.get("summary", data.get("摘要", "")),
+                    "highlights": data.get("highlights", data.get("亮点", [])),
+                }
+        except (json.JSONDecodeError, re.error):
+            pass
 
-    def _parse_summary(self, content: str, language: str) -> dict:
-        """解析LLM输出为结构化格式"""
+        # 回退到文本解析
+        return self._parse_summary_fallback(content, language)
+
+    def _parse_summary_fallback(self, content: str, language: str) -> dict:
+        """解析LLM输出为结构化格式（文本解析备选方案）"""
         lines = content.strip().split("\n")
 
         result = {
@@ -83,7 +98,6 @@ class Summarizer:
         }
 
         current_section = None
-        buffer = []
 
         for line in lines:
             line = line.strip()

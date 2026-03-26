@@ -198,6 +198,39 @@ class EntryStore:
         scored.sort(key=lambda x: x[0], reverse=True)
         return [entry for _, entry in scored[:top_k]]
 
+    def search_all(
+        self,
+        query: str,
+        top_k: int = 10,
+    ) -> list[Entry]:
+        """全局搜索所有播客的Entry
+
+        Args:
+            query: 搜索查询
+            top_k: 返回数量
+
+        Returns:
+            匹配的Entry列表
+        """
+        query_lower = query.lower()
+        scored = []
+
+        # 搜索所有播客的所有entries
+        for podcast_id in self.list_podcasts():
+            entries = self.get_entries(podcast_id)
+            for entry in entries:
+                score = 0
+                if query_lower in entry.compiled.lower():
+                    score += 2
+                if query_lower in entry.raw.lower():
+                    score += 1
+                if score > 0:
+                    scored.append((score, entry))
+
+        # 按分数排序
+        scored.sort(key=lambda x: x[0], reverse=True)
+        return [entry for _, entry in scored[:top_k]]
+
     def _save(self, podcast_id: str):
         """保存到文件"""
         import json

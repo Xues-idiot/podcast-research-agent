@@ -270,7 +270,7 @@ class EmbeddingStore:
             self._embeddings[podcast_id] = {
                 eid: emb for eid, emb in zip(entry_ids, embeddings)
             }
-        except (np.load.errors.LoadingError, KeyError):
+        except (OSError, IOError, KeyError):
             self._embeddings[podcast_id] = {}
 
     def delete(self, podcast_id: str):

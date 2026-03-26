@@ -57,8 +57,10 @@ export default function KnowledgePage() {
   const fetchEntries = async (podcastId: string) => {
     try {
       const res = await fetch(`${API_BASE}/knowledge/entries/${podcastId}`)
+      if (!res.ok) throw new Error('Failed to fetch entries')
       const data = await res.json()
-      setEntries(data.entries || [])
+      // 后端返回数组，直接使用
+      setEntries(Array.isArray(data) ? data : (data.entries || []))
       setSelectedPodcast(podcastId)
     } catch (error) {
       console.error('Failed to fetch entries:', error)

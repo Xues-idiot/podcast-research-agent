@@ -36,6 +36,7 @@ export default function HistoryPage() {
     try {
       if (activeTab === 'research') {
         const res = await fetch(`${API_BASE}/research/tasks`)
+        if (!res.ok) throw new Error('Failed to fetch tasks')
         const data = await res.json()
         setTasks(data.tasks || [])
       } else {

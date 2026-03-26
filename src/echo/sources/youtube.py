@@ -54,8 +54,7 @@ class YouTubeSource(BaseSource):
             "skip_download": True,
             "extract_flat": False,
         }
-        loop = asyncio.get_event_loop()
-        return await loop.run_in_executor(
+        return await asyncio.run_in_executor(
             None,
             lambda: self._get_info_sync(url, ydl_opts)
         )
@@ -65,9 +64,9 @@ class YouTubeSource(BaseSource):
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             return ydl.extract_info(url, download=False)
 
-    def _channel_from_video(self, url: str) -> PodcastChannel:
+    async def _channel_from_video(self, url: str) -> PodcastChannel:
         """从视频URL构建虚拟频道"""
-        info = self._get_info_sync(url, {"skip_download": True})
+        info = await self._get_info(url)
         video_id = info.get("id", "")
 
         episode = PodcastEpisode(

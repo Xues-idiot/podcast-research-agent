@@ -1,5 +1,6 @@
 """转录Agent - 使用Whisper进行音频转文字"""
 
+import asyncio
 import whisper
 from pathlib import Path
 
@@ -38,7 +39,11 @@ class Transcriber:
             包含 text, segments, language 的字典
         """
         model = self._get_model()
-        result = model.transcribe(str(audio_path), language="zh")
+        # 使用 run_in_executor 避免阻塞事件循环
+        result = await asyncio.run_in_executor(
+            None,
+            lambda: model.transcribe(str(audio_path), language="zh")
+        )
 
         return {
             "text": result["text"],
@@ -56,6 +61,9 @@ class Transcriber:
         Returns:
             转录结果
         """
-        # 下载部分由 downloader 处理
-        # 这里只负责转录
-        pass
+        from echo.tools.downloader import AudioDownloader
+
+        downloader = AudioDownloader()
+        audio_path = await downloader.download(url)
+
+        return await self.transcribe(audio_path)

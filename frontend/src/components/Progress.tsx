@@ -21,7 +21,7 @@ const steps = [
 ]
 
 export function Progress({ currentStep, progress }: ProgressProps) {
-  const currentIndex = steps.findIndex((s) => s.key === currentStep) || 0
+  const currentIndex = steps.findIndex((s) => s.key === currentStep) ?? 0
 
   return (
     <motion.div

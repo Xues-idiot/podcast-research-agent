@@ -122,6 +122,8 @@ class SubAgentExecutor:
 
         # 运行中的任务
         self._running: set[str] = set()
+        # 保存asyncio.Task引用以防止被垃圾回收
+        self._running_tasks: set[asyncio.Task] = set()
 
     def register_agent(self, agent_class: type[BaseSubAgent]):
         """注册Agent类
@@ -165,8 +167,10 @@ class SubAgentExecutor:
             status=TaskStatus.PENDING,
         )
 
-        # 后台调度执行
-        asyncio.create_task(self._schedule(task))
+        # 后台调度执行 - 保存Task引用防止被GC
+        schedule_task = asyncio.create_task(self._schedule(task))
+        self._running_tasks.add(schedule_task)
+        schedule_task.add_done_callback(self._running_tasks.discard)
 
         return task.id
 
@@ -178,7 +182,10 @@ class SubAgentExecutor:
                 await asyncio.sleep(0.1)
 
             self._running.add(task.id)
-            asyncio.create_task(self._execute(task))
+            # 保存Task引用防止被GC
+            exec_task = asyncio.create_task(self._execute(task))
+            self._running_tasks.add(exec_task)
+            exec_task.add_done_callback(self._running_tasks.discard)
 
     async def _execute(self, task: SubAgentTask):
         """执行任务"""

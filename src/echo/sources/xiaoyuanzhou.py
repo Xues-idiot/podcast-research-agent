@@ -2,6 +2,7 @@
 
 import asyncio
 import hashlib
+import json
 import re
 from typing import Optional
 
@@ -60,8 +61,6 @@ class XiaoyuanzhouSource(BaseSource):
     async def _parse_channel_page(self, html: str, url: str) -> dict:
         """解析频道页面"""
         # 尝试从HTML中提取JSON数据
-        import json
-        import re
 
         # 查找window.__INITIAL_STATE__或类似的数据
         state_match = re.search(
@@ -162,9 +161,6 @@ class XiaoyuanzhouSource(BaseSource):
 
     async def _parse_episode_page(self, html: str, url: str) -> PodcastEpisode:
         """解析单集页面"""
-        import json
-        import re
-
         # 查找页面数据
         state_match = re.search(
             r'window\.__INITIAL_STATE__\s*=\s*({.*?})\s*;',

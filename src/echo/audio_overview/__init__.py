@@ -134,7 +134,9 @@ class AudioOverviewGenerator:
             },
         }
 
-        response = requests.post(url, json=payload, headers=headers, timeout=60)
+        import httpx
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            response = await client.post(url, json=payload, headers=headers)
 
         if response.status_code != 200:
             raise Exception(f"TTS synthesis failed: {response.status_code} - {response.text}")
@@ -449,7 +451,11 @@ async def generate_audio_overview(
     """
     from echo.config import config
 
-    generator = AudioOverviewGenerator(config.minimax)
+    generator = AudioOverviewGenerator({
+        "api_key": config.minimax.api_key,
+        "base_url": config.minimax.base_url,
+        "model": config.minimax.model,
+    })
 
     transcript = research_result.get("transcript", {})
     summary = research_result.get("summary", {})

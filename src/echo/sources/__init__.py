@@ -154,7 +154,7 @@ def detect_source_type(url: str) -> SourceType:
         return SourceType.BILIBILI
 
     # 小宇宙
-    if "xiaoyuanzhou" in url_lower or "xyz" in url_lower:
+    if "xiaoyuanzhou" in url_lower or "xiaoyuanzhou.fm" in url_lower:
         return SourceType.XIAOYUANZHOU
 
     # 喜马拉雅

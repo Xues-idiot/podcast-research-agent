@@ -1,0 +1,213 @@
+"""API调用统计 - 追踪和记录API使用情况"""
+
+import json
+import time
+from collections import defaultdict
+from dataclasses import dataclass, field
+from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Optional
+
+
+@dataclass
+class APICallRecord:
+    """API调用记录"""
+    endpoint: str
+    method: str
+    status_code: int
+    duration_ms: float
+    timestamp: str
+    user_id: str = ""
+    ip: str = ""
+
+
+class APIStatsCollector:
+    """API统计收集器"""
+
+    def __init__(self, storage_path: Optional[str] = None):
+        """初始化收集器"""
+        if storage_path:
+            self.storage_path = Path(storage_path)
+        else:
+            self.storage_path = Path.home() / ".echo" / "api_stats"
+
+        self.storage_path.mkdir(parents=True, exist_ok=True)
+        self._calls_file = self.storage_path / "calls.json"
+        self._stats_file = self.storage_path / "stats.json"
+        self._calls: list = []
+        self._stats: dict = defaultdict(lambda: {
+            "total_calls": 0,
+            "success_calls": 0,
+            "error_calls": 0,
+            "total_duration_ms": 0.0,
+            "last_called": "",
+        })
+        self._load()
+
+    def _load(self):
+        """加载数据"""
+        if self._calls_file.exists():
+            try:
+                with open(self._calls_file, "r", encoding="utf-8") as f:
+                    self._calls = json.load(f)
+            except json.JSONDecodeError:
+                self._calls = []
+
+        if self._stats_file.exists():
+            try:
+                with open(self._stats_file, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    for endpoint, stats in data.items():
+                        self._stats[endpoint] = stats
+            except json.JSONDecodeError:
+                pass
+
+    def _save(self):
+        """保存数据"""
+        # 保存调用记录（保留最近1000条）
+        recent_calls = self._calls[-1000:]
+        temp_file = self._calls_file.with_suffix(".tmp")
+        with open(temp_file, "w", encoding="utf-8") as f:
+            json.dump(recent_calls, f, ensure_ascii=False, indent=2)
+        temp_file.replace(self._calls_file)
+
+        # 保存统计
+        temp_file = self._stats_file.with_suffix(".tmp")
+        with open(temp_file, "w", encoding="utf-8") as f:
+            json.dump(dict(self._stats), f, ensure_ascii=False, indent=2)
+        temp_file.replace(self._stats_file)
+
+    def record(
+        self,
+        endpoint: str,
+        method: str,
+        status_code: int,
+        duration_ms: float,
+        user_id: str = "",
+        ip: str = "",
+    ):
+        """记录API调用
+
+        Args:
+            endpoint: 端点路径
+            method: HTTP方法
+            status_code: 状态码
+            duration_ms: 耗时（毫秒）
+            user_id: 用户ID
+            ip: IP地址
+        """
+        call = {
+            "endpoint": endpoint,
+            "method": method,
+            "status_code": status_code,
+            "duration_ms": duration_ms,
+            "timestamp": datetime.now().isoformat(),
+            "user_id": user_id,
+            "ip": ip,
+        }
+        self._calls.append(call)
+
+        # 更新统计
+        stats = self._stats[endpoint]
+        stats["total_calls"] += 1
+        stats["total_duration_ms"] += duration_ms
+        stats["avg_duration_ms"] = stats["total_duration_ms"] / stats["total_calls"]
+        stats["last_called"] = call["timestamp"]
+
+        if 200 <= status_code < 300:
+            stats["success_calls"] += 1
+        else:
+            stats["error_calls"] += 1
+
+        self._save()
+
+    def get_recent_calls(self, limit: int = 100) -> list:
+        """获取最近调用记录"""
+        return self._calls[-limit:]
+
+    def get_endpoint_stats(self, endpoint: str = None) -> dict:
+        """获取端点统计"""
+        if endpoint:
+            return self._stats.get(endpoint, {})
+        return dict(self._stats)
+
+    def get_top_endpoints(self, limit: int = 10, by: str = "calls") -> list:
+        """获取最常用端点
+
+        Args:
+            limit: 返回数量
+            by: 排序方式 - "calls", "duration", "errors"
+
+        Returns:
+            端点列表
+        """
+        endpoints = list(self._stats.items())
+
+        if by == "calls":
+            endpoints.sort(key=lambda x: x[1]["total_calls"], reverse=True)
+        elif by == "duration":
+            endpoints.sort(key=lambda x: x[1]["avg_duration_ms"], reverse=True)
+        elif by == "errors":
+            endpoints.sort(key=lambda x: x[1]["error_calls"], reverse=True)
+
+        return endpoints[:limit]
+
+    def get_stats_summary(self) -> dict:
+        """获取统计摘要"""
+        total_calls = sum(s["total_calls"] for s in self._stats.values())
+        total_errors = sum(s["error_calls"] for s in self._stats.values())
+
+        avg_duration = 0.0
+        if total_calls > 0:
+            avg_duration = sum(s["avg_duration_ms"] * s["total_calls"] for s in self._stats.values()) / total_calls
+
+        return {
+            "total_calls": total_calls,
+            "total_errors": total_errors,
+            "error_rate": total_errors / total_calls if total_calls > 0 else 0,
+            "avg_duration_ms": avg_duration,
+            "unique_endpoints": len(self._stats),
+        }
+
+    def get_hourly_stats(self, hours: int = 24) -> dict:
+        """获取小时统计"""
+        cutoff = datetime.now() - timedelta(hours=hours)
+        hourly = defaultdict(lambda: {"calls": 0, "errors": 0, "duration_ms": 0.0})
+
+        for call in self._calls:
+            try:
+                call_time = datetime.fromisoformat(call["timestamp"])
+                if call_time >= cutoff:
+                    hour_key = call_time.strftime("%Y-%m-%d %H:00")
+                    hourly[hour_key]["calls"] += 1
+                    hourly[hour_key]["duration_ms"] += call["duration_ms"]
+                    if call["status_code"] >= 400:
+                        hourly[hour_key]["errors"] += 1
+            except:
+                pass
+
+        return dict(sorted(hourly.items()))
+
+    def clear_old_calls(self, days: int = 7):
+        """清除旧调用记录"""
+        cutoff = datetime.now() - timedelta(days=days)
+        old_count = len(self._calls)
+        self._calls = [
+            c for c in self._calls
+            if datetime.fromisoformat(c["timestamp"]) >= cutoff
+        ]
+        if len(self._calls) < old_count:
+            self._save()
+        return old_count - len(self._calls)
+
+
+# 全局实例
+_api_stats: Optional[APIStatsCollector] = None
+
+
+def get_api_stats() -> APIStatsCollector:
+    """获取全局统计收集器"""
+    global _api_stats
+    if _api_stats is None:
+        _api_stats = APIStatsCollector()
+    return _api_stats

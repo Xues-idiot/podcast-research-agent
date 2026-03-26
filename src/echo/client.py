@@ -193,7 +193,7 @@ class EchoClient:
             "retrieved_context": result.retrieved_context,
         }
 
-    async def get_entries(self, podcast_id: str) -> list:
+    def get_entries(self, podcast_id: str) -> list:
         """获取播客的Entries"""
         return self.entry_store.get_entries(podcast_id)
 

@@ -40,8 +40,7 @@ class PodcastRSSParser:
         Returns:
             剧集列表
         """
-        loop = asyncio.get_event_loop()
-        episodes = await loop.run_in_executor(
+        episodes = await asyncio.run_in_executor(
             None,
             lambda: self._parse_sync(rss_url)
         )
@@ -60,7 +59,7 @@ class PodcastRSSParser:
 
             # 解析发布时间
             published = None
-            if hasattr(entry, "published_parsed") and entry.published_parsed:
+            if hasattr(entry, "published_parsed") and entry.published_parsed and len(entry.published_parsed) >= 6:
                 published = datetime(*entry.published_parsed[:6])
 
             episode = PodcastEpisode(

@@ -1,9 +1,11 @@
 """Bilibili播客来源"""
 
 import asyncio
+import logging
 import re
 from typing import Optional
 
+import httpx
 import yt_dlp
 
 from echo.sources import (
@@ -12,6 +14,8 @@ from echo.sources import (
     PodcastEpisode,
     SourceType,
 )
+
+logger = logging.getLogger(__name__)
 
 
 class BilibiliSource(BaseSource):
@@ -55,11 +59,11 @@ class BilibiliSource(BaseSource):
             return url
 
         try:
-            import httpx
             async with httpx.AsyncClient(follow_redirects=True, timeout=10) as client:
                 response = await client.head(url)
                 return str(response.url)
-        except Exception:
+        except Exception as e:
+            logger.warning(f"Failed to resolve short URL {url}: {e}")
             return url
 
     async def _get_info(self, url: str) -> dict:
@@ -72,8 +76,7 @@ class BilibiliSource(BaseSource):
                 }
             },
         }
-        loop = asyncio.get_event_loop()
-        return await loop.run_in_executor(
+        return await asyncio.run_in_executor(
             None,
             lambda: self._get_info_sync(url, ydl_opts)
         )

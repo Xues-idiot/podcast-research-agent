@@ -119,9 +119,14 @@ class XimalayaSource(BaseSource):
         }
 
     def _extract_album_id_from_url(self, url: str) -> str:
-        """从URL提取专辑ID"""
-        # URL格式: https://www.ximalaya.com/{category}/{album_id}/
-        match = re.search(r'/(\d+)/?$', url)
+        """从URL提取专辑ID
+
+        URL格式:
+        - 专辑: https://www.ximalaya.com/{category}/{album_id}/
+        - 单集: https://www.ximalaya.com/{category}/{album_id}/{track_id}
+        """
+        # 尝试匹配 category/{album_id} 部分 (单集和专辑通用)
+        match = re.search(r'ximalaya\.com/[^/]+/(\d+)', url)
         if match:
             return match.group(1)
 
@@ -131,6 +136,17 @@ class XimalayaSource(BaseSource):
             return match.group(1)
 
         return hashlib.md5(url.encode()).hexdigest()[:8]
+
+    def _extract_track_id_from_url(self, url: str) -> Optional[str]:
+        """从URL提取单集ID (如果存在)
+
+        URL格式: https://www.ximalaya.com/{category}/{album_id}/{track_id}
+        """
+        # 单集URL有3段数字
+        match = re.search(r'ximalaya\.com/[^/]+/\d+/(\d+)', url)
+        if match:
+            return match.group(1)
+        return None
 
     def _extract_category_from_url(self, url: str) -> str:
         """从URL提取分类"""
@@ -147,9 +163,6 @@ class XimalayaSource(BaseSource):
         category: str
     ) -> list:
         """获取专辑节目列表"""
-        # 喜马拉雅API
-        api_url = f"{self.BASE_URL}//{category}/{album_id}"
-
         try:
             # 尝试获取第一页
             response = await client.get(
@@ -198,14 +211,18 @@ class XimalayaSource(BaseSource):
     async def get_episode(self, url: str) -> PodcastEpisode:
         """获取喜马拉雅单集信息"""
         album_id = self._extract_album_id_from_url(url)
+        track_id = self._extract_track_id_from_url(url)
         category = self._extract_category_from_url(url)
+
+        # 如果有 track_id，直接使用；否则需要通过专辑ID查询
+        episode_id = track_id or album_id
 
         async with httpx.AsyncClient(timeout=30) as client:
             try:
                 response = await client.get(
                     f"{self.BASE_URL}/revision/track/getTrackDetailInfo",
                     params={
-                        "trackId": album_id,
+                        "trackId": episode_id,
                         "albumId": album_id,
                     },
                     headers={
@@ -218,7 +235,7 @@ class XimalayaSource(BaseSource):
                     track = data.get("data", {})
                     return PodcastEpisode(
                         source=SourceType.XIMALAYA,
-                        source_id=str(track.get("trackId", album_id)),
+                        source_id=str(track.get("trackId", episode_id)),
                         title=track.get("title", ""),
                         description=track.get("intro", ""),
                         audio_url=track.get("playUrl64", ""),
@@ -236,7 +253,7 @@ class XimalayaSource(BaseSource):
         # 占位实现
         return PodcastEpisode(
             source=SourceType.XIMALAYA,
-            source_id=album_id,
+            source_id=episode_id,
             title="喜马拉雅播客单集",
             description="",
             audio_url="",

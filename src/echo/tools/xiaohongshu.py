@@ -39,8 +39,7 @@ class XiaohongshuDownloader:
             }],
         }
 
-        loop = asyncio.get_event_loop()
-        result = await loop.run_in_executor(
+        result = await asyncio.run_in_executor(
             None,
             lambda: self._download_sync(url, ydl_opts)
         )
@@ -48,11 +47,19 @@ class XiaohongshuDownloader:
 
     def _download_sync(self, url: str, ydl_opts: dict) -> str:
         """同步下载"""
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=True)
-            filename = ydl.prepare_filename(info)
-            mp3_name = Path(filename).stem + ".mp3"
-            return str(self.output_dir / mp3_name)
+        try:
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                info = ydl.extract_info(url, download=True)
+                # 处理播放列表情况
+                if isinstance(info, list):
+                    info = info[0]
+                filename = ydl.prepare_filename(info)
+                mp3_name = Path(filename).stem + ".mp3"
+                return str(self.output_dir / mp3_name)
+        except yt_dlp.utils.DownloadError as e:
+            raise RuntimeError(f"小红书下载失败: {e}")
+        except Exception as e:
+            raise RuntimeError(f"小红书下载时发生未知错误: {e}")
 
     async def get_video_info(self, url: str) -> dict:
         """获取内容信息（不下载）"""
@@ -61,13 +68,15 @@ class XiaohongshuDownloader:
             "skip_download": True,
         }
 
-        loop = asyncio.get_event_loop()
-        return await loop.run_in_executor(
+        return await asyncio.run_in_executor(
             None,
             lambda: self._get_info_sync(url, ydl_opts)
         )
 
     def _get_info_sync(self, url: str, ydl_opts: dict) -> dict:
         """同步获取信息"""
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            return ydl.extract_info(url, download=False)
+        try:
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                return ydl.extract_info(url, download=False)
+        except Exception as e:
+            raise RuntimeError(f"获取小红书信息失败: {e}")

@@ -1,6 +1,7 @@
 """视频下载器 - 统一下载接口"""
 
 import asyncio
+import logging
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -11,6 +12,8 @@ from echo.tools.youtube import YouTubeDownloader
 from echo.tools.douyin import DouyinDownloader
 from echo.tools.wechat import WechatDownloader
 from echo.tools.xiaohongshu import XiaohongshuDownloader
+
+logger = logging.getLogger(__name__)
 
 
 class VideoDownloader:
@@ -85,8 +88,7 @@ class VideoDownloader:
             }],
         }
 
-        loop = asyncio.get_event_loop()
-        result = await loop.run_in_executor(
+        result = await asyncio.run_in_executor(
             None,
             lambda: self._download_sync(url, ydl_opts)
         )
@@ -94,12 +96,20 @@ class VideoDownloader:
 
     def _download_sync(self, url: str, ydl_opts: dict) -> str:
         """同步下载（在线程池中运行）"""
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=True)
-            filename = ydl.prepare_filename(info)
-            # 转换后的mp3文件名
-            mp3_name = Path(filename).stem + ".mp3"
-            return str(self.output_dir / mp3_name)
+        try:
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                info = ydl.extract_info(url, download=True)
+                # 处理播放列表情况（返回列表）
+                if isinstance(info, list):
+                    info = info[0]
+                filename = ydl.prepare_filename(info)
+                # 转换后的mp3文件名
+                mp3_name = Path(filename).stem + ".mp3"
+                return str(self.output_dir / mp3_name)
+        except yt_dlp.utils.DownloadError as e:
+            raise RuntimeError(f"下载失败: {e}")
+        except Exception as e:
+            raise RuntimeError(f"下载时发生未知错误: {e}")
 
     async def close(self):
         """关闭下载器"""

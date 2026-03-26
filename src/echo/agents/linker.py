@@ -1,5 +1,6 @@
 """知识关联Agent - 与已有知识库关联"""
 
+import asyncio
 from typing import List, Optional
 
 from tavily import TavilyClient
@@ -33,12 +34,15 @@ class KnowledgeLinker:
             if not content:
                 continue
 
-            # 使用Tavily搜索相关知识
+            # 使用Tavily搜索相关知识 (使用 run_in_executor 避免阻塞)
             try:
-                results = self.client.search(
-                    query=content,
-                    max_results=max_results,
-                    include_answer=True,
+                results = await asyncio.run_in_executor(
+                    None,
+                    lambda: self.client.search(
+                        query=content,
+                        max_results=max_results,
+                        include_answer=True,
+                    )
                 )
 
                 card = {
@@ -47,16 +51,22 @@ class KnowledgeLinker:
                     "confidence": 0.0,
                 }
 
+                total_score = 0.0
+                result_count = 0
                 for r in results.get("results", []):
+                    score = r.get("score", 0.0)
+                    total_score += score
+                    result_count += 1
                     card["related"].append({
                         "title": r.get("title", ""),
                         "url": r.get("url", ""),
                         "content": r.get("content", ""),
+                        "score": score,
                     })
 
-                # Tavily 提供相关性评分
-                if results.get("answer"):
-                    card["confidence"] = 0.8
+                # 使用平均相关性评分
+                if result_count > 0:
+                    card["confidence"] = total_score / result_count
 
                 knowledge_cards.append(card)
 
@@ -83,10 +93,13 @@ class KnowledgeLinker:
             搜索结果列表
         """
         try:
-            results = self.client.search(
-                query=query,
-                max_results=max_results,
-                include_answer=True,
+            results = await asyncio.run_in_executor(
+                None,
+                lambda: self.client.search(
+                    query=query,
+                    max_results=max_results,
+                    include_answer=True,
+                )
             )
 
             return results.get("results", [])

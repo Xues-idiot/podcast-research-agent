@@ -217,13 +217,15 @@ class DeepResearcher:
     进行多角度、深入的研究。
     """
 
-    def __init__(self, research_agent: Optional[ResearchAgent] = None):
+    def __init__(self, research_agent: Optional[ResearchAgent] = None, max_concurrency: int = 3):
         """初始化深度研究代理
 
         Args:
             research_agent: 基础研究代理
+            max_concurrency: 最大并发数，默认3
         """
         self._research_agent = research_agent or ResearchAgent()
+        self._semaphore = asyncio.Semaphore(max_concurrency)
 
     async def deep_research(
         self,
@@ -249,13 +251,13 @@ class DeepResearcher:
                 f"{topic} 的未来趋势",
             ]
 
-        tasks = []
-        for angle in angles:
-            task = self._research_agent.research(angle, podcast_content)
-            tasks.append(task)
+        async def _research_with_semaphore(angle: str) -> tuple:
+            async with self._semaphore:
+                result = await self._research_agent.research(angle, podcast_content)
+                return (angle, result)
 
-        # 并行执行所有研究任务
-        results = await asyncio.gather(*tasks)
+        # 使用 semaphore 控制并发数
+        results = await asyncio.gather(*[_research_with_semaphore(angle) for angle in angles])
 
         return {
             "topic": topic,

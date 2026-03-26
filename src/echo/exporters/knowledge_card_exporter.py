@@ -365,6 +365,86 @@ class KnowledgeCardExporter:
         path.write_text("\n".join(lines), encoding="utf-8")
         return str(path)
 
+    def export_anki_cloze(
+        self,
+        cards: list[KnowledgeCardExport],
+        filename: str = "knowledge_cards_cloze.tsv"
+    ) -> str:
+        """导出为Anki Cloze格式
+
+        Cloze格式支持填空题，适合记忆事实和概念。
+
+        Args:
+            cards: 知识卡片列表
+            filename: 文件名
+
+        Returns:
+            文件路径
+        """
+        lines = []
+        for i, card in enumerate(cards, 1):
+            # 生成Cloze填空
+            keypoint = card.keypoint
+
+            # 移除句末标点
+            if keypoint and keypoint[-1] in '。！？':
+                keypoint = keypoint[:-1]
+
+            # 创建填空格式 {{c1::...}}
+            cloze_text = f"{{{{c1::{keypoint}}}}}"
+
+            # 添加补充信息
+            补充 = ""
+            if card.citations:
+                补充 = f"\n\n来源: {card.citations[0].content[:100]}..."
+
+            # 答案和标签
+            tags = f"echo::{card.importance}"
+
+            # Anki Cloze格式: Text\tCloze ID\tTags
+            lines.append(f"{cloze_text}{补充}\t{i}\t{tags}")
+
+        path = self.output_dir / filename
+        path.write_text("\n".join(lines), encoding="utf-8")
+        return str(path)
+
+    def export_anki_reversed(
+        self,
+        cards: list[KnowledgeCardExport],
+        filename: str = "knowledge_cards_reversed.tsv"
+    ) -> str:
+        """导出为Anki反向格式
+
+        反向格式: 后缀 → 前缀，用于测试逆向记忆。
+
+        Args:
+            cards: 知识卡片列表
+            filename: 文件名
+
+        Returns:
+            文件路径
+        """
+        lines = []
+        for card in cards:
+            # 反向: 后缀 → 前缀
+            # 获取内容片段作为问题
+            front_parts = []
+            for cit in card.citations[:2]:
+                front_parts.append(f"[{cit.formatted_time}] {cit.content[:50]}...")
+            front = "\n".join(front_parts) if front_parts else "请回忆关键内容"
+
+            # 后缀是答案
+            back = card.keypoint
+
+            # 标签
+            tags = f"echo::{card.importance}::reversed"
+
+            lines.append(f"{front}\t{back}\t{tags}")
+
+        path = self.output_dir / filename
+        path.write_text("\n".join(lines), encoding="utf-8")
+        return str(path)
+
     def build_cards_from_result(
         self,
         result: dict,

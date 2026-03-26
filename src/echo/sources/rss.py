@@ -1,6 +1,7 @@
 """RSS播客来源"""
 
 import asyncio
+import re
 from datetime import datetime
 from typing import List, Optional
 
@@ -36,8 +37,7 @@ class RSSSource(BaseSource):
 
     async def get_channel(self, url: str) -> PodcastChannel:
         """获取RSS频道信息"""
-        loop = asyncio.get_event_loop()
-        feed = await loop.run_in_executor(
+        feed = await asyncio.run_in_executor(
             None,
             lambda: feedparser.parse(url)
         )
@@ -60,15 +60,14 @@ class RSSSource(BaseSource):
             metadata={
                 "language": channel.get("language"),
                 "link": channel.get("link"),
-                "last_updated": channel.get("updated") if hasattr(channel, "updated") else None,
+                "last_updated": channel.get("updated"),
             }
         )
 
     async def get_episode(self, url: str) -> PodcastEpisode:
         """获取RSS单集信息（通过遍历频道）"""
         # RSS单集URL通常是条目的link
-        loop = asyncio.get_event_loop()
-        feed = await loop.run_in_executor(
+        feed = await asyncio.run_in_executor(
             None,
             lambda: feedparser.parse(url)
         )
@@ -139,10 +138,10 @@ class RSSSource(BaseSource):
 
     def _get_feed_id(self, channel: dict, url: str) -> str:
         """获取订阅源ID"""
-        if hasattr(channel, "id"):
-            return channel.id
-        if hasattr(channel, "uuid"):
-            return channel.uuid
+        # channel 是 feedparser 返回的 dict-like 对象
+        channel_id = channel.get("id") or channel.get("uuid")
+        if channel_id:
+            return str(channel_id)
         # 使用URL作为后备ID
         return url
 
@@ -193,7 +192,6 @@ class RSSSource(BaseSource):
                     pass
 
         # 尝试解析自然语言
-        import re
         hours = re.search(r"(\d+)\s*hour", duration_str, re.I)
         minutes = re.search(r"(\d+)\s*min", duration_str, re.I)
         seconds = re.search(r"(\d+)\s*sec", duration_str, re.I)

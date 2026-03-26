@@ -33,6 +33,7 @@ export default function ExportPage() {
   const fetchTasks = async () => {
     try {
       const res = await fetch(`${API_BASE}/research/tasks`)
+      if (!res.ok) throw new Error('Failed to fetch tasks')
       const data = await res.json()
       setTasks(data.tasks || [])
     } catch (error) {
@@ -294,7 +295,7 @@ export default function ExportPage() {
                       <strong className="text-[#2C3E50]">PDF:</strong> 适合打印或在无法访问代码的环境中分享。
                     </div>
                     <div>
-                      <strong className="text-[2C3E50]">Anki:</strong> 闪卡格式，导入Anki后可利用间隔重复记忆系统进行复习。
+                      <strong className="text-[#2C3E50]">Anki:</strong> 闪卡格式，导入Anki后可利用间隔重复记忆系统进行复习。
                     </div>
                   </div>
                 </CardContent>

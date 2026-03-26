@@ -128,10 +128,10 @@ class RAGAgent:
                             answer = event.get("answer", "")
                     else:
                         # 流式处理
-                        if hasattr(event, 'delta'):
-                            answer += event.delta
+                        if hasattr(event, 'answer'):
+                            answer += event.answer
                         elif isinstance(event, dict):
-                            answer += event.get("delta", "")
+                            answer += event.get("answer", "")
             except Exception as e:
                 print(f"Conversation error: {e}")
                 answer = f"处理查询时发生错误: {str(e)}"

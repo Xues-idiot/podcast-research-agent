@@ -150,6 +150,21 @@ python scripts/auto_improve.py --rounds 10 --review-every 5
 
 **编译状态:** 100% 通过 ✅
 
+### 第41-50轮 (2026-03-26)
+
+**新增功能模块:**
+
+| 轮次 | 功能 | 文件 |
+|------|------|------|
+| 41 | URL解析器增强 | `research/url_parser.py`, `api/url_parser.py` |
+| 42 | 内容格式检测器 | `research/format_detector.py`, `api/format_detector.py` |
+| 43-44 | 智能分块策略 | `research/chunks.py`, `api/chunks.py` |
+| 45-46 | 文本统计工具 | `research/word_counter.py`, `api/word_counter.py` |
+| 47-48 | 内容去重工具 | `research/deduplicator.py`, `api/deduplicator.py` |
+| 49-50 | 关键词提取 | `research/keyword_extractor.py`, `api/keyword_extractor.py` |
+
+**编译状态:** 100% 通过 ✅
+
 ### 第31-35轮 (2026-03-26)
 
 **新增功能模块:**

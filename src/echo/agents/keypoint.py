@@ -84,6 +84,29 @@ class KeyPointGenerator:
         """解析LLM输出为要点列表"""
         keypoints = []
 
+        # 优先尝试 JSON 解析
+        try:
+            import json, re
+            # 尝试提取 JSON
+            json_match = re.search(r'\{[\s\S]*\}', content)
+            if json_match:
+                data = json.loads(json_match.group())
+                kp_list = data.get("keypoints", data.get("要点", []))
+                if isinstance(kp_list, list):
+                    for kp in kp_list:
+                        keypoints.append({
+                            "id": len(keypoints) + 1,
+                            "content": kp.get("content", kp.get("内容", "")),
+                            "importance": kp.get("importance", kp.get("重要性", "medium")),
+                            "applications": kp.get("applications", kp.get("应用场景", [])),
+                            "location": kp.get("location", kp.get("位置描述", "")),
+                            "timestamp": None,
+                        })
+                    if keypoints:
+                        return keypoints[:num]
+        except (json.JSONDecodeError, re.error):
+            pass
+
         # 按 ###KEYPOINT### 分隔
         parts = content.split("###KEYPOINT###")
 
@@ -116,7 +139,7 @@ class KeyPointGenerator:
                     parts = line.split(". ", 1)
                     if len(parts) == 2:
                         keypoints.append({
-                            "id": int(parts[0]),
+                            "id": len(keypoints) + 1,
                             "content": parts[1],
                             "importance": "medium",
                             "applications": [],
@@ -190,7 +213,7 @@ class KeyPointGenerator:
 
         return None
 
-    async def score(self, keypoints: List[dict]) -> List[dict]:
+    def score(self, keypoints: List[dict]) -> List[dict]:
         """
         按重要性排序要点
 
