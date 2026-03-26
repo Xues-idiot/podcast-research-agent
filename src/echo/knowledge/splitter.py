@@ -86,8 +86,8 @@ class TextSplitter:
                     current_start = start
                 current_end = end
 
-        # 保存最后一个Entry
-        if current_text.strip() and (current_end - current_start) >= min_duration:
+        # 保存最后一个Entry (不检查min_duration，确保不丢失内容)
+        if current_text.strip():
             entry = self._create_entry(
                 podcast_id=podcast_id,
                 raw=current_text.strip(),
