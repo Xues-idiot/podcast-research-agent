@@ -109,8 +109,8 @@ class URLValidator:
             if any(re.search(p, url) for p in cls.XIAOHONGSHU_PATTERNS):
                 return True, "xiaohongshu"
 
-        # 检查RSS
-        if parsed.path.endswith((".xml", ".rss")) or "feed" in parsed.path.lower():
+        # 检查RSS (仅限路径末尾，避免误匹配query string中的.xml)
+        if re.search(r"\.xml$|\.rss$|/feed/?$", parsed.path.lower()):
             return True, "rss"
 
         # 检查是否为有效HTTP URL
