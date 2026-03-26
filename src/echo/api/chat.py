@@ -87,15 +87,8 @@ async def chat(request: ChatRequest):
                     full_answer += response.answer
                     yield f"data: {response.answer}\n\n"
 
-                # 保存用户消息
-                handler.history.add(ChatMessage(
-                    role="user",
-                    content=request.query
-                ))
-                handler.history.add(ChatMessage(
-                    role="assistant",
-                    content=full_answer
-                ))
+                # 注意: ConversationHandler.chat() 内部已经保存了用户消息和助手消息
+                # 不需要重复保存，否则会导致消息重复
 
                 yield f"data: [DONE] {conversation_id}\n\n"
 
