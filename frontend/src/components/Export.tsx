@@ -5,6 +5,7 @@ import { motion } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import type { ResearchResult } from "@/lib/api"
+import { API_BASE } from "@/lib/api"
 import { Download, FileJson, FileText, Table2, File, FileCode, Presentation } from "lucide-react"
 
 type ExportFormat = "json" | "markdown" | "csv" | "txt" | "html" | "pdf"
@@ -68,10 +69,10 @@ export function Export({ result }: ExportProps) {
       mimeType = "text/html"
     } else if (format === "pdf") {
       // PDF需要通过API生成
-      const response = await fetch("/api/research/export", {
+      const response = await fetch(`${API_BASE}/export/knowledge-cards`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ result, format: "pdf" }),
+        body: JSON.stringify({ result, format: "pdf", entries: [] }),
       })
       if (response.ok) {
         const blob = await response.blob()

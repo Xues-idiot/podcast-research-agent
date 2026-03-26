@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Download, RefreshCw, FileJson, FileText, FileCode, FileTextIcon, Layers, ArrowLeft } from 'lucide-react'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { API_BASE, getResult } from '@/lib/api'
 
 interface Task {
   task_id: string
@@ -31,7 +32,7 @@ export default function ExportPage() {
 
   const fetchTasks = async () => {
     try {
-      const res = await fetch('/api/research/tasks')
+      const res = await fetch(`${API_BASE}/research/tasks`)
       const data = await res.json()
       setTasks(data.tasks || [])
     } catch (error) {
@@ -52,19 +53,15 @@ export default function ExportPage() {
 
     setExportLoading(true)
     try {
-      const res = await fetch(`/api/research/result/${selectedTask}`)
-      if (!res.ok) {
-        throw new Error('获取结果失败')
-      }
-      const result = await res.json()
+      const result = await getResult(selectedTask)
 
-      const exportRes = await fetch('/api/export/knowledge-cards', {
+      const exportRes = await fetch(`${API_BASE}/export/knowledge-cards`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           result: result,
           format: exportFormat,
-          entries: result.entries || []
+          entries: []
         })
       })
 

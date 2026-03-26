@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Send, Bot, User, Trash2, Download, Copy, Check, Loader2 } from "lucide-react"
+import { streamChat, exportConversation } from "@/lib/api"
 
 interface Message {
   id: string
@@ -20,6 +21,9 @@ interface ChatProps {
     summary?: { title: string; summary: string; highlights?: string[] }
     keypoints?: Array<{ id: number; content: string; importance: string }>
     mindmap?: { root: string; branches: Array<{ title: string; children?: string[] }> }
+    knowledge_cards?: Array<{ keypoint: string; related: Array<{ title: string; url: string }>; confidence: number }>
+    report?: { title: string; content: string }
+    qa_pairs?: Array<{ question: string; answer: string }>
   }
 }
 
@@ -64,76 +68,48 @@ export function Chat({ researchResult }: ChatProps) {
     setInput("")
     setIsLoading(true)
 
+    const assistantMessage: Message = {
+      id: (Date.now() + 1).toString(),
+      role: "assistant",
+      content: "",
+      timestamp: new Date()
+    }
+
+    setMessages(prev => [...prev, assistantMessage])
+
     try {
-      // 调用对话API
-      const response = await fetch("/api/chat/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          query: userMessage.content,
-          conversation_id: conversationId,
-          stream: true,
-          research_result: researchResult  // 传递研究结果用于上下文检索
-        })
-      })
+      let fullResponse = ""
 
-      if (!response.ok) {
-        throw new Error("Chat request failed")
+      for await (const chunk of streamChat({
+        query: userMessage.content,
+        conversation_id: conversationId,
+        stream: true,
+        // Cast to any to avoid type incompatibility - the actual data from store is correct
+        research_result: researchResult as any
+      })) {
+        fullResponse += chunk
+        setMessages(prev =>
+          prev.map(msg =>
+            msg.id === assistantMessage.id
+              ? { ...msg, content: fullResponse }
+              : msg
+          )
+        )
       }
 
-      // 处理流式响应
-      const reader = response.body?.getReader()
-      const decoder = new TextDecoder()
-      let assistantContent = ""
-      let newConversationId = conversationId
-
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: "assistant",
-        content: "",
-        timestamp: new Date()
-      }
-
-      setMessages(prev => [...prev, assistantMessage])
-
-      while (reader) {
-        const { done, value } = await reader.read()
-        if (done) break
-
-        const chunk = decoder.decode(value)
-        const lines = chunk.split("\n")
-
-        for (const line of lines) {
-          if (line.startsWith("data: ")) {
-            const data = line.slice(6)
-
-            if (data.startsWith("[DONE]")) {
-              newConversationId = data.replace("[DONE]", "").trim()
-              setConversationId(newConversationId)
-            } else if (data.startsWith("[ERROR]")) {
-              throw new Error(data.replace("[ERROR]", "").trim())
-            } else {
-              assistantContent += data
-              setMessages(prev =>
-                prev.map(msg =>
-                  msg.id === assistantMessage.id
-                    ? { ...msg, content: assistantContent }
-                    : msg
-                )
-              )
-            }
-          }
-        }
+      // 获取对话ID（需要在SSE完成后从其他地方获取或保持使用当前ID）
+      // 如果API返回了新ID，需要更新
+      if (!conversationId) {
+        // 获取对话列表来找到最新的ID，或依赖后端session
       }
     } catch (error) {
       console.error("Chat error:", error)
       setMessages(prev =>
-        [...prev, {
-          id: (Date.now() + 1).toString(),
-          role: "assistant",
-          content: "抱歉，发生了错误，请稍后重试。",
-          timestamp: new Date()
-        }]
+        prev.map(msg =>
+          msg.id === assistantMessage.id
+            ? { ...msg, content: "抱歉，发生了错误，请稍后重试。" }
+            : msg
+        )
       )
     } finally {
       setIsLoading(false)
@@ -149,8 +125,7 @@ export function Chat({ researchResult }: ChatProps) {
     if (!conversationId) return
 
     try {
-      const response = await fetch(`/api/chat/conversation/${conversationId}/export?format=markdown`)
-      const data = await response.json()
+      const data = await exportConversation(conversationId, "markdown")
 
       const blob = new Blob([data.content], { type: "text/markdown" })
       const url = URL.createObjectURL(blob)

@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Mic, Search, Trash2, BookOpen, Clock, ArrowLeft } from 'lucide-react'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { API_BASE, getKnowledgePodcasts, searchKnowledge } from '@/lib/api'
 
 interface Podcast {
   podcast_id: string
@@ -39,9 +40,13 @@ export default function KnowledgePage() {
 
   const fetchPodcasts = async () => {
     try {
-      const res = await fetch('/api/knowledge/podcasts')
-      const data = await res.json()
-      setPodcasts(data.podcasts || [])
+      const podcasts = await getKnowledgePodcasts()
+      setPodcasts(podcasts.map(p => ({
+        podcast_id: p.id,
+        title: p.title,
+        entry_count: p.entry_count,
+        created_at: p.created_at
+      })))
     } catch (error) {
       console.error('Failed to fetch podcasts:', error)
     } finally {
@@ -51,7 +56,7 @@ export default function KnowledgePage() {
 
   const fetchEntries = async (podcastId: string) => {
     try {
-      const res = await fetch(`/api/knowledge/entries/${podcastId}`)
+      const res = await fetch(`${API_BASE}/knowledge/entries/${podcastId}`)
       const data = await res.json()
       setEntries(data.entries || [])
       setSelectedPodcast(podcastId)
@@ -69,17 +74,15 @@ export default function KnowledgePage() {
     }
 
     try {
-      const res = await fetch('/api/knowledge/search', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: searchQuery,
-          podcast_id: selectedPodcast,
-          top_k: 10
-        })
-      })
-      const data = await res.json()
-      setEntries(data.results || [])
+      const results = await searchKnowledge(searchQuery, 10)
+      setEntries(results.map(e => ({
+        entry_id: e.id,
+        podcast_id: e.podcast_id,
+        content: e.content,
+        compiled: e.content,
+        start_time: e.timestamp || 0,
+        end_time: 0
+      })))
     } catch (error) {
       console.error('Failed to search:', error)
     }
@@ -89,7 +92,7 @@ export default function KnowledgePage() {
     if (!confirm('确定要删除这个播客的知识库吗？')) return
 
     try {
-      await fetch(`/api/knowledge/entries/${podcastId}`, { method: 'DELETE' })
+      await fetch(`${API_BASE}/knowledge/entries/${podcastId}`, { method: 'DELETE' })
       fetchPodcasts()
       if (selectedPodcast === podcastId) {
         setSelectedPodcast(null)

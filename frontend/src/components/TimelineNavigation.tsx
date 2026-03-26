@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "motion/react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Play, Pause, SkipBack, SkipForward, Clock, ChevronDown, ChevronUp } from "lucide-react"
+import { API_BASE } from "@/lib/api"
 
 interface TimelineEntry {
   timestamp: number
@@ -50,7 +51,7 @@ export function TimelineNavigation({
       if (!podcastId || entries.length === 0) return
 
       try {
-        await fetch("/api/navigation/register", {
+        await fetch(`${API_BASE}/navigation/register`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -73,7 +74,7 @@ export function TimelineNavigation({
 
       setIsLoading(true)
       try {
-        const response = await fetch(`/api/navigation/moments/${podcastId}?num_moments=10`)
+        const response = await fetch(`${API_BASE}/navigation/moments/${podcastId}?num_moments=10`)
         if (response.ok) {
           const data = await response.json()
           setMoments(data.moments || [])
@@ -103,7 +104,7 @@ export function TimelineNavigation({
   const handleJumpToMoment = async (timestamp: number) => {
     try {
       // 调用后端跳转API获取上下文
-      const response = await fetch("/api/navigation/jump", {
+      const response = await fetch(`${API_BASE}/navigation/jump`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

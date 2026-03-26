@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'motion/react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Mic, History, MessageCircle, Trash2, ExternalLink, ArrowLeft } from 'lucide-react'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { getConversations, deleteConversation as deleteConversationApi } from '@/lib/api'
+import { API_BASE } from '@/lib/api'
 
 interface Task {
   task_id: string
@@ -33,13 +35,12 @@ export default function HistoryPage() {
     setLoading(true)
     try {
       if (activeTab === 'research') {
-        const res = await fetch('/api/research/tasks')
+        const res = await fetch(`${API_BASE}/research/tasks`)
         const data = await res.json()
         setTasks(data.tasks || [])
       } else {
-        const res = await fetch('/api/chat/conversations')
-        const data = await res.json()
-        setConversations(data.conversations || [])
+        const conversations = await getConversations()
+        setConversations(conversations)
       }
     } catch (error) {
       console.error('Failed to load data:', error)
@@ -52,18 +53,18 @@ export default function HistoryPage() {
     if (!confirm('确定要删除这个研究记录吗？')) return
 
     try {
-      await fetch(`/api/research/${taskId}`, { method: 'DELETE' })
+      await fetch(`${API_BASE}/research/${taskId}`, { method: 'DELETE' })
       loadData()
     } catch (error) {
       console.error('Failed to delete:', error)
     }
   }
 
-  const deleteConversation = async (convId: string) => {
+  const handleDeleteConversation = async (convId: string) => {
     if (!confirm('确定要删除这个对话记录吗？')) return
 
     try {
-      await fetch(`/api/chat/conversation/${convId}`, { method: 'DELETE' })
+      await deleteConversationApi(convId)
       loadData()
     } catch (error) {
       console.error('Failed to delete:', error)
@@ -251,7 +252,7 @@ export default function HistoryPage() {
                               继续
                             </a>
                             <button
-                              onClick={() => deleteConversation(conv.id)}
+                              onClick={() => handleDeleteConversation(conv.id)}
                               className="flex items-center gap-1 text-red-500 hover:text-red-600 text-sm"
                             >
                               <Trash2 className="w-4 h-4" />
