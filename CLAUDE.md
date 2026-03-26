@@ -137,7 +137,20 @@ python scripts/auto_improve.py --rounds 10 --review-every 5
 
 ## 开发日志
 
-### 第31-40轮 (2026-03-26)
+### 第36-40轮 (2026-03-26)
+
+**新增功能模块:**
+
+| 轮次 | 功能 | 文件 |
+|------|------|------|
+| 36 | 导出预设 | `research/export_templates.py`, `api/export_templates.py` |
+| 37 | Markdown格式化工具 | `research/exporters/md.py` |
+| 38 | HTML格式化工具 | `research/exporters/html_exporter.py` |
+| 39 | 存储使用统计 | `research/storage_stats.py`, `api/storage_stats.py` |
+
+**编译状态:** 100% 通过 ✅
+
+### 第31-35轮 (2026-03-26)
 
 **新增功能模块:**
 
