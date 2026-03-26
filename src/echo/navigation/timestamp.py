@@ -9,6 +9,30 @@ from typing import Optional
 import bisect
 
 
+# 重要性字符串到浮点数的映射
+IMPORTANCE_TO_RELEVANCE = {
+    "high": 1.0,
+    "medium": 0.5,
+    "low": 0.2,
+    "高": 1.0,
+    "中": 0.5,
+    "低": 0.2,
+}
+
+
+def _importance_to_relevance(importance: str, default: float = 0.5) -> float:
+    """将重要性字符串转换为相关度浮点数
+
+    Args:
+        importance: 重要性字符串 (high/medium/low 或 高/中/低)
+        default: 默认值
+
+    Returns:
+        float: 相关度分数 (0-1)
+    """
+    return IMPORTANCE_TO_RELEVANCE.get(importance.lower() if isinstance(importance, str) else "", default)
+
+
 @dataclass
 class TimestampEntry:
     """时间戳条目
@@ -334,7 +358,7 @@ class TimestampNavigator:
                 content=content[:100] + "..." if len(content) > 100 else content,
                 entry_id=kp.get("entry_id", ""),
                 type="keypoint",
-                relevance=kp.get("importance", 0.5),
+                relevance=_importance_to_relevance(kp.get("importance", ""), 0.5),
             ))
 
         return moments
