@@ -4,7 +4,7 @@ import copy
 from typing import Optional, Any
 
 
-class Cloner:
+class ClonerTool:
     """克隆工具"""
 
     def shallow_clone(self, obj: Any) -> Any:
@@ -20,11 +20,11 @@ class Cloner:
         return copy.deepcopy(obj)
 
 
-_cloner: Optional[Cloner] = None
+_cloner_tool: Optional[ClonerTool] = None
 
 
-def get_cloner() -> Cloner:
-    global _cloner
-    if _cloner is None:
-        _cloner = Cloner()
-    return _cloner
+def get_cloner_tool() -> ClonerTool:
+    global _cloner_tool
+    if _cloner_tool is None:
+        _cloner_tool = ClonerTool()
+    return _cloner_tool
