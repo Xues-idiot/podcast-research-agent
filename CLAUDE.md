@@ -165,6 +165,24 @@ python scripts/auto_improve.py --rounds 10 --review-every 5
 
 **编译状态:** 100% 通过 ✅
 
+### 第51-60轮 (2026-03-26)
+
+**新增功能模块:**
+
+| 轮次 | 功能 | 文件 |
+|------|------|------|
+| 51-52 | 文本分割器 | `research/text_splitter.py`, `api/text_splitter.py` |
+| 53 | 文本合并器 | `research/merger.py`, `api/merger.py` |
+| 54 | 文本清理器 | `research/cleaner.py`, `api/cleaner.py` |
+| 55 | 文本截断器 | `research/truncator.py`, `api/truncator.py` |
+| 56 | 文本填充器 | `research/padding.py`, `api/padding.py` |
+| 57 | 语言检测器 | `research/language_detector.py`, `api/language_detector.py` |
+| 58 | 文本差异比较器 | `research/textdiff.py`, `api/textdiff.py` |
+| 59 | 文本验证器 | `research/validator.py`, `api/validator.py` |
+| 60 | 文本前缀工具 | `research/prefixer.py`, `api/prefixer.py` |
+
+**编译状态:** 100% 通过 ✅
+
 ### 第31-35轮 (2026-03-26)
 
 **新增功能模块:**
