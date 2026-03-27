@@ -1,7 +1,7 @@
 """偏函数工具"""
 
 from functools import partial
-from typing import Callable, Any
+from typing import Callable, Any, Optional
 
 
 class FunctoolsPartial:

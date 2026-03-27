@@ -1,6 +1,6 @@
 """滑动窗口迭代"""
 
-from typing import Iterator, List, Any, Tuple
+from typing import Iterator, List, Any, Tuple, Optional
 
 
 class SlidingWindowIter:

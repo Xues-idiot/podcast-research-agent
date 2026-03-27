@@ -1,6 +1,6 @@
 """过零检测器"""
 
-from typing import List
+from typing import List, Optional
 
 
 class ZeroCrossing:

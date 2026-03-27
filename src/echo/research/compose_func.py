@@ -1,6 +1,6 @@
 """组合函数工具"""
 
-from typing import Callable, Any
+from typing import Callable, Any, Optional
 
 
 class ComposeFunc:

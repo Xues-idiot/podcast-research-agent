@@ -1,6 +1,6 @@
 """分区工具"""
 
-from typing import List, Any, Tuple
+from typing import List, Any, Tuple, Optional
 
 
 class PartitionTool:

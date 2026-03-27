@@ -1,6 +1,6 @@
 """重新索引工具"""
 
-from typing import List, Any, Dict
+from typing import List, Any, Dict, Optional
 
 
 class ReindexTool:

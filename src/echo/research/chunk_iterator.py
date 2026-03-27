@@ -1,6 +1,6 @@
 """分块迭代器"""
 
-from typing import Iterator, Iterable, Any, List
+from typing import Iterator, Iterable, Any, List, Optional
 
 
 class ChunkIterator:

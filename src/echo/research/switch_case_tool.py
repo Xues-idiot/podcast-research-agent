@@ -1,6 +1,6 @@
 """分支切换工具"""
 
-from typing import Callable, Any, Dict
+from typing import Callable, Any, Dict, Optional
 
 
 class SwitchCaseTool:

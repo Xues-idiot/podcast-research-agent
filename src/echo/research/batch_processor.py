@@ -1,6 +1,6 @@
 """批处理工具"""
 
-from typing import Callable, Any
+from typing import Callable, Any, Optional
 from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
 

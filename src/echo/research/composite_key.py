@@ -1,6 +1,6 @@
 """组合键工具"""
 
-from typing import List, Any, Tuple
+from typing import List, Any, Tuple, Optional
 
 
 class CompositeKey:

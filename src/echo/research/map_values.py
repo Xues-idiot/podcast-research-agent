@@ -1,6 +1,6 @@
 """映射值工具"""
 
-from typing import List, Any, Callable
+from typing import List, Any, Callable, Optional
 
 
 class MapValues:

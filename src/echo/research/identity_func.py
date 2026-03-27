@@ -1,6 +1,6 @@
 """恒等函数工具"""
 
-from typing import Callable, Any
+from typing import Callable, Any, Optional
 
 
 class IdentityFunc:

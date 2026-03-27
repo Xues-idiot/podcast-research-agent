@@ -1,6 +1,6 @@
 """并行执行器"""
 
-from typing import List, Callable, Any
+from typing import List, Callable, Any, Optional
 import concurrent.futures
 
 

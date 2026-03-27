@@ -1,6 +1,6 @@
 """迭代器工具"""
 
-from typing import Iterator, Iterable, Any, List
+from typing import Iterator, Iterable, Any, List, Optional
 
 
 class IteratorTool:

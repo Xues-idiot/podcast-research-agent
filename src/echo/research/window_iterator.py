@@ -1,6 +1,6 @@
 """窗口迭代器"""
 
-from typing import Iterator, List, Any, Tuple
+from typing import Iterator, List, Any, Tuple, Optional
 
 
 class WindowIterator:

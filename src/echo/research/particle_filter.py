@@ -1,7 +1,7 @@
 """粒子滤波器"""
 
 import random
-from typing import List, Callable
+from typing import List, Callable, Optional
 
 
 class ParticleFilter:

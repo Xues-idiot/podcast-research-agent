@@ -1,7 +1,7 @@
 """滑动窗口速率限制"""
 
 import time
-from typing import List
+from typing import List, Optional
 
 
 class SlidingWindowRateLimiter:

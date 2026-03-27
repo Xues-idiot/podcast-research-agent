@@ -1,6 +1,6 @@
 """深度扁平化"""
 
-from typing import List, Any
+from typing import List, Any, Optional
 
 
 class FlattenDeep:

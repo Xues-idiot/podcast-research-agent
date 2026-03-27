@@ -1,6 +1,6 @@
 """交错工具"""
 
-from typing import List, Any
+from typing import List, Any, Optional
 
 
 class InterleaveTool:

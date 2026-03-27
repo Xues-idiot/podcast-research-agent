@@ -1,6 +1,6 @@
 """唯一迭代器"""
 
-from typing import Iterator, Any, Set
+from typing import Iterator, Any, Set, Optional
 
 
 class UniqueIterator:

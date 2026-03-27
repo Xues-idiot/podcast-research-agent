@@ -1,6 +1,6 @@
 """跟踪调用工具"""
 
-from typing import Callable, List, Any
+from typing import Callable, List, Any, Optional
 
 
 class TraceCalls:

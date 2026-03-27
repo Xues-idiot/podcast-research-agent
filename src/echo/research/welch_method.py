@@ -1,7 +1,7 @@
 """Welch方法功率谱密度"""
 
 import math
-from typing import List
+from typing import List, Optional
 
 
 class WelchMethod:

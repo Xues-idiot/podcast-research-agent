@@ -1,7 +1,7 @@
 """包络检测器"""
 
 import math
-from typing import List
+from typing import List, Optional
 
 
 class EnvelopeDetector:

@@ -1,6 +1,6 @@
 """相位声码器"""
 
-from typing import List
+from typing import List, Optional
 
 
 class PhaseVocoder:

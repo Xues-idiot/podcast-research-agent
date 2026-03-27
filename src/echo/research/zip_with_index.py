@@ -1,6 +1,6 @@
 """带索引压缩"""
 
-from typing import List, Any, Tuple
+from typing import List, Any, Tuple, Optional
 
 
 class ZipWithIndex:

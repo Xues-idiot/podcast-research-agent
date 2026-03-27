@@ -1,6 +1,6 @@
 """拒绝工具"""
 
-from typing import List, Any, Callable
+from typing import List, Any, Callable, Optional
 
 
 class RejectBy:

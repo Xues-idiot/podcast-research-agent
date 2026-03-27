@@ -1,7 +1,7 @@
 """功率谱计算器"""
 
 import math
-from typing import List
+from typing import List, Optional
 
 
 class PowerSpectrum:

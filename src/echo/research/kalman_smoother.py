@@ -1,6 +1,6 @@
 """卡尔曼平滑器"""
 
-from typing import List
+from typing import List, Optional
 
 
 class KalmanSmoother:

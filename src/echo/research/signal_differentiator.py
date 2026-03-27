@@ -1,6 +1,6 @@
 """信号微分器"""
 
-from typing import List
+from typing import List, Optional
 
 
 class SignalDifferentiator:

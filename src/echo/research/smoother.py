@@ -1,6 +1,6 @@
 """平滑工具"""
 
-from typing import List
+from typing import List, Optional
 
 
 class Smoother:

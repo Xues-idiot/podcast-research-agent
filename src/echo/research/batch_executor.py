@@ -1,6 +1,6 @@
 """批处理执行器"""
 
-from typing import List, Callable, Any
+from typing import List, Callable, Any, Optional
 
 
 class BatchExecutor:

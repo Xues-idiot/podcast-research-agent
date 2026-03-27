@@ -1,6 +1,6 @@
 """最小最大工具"""
 
-from typing import List, Any, Callable, Tuple
+from typing import List, Any, Callable, Tuple, Optional
 
 
 class MinMaxBy:

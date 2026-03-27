@@ -1,6 +1,6 @@
 """按键分组工具"""
 
-from typing import List, Any, Callable, Dict
+from typing import List, Any, Callable, Dict, Optional
 
 
 class GroupByKey:

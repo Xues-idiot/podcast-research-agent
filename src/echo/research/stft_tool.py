@@ -1,7 +1,7 @@
 """短时傅里叶变换工具"""
 
 import math
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
 
 class StftTool:

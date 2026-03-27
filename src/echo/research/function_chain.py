@@ -1,6 +1,6 @@
 """函数链"""
 
-from typing import Callable, Any, List
+from typing import Callable, Any, List, Optional
 
 
 class FunctionChain:

@@ -1,6 +1,6 @@
 """空操作工具"""
 
-from typing import Callable, Any
+from typing import Callable, Any, Optional
 
 
 class NoopFunc:

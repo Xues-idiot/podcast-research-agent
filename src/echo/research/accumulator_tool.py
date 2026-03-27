@@ -1,6 +1,6 @@
 """累加器工具"""
 
-from typing import Callable, Any, List
+from typing import Callable, Any, List, Optional
 
 
 class AccumulatorTool:
