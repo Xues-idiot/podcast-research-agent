@@ -315,6 +315,66 @@ python scripts/auto_improve.py --rounds 10 --review-every 5
 
 **编译状态:** 100% 通过 ✅
 
+### 第331-360轮 (2026-03-27)
+
+**新增功能模块:**
+
+| 轮次 | 功能 | 文件 |
+|------|------|------|
+| 331-332 | 批处理生成器 | `research/batch_gen.py`, `api/batch_gen_api.py` |
+| 333-334 | 字典访问器 | `research/dict_accessor.py`, `api/dict_accessor_api.py` |
+| 335-336 | 字典构建器 | `research/dict_builder.py`, `api/dict_builder_api.py` |
+| 337-338 | 字典查询器 | `research/dict_query.py`, `api/dict_query_api.py` |
+| 339-340 | 字典转换器 | `research/dict_transformer.py`, `api/dict_transformer_api.py` |
+| 341-342 | 字典更新器 | `research/dict_updater.py`, `api/dict_updater_api.py` |
+| 343-344 | 网格工具 | `research/grid.py`, `api/grid_api.py` |
+| 345-346 | 键值工具 | `research/key_value_maker.py`, `api/key_value_maker_api.py` |
+| 347-348 | 配对工具 | `research/pair_tool.py`, `api/pair_tool_api.py` |
+| 349-350 | 范围生成工具 | `research/range_gen_tool.py`, `api/range_gen_tool_api.py` |
+| 351-352 | 序列生成器 | `research/sequence_gen.py`, `api/sequence_gen_api.py` |
+| 353-354 | 集合操作工具 | `research/set_ops.py`, `api/set_ops_api.py` |
+| 355-356 | 三元组工具 | `research/triple.py`, `api/triple_api.py` |
+| 357-358 | 元组操作工具 | `research/tuple_ops.py`, `api/tuple_ops_api.py` |
+| 359-360 | 窗口工具 | `research/window_tool.py`, `api/window_tool_api.py` |
+
+**编译状态:** 100% 通过 ✅
+
+### 第361-400轮 (2026-03-27)
+
+**新增功能模块:**
+
+| 轮次 | 功能 | 文件 |
+|------|------|------|
+| 361 | 百分比工具 | `research/percentage.py`, `api/percentage_api.py` |
+| 362 | 平均值工具 | `research/averager.py`, `api/averager_api.py` |
+| 363 | 结束符工具 | `research/ender.py`, `api/ender_api.py` |
+| 364 | 制表符工具 | `research/tabler.py`, `api/tabler_api.py` |
+| 365 | 分组工具 | `research/group_maker.py`, `api/group_maker_api.py` |
+| 366 | 包含检查工具 | `research/containser.py`, `api/containser_api.py` |
+| 367 | 空值检查工具 | `research/null_checker.py`, `api/null_checker_api.py` |
+| 368 | 克隆工具 | `research/cloner.py` |
+| 369-370 | 时间戳/组合键/绑定工具 | timestamp_tool.py, combo_key.py, binding.py |
+| 371-385 | 数学/概率/随机/分布工具 | pmath.py, log_tool.py, angle_tool.py, random_tool.py, selector_tool.py, distribution_tool.py, quantile_tool.py, validator_tool.py, caster_tool.py |
+| 386-390 | 缓存/统计/超时工具 | stats_tool.py, timeout_tool.py, memoize_tool.py, cache_decorator.py |
+| 391-400 | 逻辑/比较工具 | lru_cache_tool.py, circular_buffer_tool.py, comparator_tool.py, equality_tool.py, logical_tool.py, bitwise_tool.py, ternary_tool.py, switch_tool.py, match_tool.py |
+
+**编译状态:** 100% 通过 ✅
+
+### 第401-460轮 (2026-03-27)
+
+**新增功能模块:**
+
+| 轮次 | 功能 | 文件 |
+|------|------|------|
+| 401-410 | 时间和事件工具 | delay_tool.py, timer_tool.py, retry_tool.py, logger_tool.py, event_bus.py, observer_tool.py, flyweight_tool.py, object_pool_tool.py |
+| 411-420 | 函数式编程工具 | throttle_tool.py, function_wrap.py, partial_tool.py, compose_tool.py, curry_tool.py, once_tool.py, flip_tool.py, identity_tool.py, noop_tool.py, call_tracker.py |
+| 421-430 | 集合和列表工具 | exception_handler.py, switch_case.py, batch_gen_tool.py, flatten_tool.py, zip_tool.py, sample_tool.py, shuffle_tool.py |
+| 431-440 | 函数式和集合工具 | unique_tool.py, enumerate_tool.py, sequence_tool.py, map_tool.py, reduce_tool.py, find_tool.py, aggregator_tool.py, collector_tool.py |
+| 441-450 | 集合操作和管道工具 | reverse_tool.py, slice_tool.py, length_tool.py, empty_tool.py, defaults_tool.py, coalesce_tool.py, chunk_tool.py, batch_tool.py, pipeline_tool.py, key_selector.py |
+| 451-460 | 集合和列表操作工具 | diff_tool.py, intersect_tool.py, union_tool.py, select_tool.py, merge_tool.py, append_tool.py, prepend_tool.py, update_tool.py, delete_tool.py, insert_tool.py |
+
+**编译状态:** 100% 通过 ✅
+
 ### 第31-35轮 (2026-03-26)
 
 **新增功能模块:**
