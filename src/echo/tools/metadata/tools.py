@@ -565,6 +565,20 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "check"
     },
+    "encoding_utils": {
+        "id": "encoding_utils",
+        "name": "编码转换",
+        "name_en": "Encoding Utils",
+        "description": "Base64、URL、JSON、Hex编码解码",
+        "category": "encoding",
+        "subcategory": "encoding",
+        "api_endpoint": "/api/encode",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "待编码/解码值"}
+        ],
+        "icon": "lock"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
