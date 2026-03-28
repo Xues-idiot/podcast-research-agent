@@ -615,6 +615,18 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "params": [],
         "icon": "list"
     },
+    "color_utils": {
+        "id": "color_utils",
+        "name": "颜色工具",
+        "name_en": "Color Utils",
+        "description": "颜色格式转换：HEX、RGB、HSL，以及颜色加深变浅",
+        "category": "encoding",
+        "subcategory": "color",
+        "api_endpoint": "/api/color",
+        "method": "POST",
+        "params": [],
+        "icon": "circle"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
