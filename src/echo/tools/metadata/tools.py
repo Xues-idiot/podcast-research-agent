@@ -22215,6 +22215,233 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "list"
     },
+
+    # ========== 数据结构工具 ==========
+    "tree_create": {
+        "id": "tree_create",
+        "name": "创建树",
+        "name_en": "Create Tree",
+        "description": "创建新的树结构",
+        "category": "tree",
+        "subcategory": "create",
+        "api_endpoint": "/api/tree_create",
+        "method": "POST",
+        "params": [
+            {"name": "root", "type": "any", "required": True, "description": "根节点值"}
+        ],
+        "icon": "git-branch"
+    },
+    "tree_insert": {
+        "id": "tree_insert",
+        "name": "插入节点",
+        "name_en": "Insert Node",
+        "description": "在树中插入节点",
+        "category": "tree",
+        "subcategory": "insert",
+        "api_endpoint": "/api/tree_insert",
+        "method": "POST",
+        "params": [
+            {"name": "tree", "type": "object", "required": True, "description": "树"},
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "plus"
+    },
+    "tree_delete": {
+        "id": "tree_delete",
+        "name": "删除节点",
+        "name_en": "Delete Node",
+        "description": "从树中删除节点",
+        "category": "tree",
+        "subcategory": "delete",
+        "api_endpoint": "/api/tree_delete",
+        "method": "POST",
+        "params": [
+            {"name": "tree", "type": "object", "required": True, "description": "树"},
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "trash-2"
+    },
+    "tree_search": {
+        "id": "tree_search",
+        "name": "搜索节点",
+        "name_en": "Search Node",
+        "description": "在树中搜索节点",
+        "category": "tree",
+        "subcategory": "search",
+        "api_endpoint": "/api/tree_search",
+        "method": "POST",
+        "params": [
+            {"name": "tree", "type": "object", "required": True, "description": "树"},
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "search"
+    },
+    "tree_traverse": {
+        "id": "tree_traverse",
+        "name": "遍历树",
+        "name_en": "Traverse Tree",
+        "description": "遍历树节点",
+        "category": "tree",
+        "subcategory": "traverse",
+        "api_endpoint": "/api/tree_traverse",
+        "method": "POST",
+        "params": [
+            {"name": "tree", "type": "object", "required": True, "description": "树"},
+            {"name": "order", "type": "string", "required": False, "description": "遍历顺序", "default": "inorder"}
+        ],
+        "icon": "git-branch"
+    },
+    "tree_height": {
+        "id": "tree_height",
+        "name": "树高度",
+        "name_en": "Tree Height",
+        "description": "计算树的高度",
+        "category": "tree",
+        "subcategory": "property",
+        "api_endpoint": "/api/tree_height",
+        "method": "POST",
+        "params": [
+            {"name": "tree", "type": "object", "required": True, "description": "树"}
+        ],
+        "icon": "maximize"
+    },
+    "tree_size": {
+        "id": "tree_size",
+        "name": "树大小",
+        "name_en": "Tree Size",
+        "description": "计算树的节点数",
+        "category": "tree",
+        "subcategory": "property",
+        "api_endpoint": "/api/tree_size",
+        "method": "POST",
+        "params": [
+            {"name": "tree", "type": "object", "required": True, "description": "树"}
+        ],
+        "icon": "hash"
+    },
+    "tree_flatten": {
+        "id": "tree_flatten",
+        "name": "树扁平化",
+        "name_en": "Flatten Tree",
+        "description": "将树扁平化为数组",
+        "category": "tree",
+        "subcategory": "flatten",
+        "api_endpoint": "/api/tree_flatten",
+        "method": "POST",
+        "params": [
+            {"name": "tree", "type": "object", "required": True, "description": "树"}
+        ],
+        "icon": "minimize-2"
+    },
+
+    # ========== 图工具 ==========
+    "graph_create": {
+        "id": "graph_create",
+        "name": "创建图",
+        "name_en": "Create Graph",
+        "description": "创建新的图结构",
+        "category": "graph",
+        "subcategory": "create",
+        "api_endpoint": "/api/graph_create",
+        "method": "POST",
+        "params": [
+            {"name": "directed", "type": "boolean", "required": False, "description": "是否有向", "default": False}
+        ],
+        "icon": "git-branch"
+    },
+    "graph_add_node": {
+        "id": "graph_add_node",
+        "name": "添加节点",
+        "name_en": "Add Node",
+        "description": "在图中添加节点",
+        "category": "graph",
+        "subcategory": "node",
+        "api_endpoint": "/api/graph_add_node",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "object", "required": True, "description": "图"},
+            {"name": "node", "type": "any", "required": True, "description": "节点"}
+        ],
+        "icon": "plus"
+    },
+    "graph_add_edge": {
+        "id": "graph_add_edge",
+        "name": "添加边",
+        "name_en": "Add Edge",
+        "description": "在图中添加边",
+        "category": "graph",
+        "subcategory": "edge",
+        "api_endpoint": "/api/graph_add_edge",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "object", "required": True, "description": "图"},
+            {"name": "from", "type": "any", "required": True, "description": "起始节点"},
+            {"name": "to", "type": "any", "required": True, "description": "目标节点"},
+            {"name": "weight", "type": "number", "required": False, "description": "权重"}
+        ],
+        "icon": "git-merge"
+    },
+    "graph_remove_node": {
+        "id": "graph_remove_node",
+        "name": "移除节点",
+        "name_en": "Remove Node",
+        "description": "从图中移除节点",
+        "category": "graph",
+        "subcategory": "node",
+        "api_endpoint": "/api/graph_remove_node",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "object", "required": True, "description": "图"},
+            {"name": "node", "type": "any", "required": True, "description": "节点"}
+        ],
+        "icon": "trash-2"
+    },
+    "graph_bfs": {
+        "id": "graph_bfs",
+        "name": "广度优先",
+        "name_en": "BFS",
+        "description": "广度优先搜索",
+        "category": "graph",
+        "subcategory": "traverse",
+        "api_endpoint": "/api/graph_bfs",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "object", "required": True, "description": "图"},
+            {"name": "start", "type": "any", "required": True, "description": "起始节点"}
+        ],
+        "icon": "git-branch"
+    },
+    "graph_dfs": {
+        "id": "graph_dfs",
+        "name": "深度优先",
+        "name_en": "DFS",
+        "description": "深度优先搜索",
+        "category": "graph",
+        "subcategory": "traverse",
+        "api_endpoint": "/api/graph_dfs",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "object", "required": True, "description": "图"},
+            {"name": "start", "type": "any", "required": True, "description": "起始节点"}
+        ],
+        "icon": "git-branch"
+    },
+    "graph_shortest_path": {
+        "id": "graph_shortest_path",
+        "name": "最短路径",
+        "name_en": "Shortest Path",
+        "description": "计算最短路径",
+        "category": "graph",
+        "subcategory": "path",
+        "api_endpoint": "/api/graph_shortest_path",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "object", "required": True, "description": "图"},
+            {"name": "from", "type": "any", "required": True, "description": "起始节点"},
+            {"name": "to", "type": "any", "required": True, "description": "目标节点"}
+        ],
+        "icon": "git-branch"
+    },
 }
 
 
