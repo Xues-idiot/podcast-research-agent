@@ -525,6 +525,20 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "calculator"
     },
+    "dict_utils": {
+        "id": "dict_utils",
+        "name": "字典工具",
+        "name_en": "Dict Utils",
+        "description": "字典操作：获取、设置、合并、过滤、反转等",
+        "category": "data_structures",
+        "subcategory": "dict",
+        "api_endpoint": "/api/dict",
+        "method": "POST",
+        "params": [
+            {"name": "dict", "type": "object", "required": True, "description": "字典"}
+        ],
+        "icon": "book"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
