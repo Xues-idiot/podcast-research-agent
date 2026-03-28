@@ -3355,6 +3355,109 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "method": "POST",
         "params": [],
         "icon": "hash"
+    },
+    "count_substring": {
+        "id": "count_substring",
+        "name": "子串计数",
+        "name_en": "Count Substring",
+        "description": "统计子串出现次数",
+        "category": "text",
+        "subcategory": "stats",
+        "api_endpoint": "/api/count-substring",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "substr", "type": "string", "required": True, "description": "子串"}
+        ],
+        "icon": "hash"
+    },
+    "index_of": {
+        "id": "index_of",
+        "name": "查找位置",
+        "name_en": "Index Of",
+        "description": "查找子串位置",
+        "category": "text",
+        "subcategory": "search",
+        "api_endpoint": "/api/index-of",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "substr", "type": "string", "required": True, "description": "子串"}
+        ],
+        "icon": "search"
+    },
+    "last_index_of": {
+        "id": "last_index_of",
+        "name": "最后位置",
+        "name_en": "Last Index Of",
+        "description": "查找子串最后位置",
+        "category": "text",
+        "subcategory": "search",
+        "api_endpoint": "/api/last-index-of",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "substr", "type": "string", "required": True, "description": "子串"}
+        ],
+        "icon": "search"
+    },
+    "substring": {
+        "id": "substring",
+        "name": "子串提取",
+        "name_en": "Substring",
+        "description": "提取子串",
+        "category": "text",
+        "subcategory": "extract",
+        "api_endpoint": "/api/substring",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "start", "type": "number", "required": True, "description": "起始位置"},
+            {"name": "end", "type": "number", "required": False, "description": "结束位置"}
+        ],
+        "icon": "scissors"
+    },
+    "strip": {
+        "id": "strip",
+        "name": "去首尾空白",
+        "name_en": "Strip",
+        "description": "去除首尾空白",
+        "category": "text",
+        "subcategory": "format",
+        "api_endpoint": "/api/strip",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "minus"
+    },
+    "lstrip": {
+        "id": "lstrip",
+        "name": "去左侧空白",
+        "name_en": "LStrip",
+        "description": "去除左侧空白",
+        "category": "text",
+        "subcategory": "format",
+        "api_endpoint": "/api/lstrip",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "minus"
+    },
+    "rstrip": {
+        "id": "rstrip",
+        "name": "去右侧空白",
+        "name_en": "RStrip",
+        "description": "去除右侧空白",
+        "category": "text",
+        "subcategory": "format",
+        "api_endpoint": "/api/rstrip",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "minus"
     }
 }
 
