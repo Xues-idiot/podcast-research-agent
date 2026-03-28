@@ -18889,6 +18889,368 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "code"
     },
+
+    # ========== 随机工具 ==========
+    "random_int": {
+        "id": "random_int",
+        "name": "随机整数",
+        "name_en": "Random Integer",
+        "description": "生成指定范围内的随机整数",
+        "category": "random",
+        "subcategory": "integer",
+        "api_endpoint": "/api/random_int",
+        "method": "POST",
+        "params": [
+            {"name": "min", "type": "number", "required": True, "description": "最小值"},
+            {"name": "max", "type": "number", "required": True, "description": "最大值"}
+        ],
+        "icon": "hash"
+    },
+    "random_float": {
+        "id": "random_float",
+        "name": "随机小数",
+        "name_en": "Random Float",
+        "description": "生成0到1之间的随机小数",
+        "category": "random",
+        "subcategory": "float",
+        "api_endpoint": "/api/random_float",
+        "method": "POST",
+        "params": [],
+        "icon": "hash"
+    },
+    "random_choice": {
+        "id": "random_choice",
+        "name": "随机选择",
+        "name_en": "Random Choice",
+        "description": "从数组中随机选择一个元素",
+        "category": "random",
+        "subcategory": "choice",
+        "api_endpoint": "/api/random_choice",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "shuffle"
+    },
+    "random_sample": {
+        "id": "random_sample",
+        "name": "随机抽样",
+        "name_en": "Random Sample",
+        "description": "从数组中随机抽取指定数量的元素",
+        "category": "random",
+        "subcategory": "sample",
+        "api_endpoint": "/api/random_sample",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数组"},
+            {"name": "n", "type": "number", "required": True, "description": "抽取数量"}
+        ],
+        "icon": "shuffle"
+    },
+    "random_shuffle": {
+        "id": "random_shuffle",
+        "name": "随机打乱",
+        "name_en": "Random Shuffle",
+        "description": "随机打乱数组顺序",
+        "category": "random",
+        "subcategory": "shuffle",
+        "api_endpoint": "/api/random_shuffle",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "shuffle"
+    },
+    "random_uuid": {
+        "id": "random_uuid",
+        "name": "随机UUID",
+        "name_en": "Random UUID",
+        "description": "生成随机UUID",
+        "category": "random",
+        "subcategory": "uuid",
+        "api_endpoint": "/api/random_uuid",
+        "method": "POST",
+        "params": [],
+        "icon": "hash"
+    },
+    "random_color": {
+        "id": "random_color",
+        "name": "随机颜色",
+        "name_en": "Random Color",
+        "description": "生成随机颜色值",
+        "category": "random",
+        "subcategory": "color",
+        "api_endpoint": "/api/random_color",
+        "method": "POST",
+        "params": [],
+        "icon": "palette"
+    },
+    "random_date": {
+        "id": "random_date",
+        "name": "随机日期",
+        "name_en": "Random Date",
+        "description": "生成指定范围内的随机日期",
+        "category": "random",
+        "subcategory": "date",
+        "api_endpoint": "/api/random_date",
+        "method": "POST",
+        "params": [
+            {"name": "start_date", "type": "string", "required": True, "description": "开始日期"},
+            {"name": "end_date", "type": "string", "required": True, "description": "结束日期"}
+        ],
+        "icon": "calendar"
+    },
+    "random_time": {
+        "id": "random_time",
+        "name": "随机时间",
+        "name_en": "Random Time",
+        "description": "生成随机时间",
+        "category": "random",
+        "subcategory": "time",
+        "api_endpoint": "/api/random_time",
+        "method": "POST",
+        "params": [],
+        "icon": "clock"
+    },
+    "random_bool": {
+        "id": "random_bool",
+        "name": "随机布尔",
+        "name_en": "Random Boolean",
+        "description": "生成随机布尔值",
+        "category": "random",
+        "subcategory": "bool",
+        "api_endpoint": "/api/random_bool",
+        "method": "POST",
+        "params": [],
+        "icon": "hash"
+    },
+
+    # ========== 序列工具 ==========
+    "arithmetic_sequence": {
+        "id": "arithmetic_sequence",
+        "name": "等差数列",
+        "name_en": "Arithmetic Sequence",
+        "description": "生成等差数列",
+        "category": "sequence",
+        "subcategory": "arithmetic",
+        "api_endpoint": "/api/arithmetic_sequence",
+        "method": "POST",
+        "params": [
+            {"name": "start", "type": "number", "required": True, "description": "起始值"},
+            {"name": "diff", "type": "number", "required": True, "description": "公差"},
+            {"name": "count", "type": "number", "required": True, "description": "数量"}
+        ],
+        "icon": "list"
+    },
+    "geometric_sequence": {
+        "id": "geometric_sequence",
+        "name": "等比数列",
+        "name_en": "Geometric Sequence",
+        "description": "生成等比数列",
+        "category": "sequence",
+        "subcategory": "geometric",
+        "api_endpoint": "/api/geometric_sequence",
+        "method": "POST",
+        "params": [
+            {"name": "start", "type": "number", "required": True, "description": "起始值"},
+            {"name": "ratio", "type": "number", "required": True, "description": "公比"},
+            {"name": "count", "type": "number", "required": True, "description": "数量"}
+        ],
+        "icon": "list"
+    },
+    "fibonacci": {
+        "id": "fibonacci",
+        "name": "斐波那契数列",
+        "name_en": "Fibonacci Sequence",
+        "description": "生成斐波那契数列",
+        "category": "sequence",
+        "subcategory": "fibonacci",
+        "api_endpoint": "/api/fibonacci",
+        "method": "POST",
+        "params": [
+            {"name": "count", "type": "number", "required": True, "description": "数量"}
+        ],
+        "icon": "list"
+    },
+    "prime_sequence": {
+        "id": "prime_sequence",
+        "name": "质数序列",
+        "name_en": "Prime Sequence",
+        "description": "生成质数序列",
+        "category": "sequence",
+        "subcategory": "prime",
+        "api_endpoint": "/api/prime_sequence",
+        "method": "POST",
+        "params": [
+            {"name": "count", "type": "number", "required": True, "description": "数量"}
+        ],
+        "icon": "list"
+    },
+    "range_gen": {
+        "id": "range_gen",
+        "name": "范围生成",
+        "name_en": "Range Generator",
+        "description": "生成数字范围",
+        "category": "sequence",
+        "subcategory": "range",
+        "api_endpoint": "/api/range_gen",
+        "method": "POST",
+        "params": [
+            {"name": "start", "type": "number", "required": True, "description": "起始值"},
+            {"name": "end", "type": "number", "required": True, "description": "结束值"},
+            {"name": "step", "type": "number", "required": False, "description": "步长", "default": 1}
+        ],
+        "icon": "list"
+    },
+    "sequence_slice": {
+        "id": "sequence_slice",
+        "name": "序列切片",
+        "name_en": "Sequence Slice",
+        "description": "获取序列的切片",
+        "category": "sequence",
+        "subcategory": "slice",
+        "api_endpoint": "/api/sequence_slice",
+        "method": "POST",
+        "params": [
+            {"name": "sequence", "type": "array", "required": True, "description": "序列"},
+            {"name": "start", "type": "number", "required": False, "description": "起始索引"},
+            {"name": "end", "type": "number", "required": False, "description": "结束索引"}
+        ],
+        "icon": "scissors"
+    },
+    "sequence_reverse": {
+        "id": "sequence_reverse",
+        "name": "序列反转",
+        "name_en": "Sequence Reverse",
+        "description": "反转序列顺序",
+        "category": "sequence",
+        "subcategory": "reverse",
+        "api_endpoint": "/api/sequence_reverse",
+        "method": "POST",
+        "params": [
+            {"name": "sequence", "type": "array", "required": True, "description": "序列"}
+        ],
+        "icon": "shuffle"
+    },
+
+    # ========== 位运算工具 ==========
+    "bit_and": {
+        "id": "bit_and",
+        "name": "位与",
+        "name_en": "Bitwise AND",
+        "description": "执行按位与运算",
+        "category": "bitwise",
+        "subcategory": "and",
+        "api_endpoint": "/api/bit_and",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数A"},
+            {"name": "b", "type": "number", "required": True, "description": "操作数B"}
+        ],
+        "icon": "code"
+    },
+    "bit_or": {
+        "id": "bit_or",
+        "name": "位或",
+        "name_en": "Bitwise OR",
+        "description": "执行按位或运算",
+        "category": "bitwise",
+        "subcategory": "or",
+        "api_endpoint": "/api/bit_or",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数A"},
+            {"name": "b", "type": "number", "required": True, "description": "操作数B"}
+        ],
+        "icon": "code"
+    },
+    "bit_xor": {
+        "id": "bit_xor",
+        "name": "位异或",
+        "name_en": "Bitwise XOR",
+        "description": "执行按位异或运算",
+        "category": "bitwise",
+        "subcategory": "xor",
+        "api_endpoint": "/api/bit_xor",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数A"},
+            {"name": "b", "type": "number", "required": True, "description": "操作数B"}
+        ],
+        "icon": "code"
+    },
+    "bit_not": {
+        "id": "bit_not",
+        "name": "位非",
+        "name_en": "Bitwise NOT",
+        "description": "执行按位非运算",
+        "category": "bitwise",
+        "subcategory": "not",
+        "api_endpoint": "/api/bit_not",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数"}
+        ],
+        "icon": "code"
+    },
+    "bit_left_shift": {
+        "id": "bit_left_shift",
+        "name": "左移",
+        "name_en": "Left Shift",
+        "description": "执行左移运算",
+        "category": "bitwise",
+        "subcategory": "shift",
+        "api_endpoint": "/api/bit_left_shift",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数"},
+            {"name": "bits", "type": "number", "required": True, "description": "移位数"}
+        ],
+        "icon": "code"
+    },
+    "bit_right_shift": {
+        "id": "bit_right_shift",
+        "name": "右移",
+        "name_en": "Right Shift",
+        "description": "执行右移运算",
+        "category": "bitwise",
+        "subcategory": "shift",
+        "api_endpoint": "/api/bit_right_shift",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数"},
+            {"name": "bits", "type": "number", "required": True, "description": "移位数"}
+        ],
+        "icon": "code"
+    },
+    "bit_count_ones": {
+        "id": "bit_count_ones",
+        "name": "计数1的个数",
+        "name_en": "Count Ones",
+        "description": "计算二进制中1的个数",
+        "category": "bitwise",
+        "subcategory": "count",
+        "api_endpoint": "/api/bit_count_ones",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数"}
+        ],
+        "icon": "hash"
+    },
+    "is_power_of_two": {
+        "id": "is_power_of_two",
+        "name": "2的幂检查",
+        "name_en": "Is Power of Two",
+        "description": "检查是否为2的幂",
+        "category": "bitwise",
+        "subcategory": "check",
+        "api_endpoint": "/api/is_power_of_two",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数"}
+        ],
+        "icon": "check"
+    },
 }
 
 
