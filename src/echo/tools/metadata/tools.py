@@ -2058,6 +2058,109 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "text", "type": "string", "required": True, "description": "文本"}
         ],
         "icon": "link"
+    },
+    "chunk": {
+        "id": "chunk",
+        "name": "分块",
+        "name_en": "Chunk",
+        "description": "将列表分成指定大小的块",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/chunk",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "size", "type": "number", "required": True, "description": "块大小"}
+        ],
+        "icon": "grid"
+    },
+    "flatten": {
+        "id": "flatten",
+        "name": "扁平化",
+        "name_en": "Flatten",
+        "description": "将嵌套列表扁平化",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/flatten",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "嵌套列表"},
+            {"name": "depth", "type": "number", "required": False, "description": "深度,-1表示全部"}
+        ],
+        "icon": "minimize-2"
+    },
+    "zip_lists": {
+        "id": "zip_lists",
+        "name": "合并列表",
+        "name_en": "Zip Lists",
+        "description": "将多个列表配对合并",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/zip",
+        "method": "POST",
+        "params": [
+            {"name": "lists", "type": "array", "required": True, "description": "列表数组"}
+        ],
+        "icon": "columns"
+    },
+    "enumerate_list": {
+        "id": "enumerate_list",
+        "name": "枚举列表",
+        "name_en": "Enumerate List",
+        "description": "为列表添加索引",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/enumerate",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "start", "type": "number", "required": False, "description": "起始索引"}
+        ],
+        "icon": "list"
+    },
+    "window": {
+        "id": "window",
+        "name": "滑动窗口",
+        "name_en": "Window",
+        "description": "创建滑动窗口",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/window",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "size", "type": "number", "required": True, "description": "窗口大小"},
+            {"name": "step", "type": "number", "required": False, "description": "步长"}
+        ],
+        "icon": "square"
+    },
+    "count_by": {
+        "id": "count_by",
+        "name": "分组计数",
+        "name_en": "Count By",
+        "description": "按条件分组计数",
+        "category": "list",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/count-by",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "bar-chart"
+    },
+    "group_by": {
+        "id": "group_by",
+        "name": "分组",
+        "name_en": "Group By",
+        "description": "按条件分组",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/group-by",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "folder"
     }
 }
 
