@@ -20427,6 +20427,432 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "activity"
     },
+
+    # ========== 网络工具 ==========
+    "parse_url": {
+        "id": "parse_url",
+        "name": "URL解析",
+        "name_en": "Parse URL",
+        "description": "解析URL获取各组成部分",
+        "category": "network",
+        "subcategory": "url",
+        "api_endpoint": "/api/parse_url",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL字符串"}
+        ],
+        "icon": "link"
+    },
+    "build_url": {
+        "id": "build_url",
+        "name": "URL构建",
+        "name_en": "Build URL",
+        "description": "构建URL字符串",
+        "category": "network",
+        "subcategory": "url",
+        "api_endpoint": "/api/build_url",
+        "method": "POST",
+        "params": [
+            {"name": "scheme", "type": "string", "required": True, "description": "协议"},
+            {"name": "host", "type": "string", "required": True, "description": "主机"},
+            {"name": "path", "type": "string", "required": False, "description": "路径"},
+            {"name": "query", "type": "object", "required": False, "description": "查询参数"}
+        ],
+        "icon": "link"
+    },
+    "get_query_params": {
+        "id": "get_query_params",
+        "name": "获取查询参数",
+        "name_en": "Get Query Params",
+        "description": "从URL中提取查询参数",
+        "category": "network",
+        "subcategory": "url",
+        "api_endpoint": "/api/get_query_params",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL字符串"}
+        ],
+        "icon": "search"
+    },
+    "add_query_param": {
+        "id": "add_query_param",
+        "name": "添加查询参数",
+        "name_en": "Add Query Param",
+        "description": "向URL添加查询参数",
+        "category": "network",
+        "subcategory": "url",
+        "api_endpoint": "/api/add_query_param",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL字符串"},
+            {"name": "key", "type": "string", "required": True, "description": "参数名"},
+            {"name": "value", "type": "string", "required": True, "description": "参数值"}
+        ],
+        "icon": "plus"
+    },
+    "is_valid_ip": {
+        "id": "is_valid_ip",
+        "name": "IP验证",
+        "name_en": "Is Valid IP",
+        "description": "验证IP地址格式",
+        "category": "network",
+        "subcategory": "ip",
+        "api_endpoint": "/api/is_valid_ip",
+        "method": "POST",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP地址"}
+        ],
+        "icon": "check"
+    },
+    "ip_to_int": {
+        "id": "ip_to_int",
+        "name": "IP转整数",
+        "name_en": "IP to Integer",
+        "description": "将IP地址转换为整数",
+        "category": "network",
+        "subcategory": "ip",
+        "api_endpoint": "/api/ip_to_int",
+        "method": "POST",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP地址"}
+        ],
+        "icon": "hash"
+    },
+    "int_to_ip": {
+        "id": "int_to_ip",
+        "name": "整数转IP",
+        "name_en": "Integer to IP",
+        "description": "将整数转换为IP地址",
+        "category": "network",
+        "subcategory": "ip",
+        "api_endpoint": "/api/int_to_ip",
+        "method": "POST",
+        "params": [
+            {"name": "num", "type": "number", "required": True, "description": "整数"}
+        ],
+        "icon": "hash"
+    },
+    "is_private_ip": {
+        "id": "is_private_ip",
+        "name": "私网IP检查",
+        "name_en": "Is Private IP",
+        "description": "检查是否为私网IP",
+        "category": "network",
+        "subcategory": "ip",
+        "api_endpoint": "/api/is_private_ip",
+        "method": "POST",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP地址"}
+        ],
+        "icon": "check"
+    },
+    "dns_lookup": {
+        "id": "dns_lookup",
+        "name": "DNS查询",
+        "name_en": "DNS Lookup",
+        "description": "查询域名的DNS记录",
+        "category": "network",
+        "subcategory": "dns",
+        "api_endpoint": "/api/dns_lookup",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "search"
+    },
+    "reverse_dns": {
+        "id": "reverse_dns",
+        "name": "反向DNS",
+        "name_en": "Reverse DNS",
+        "description": "进行反向DNS查询",
+        "category": "network",
+        "subcategory": "dns",
+        "api_endpoint": "/api/reverse_dns",
+        "method": "POST",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP地址"}
+        ],
+        "icon": "search"
+    },
+    "ping": {
+        "id": "ping",
+        "name": "Ping检测",
+        "name_en": "Ping",
+        "description": "检测主机是否可达",
+        "category": "network",
+        "subcategory": "ping",
+        "api_endpoint": "/api/ping",
+        "method": "POST",
+        "params": [
+            {"name": "host", "type": "string", "required": True, "description": "主机地址"}
+        ],
+        "icon": "activity"
+    },
+    "port_scan": {
+        "id": "port_scan",
+        "name": "端口扫描",
+        "name_en": "Port Scan",
+        "description": "扫描主机的端口",
+        "category": "network",
+        "subcategory": "scan",
+        "api_endpoint": "/api/port_scan",
+        "method": "POST",
+        "params": [
+            {"name": "host", "type": "string", "required": True, "description": "主机地址"},
+            {"name": "ports", "type": "array", "required": False, "description": "端口列表"}
+        ],
+        "icon": "search"
+    },
+    "http_get": {
+        "id": "http_get",
+        "name": "HTTP GET",
+        "name_en": "HTTP GET",
+        "description": "发送HTTP GET请求",
+        "category": "network",
+        "subcategory": "http",
+        "api_endpoint": "/api/http_get",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"}
+        ],
+        "icon": "globe"
+    },
+    "http_post": {
+        "id": "http_post",
+        "name": "HTTP POST",
+        "name_en": "HTTP POST",
+        "description": "发送HTTP POST请求",
+        "category": "network",
+        "subcategory": "http",
+        "api_endpoint": "/api/http_post",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"},
+            {"name": "data", "type": "object", "required": False, "description": "数据"}
+        ],
+        "icon": "globe"
+    },
+    "parse_headers": {
+        "id": "parse_headers",
+        "name": "解析HTTP头",
+        "name_en": "Parse Headers",
+        "description": "解析HTTP响应头",
+        "category": "network",
+        "subcategory": "http",
+        "api_endpoint": "/api/parse_headers",
+        "method": "POST",
+        "params": [
+            {"name": "headers", "type": "string", "required": True, "description": "HTTP头字符串"}
+        ],
+        "icon": "list"
+    },
+    "build_headers": {
+        "id": "build_headers",
+        "name": "构建HTTP头",
+        "name_en": "Build Headers",
+        "description": "构建HTTP请求头",
+        "category": "network",
+        "subcategory": "http",
+        "api_endpoint": "/api/build_headers",
+        "method": "POST",
+        "params": [
+            {"name": "headers", "type": "object", "required": True, "description": "头信息对象"}
+        ],
+        "icon": "list"
+    },
+
+    # ========== 邮件工具 ==========
+    "is_valid_email": {
+        "id": "is_valid_email",
+        "name": "邮箱验证",
+        "name_en": "Is Valid Email",
+        "description": "验证邮箱格式",
+        "category": "email",
+        "subcategory": "validate",
+        "api_endpoint": "/api/is_valid_email",
+        "method": "POST",
+        "params": [
+            {"name": "email", "type": "string", "required": True, "description": "邮箱地址"}
+        ],
+        "icon": "check"
+    },
+    "parse_email": {
+        "id": "parse_email",
+        "name": "解析邮箱",
+        "name_en": "Parse Email",
+        "description": "解析邮箱地址",
+        "category": "email",
+        "subcategory": "parse",
+        "api_endpoint": "/api/parse_email",
+        "method": "POST",
+        "params": [
+            {"name": "email", "type": "string", "required": True, "description": "邮箱地址"}
+        ],
+        "icon": "mail"
+    },
+    "build_email": {
+        "id": "build_email",
+        "name": "构建邮箱",
+        "name_en": "Build Email",
+        "description": "构建邮箱地址",
+        "category": "email",
+        "subcategory": "build",
+        "api_endpoint": "/api/build_email",
+        "method": "POST",
+        "params": [
+            {"name": "local", "type": "string", "required": True, "description": "本地部分"},
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "mail"
+    },
+    "extract_domain": {
+        "id": "extract_domain",
+        "name": "提取域名",
+        "name_en": "Extract Domain",
+        "description": "从邮箱提取域名",
+        "category": "email",
+        "subcategory": "extract",
+        "api_endpoint": "/api/extract_domain",
+        "method": "POST",
+        "params": [
+            {"name": "email", "type": "string", "required": True, "description": "邮箱地址"}
+        ],
+        "icon": "at-sign"
+    },
+    "mask_email": {
+        "id": "mask_email",
+        "name": "邮箱脱敏",
+        "name_en": "Mask Email",
+        "description": "隐藏邮箱部分字符",
+        "category": "email",
+        "subcategory": "mask",
+        "api_endpoint": "/api/mask_email",
+        "method": "POST",
+        "params": [
+            {"name": "email", "type": "string", "required": True, "description": "邮箱地址"}
+        ],
+        "icon": "eye-off"
+    },
+
+    # ========== 正则表达式工具 ==========
+    "regex_match": {
+        "id": "regex_match",
+        "name": "正则匹配",
+        "name_en": "Regex Match",
+        "description": "检查字符串是否匹配正则",
+        "category": "regex",
+        "subcategory": "match",
+        "api_endpoint": "/api/regex_match",
+        "method": "POST",
+        "params": [
+            {"name": "pattern", "type": "string", "required": True, "description": "正则模式"},
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "check"
+    },
+    "regex_find": {
+        "id": "regex_find",
+        "name": "正则查找",
+        "name_en": "Regex Find",
+        "description": "查找所有匹配项",
+        "category": "regex",
+        "subcategory": "find",
+        "api_endpoint": "/api/regex_find",
+        "method": "POST",
+        "params": [
+            {"name": "pattern", "type": "string", "required": True, "description": "正则模式"},
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "search"
+    },
+    "regex_replace": {
+        "id": "regex_replace",
+        "name": "正则替换",
+        "name_en": "Regex Replace",
+        "description": "替换匹配的文本",
+        "category": "regex",
+        "subcategory": "replace",
+        "api_endpoint": "/api/regex_replace",
+        "method": "POST",
+        "params": [
+            {"name": "pattern", "type": "string", "required": True, "description": "正则模式"},
+            {"name": "replacement", "type": "string", "required": True, "description": "替换文本"},
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "edit"
+    },
+    "regex_split": {
+        "id": "regex_split",
+        "name": "正则分割",
+        "name_en": "Regex Split",
+        "description": "用正则分割文本",
+        "category": "regex",
+        "subcategory": "split",
+        "api_endpoint": "/api/regex_split",
+        "method": "POST",
+        "params": [
+            {"name": "pattern", "type": "string", "required": True, "description": "正则模式"},
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "scissors"
+    },
+    "regex_groups": {
+        "id": "regex_groups",
+        "name": "正则捕获组",
+        "name_en": "Regex Groups",
+        "description": "获取捕获组",
+        "category": "regex",
+        "subcategory": "groups",
+        "api_endpoint": "/api/regex_groups",
+        "method": "POST",
+        "params": [
+            {"name": "pattern", "type": "string", "required": True, "description": "正则模式"},
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "list"
+    },
+    "is_email": {
+        "id": "is_email",
+        "name": "邮箱格式检查",
+        "name_en": "Is Email",
+        "description": "检查是否为邮箱格式",
+        "category": "regex",
+        "subcategory": "validate",
+        "api_endpoint": "/api/is_email",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "check"
+    },
+    "is_url": {
+        "id": "is_url",
+        "name": "URL格式检查",
+        "name_en": "Is URL",
+        "description": "检查是否为URL格式",
+        "category": "regex",
+        "subcategory": "validate",
+        "api_endpoint": "/api/is_url",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "check"
+    },
+    "is_phone": {
+        "id": "is_phone",
+        "name": "电话格式检查",
+        "name_en": "Is Phone",
+        "description": "检查是否为电话号码格式",
+        "category": "regex",
+        "subcategory": "validate",
+        "api_endpoint": "/api/is_phone",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "check"
+    },
 }
 
 
