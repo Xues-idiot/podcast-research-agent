@@ -4745,6 +4745,104 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "length", "type": "number", "required": False, "description": "长度"}
         ],
         "icon": "key"
+    },
+    "celsius_to_fahrenheit": {
+        "id": "celsius_to_fahrenheit",
+        "name": "摄氏度转华氏度",
+        "name_en": "Celsius to Fahrenheit",
+        "description": "温度单位转换",
+        "category": "convert",
+        "subcategory": "temperature",
+        "api_endpoint": "/api/celsius-to-fahrenheit",
+        "method": "POST",
+        "params": [
+            {"name": "celsius", "type": "number", "required": True, "description": "摄氏度"}
+        ],
+        "icon": "thermometer"
+    },
+    "fahrenheit_to_celsius": {
+        "id": "fahrenheit_to_celsius",
+        "name": "华氏度转摄氏度",
+        "name_en": "Fahrenheit to Celsius",
+        "description": "温度单位转换",
+        "category": "convert",
+        "subcategory": "temperature",
+        "api_endpoint": "/api/fahrenheit-to-celsius",
+        "method": "POST",
+        "params": [
+            {"name": "fahrenheit", "type": "number", "required": True, "description": "华氏度"}
+        ],
+        "icon": "thermometer"
+    },
+    "km_to_miles": {
+        "id": "km_to_miles",
+        "name": "公里转英里",
+        "name_en": "Km to Miles",
+        "description": "距离单位转换",
+        "category": "convert",
+        "subcategory": "distance",
+        "api_endpoint": "/api/km-to-miles",
+        "method": "POST",
+        "params": [
+            {"name": "km", "type": "number", "required": True, "description": "公里"}
+        ],
+        "icon": "map"
+    },
+    "miles_to_km": {
+        "id": "miles_to_km",
+        "name": "英里转公里",
+        "name_en": "Miles to Km",
+        "description": "距离单位转换",
+        "category": "convert",
+        "subcategory": "distance",
+        "api_endpoint": "/api/miles-to-km",
+        "method": "POST",
+        "params": [
+            {"name": "miles", "type": "number", "required": True, "description": "英里"}
+        ],
+        "icon": "map"
+    },
+    "kg_to_pounds": {
+        "id": "kg_to_pounds",
+        "name": "公斤转磅",
+        "name_en": "Kg to Pounds",
+        "description": "重量单位转换",
+        "category": "convert",
+        "subcategory": "weight",
+        "api_endpoint": "/api/kg-to-pounds",
+        "method": "POST",
+        "params": [
+            {"name": "kg", "type": "number", "required": True, "description": "公斤"}
+        ],
+        "icon": "scale"
+    },
+    "pounds_to_kg": {
+        "id": "pounds_to_kg",
+        "name": "磅转公斤",
+        "name_en": "Pounds to Kg",
+        "description": "重量单位转换",
+        "category": "convert",
+        "subcategory": "weight",
+        "api_endpoint": "/api/pounds-to-kg",
+        "method": "POST",
+        "params": [
+            {"name": "pounds", "type": "number", "required": True, "description": "磅"}
+        ],
+        "icon": "scale"
+    },
+    "bytes_to_human": {
+        "id": "bytes_to_human",
+        "name": "字节转人类可读",
+        "name_en": "Bytes to Human",
+        "description": "字节数转人类可读格式",
+        "category": "convert",
+        "subcategory": "bytes",
+        "api_endpoint": "/api/bytes-to-human",
+        "method": "POST",
+        "params": [
+            {"name": "bytes", "type": "number", "required": True, "description": "字节数"}
+        ],
+        "icon": "file"
     }
 }
 
