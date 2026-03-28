@@ -1649,6 +1649,106 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "values", "type": "array", "required": True, "description": "数值列表"}
         ],
         "icon": "divide"
+    },
+    "uppercase": {
+        "id": "uppercase",
+        "name": "转大写",
+        "name_en": "To Uppercase",
+        "description": "将字符串转换为大写",
+        "category": "text",
+        "subcategory": "case",
+        "api_endpoint": "/api/uppercase",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "lowercase": {
+        "id": "lowercase",
+        "name": "转小写",
+        "name_en": "To Lowercase",
+        "description": "将字符串转换为小写",
+        "category": "text",
+        "subcategory": "case",
+        "api_endpoint": "/api/lowercase",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "capitalize": {
+        "id": "capitalize",
+        "name": "首字母大写",
+        "name_en": "Capitalize",
+        "description": "首字母大写",
+        "category": "text",
+        "subcategory": "case",
+        "api_endpoint": "/api/capitalize",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "reverse_text": {
+        "id": "reverse_text",
+        "name": "反转文本",
+        "name_en": "Reverse Text",
+        "description": "反转字符串",
+        "category": "text",
+        "subcategory": "transform",
+        "api_endpoint": "/api/reverse",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "rotate-cw"
+    },
+    "trim": {
+        "id": "trim",
+        "name": "去空白",
+        "name_en": "Trim",
+        "description": "去除首尾空白",
+        "category": "text",
+        "subcategory": "format",
+        "api_endpoint": "/api/trim",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "minus"
+    },
+    "split_text": {
+        "id": "split_text",
+        "name": "分割文本",
+        "name_en": "Split Text",
+        "description": "按分隔符分割文本",
+        "category": "text",
+        "subcategory": "split",
+        "api_endpoint": "/api/split",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "delimiter", "type": "string", "required": False, "description": "分隔符"}
+        ],
+        "icon": "scissors"
+    },
+    "join_text": {
+        "id": "join_text",
+        "name": "连接文本",
+        "name_en": "Join Text",
+        "description": "用分隔符连接文本列表",
+        "category": "text",
+        "subcategory": "join",
+        "api_endpoint": "/api/join",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "文本列表"},
+            {"name": "separator", "type": "string", "required": False, "description": "分隔符"}
+        ],
+        "icon": "plus"
     }
 }
 
