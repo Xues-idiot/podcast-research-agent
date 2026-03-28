@@ -12849,6 +12849,1367 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "type", "type": "string", "required": True, "description": "目标类型"}
         ],
         "icon": "refresh-cw"
+    },
+
+    # ========== 异常处理工具 ==========
+    "try_catch": {
+        "id": "try_catch",
+        "name": "尝试捕获",
+        "name_en": "Try Catch",
+        "description": "尝试执行并捕获异常",
+        "category": "exception",
+        "subcategory": "handle",
+        "api_endpoint": "/api/try-catch",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "catch", "type": "string", "required": False, "description": "异常处理"}
+        ],
+        "icon": "shield"
+    },
+    "throw": {
+        "id": "throw",
+        "name": "抛出异常",
+        "name_en": "Throw",
+        "description": "抛出异常",
+        "category": "exception",
+        "subcategory": "throw",
+        "api_endpoint": "/api/throw",
+        "method": "POST",
+        "params": [
+            {"name": "message", "type": "string", "required": True, "description": "消息"}
+        ],
+        "icon": "alert-circle"
+    },
+    "is_error": {
+        "id": "is_error",
+        "name": "错误检查",
+        "name_en": "Is Error",
+        "description": "检查是否为错误",
+        "category": "exception",
+        "subcategory": "predicate",
+        "api_endpoint": "/api/is-error",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 调试工具 ==========
+    "debug": {
+        "id": "debug",
+        "name": "调试",
+        "name_en": "Debug",
+        "description": "输出调试信息",
+        "category": "debug",
+        "subcategory": "print",
+        "api_endpoint": "/api/debug",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "bug"
+    },
+    "inspect": {
+        "id": "inspect",
+        "name": "检查",
+        "name_en": "Inspect",
+        "description": "检查对象结构",
+        "category": "debug",
+        "subcategory": "print",
+        "api_endpoint": "/api/inspect",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "search"
+    },
+    "tap": {
+        "id": "tap",
+        "name": "点击",
+        "name_en": "Tap",
+        "description": "执行并返回",
+        "category": "debug",
+        "subcategory": "print",
+        "api_endpoint": "/api/tap",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "fn", "type": "string", "required": False, "description": "函数"}
+        ],
+        "icon": "pointer"
+    },
+
+    # ========== 断言工具 ==========
+    "assert": {
+        "id": "assert",
+        "name": "断言",
+        "name_en": "Assert",
+        "description": "断言条件为真",
+        "category": "assert",
+        "subcategory": "check",
+        "api_endpoint": "/api/assert",
+        "method": "POST",
+        "params": [
+            {"name": "condition", "type": "boolean", "required": True, "description": "条件"},
+            {"name": "message", "type": "string", "required": False, "description": "消息"}
+        ],
+        "icon": "check-square"
+    },
+    "assert_equal": {
+        "id": "assert_equal",
+        "name": "断言相等",
+        "name_en": "Assert Equal",
+        "description": "断言两个值相等",
+        "category": "assert",
+        "subcategory": "check",
+        "api_endpoint": "/api/assert-equal",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "any", "required": True, "description": "值A"},
+            {"name": "b", "type": "any", "required": True, "description": "值B"}
+        ],
+        "icon": "equal"
+    },
+    "assert_not_equal": {
+        "id": "assert_not_equal",
+        "name": "断言不等",
+        "name_en": "Assert Not Equal",
+        "description": "断言两个值不等",
+        "category": "assert",
+        "subcategory": "check",
+        "api_endpoint": "/api/assert-not-equal",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "any", "required": True, "description": "值A"},
+            {"name": "b", "type": "any", "required": True, "description": "值B"}
+        ],
+        "icon": "not-equal"
+    },
+    "assert_type": {
+        "id": "assert_type",
+        "name": "断言类型",
+        "name_en": "Assert Type",
+        "description": "断言值类型",
+        "category": "assert",
+        "subcategory": "check",
+        "api_endpoint": "/api/assert-type",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "type", "type": "string", "required": True, "description": "类型"}
+        ],
+        "icon": "code"
+    },
+
+    # ========== 测试工具 ==========
+    "test": {
+        "id": "test",
+        "name": "测试",
+        "name_en": "Test",
+        "description": "运行测试",
+        "category": "test",
+        "subcategory": "run",
+        "api_endpoint": "/api/test",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "测试函数"}
+        ],
+        "icon": "play"
+    },
+    "describe": {
+        "id": "describe",
+        "name": "描述测试",
+        "name_en": "Describe",
+        "description": "描述测试用例",
+        "category": "test",
+        "subcategory": "structure",
+        "api_endpoint": "/api/describe",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"},
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "file-text"
+    },
+    "it": {
+        "id": "it",
+        "name": "测试项",
+        "name_en": "It",
+        "description": "定义测试项",
+        "category": "test",
+        "subcategory": "structure",
+        "api_endpoint": "/api/it",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"},
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "check-circle"
+    },
+    "expect": {
+        "id": "expect",
+        "name": "期望",
+        "name_en": "Expect",
+        "description": "期望值",
+        "category": "test",
+        "subcategory": "assert",
+        "api_endpoint": "/api/expect",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "eye"
+    },
+
+    # ========== 树形结构工具 ==========
+    "tree_create": {
+        "id": "tree_create",
+        "name": "创建树",
+        "name_en": "Create Tree",
+        "description": "创建树结构",
+        "category": "tree",
+        "subcategory": "create",
+        "api_endpoint": "/api/tree-create",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"},
+            {"name": "children", "type": "string", "required": False, "description": "子节点键"}
+        ],
+        "icon": "git-branch"
+    },
+    "tree_get": {
+        "id": "tree_get",
+        "name": "获取节点",
+        "name_en": "Get Node",
+        "description": "获取树节点",
+        "category": "tree",
+        "subcategory": "access",
+        "api_endpoint": "/api/tree-get",
+        "method": "POST",
+        "params": [
+            {"name": "tree", "type": "any", "required": True, "description": "树"},
+            {"name": "path", "type": "string", "required": True, "description": "路径"}
+        ],
+        "icon": "search"
+    },
+    "tree_set": {
+        "id": "tree_set",
+        "name": "设置节点",
+        "name_en": "Set Node",
+        "description": "设置树节点",
+        "category": "tree",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/tree-set",
+        "method": "POST",
+        "params": [
+            {"name": "tree", "type": "any", "required": True, "description": "树"},
+            {"name": "path", "type": "string", "required": True, "description": "路径"},
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "edit"
+    },
+    "tree_flatten": {
+        "id": "tree_flatten",
+        "name": "树扁平化",
+        "name_en": "Flatten Tree",
+        "description": "将树扁平化",
+        "category": "tree",
+        "subcategory": "transform",
+        "api_endpoint": "/api/tree-flatten",
+        "method": "POST",
+        "params": [
+            {"name": "tree", "type": "any", "required": True, "description": "树"}
+        ],
+        "icon": "minimize"
+    },
+    "tree_map": {
+        "id": "tree_map",
+        "name": "树映射",
+        "name_en": "Map Tree",
+        "description": "映射树节点",
+        "category": "tree",
+        "subcategory": "transform",
+        "api_endpoint": "/api/tree-map",
+        "method": "POST",
+        "params": [
+            {"name": "tree", "type": "any", "required": True, "description": "树"},
+            {"name": "fn", "type": "string", "required": True, "description": "映射函数"}
+        ],
+        "icon": "map"
+    },
+
+    # ========== 图结构工具 ==========
+    "graph_create": {
+        "id": "graph_create",
+        "name": "创建图",
+        "name_en": "Create Graph",
+        "description": "创建图结构",
+        "category": "graph",
+        "subcategory": "create",
+        "api_endpoint": "/api/graph-create",
+        "method": "POST",
+        "params": [
+            {"name": "edges", "type": "array", "required": True, "description": "边数组"},
+            {"name": "directed", "type": "boolean", "required": False, "description": "有向"}
+        ],
+        "icon": "git-branch"
+    },
+    "graph_add_node": {
+        "id": "graph_add_node",
+        "name": "添加节点",
+        "name_en": "Add Node",
+        "description": "添加图节点",
+        "category": "graph",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/graph-add-node",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "any", "required": True, "description": "图"},
+            {"name": "node", "type": "any", "required": True, "description": "节点"}
+        ],
+        "icon": "plus"
+    },
+    "graph_add_edge": {
+        "id": "graph_add_edge",
+        "name": "添加边",
+        "name_en": "Add Edge",
+        "description": "添加图边",
+        "category": "graph",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/graph-add-edge",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "any", "required": True, "description": "图"},
+            {"name": "from", "type": "any", "required": True, "description": "起点"},
+            {"name": "to", "type": "any", "required": True, "description": "终点"}
+        ],
+        "icon": "link"
+    },
+    "graph_bfs": {
+        "id": "graph_bfs",
+        "name": "广度优先",
+        "name_en": "BFS",
+        "description": "广度优先搜索",
+        "category": "graph",
+        "subcategory": "traverse",
+        "api_endpoint": "/api/graph-bfs",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "any", "required": True, "description": "图"},
+            {"name": "start", "type": "any", "required": True, "description": "起始节点"}
+        ],
+        "icon": "git-branch"
+    },
+    "graph_dfs": {
+        "id": "graph_dfs",
+        "name": "深度优先",
+        "name_en": "DFS",
+        "description": "深度优先搜索",
+        "category": "graph",
+        "subcategory": "traverse",
+        "api_endpoint": "/api/graph-dfs",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "any", "required": True, "description": "图"},
+            {"name": "start", "type": "any", "required": True, "description": "起始节点"}
+        ],
+        "icon": "git-branch"
+    },
+    "graph_shortest_path": {
+        "id": "graph_shortest_path",
+        "name": "最短路径",
+        "name_en": "Shortest Path",
+        "description": "最短路径",
+        "category": "graph",
+        "subcategory": "path",
+        "api_endpoint": "/api/graph-shortest-path",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "any", "required": True, "description": "图"},
+            {"name": "from", "type": "any", "required": True, "description": "起点"},
+            {"name": "to", "type": "any", "required": True, "description": "终点"}
+        ],
+        "icon": "route"
+    },
+
+    # ========== 队列工具 ==========
+    "queue_create": {
+        "id": "queue_create",
+        "name": "创建队列",
+        "name_en": "Create Queue",
+        "description": "创建队列",
+        "category": "queue",
+        "subcategory": "create",
+        "api_endpoint": "/api/queue-create",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": False, "description": "初始元素"}
+        ],
+        "icon": "list"
+    },
+    "queue_enqueue": {
+        "id": "queue_enqueue",
+        "name": "入队",
+        "name_en": "Enqueue",
+        "description": "元素入队",
+        "category": "queue",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/queue-enqueue",
+        "method": "POST",
+        "params": [
+            {"name": "queue", "type": "array", "required": True, "description": "队列"},
+            {"name": "item", "type": "any", "required": True, "description": "元素"}
+        ],
+        "icon": "plus"
+    },
+    "queue_dequeue": {
+        "id": "queue_dequeue",
+        "name": "出队",
+        "name_en": "Dequeue",
+        "description": "元素出队",
+        "category": "queue",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/queue-dequeue",
+        "method": "POST",
+        "params": [
+            {"name": "queue", "type": "array", "required": True, "description": "队列"}
+        ],
+        "icon": "minus"
+    },
+    "queue_peek": {
+        "id": "queue_peek",
+        "name": "查看队首",
+        "name_en": "Peek Queue",
+        "description": "查看队首元素",
+        "category": "queue",
+        "subcategory": "access",
+        "api_endpoint": "/api/queue-peek",
+        "method": "POST",
+        "params": [
+            {"name": "queue", "type": "array", "required": True, "description": "队列"}
+        ],
+        "icon": "eye"
+    },
+
+    # ========== 栈工具 ==========
+    "stack_create": {
+        "id": "stack_create",
+        "name": "创建栈",
+        "name_en": "Create Stack",
+        "description": "创建栈",
+        "category": "stack",
+        "subcategory": "create",
+        "api_endpoint": "/api/stack-create",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": False, "description": "初始元素"}
+        ],
+        "icon": "list"
+    },
+    "stack_push": {
+        "id": "stack_push",
+        "name": "压栈",
+        "name_en": "Push",
+        "description": "元素压栈",
+        "category": "stack",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/stack-push",
+        "method": "POST",
+        "params": [
+            {"name": "stack", "type": "array", "required": True, "description": "栈"},
+            {"name": "item", "type": "any", "required": True, "description": "元素"}
+        ],
+        "icon": "plus"
+    },
+    "stack_pop": {
+        "id": "stack_pop",
+        "name": "弹栈",
+        "name_en": "Pop",
+        "description": "元素弹栈",
+        "category": "stack",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/stack-pop",
+        "method": "POST",
+        "params": [
+            {"name": "stack", "type": "array", "required": True, "description": "栈"}
+        ],
+        "icon": "minus"
+    },
+    "stack_peek": {
+        "id": "stack_peek",
+        "name": "查看栈顶",
+        "name_en": "Peek Stack",
+        "description": "查看栈顶元素",
+        "category": "stack",
+        "subcategory": "access",
+        "api_endpoint": "/api/stack-peek",
+        "method": "POST",
+        "params": [
+            {"name": "stack", "type": "array", "required": True, "description": "栈"}
+        ],
+        "icon": "eye"
+    },
+
+    # ========== 堆工具 ==========
+    "heap_create": {
+        "id": "heap_create",
+        "name": "创建堆",
+        "name_en": "Create Heap",
+        "description": "创建堆",
+        "category": "heap",
+        "subcategory": "create",
+        "api_endpoint": "/api/heap-create",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": False, "description": "初始元素"},
+            {"name": "compare", "type": "string", "required": False, "description": "比较函数"}
+        ],
+        "icon": "list"
+    },
+    "heap_push": {
+        "id": "heap_push",
+        "name": "堆插入",
+        "name_en": "Heap Push",
+        "description": "插入堆元素",
+        "category": "heap",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/heap-push",
+        "method": "POST",
+        "params": [
+            {"name": "heap", "type": "array", "required": True, "description": "堆"},
+            {"name": "item", "type": "any", "required": True, "description": "元素"}
+        ],
+        "icon": "plus"
+    },
+    "heap_pop": {
+        "id": "heap_pop",
+        "name": "堆弹出",
+        "name_en": "Heap Pop",
+        "description": "弹出堆顶",
+        "category": "heap",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/heap-pop",
+        "method": "POST",
+        "params": [
+            {"name": "heap", "type": "array", "required": True, "description": "堆"}
+        ],
+        "icon": "minus"
+    },
+    "heap_peek": {
+        "id": "heap_peek",
+        "name": "查看堆顶",
+        "name_en": "Peek Heap",
+        "description": "查看堆顶元素",
+        "category": "heap",
+        "subcategory": "access",
+        "api_endpoint": "/api/heap-peek",
+        "method": "POST",
+        "params": [
+            {"name": "heap", "type": "array", "required": True, "description": "堆"}
+        ],
+        "icon": "eye"
+    },
+
+    # ========== 集合工具 ==========
+    "set_create": {
+        "id": "set_create",
+        "name": "创建集合",
+        "name_en": "Create Set",
+        "description": "创建集合",
+        "category": "set",
+        "subcategory": "create",
+        "api_endpoint": "/api/set-create",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": False, "description": "初始元素"}
+        ],
+        "icon": "hash"
+    },
+    "set_add": {
+        "id": "set_add",
+        "name": "添加元素",
+        "name_en": "Set Add",
+        "description": "添加集合元素",
+        "category": "set",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/set-add",
+        "method": "POST",
+        "params": [
+            {"name": "set", "type": "array", "required": True, "description": "集合"},
+            {"name": "item", "type": "any", "required": True, "description": "元素"}
+        ],
+        "icon": "plus"
+    },
+    "set_remove": {
+        "id": "set_remove",
+        "name": "删除元素",
+        "name_en": "Set Remove",
+        "description": "删除集合元素",
+        "category": "set",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/set-remove",
+        "method": "POST",
+        "params": [
+            {"name": "set", "type": "array", "required": True, "description": "集合"},
+            {"name": "item", "type": "any", "required": True, "description": "元素"}
+        ],
+        "icon": "minus"
+    },
+    "set_has": {
+        "id": "set_has",
+        "name": "元素存在",
+        "name_en": "Set Has",
+        "description": "检查元素是否存在",
+        "category": "set",
+        "subcategory": "search",
+        "api_endpoint": "/api/set-has",
+        "method": "POST",
+        "params": [
+            {"name": "set", "type": "array", "required": True, "description": "集合"},
+            {"name": "item", "type": "any", "required": True, "description": "元素"}
+        ],
+        "icon": "check"
+    },
+    "set_union": {
+        "id": "set_union",
+        "name": "集合并集",
+        "name_en": "Set Union",
+        "description": "集合并集",
+        "category": "set",
+        "subcategory": "operator",
+        "api_endpoint": "/api/set-union",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "集合A"},
+            {"name": "b", "type": "array", "required": True, "description": "集合B"}
+        ],
+        "icon": "git-merge"
+    },
+    "set_intersection": {
+        "id": "set_intersection",
+        "name": "集合交集",
+        "name_en": "Set Intersection",
+        "description": "集合交集",
+        "category": "set",
+        "subcategory": "operator",
+        "api_endpoint": "/api/set-intersection",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "集合A"},
+            {"name": "b", "type": "array", "required": True, "description": "集合B"}
+        ],
+        "icon": "git-intersect"
+    },
+    "set_difference": {
+        "id": "set_difference",
+        "name": "集合差集",
+        "name_en": "Set Difference",
+        "description": "集合差集",
+        "category": "set",
+        "subcategory": "operator",
+        "api_endpoint": "/api/set-difference",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "集合A"},
+            {"name": "b", "type": "array", "required": True, "description": "集合B"}
+        ],
+        "icon": "git-merge"
+    },
+
+    # ========== 链表工具 ==========
+    "list_create": {
+        "id": "list_create",
+        "name": "创建链表",
+        "name_en": "Create List",
+        "description": "创建链表",
+        "category": "list",
+        "subcategory": "create",
+        "api_endpoint": "/api/list-create",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": False, "description": "初始元素"}
+        ],
+        "icon": "list"
+    },
+    "list_append": {
+        "id": "list_append",
+        "name": "追加",
+        "name_en": "Append",
+        "description": "链表追加",
+        "category": "list",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/list-append",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "链表"},
+            {"name": "item", "type": "any", "required": True, "description": "元素"}
+        ],
+        "icon": "plus"
+    },
+    "list_prepend": {
+        "id": "list_prepend",
+        "name": "前置",
+        "name_en": "Prepend",
+        "description": "链表前置",
+        "category": "list",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/list-prepend",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "链表"},
+            {"name": "item", "type": "any", "required": True, "description": "元素"}
+        ],
+        "icon": "plus"
+    },
+    "list_insert": {
+        "id": "list_insert",
+        "name": "插入",
+        "name_en": "Insert",
+        "description": "链表插入",
+        "category": "list",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/list-insert",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "链表"},
+            {"name": "index", "type": "number", "required": True, "description": "索引"},
+            {"name": "item", "type": "any", "required": True, "description": "元素"}
+        ],
+        "icon": "edit"
+    },
+    "list_delete": {
+        "id": "list_delete",
+        "name": "删除",
+        "name_en": "Delete",
+        "description": "链表删除",
+        "category": "list",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/list-delete",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "链表"},
+            {"name": "index", "type": "number", "required": True, "description": "索引"}
+        ],
+        "icon": "trash"
+    },
+    "list_get": {
+        "id": "list_get",
+        "name": "获取",
+        "name_en": "Get",
+        "description": "获取链表元素",
+        "category": "list",
+        "subcategory": "access",
+        "api_endpoint": "/api/list-get",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "链表"},
+            {"name": "index", "type": "number", "required": True, "description": "索引"}
+        ],
+        "icon": "search"
+    },
+
+    # ========== 表格工具 ==========
+    "table_create": {
+        "id": "table_create",
+        "name": "创建表格",
+        "name_en": "Create Table",
+        "description": "创建表格",
+        "category": "table",
+        "subcategory": "create",
+        "api_endpoint": "/api/table-create",
+        "method": "POST",
+        "params": [
+            {"name": "headers", "type": "array", "required": True, "description": "表头"},
+            {"name": "rows", "type": "array", "required": False, "description": "行数据"}
+        ],
+        "icon": "grid"
+    },
+    "table_select": {
+        "id": "table_select",
+        "name": "选择列",
+        "name_en": "Select Columns",
+        "description": "选择表格列",
+        "category": "table",
+        "subcategory": "query",
+        "api_endpoint": "/api/table-select",
+        "method": "POST",
+        "params": [
+            {"name": "table", "type": "array", "required": True, "description": "表格"},
+            {"name": "columns", "type": "array", "required": True, "description": "列名"}
+        ],
+        "icon": "check-square"
+    },
+    "table_filter": {
+        "id": "table_filter",
+        "name": "过滤行",
+        "name_en": "Filter Rows",
+        "description": "过滤表格行",
+        "category": "table",
+        "subcategory": "query",
+        "api_endpoint": "/api/table-filter",
+        "method": "POST",
+        "params": [
+            {"name": "table", "type": "array", "required": True, "description": "表格"},
+            {"name": "fn", "type": "string", "required": True, "description": "过滤函数"}
+        ],
+        "icon": "filter"
+    },
+    "table_sort": {
+        "id": "table_sort",
+        "name": "排序",
+        "name_en": "Sort Table",
+        "description": "表格排序",
+        "category": "table",
+        "subcategory": "transform",
+        "api_endpoint": "/api/table-sort",
+        "method": "POST",
+        "params": [
+            {"name": "table", "type": "array", "required": True, "description": "表格"},
+            {"name": "column", "type": "string", "required": True, "description": "排序列"},
+            {"name": "desc", "type": "boolean", "required": False, "description": "降序"}
+        ],
+        "icon": "sort-asc"
+    },
+    "table_group": {
+        "id": "table_group",
+        "name": "分组",
+        "name_en": "Group Table",
+        "description": "表格分组",
+        "category": "table",
+        "subcategory": "transform",
+        "api_endpoint": "/api/table-group",
+        "method": "POST",
+        "params": [
+            {"name": "table", "type": "array", "required": True, "description": "表格"},
+            {"name": "column", "type": "string", "required": True, "description": "分组列"}
+        ],
+        "icon": "group"
+    },
+    "table_join": {
+        "id": "table_join",
+        "name": "连接表",
+        "name_en": "Join Tables",
+        "description": "连接两个表格",
+        "category": "table",
+        "subcategory": "transform",
+        "api_endpoint": "/api/table-join",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "表A"},
+            {"name": "b", "type": "array", "required": True, "description": "表B"},
+            {"name": "on", "type": "string", "required": True, "description": "连接键"}
+        ],
+        "icon": "link"
+    },
+
+    # ========== 缓冲区工具 ==========
+    "buffer_create": {
+        "id": "buffer_create",
+        "name": "创建缓冲区",
+        "name_en": "Create Buffer",
+        "description": "创建缓冲区",
+        "category": "buffer",
+        "subcategory": "create",
+        "api_endpoint": "/api/buffer-create",
+        "method": "POST",
+        "params": [
+            {"name": "size", "type": "number", "required": False, "description": "大小"}
+        ],
+        "icon": "box"
+    },
+    "buffer_write": {
+        "id": "buffer_write",
+        "name": "写入",
+        "name_en": "Write Buffer",
+        "description": "写入缓冲区",
+        "category": "buffer",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/buffer-write",
+        "method": "POST",
+        "params": [
+            {"name": "buffer", "type": "string", "required": True, "description": "缓冲区"},
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "edit"
+    },
+    "buffer_read": {
+        "id": "buffer_read",
+        "name": "读取",
+        "name_en": "Read Buffer",
+        "description": "读取缓冲区",
+        "category": "buffer",
+        "subcategory": "access",
+        "api_endpoint": "/api/buffer-read",
+        "method": "POST",
+        "params": [
+            {"name": "buffer", "type": "string", "required": True, "description": "缓冲区"}
+        ],
+        "icon": "search"
+    },
+    "buffer_clear": {
+        "id": "buffer_clear",
+        "name": "清空",
+        "name_en": "Clear Buffer",
+        "description": "清空缓冲区",
+        "category": "buffer",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/buffer-clear",
+        "method": "POST",
+        "params": [
+            {"name": "buffer", "type": "string", "required": True, "description": "缓冲区"}
+        ],
+        "icon": "trash"
+    },
+
+    # ========== 环形缓冲区工具 ==========
+    "ring_create": {
+        "id": "ring_create",
+        "name": "创建环",
+        "name_en": "Create Ring",
+        "description": "创建环形缓冲区",
+        "category": "ring",
+        "subcategory": "create",
+        "api_endpoint": "/api/ring-create",
+        "method": "POST",
+        "params": [
+            {"name": "size", "type": "number", "required": True, "description": "大小"}
+        ],
+        "icon": "repeat"
+    },
+    "ring_push": {
+        "id": "ring_push",
+        "name": "环插入",
+        "name_en": "Ring Push",
+        "description": "环缓冲区插入",
+        "category": "ring",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/ring-push",
+        "method": "POST",
+        "params": [
+            {"name": "ring", "type": "array", "required": True, "description": "环"},
+            {"name": "item", "type": "any", "required": True, "description": "元素"}
+        ],
+        "icon": "plus"
+    },
+    "ring_pop": {
+        "id": "ring_pop",
+        "name": "环弹出",
+        "name_en": "Ring Pop",
+        "description": "环缓冲区弹出",
+        "category": "ring",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/ring-pop",
+        "method": "POST",
+        "params": [
+            {"name": "ring", "type": "array", "required": True, "description": "环"}
+        ],
+        "icon": "minus"
+    },
+
+    # ========== 布隆过滤器工具 ==========
+    "bloom_create": {
+        "id": "bloom_create",
+        "name": "创建布隆过滤器",
+        "name_en": "Create Bloom Filter",
+        "description": "创建布隆过滤器",
+        "category": "bloom",
+        "subcategory": "create",
+        "api_endpoint": "/api/bloom-create",
+        "method": "POST",
+        "params": [
+            {"name": "size", "type": "number", "required": False, "description": "大小"},
+            {"name": "hashes", "type": "number", "required": False, "description": "哈希数"}
+        ],
+        "icon": "filter"
+    },
+    "bloom_add": {
+        "id": "bloom_add",
+        "name": "布隆添加",
+        "name_en": "Bloom Add",
+        "description": "布隆过滤器添加",
+        "category": "bloom",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/bloom-add",
+        "method": "POST",
+        "params": [
+            {"name": "bloom", "type": "any", "required": True, "description": "过滤器"},
+            {"name": "item", "type": "string", "required": True, "description": "元素"}
+        ],
+        "icon": "plus"
+    },
+    "bloom_has": {
+        "id": "bloom_has",
+        "name": "布隆检查",
+        "name_en": "Bloom Has",
+        "description": "检查元素是否可能存在",
+        "category": "bloom",
+        "subcategory": "search",
+        "api_endpoint": "/api/bloom-has",
+        "method": "POST",
+        "params": [
+            {"name": "bloom", "type": "any", "required": True, "description": "过滤器"},
+            {"name": "item", "type": "string", "required": True, "description": "元素"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== LRU缓存工具 ==========
+    "lru_create": {
+        "id": "lru_create",
+        "name": "创建LRU",
+        "name_en": "Create LRU",
+        "description": "创建LRU缓存",
+        "category": "lru",
+        "subcategory": "create",
+        "api_endpoint": "/api/lru-create",
+        "method": "POST",
+        "params": [
+            {"name": "capacity", "type": "number", "required": True, "description": "容量"}
+        ],
+        "icon": "database"
+    },
+    "lru_get": {
+        "id": "lru_get",
+        "name": "LRU获取",
+        "name_en": "LRU Get",
+        "description": "获取LRU缓存",
+        "category": "lru",
+        "subcategory": "access",
+        "api_endpoint": "/api/lru-get",
+        "method": "POST",
+        "params": [
+            {"name": "lru", "type": "any", "required": True, "description": "缓存"},
+            {"name": "key", "type": "string", "required": True, "description": "键"}
+        ],
+        "icon": "search"
+    },
+    "lru_set": {
+        "id": "lru_set",
+        "name": "LRU设置",
+        "name_en": "LRU Set",
+        "description": "设置LRU缓存",
+        "category": "lru",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/lru-set",
+        "method": "POST",
+        "params": [
+            {"name": "lru", "type": "any", "required": True, "description": "缓存"},
+            {"name": "key", "type": "string", "required": True, "description": "键"},
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "edit"
+    },
+
+    # ========== 跳表工具 ==========
+    "skip_list_create": {
+        "id": "skip_list_create",
+        "name": "创建跳表",
+        "name_en": "Create Skip List",
+        "description": "创建跳表",
+        "category": "skiplist",
+        "subcategory": "create",
+        "api_endpoint": "/api/skip-list-create",
+        "method": "POST",
+        "params": [
+            {"name": "levels", "type": "number", "required": False, "description": "层数"}
+        ],
+        "icon": "list"
+    },
+    "skip_list_add": {
+        "id": "skip_list_add",
+        "name": "跳表添加",
+        "name_en": "Skip List Add",
+        "description": "跳表添加元素",
+        "category": "skiplist",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/skip-list-add",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "any", "required": True, "description": "跳表"},
+            {"name": "item", "type": "any", "required": True, "description": "元素"}
+        ],
+        "icon": "plus"
+    },
+    "skip_list_has": {
+        "id": "skip_list_has",
+        "name": "跳表检查",
+        "name_en": "Skip List Has",
+        "description": "检查元素是否存在",
+        "category": "skiplist",
+        "subcategory": "search",
+        "api_endpoint": "/api/skip-list-has",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "any", "required": True, "description": "跳表"},
+            {"name": "item", "type": "any", "required": True, "description": "元素"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 字典树工具 ==========
+    "trie_create": {
+        "id": "trie_create",
+        "name": "创建字典树",
+        "name_en": "Create Trie",
+        "description": "创建字典树",
+        "category": "trie",
+        "subcategory": "create",
+        "api_endpoint": "/api/trie-create",
+        "method": "POST",
+        "params": [],
+        "icon": "tree"
+    },
+    "trie_add": {
+        "id": "trie_add",
+        "name": "字典树添加",
+        "name_en": "Trie Add",
+        "description": "字典树添加单词",
+        "category": "trie",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/trie-add",
+        "method": "POST",
+        "params": [
+            {"name": "trie", "type": "any", "required": True, "description": "字典树"},
+            {"name": "word", "type": "string", "required": True, "description": "单词"}
+        ],
+        "icon": "plus"
+    },
+    "trie_has": {
+        "id": "trie_has",
+        "name": "字典树检查",
+        "name_en": "Trie Has",
+        "description": "检查单词是否存在",
+        "category": "trie",
+        "subcategory": "search",
+        "api_endpoint": "/api/trie-has",
+        "method": "POST",
+        "params": [
+            {"name": "trie", "type": "any", "required": True, "description": "字典树"},
+            {"name": "word", "type": "string", "required": True, "description": "单词"}
+        ],
+        "icon": "check"
+    },
+    "trie_search": {
+        "id": "trie_search",
+        "name": "字典树搜索",
+        "name_en": "Trie Search",
+        "description": "搜索前缀",
+        "category": "trie",
+        "subcategory": "search",
+        "api_endpoint": "/api/trie-search",
+        "method": "POST",
+        "params": [
+            {"name": "trie", "type": "any", "required": True, "description": "字典树"},
+            {"name": "prefix", "type": "string", "required": True, "description": "前缀"}
+        ],
+        "icon": "search"
+    },
+
+    # ========== 算法工具 ==========
+    "bubble_sort": {
+        "id": "bubble_sort",
+        "name": "冒泡排序",
+        "name_en": "Bubble Sort",
+        "description": "冒泡排序",
+        "category": "algorithm",
+        "subcategory": "sort",
+        "api_endpoint": "/api/bubble-sort",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "sort-asc"
+    },
+    "quick_sort": {
+        "id": "quick_sort",
+        "name": "快速排序",
+        "name_en": "Quick Sort",
+        "description": "快速排序",
+        "category": "algorithm",
+        "subcategory": "sort",
+        "api_endpoint": "/api/quick-sort",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "sort-asc"
+    },
+    "merge_sort": {
+        "id": "merge_sort",
+        "name": "归并排序",
+        "name_en": "Merge Sort",
+        "description": "归并排序",
+        "category": "algorithm",
+        "subcategory": "sort",
+        "api_endpoint": "/api/merge-sort",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "sort-asc"
+    },
+    "binary_search": {
+        "id": "binary_search",
+        "name": "二分搜索",
+        "name_en": "Binary Search",
+        "description": "二分搜索",
+        "category": "algorithm",
+        "subcategory": "search",
+        "api_endpoint": "/api/binary-search",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "有序数组"},
+            {"name": "target", "type": "any", "required": True, "description": "目标值"}
+        ],
+        "icon": "search"
+    },
+    "linear_search": {
+        "id": "linear_search",
+        "name": "线性搜索",
+        "name_en": "Linear Search",
+        "description": "线性搜索",
+        "category": "algorithm",
+        "subcategory": "search",
+        "api_endpoint": "/api/linear-search",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "target", "type": "any", "required": True, "description": "目标值"}
+        ],
+        "icon": "search"
+    },
+    "dijkstra": {
+        "id": "dijkstra",
+        "name": "Dijkstra",
+        "name_en": "Dijkstra",
+        "description": "Dijkstra最短路径",
+        "category": "algorithm",
+        "subcategory": "graph",
+        "api_endpoint": "/api/dijkstra",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "any", "required": True, "description": "图"},
+            {"name": "start", "type": "any", "required": True, "description": "起点"}
+        ],
+        "icon": "route"
+    },
+    "bellman_ford": {
+        "id": "bellman_ford",
+        "name": "Bellman-Ford",
+        "name_en": "Bellman-Ford",
+        "description": "Bellman-Ford最短路径",
+        "category": "algorithm",
+        "subcategory": "graph",
+        "api_endpoint": "/api/bellman-ford",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "any", "required": True, "description": "图"},
+            {"name": "start", "type": "any", "required": True, "description": "起点"}
+        ],
+        "icon": "route"
+    },
+    "floyd_warshall": {
+        "id": "floyd_warshall",
+        "name": "Floyd-Warshall",
+        "name_en": "Floyd-Warshall",
+        "description": "Floyd-Warshall全源最短路径",
+        "category": "algorithm",
+        "subcategory": "graph",
+        "api_endpoint": "/api/floyd-warshall",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "any", "required": True, "description": "图"}
+        ],
+        "icon": "route"
+    },
+    "kruskal": {
+        "id": "kruskal",
+        "name": "Kruskal",
+        "name_en": "Kruskal",
+        "description": "Kruskal最小生成树",
+        "category": "algorithm",
+        "subcategory": "graph",
+        "api_endpoint": "/api/kruskal",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "any", "required": True, "description": "图"}
+        ],
+        "icon": "git-branch"
+    },
+    "prim": {
+        "id": "prim",
+        "name": "Prim",
+        "name_en": "Prim",
+        "description": "Prim最小生成树",
+        "category": "algorithm",
+        "subcategory": "graph",
+        "api_endpoint": "/api/prim",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "any", "required": True, "description": "图"}
+        ],
+        "icon": "git-branch"
+    },
+    "topological_sort": {
+        "id": "topological_sort",
+        "name": "拓扑排序",
+        "name_en": "Topological Sort",
+        "description": "拓扑排序",
+        "category": "algorithm",
+        "subcategory": "graph",
+        "api_endpoint": "/api/topological-sort",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "any", "required": True, "description": "有向无环图"}
+        ],
+        "icon": "git-branch"
+    },
+    "knapsack": {
+        "id": "knapsack",
+        "name": "背包问题",
+        "name_en": "Knapsack",
+        "description": "0-1背包问题",
+        "category": "algorithm",
+        "subcategory": "dp",
+        "api_endpoint": "/api/knapsack",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "物品数组"},
+            {"name": "capacity", "type": "number", "required": True, "description": "容量"}
+        ],
+        "icon": "box"
+    },
+    "levenshtein": {
+        "id": "levenshtein",
+        "name": "编辑距离",
+        "name_en": "Levenshtein Distance",
+        "description": "计算编辑距离",
+        "category": "algorithm",
+        "subcategory": "string",
+        "api_endpoint": "/api/levenshtein",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "string", "required": True, "description": "字符串A"},
+            {"name": "b", "type": "string", "required": True, "description": "字符串B"}
+        ],
+        "icon": "edit"
+    },
+    "lcs": {
+        "id": "lcs",
+        "name": "最长公共子序列",
+        "name_en": "Longest Common Subsequence",
+        "description": "计算LCS",
+        "category": "algorithm",
+        "subcategory": "string",
+        "api_endpoint": "/api/lcs",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "string", "required": True, "description": "字符串A"},
+            {"name": "b", "type": "string", "required": True, "description": "字符串B"}
+        ],
+        "icon": "git-branch"
     }
 }
 
