@@ -699,6 +699,18 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "params": [],
         "icon": "lock"
     },
+    "compare_utils": {
+        "id": "compare_utils",
+        "name": "比较工具",
+        "name_en": "Compare Utils",
+        "description": "比较操作：求最小最大值、clamp限制、范围判断",
+        "category": "math",
+        "subcategory": "compare",
+        "api_endpoint": "/api/compare",
+        "method": "POST",
+        "params": [],
+        "icon": "check"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
