@@ -21184,6 +21184,270 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "percent"
     },
+
+    # ========== 调试工具 ==========
+    "debug_print": {
+        "id": "debug_print",
+        "name": "调试打印",
+        "name_en": "Debug Print",
+        "description": "打印调试信息",
+        "category": "debug",
+        "subcategory": "print",
+        "api_endpoint": "/api/debug_print",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "terminal"
+    },
+    "debug_var": {
+        "id": "debug_var",
+        "name": "变量检查",
+        "name_en": "Debug Variable",
+        "description": "检查变量类型和值",
+        "category": "debug",
+        "subcategory": "inspect",
+        "api_endpoint": "/api/debug_var",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "变量名"},
+            {"name": "value", "type": "any", "required": True, "description": "变量值"}
+        ],
+        "icon": "search"
+    },
+    "debug_trace": {
+        "id": "debug_trace",
+        "name": "调用追踪",
+        "name_en": "Trace Calls",
+        "description": "追踪函数调用",
+        "category": "debug",
+        "subcategory": "trace",
+        "api_endpoint": "/api/debug_trace",
+        "method": "POST",
+        "params": [
+            {"name": "func", "type": "function", "required": True, "description": "函数"}
+        ],
+        "icon": "git-branch"
+    },
+    "debug_time": {
+        "id": "debug_time",
+        "name": "时间测量",
+        "name_en": "Time Measure",
+        "description": "测量代码执行时间",
+        "category": "debug",
+        "subcategory": "time",
+        "api_endpoint": "/api/debug_time",
+        "method": "POST",
+        "params": [
+            {"name": "func", "type": "function", "required": True, "description": "函数"}
+        ],
+        "icon": "clock"
+    },
+    "debug_memory": {
+        "id": "debug_memory",
+        "name": "内存检查",
+        "name_en": "Memory Check",
+        "description": "检查内存使用",
+        "category": "debug",
+        "subcategory": "memory",
+        "api_endpoint": "/api/debug_memory",
+        "method": "POST",
+        "params": [],
+        "icon": "database"
+    },
+    "breakpoint": {
+        "id": "breakpoint",
+        "name": "断点",
+        "name_en": "Breakpoint",
+        "description": "设置断点",
+        "category": "debug",
+        "subcategory": "breakpoint",
+        "api_endpoint": "/api/breakpoint",
+        "method": "POST",
+        "params": [],
+        "icon": "stop-circle"
+    },
+
+    # ========== 断言工具 ==========
+    "assert_true": {
+        "id": "assert_true",
+        "name": "断言为真",
+        "name_en": "Assert True",
+        "description": "断言条件为真",
+        "category": "assert",
+        "subcategory": "boolean",
+        "api_endpoint": "/api/assert_true",
+        "method": "POST",
+        "params": [
+            {"name": "condition", "type": "boolean", "required": True, "description": "条件"},
+            {"name": "message", "type": "string", "required": False, "description": "失败消息"}
+        ],
+        "icon": "check"
+    },
+    "assert_false": {
+        "id": "assert_false",
+        "name": "断言为假",
+        "name_en": "Assert False",
+        "description": "断言条件为假",
+        "category": "assert",
+        "subcategory": "boolean",
+        "api_endpoint": "/api/assert_false",
+        "method": "POST",
+        "params": [
+            {"name": "condition", "type": "boolean", "required": True, "description": "条件"},
+            {"name": "message", "type": "string", "required": False, "description": "失败消息"}
+        ],
+        "icon": "check"
+    },
+    "assert_equal": {
+        "id": "assert_equal",
+        "name": "断言相等",
+        "name_en": "Assert Equal",
+        "description": "断言两个值相等",
+        "category": "assert",
+        "subcategory": "comparison",
+        "api_endpoint": "/api/assert_equal",
+        "method": "POST",
+        "params": [
+            {"name": "actual", "type": "any", "required": True, "description": "实际值"},
+            {"name": "expected", "type": "any", "required": True, "description": "期望值"},
+            {"name": "message", "type": "string", "required": False, "description": "失败消息"}
+        ],
+        "icon": "check"
+    },
+    "assert_not_equal": {
+        "id": "assert_not_equal",
+        "name": "断言不相等",
+        "name_en": "Assert Not Equal",
+        "description": "断言两个值不相等",
+        "category": "assert",
+        "subcategory": "comparison",
+        "api_endpoint": "/api/assert_not_equal",
+        "method": "POST",
+        "params": [
+            {"name": "actual", "type": "any", "required": True, "description": "实际值"},
+            {"name": "expected", "type": "any", "required": True, "description": "期望值"},
+            {"name": "message", "type": "string", "required": False, "description": "失败消息"}
+        ],
+        "icon": "check"
+    },
+    "assert_null": {
+        "id": "assert_null",
+        "name": "断言为空",
+        "name_en": "Assert Null",
+        "description": "断言值为空",
+        "category": "assert",
+        "subcategory": "null",
+        "api_endpoint": "/api/assert_null",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "message", "type": "string", "required": False, "description": "失败消息"}
+        ],
+        "icon": "check"
+    },
+    "assert_not_null": {
+        "id": "assert_not_null",
+        "name": "断言非空",
+        "name_en": "Assert Not Null",
+        "description": "断言值非空",
+        "category": "assert",
+        "subcategory": "null",
+        "api_endpoint": "/api/assert_not_null",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "message", "type": "string", "required": False, "description": "失败消息"}
+        ],
+        "icon": "check"
+    },
+    "assert_type": {
+        "id": "assert_type",
+        "name": "断言类型",
+        "name_en": "Assert Type",
+        "description": "断言值类型",
+        "category": "assert",
+        "subcategory": "type",
+        "api_endpoint": "/api/assert_type",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "expected_type", "type": "string", "required": True, "description": "期望类型"},
+            {"name": "message", "type": "string", "required": False, "description": "失败消息"}
+        ],
+        "icon": "check"
+    },
+    "assert_contains": {
+        "id": "assert_contains",
+        "name": "断言包含",
+        "name_en": "Assert Contains",
+        "description": "断言包含某值",
+        "category": "assert",
+        "subcategory": "contains",
+        "api_endpoint": "/api/assert_contains",
+        "method": "POST",
+        "params": [
+            {"name": "container", "type": "any", "required": True, "description": "容器"},
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "message", "type": "string", "required": False, "description": "失败消息"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 测试工具 ==========
+    "test_suite": {
+        "id": "test_suite",
+        "name": "测试套件",
+        "name_en": "Test Suite",
+        "description": "创建测试套件",
+        "category": "test",
+        "subcategory": "suite",
+        "api_endpoint": "/api/test_suite",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"}
+        ],
+        "icon": "package"
+    },
+    "test_case": {
+        "id": "test_case",
+        "name": "测试用例",
+        "name_en": "Test Case",
+        "description": "创建测试用例",
+        "category": "test",
+        "subcategory": "case",
+        "api_endpoint": "/api/test_case",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"},
+            {"name": "func", "type": "function", "required": True, "description": "测试函数"}
+        ],
+        "icon": "file"
+    },
+    "run_tests": {
+        "id": "run_tests",
+        "name": "运行测试",
+        "name_en": "Run Tests",
+        "description": "运行所有测试",
+        "category": "test",
+        "subcategory": "run",
+        "api_endpoint": "/api/run_tests",
+        "method": "POST",
+        "params": [],
+        "icon": "play"
+    },
+    "test_report": {
+        "id": "test_report",
+        "name": "测试报告",
+        "name_en": "Test Report",
+        "description": "生成测试报告",
+        "category": "test",
+        "subcategory": "report",
+        "api_endpoint": "/api/test_report",
+        "method": "POST",
+        "params": [],
+        "icon": "file-text"
+    },
 }
 
 
