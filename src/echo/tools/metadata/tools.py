@@ -603,6 +603,18 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "params": [],
         "icon": "file"
     },
+    "array_utils": {
+        "id": "array_utils",
+        "name": "数组工具",
+        "name_en": "Array Utils",
+        "description": "数组操作：去重、并集、交集、差集、分块、扁平化",
+        "category": "data_structures",
+        "subcategory": "array",
+        "api_endpoint": "/api/array",
+        "method": "POST",
+        "params": [],
+        "icon": "list"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
