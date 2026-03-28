@@ -316,6 +316,22 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "list"
     },
+    "list_enumerate": {
+        "id": "list_enumerate",
+        "name": "列表枚举",
+        "name_en": "List Enumerate",
+        "description": "为列表元素添加索引，支持起始索引和步长",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-enumerate",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "源列表"},
+            {"name": "start", "type": "number", "required": False, "description": "起始索引"},
+            {"name": "step", "type": "number", "required": False, "description": "索引步长"}
+        ],
+        "icon": "hash"
+    },
 
     # ========== 编码转换工具 ==========
     "base64_tool": {
