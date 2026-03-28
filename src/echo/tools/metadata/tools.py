@@ -453,6 +453,20 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "list"
     },
+    "list_partition": {
+        "id": "list_partition",
+        "name": "列表分区",
+        "name_en": "List Partition",
+        "description": "将列表按条件分区、分组、分块",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-partition",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "源列表"}
+        ],
+        "icon": "list"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
