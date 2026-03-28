@@ -4172,6 +4172,102 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "text", "type": "string", "required": True, "description": "HTML文本"}
         ],
         "icon": "code"
+    },
+    "camel_to_snake": {
+        "id": "camel_to_snake",
+        "name": "驼峰转蛇形",
+        "name_en": "Camel to Snake",
+        "description": "驼峰命名转蛇形命名",
+        "category": "text",
+        "subcategory": "case",
+        "api_endpoint": "/api/camel-to-snake",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "驼峰文本"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "snake_to_camel": {
+        "id": "snake_to_camel",
+        "name": "蛇形转驼峰",
+        "name_en": "Snake to Camel",
+        "description": "蛇形命名转驼峰命名",
+        "category": "text",
+        "subcategory": "case",
+        "api_endpoint": "/api/snake-to-camel",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "蛇形文本"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "kebab_to_camel": {
+        "id": "kebab_to_camel",
+        "name": "串式转驼峰",
+        "name_en": "Kebab to Camel",
+        "description": "串式命名转驼峰命名",
+        "category": "text",
+        "subcategory": "case",
+        "api_endpoint": "/api/kebab-to-camel",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "串式文本"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "pluralize": {
+        "id": "pluralize",
+        "name": "复数化",
+        "name_en": "Pluralize",
+        "description": "单词复数化",
+        "category": "text",
+        "subcategory": "format",
+        "api_endpoint": "/api/pluralize",
+        "method": "POST",
+        "params": [
+            {"name": "word", "type": "string", "required": True, "description": "单词"}
+        ],
+        "icon": "type"
+    },
+    "singularize": {
+        "id": "singularize",
+        "name": "单数化",
+        "name_en": "Singularize",
+        "description": "单词单数化",
+        "category": "text",
+        "subcategory": "format",
+        "api_endpoint": "/api/singularize",
+        "method": "POST",
+        "params": [
+            {"name": "word", "type": "string", "required": True, "description": "单词"}
+        ],
+        "icon": "type"
+    },
+    "uuid4": {
+        "id": "uuid4",
+        "name": "UUID4生成",
+        "name_en": "UUID4 Generate",
+        "description": "生成UUID4",
+        "category": "random",
+        "subcategory": "uuid",
+        "api_endpoint": "/api/uuid4",
+        "method": "POST",
+        "params": [],
+        "icon": "hash"
+    },
+    "nanoid": {
+        "id": "nanoid",
+        "name": "NanoID生成",
+        "name_en": "NanoID Generate",
+        "description": "生成NanoID",
+        "category": "random",
+        "subcategory": "id",
+        "api_endpoint": "/api/nanoid",
+        "method": "POST",
+        "params": [
+            {"name": "length", "type": "number", "required": False, "description": "长度"}
+        ],
+        "icon": "hash"
     }
 }
 
