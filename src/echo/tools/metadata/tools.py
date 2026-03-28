@@ -18187,6 +18187,394 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "key"
     },
+
+    # ========== 加密解密工具 ==========
+    "aes_encrypt": {
+        "id": "aes_encrypt",
+        "name": "AES加密",
+        "name_en": "AES Encrypt",
+        "description": "使用AES算法加密数据",
+        "category": "crypto",
+        "subcategory": "encrypt",
+        "api_endpoint": "/api/aes_encrypt",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "明文"},
+            {"name": "key", "type": "string", "required": True, "description": "密钥"}
+        ],
+        "icon": "lock"
+    },
+    "aes_decrypt": {
+        "id": "aes_decrypt",
+        "name": "AES解密",
+        "name_en": "AES Decrypt",
+        "description": "使用AES算法解密数据",
+        "category": "crypto",
+        "subcategory": "decrypt",
+        "api_endpoint": "/api/aes_decrypt",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "密文"},
+            {"name": "key", "type": "string", "required": True, "description": "密钥"}
+        ],
+        "icon": "unlock"
+    },
+    "rsa_generate": {
+        "id": "rsa_generate",
+        "name": "RSA密钥生成",
+        "name_en": "RSA Key Generator",
+        "description": "生成RSA公钥私钥对",
+        "category": "crypto",
+        "subcategory": "rsa",
+        "api_endpoint": "/api/rsa_generate",
+        "method": "POST",
+        "params": [
+            {"name": "bits", "type": "number", "required": False, "description": "密钥位数", "default": 2048}
+        ],
+        "icon": "key"
+    },
+    "rsa_encrypt": {
+        "id": "rsa_encrypt",
+        "name": "RSA加密",
+        "name_en": "RSA Encrypt",
+        "description": "使用RSA公钥加密数据",
+        "category": "crypto",
+        "subcategory": "encrypt",
+        "api_endpoint": "/api/rsa_encrypt",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "明文"},
+            {"name": "public_key", "type": "string", "required": True, "description": "公钥"}
+        ],
+        "icon": "lock"
+    },
+    "rsa_decrypt": {
+        "id": "rsa_decrypt",
+        "name": "RSA解密",
+        "name_en": "RSA Decrypt",
+        "description": "使用RSA私钥解密数据",
+        "category": "crypto",
+        "subcategory": "decrypt",
+        "api_endpoint": "/api/rsa_decrypt",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "密文"},
+            {"name": "private_key", "type": "string", "required": True, "description": "私钥"}
+        ],
+        "icon": "unlock"
+    },
+    "xor_encrypt": {
+        "id": "xor_encrypt",
+        "name": "XOR加密",
+        "name_en": "XOR Encrypt",
+        "description": "使用XOR算法加密数据",
+        "category": "crypto",
+        "subcategory": "encrypt",
+        "api_endpoint": "/api/xor_encrypt",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "明文"},
+            {"name": "key", "type": "string", "required": True, "description": "密钥"}
+        ],
+        "icon": "lock"
+    },
+    "xor_decrypt": {
+        "id": "xor_decrypt",
+        "name": "XOR解密",
+        "name_en": "XOR Decrypt",
+        "description": "使用XOR算法解密数据",
+        "category": "crypto",
+        "subcategory": "decrypt",
+        "api_endpoint": "/api/xor_decrypt",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "密文"},
+            {"name": "key", "type": "string", "required": True, "description": "密钥"}
+        ],
+        "icon": "unlock"
+    },
+    "rot13": {
+        "id": "rot13",
+        "name": "ROT13加密",
+        "name_en": "ROT13 Cipher",
+        "description": "使用ROT13算法加密解密",
+        "category": "crypto",
+        "subcategory": "cipher",
+        "api_endpoint": "/api/rot13",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "lock"
+    },
+    "caesar_cipher": {
+        "id": "caesar_cipher",
+        "name": "凯撒密码",
+        "name_en": "Caesar Cipher",
+        "description": "使用凯撒密码加密文本",
+        "category": "crypto",
+        "subcategory": "cipher",
+        "api_endpoint": "/api/caesar_cipher",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "shift", "type": "number", "required": False, "description": "偏移量", "default": 3}
+        ],
+        "icon": "lock"
+    },
+
+    # ========== 时间工具 ==========
+    "now": {
+        "id": "now",
+        "name": "当前时刻",
+        "name_en": "Now",
+        "description": "获取当前日期时间",
+        "category": "datetime",
+        "subcategory": "current",
+        "api_endpoint": "/api/now",
+        "method": "POST",
+        "params": [],
+        "icon": "clock"
+    },
+    "today": {
+        "id": "today",
+        "name": "今日日期",
+        "name_en": "Today",
+        "description": "获取今天的日期",
+        "category": "datetime",
+        "subcategory": "current",
+        "api_endpoint": "/api/today",
+        "method": "POST",
+        "params": [],
+        "icon": "calendar"
+    },
+    "timestamp": {
+        "id": "timestamp",
+        "name": "时间戳",
+        "name_en": "Timestamp",
+        "description": "获取当前Unix时间戳",
+        "category": "datetime",
+        "subcategory": "current",
+        "api_endpoint": "/api/timestamp",
+        "method": "POST",
+        "params": [],
+        "icon": "clock"
+    },
+    "format_time": {
+        "id": "format_time",
+        "name": "格式化时间",
+        "name_en": "Format Time",
+        "description": "格式化时间字符串",
+        "category": "datetime",
+        "subcategory": "format",
+        "api_endpoint": "/api/format_time",
+        "method": "POST",
+        "params": [
+            {"name": "time", "type": "string", "required": True, "description": "时间字符串"},
+            {"name": "format", "type": "string", "required": False, "description": "格式", "default": "%Y-%m-%d %H:%M:%S"}
+        ],
+        "icon": "clock"
+    },
+    "parse_date": {
+        "id": "parse_date",
+        "name": "解析日期",
+        "name_en": "Parse Date",
+        "description": "解析日期字符串为日期对象",
+        "category": "datetime",
+        "subcategory": "parse",
+        "api_endpoint": "/api/parse_date",
+        "method": "POST",
+        "params": [
+            {"name": "date_string", "type": "string", "required": True, "description": "日期字符串"}
+        ],
+        "icon": "calendar"
+    },
+    "add_days": {
+        "id": "add_days",
+        "name": "加天数",
+        "name_en": "Add Days",
+        "description": "给日期加指定天数",
+        "category": "datetime",
+        "subcategory": "arithmetic",
+        "api_endpoint": "/api/add_days",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"},
+            {"name": "days", "type": "number", "required": True, "description": "天数"}
+        ],
+        "icon": "plus"
+    },
+    "subtract_days": {
+        "id": "subtract_days",
+        "name": "减天数",
+        "name_en": "Subtract Days",
+        "description": "给日期减指定天数",
+        "category": "datetime",
+        "subcategory": "arithmetic",
+        "api_endpoint": "/api/subtract_days",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"},
+            {"name": "days", "type": "number", "required": True, "description": "天数"}
+        ],
+        "icon": "minus"
+    },
+    "days_between": {
+        "id": "days_between",
+        "name": "天数差",
+        "name_en": "Days Between",
+        "description": "计算两个日期之间的天数",
+        "category": "datetime",
+        "subcategory": "arithmetic",
+        "api_endpoint": "/api/days_between",
+        "method": "POST",
+        "params": [
+            {"name": "start_date", "type": "string", "required": True, "description": "开始日期"},
+            {"name": "end_date", "type": "string", "required": True, "description": "结束日期"}
+        ],
+        "icon": "calendar"
+    },
+    "start_of_day": {
+        "id": "start_of_day",
+        "name": "日开始",
+        "name_en": "Start of Day",
+        "description": "获取一天的开始时间",
+        "category": "datetime",
+        "subcategory": "truncate",
+        "api_endpoint": "/api/start_of_day",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "sunrise"
+    },
+    "end_of_day": {
+        "id": "end_of_day",
+        "name": "日结束",
+        "name_en": "End of Day",
+        "description": "获取一天的结束时间",
+        "category": "datetime",
+        "subcategory": "truncate",
+        "api_endpoint": "/api/end_of_day",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "sunset"
+    },
+    "start_of_week": {
+        "id": "start_of_week",
+        "name": "周开始",
+        "name_en": "Start of Week",
+        "description": "获取一周的开始日期",
+        "category": "datetime",
+        "subcategory": "truncate",
+        "api_endpoint": "/api/start_of_week",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "calendar"
+    },
+    "start_of_month": {
+        "id": "start_of_month",
+        "name": "月开始",
+        "name_en": "Start of Month",
+        "description": "获取一月的开始日期",
+        "category": "datetime",
+        "subcategory": "truncate",
+        "api_endpoint": "/api/start_of_month",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "calendar"
+    },
+    "end_of_month": {
+        "id": "end_of_month",
+        "name": "月结束",
+        "name_en": "End of Month",
+        "description": "获取一月的结束日期",
+        "category": "datetime",
+        "subcategory": "truncate",
+        "api_endpoint": "/api/end_of_month",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "calendar"
+    },
+    "quarter_of_year": {
+        "id": "quarter_of_year",
+        "name": "年度季度",
+        "name_en": "Quarter of Year",
+        "description": "获取日期所在的季度",
+        "category": "datetime",
+        "subcategory": "info",
+        "api_endpoint": "/api/quarter_of_year",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "calendar"
+    },
+    "week_of_year": {
+        "id": "week_of_year",
+        "name": "年周数",
+        "name_en": "Week of Year",
+        "description": "获取日期所在的周数",
+        "category": "datetime",
+        "subcategory": "info",
+        "api_endpoint": "/api/week_of_year",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "calendar"
+    },
+    "is_weekend": {
+        "id": "is_weekend",
+        "name": "是否周末",
+        "name_en": "Is Weekend",
+        "description": "判断是否为周末",
+        "category": "datetime",
+        "subcategory": "check",
+        "api_endpoint": "/api/is_weekend",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "check"
+    },
+    "is_weekday": {
+        "id": "is_weekday",
+        "name": "是否工作日",
+        "name_en": "Is Weekday",
+        "description": "判断是否为工作日",
+        "category": "datetime",
+        "subcategory": "check",
+        "api_endpoint": "/api/is_weekday",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "check"
+    },
+    "days_in_month": {
+        "id": "days_in_month",
+        "name": "月天数",
+        "name_en": "Days in Month",
+        "description": "获取某月的天数",
+        "category": "datetime",
+        "subcategory": "info",
+        "api_endpoint": "/api/days_in_month",
+        "method": "POST",
+        "params": [
+            {"name": "year", "type": "number", "required": True, "description": "年份"},
+            {"name": "month", "type": "number", "required": True, "description": "月份"}
+        ],
+        "icon": "calendar"
+    },
 }
 
 
