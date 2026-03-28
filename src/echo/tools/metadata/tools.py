@@ -21448,6 +21448,315 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "params": [],
         "icon": "file-text"
     },
+
+    # ========== 异步工具 ==========
+    "async_delay": {
+        "id": "async_delay",
+        "name": "异步延迟",
+        "name_en": "Async Delay",
+        "description": "异步延迟执行",
+        "category": "async",
+        "subcategory": "delay",
+        "api_endpoint": "/api/async_delay",
+        "method": "POST",
+        "params": [
+            {"name": "ms", "type": "number", "required": True, "description": "毫秒"}
+        ],
+        "icon": "clock"
+    },
+    "async_timeout": {
+        "id": "async_timeout",
+        "name": "异步超时",
+        "name_en": "Async Timeout",
+        "description": "设置异步操作超时",
+        "category": "async",
+        "subcategory": "timeout",
+        "api_endpoint": "/api/async_timeout",
+        "method": "POST",
+        "params": [
+            {"name": "func", "type": "function", "required": True, "description": "函数"},
+            {"name": "ms", "type": "number", "required": True, "description": "超时毫秒"}
+        ],
+        "icon": "clock"
+    },
+    "async_retry": {
+        "id": "async_retry",
+        "name": "异步重试",
+        "name_en": "Async Retry",
+        "description": "异步重试操作",
+        "category": "async",
+        "subcategory": "retry",
+        "api_endpoint": "/api/async_retry",
+        "method": "POST",
+        "params": [
+            {"name": "func", "type": "function", "required": True, "description": "函数"},
+            {"name": "max_attempts", "type": "number", "required": False, "description": "最大尝试次数", "default": 3}
+        ],
+        "icon": "refresh-cw"
+    },
+    "async_parallel": {
+        "id": "async_parallel",
+        "name": "并行执行",
+        "name_en": "Async Parallel",
+        "description": "并行执行多个异步函数",
+        "category": "async",
+        "subcategory": "parallel",
+        "api_endpoint": "/api/async_parallel",
+        "method": "POST",
+        "params": [
+            {"name": "funcs", "type": "array", "required": True, "description": "函数数组"}
+        ],
+        "icon": "layers"
+    },
+    "async_sequence": {
+        "id": "async_sequence",
+        "name": "顺序执行",
+        "name_en": "Async Sequence",
+        "description": "顺序执行多个异步函数",
+        "category": "async",
+        "subcategory": "sequence",
+        "api_endpoint": "/api/async_sequence",
+        "method": "POST",
+        "params": [
+            {"name": "funcs", "type": "array", "required": True, "description": "函数数组"}
+        ],
+        "icon": "list"
+    },
+    "async_waterfall": {
+        "id": "async_waterfall",
+        "name": "瀑布流",
+        "name_en": "Async Waterfall",
+        "description": "瀑布流执行，每个结果传递给下一个",
+        "category": "async",
+        "subcategory": "waterfall",
+        "api_endpoint": "/api/async_waterfall",
+        "method": "POST",
+        "params": [
+            {"name": "funcs", "type": "array", "required": True, "description": "函数数组"},
+            {"name": "initial", "type": "any", "required": False, "description": "初始值"}
+        ],
+        "icon": "arrow-down"
+    },
+    "async_whilst": {
+        "id": "async_whilst",
+        "name": "异步循环条件",
+        "name_en": "Async Whilst",
+        "description": "当条件为真时重复执行",
+        "category": "async",
+        "subcategory": "loop",
+        "api_endpoint": "/api/async_whilst",
+        "method": "POST",
+        "params": [
+            {"name": "condition", "type": "function", "required": True, "description": "条件函数"},
+            {"name": "func", "type": "function", "required": True, "description": "执行函数"}
+        ],
+        "icon": "repeat"
+    },
+    "async_until": {
+        "id": "async_until",
+        "name": "异步直到条件",
+        "name_en": "Async Until",
+        "description": "直到条件为真时重复执行",
+        "category": "async",
+        "subcategory": "loop",
+        "api_endpoint": "/api/async_until",
+        "method": "POST",
+        "params": [
+            {"name": "condition", "type": "function", "required": True, "description": "条件函数"},
+            {"name": "func", "type": "function", "required": True, "description": "执行函数"}
+        ],
+        "icon": "repeat"
+    },
+
+    # ========== 日志工具 ==========
+    "log_debug": {
+        "id": "log_debug",
+        "name": "调试日志",
+        "name_en": "Debug Log",
+        "description": "记录调试级别日志",
+        "category": "log",
+        "subcategory": "debug",
+        "api_endpoint": "/api/log_debug",
+        "method": "POST",
+        "params": [
+            {"name": "message", "type": "string", "required": True, "description": "消息"}
+        ],
+        "icon": "info"
+    },
+    "log_info": {
+        "id": "log_info",
+        "name": "信息日志",
+        "name_en": "Info Log",
+        "description": "记录信息级别日志",
+        "category": "log",
+        "subcategory": "info",
+        "api_endpoint": "/api/log_info",
+        "method": "POST",
+        "params": [
+            {"name": "message", "type": "string", "required": True, "description": "消息"}
+        ],
+        "icon": "info"
+    },
+    "log_warn": {
+        "id": "log_warn",
+        "name": "警告日志",
+        "name_en": "Warn Log",
+        "description": "记录警告级别日志",
+        "category": "log",
+        "subcategory": "warn",
+        "api_endpoint": "/api/log_warn",
+        "method": "POST",
+        "params": [
+            {"name": "message", "type": "string", "required": True, "description": "消息"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "log_error": {
+        "id": "log_error",
+        "name": "错误日志",
+        "name_en": "Error Log",
+        "description": "记录错误级别日志",
+        "category": "log",
+        "subcategory": "error",
+        "api_endpoint": "/api/log_error",
+        "method": "POST",
+        "params": [
+            {"name": "message", "type": "string", "required": True, "description": "消息"}
+        ],
+        "icon": "alert-circle"
+    },
+    "log_fatal": {
+        "id": "log_fatal",
+        "name": "致命日志",
+        "name_en": "Fatal Log",
+        "description": "记录致命级别日志",
+        "category": "log",
+        "subcategory": "fatal",
+        "api_endpoint": "/api/log_fatal",
+        "method": "POST",
+        "params": [
+            {"name": "message", "type": "string", "required": True, "description": "消息"}
+        ],
+        "icon": "alert-octagon"
+    },
+    "log_get_level": {
+        "id": "log_get_level",
+        "name": "获取日志级别",
+        "name_en": "Get Log Level",
+        "description": "获取当前日志级别",
+        "category": "log",
+        "subcategory": "config",
+        "api_endpoint": "/api/log_get_level",
+        "method": "POST",
+        "params": [],
+        "icon": "settings"
+    },
+    "log_set_level": {
+        "id": "log_set_level",
+        "name": "设置日志级别",
+        "name_en": "Set Log Level",
+        "description": "设置日志级别",
+        "category": "log",
+        "subcategory": "config",
+        "api_endpoint": "/api/log_set_level",
+        "method": "POST",
+        "params": [
+            {"name": "level", "type": "string", "required": True, "description": "级别"}
+        ],
+        "icon": "settings"
+    },
+    "log_format": {
+        "id": "log_format",
+        "name": "日志格式化",
+        "name_en": "Log Format",
+        "description": "格式化日志消息",
+        "category": "log",
+        "subcategory": "format",
+        "api_endpoint": "/api/log_format",
+        "method": "POST",
+        "params": [
+            {"name": "level", "type": "string", "required": True, "description": "级别"},
+            {"name": "message", "type": "string", "required": True, "description": "消息"},
+            {"name": "context", "type": "object", "required": False, "description": "上下文"}
+        ],
+        "icon": "file-text"
+    },
+
+    # ========== 事件工具 ==========
+    "event_on": {
+        "id": "event_on",
+        "name": "监听事件",
+        "name_en": "Event On",
+        "description": "注册事件监听器",
+        "category": "event",
+        "subcategory": "listen",
+        "api_endpoint": "/api/event_on",
+        "method": "POST",
+        "params": [
+            {"name": "event", "type": "string", "required": True, "description": "事件名"},
+            {"name": "handler", "type": "function", "required": True, "description": "处理函数"}
+        ],
+        "icon": "bell"
+    },
+    "event_off": {
+        "id": "event_off",
+        "name": "取消监听",
+        "name_en": "Event Off",
+        "description": "取消事件监听器",
+        "category": "event",
+        "subcategory": "listen",
+        "api_endpoint": "/api/event_off",
+        "method": "POST",
+        "params": [
+            {"name": "event", "type": "string", "required": True, "description": "事件名"},
+            {"name": "handler", "type": "function", "required": True, "description": "处理函数"}
+        ],
+        "icon": "bell-off"
+    },
+    "event_emit": {
+        "id": "event_emit",
+        "name": "触发事件",
+        "name_en": "Event Emit",
+        "description": "触发事件",
+        "category": "event",
+        "subcategory": "emit",
+        "api_endpoint": "/api/event_emit",
+        "method": "POST",
+        "params": [
+            {"name": "event", "type": "string", "required": True, "description": "事件名"},
+            {"name": "data", "type": "any", "required": False, "description": "数据"}
+        ],
+        "icon": "radio"
+    },
+    "event_once": {
+        "id": "event_once",
+        "name": "单次监听",
+        "name_en": "Event Once",
+        "description": "注册单次事件监听器",
+        "category": "event",
+        "subcategory": "listen",
+        "api_endpoint": "/api/event_once",
+        "method": "POST",
+        "params": [
+            {"name": "event", "type": "string", "required": True, "description": "事件名"},
+            {"name": "handler", "type": "function", "required": True, "description": "处理函数"}
+        ],
+        "icon": "bell"
+    },
+    "event_clear": {
+        "id": "event_clear",
+        "name": "清除事件",
+        "name_en": "Event Clear",
+        "description": "清除事件监听器",
+        "category": "event",
+        "subcategory": "clear",
+        "api_endpoint": "/api/event_clear",
+        "method": "POST",
+        "params": [
+            {"name": "event", "type": "string", "required": False, "description": "事件名"}
+        ],
+        "icon": "trash-2"
+    },
 }
 
 
