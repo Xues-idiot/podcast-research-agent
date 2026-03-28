@@ -2541,6 +2541,112 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "value", "type": "number", "required": True, "description": "数值"}
         ],
         "icon": "check-circle"
+    },
+    "starts_with": {
+        "id": "starts_with",
+        "name": "开头检查",
+        "name_en": "Starts With",
+        "description": "检查字符串开头",
+        "category": "text",
+        "subcategory": "check",
+        "api_endpoint": "/api/starts-with",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "prefix", "type": "string", "required": True, "description": "前缀"}
+        ],
+        "icon": "arrow-right"
+    },
+    "ends_with": {
+        "id": "ends_with",
+        "name": "结尾检查",
+        "name_en": "Ends With",
+        "description": "检查字符串结尾",
+        "category": "text",
+        "subcategory": "check",
+        "api_endpoint": "/api/ends-with",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "suffix", "type": "string", "required": True, "description": "后缀"}
+        ],
+        "icon": "arrow-left"
+    },
+    "replace": {
+        "id": "replace",
+        "name": "替换文本",
+        "name_en": "Replace",
+        "description": "替换文本中的字符串",
+        "category": "text",
+        "subcategory": "transform",
+        "api_endpoint": "/api/replace",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "old", "type": "string", "required": True, "description": "原字符串"},
+            {"name": "new", "type": "string", "required": True, "description": "新字符串"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "regex_match": {
+        "id": "regex_match",
+        "name": "正则匹配",
+        "name_en": "Regex Match",
+        "description": "使用正则表达式匹配",
+        "category": "text",
+        "subcategory": "regex",
+        "api_endpoint": "/api/regex/match",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "pattern", "type": "string", "required": True, "description": "正则模式"}
+        ],
+        "icon": "regex"
+    },
+    "regex_replace": {
+        "id": "regex_replace",
+        "name": "正则替换",
+        "name_en": "Regex Replace",
+        "description": "使用正则表达式替换",
+        "category": "text",
+        "subcategory": "regex",
+        "api_endpoint": "/api/regex/replace",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "pattern", "type": "string", "required": True, "description": "正则模式"},
+            {"name": "replacement", "type": "string", "required": True, "description": "替换内容"}
+        ],
+        "icon": "regex"
+    },
+    "regex_find": {
+        "id": "regex_find",
+        "name": "正则查找",
+        "name_en": "Regex Find",
+        "description": "使用正则表达式查找所有匹配",
+        "category": "text",
+        "subcategory": "regex",
+        "api_endpoint": "/api/regex/find",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "pattern", "type": "string", "required": True, "description": "正则模式"}
+        ],
+        "icon": "search"
+    },
+    "strip_html": {
+        "id": "strip_html",
+        "name": "去除HTML",
+        "name_en": "Strip HTML",
+        "description": "去除文本中的HTML标签",
+        "category": "text",
+        "subcategory": "clean",
+        "api_endpoint": "/api/strip-html",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "HTML文本"}
+        ],
+        "icon": "code"
     }
 }
 
