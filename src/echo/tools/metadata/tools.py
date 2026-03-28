@@ -675,6 +675,18 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "params": [],
         "icon": "clock"
     },
+    "convert_utils": {
+        "id": "convert_utils",
+        "name": "转换工具",
+        "name_en": "Convert Utils",
+        "description": "类型转换：字符串、数字、布尔值、列表、JSON互转",
+        "category": "encoding",
+        "subcategory": "convert",
+        "api_endpoint": "/api/convert",
+        "method": "POST",
+        "params": [],
+        "icon": "refresh-cw"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
