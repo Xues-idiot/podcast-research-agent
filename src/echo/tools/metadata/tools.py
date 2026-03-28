@@ -423,6 +423,20 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "bar-chart"
     },
+    "list_zip": {
+        "id": "list_zip",
+        "name": "列表合并",
+        "name_en": "List Zip",
+        "description": "合并、连接、交错多个列表",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-zip",
+        "method": "POST",
+        "params": [
+            {"name": "lists", "type": "array", "required": True, "description": "要合并的列表数组"}
+        ],
+        "icon": "list"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
