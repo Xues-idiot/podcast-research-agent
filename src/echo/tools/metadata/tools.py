@@ -2855,6 +2855,111 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "items", "type": "array", "required": True, "description": "列表"}
         ],
         "icon": "filter"
+    },
+    "equal": {
+        "id": "equal",
+        "name": "相等",
+        "name_en": "Equal",
+        "description": "检查两个值是否相等",
+        "category": "logic",
+        "subcategory": "compare",
+        "api_endpoint": "/api/equal",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "string", "required": True, "description": "值A"},
+            {"name": "b", "type": "string", "required": True, "description": "值B"}
+        ],
+        "icon": "equals"
+    },
+    "greater_than": {
+        "id": "greater_than",
+        "name": "大于",
+        "name_en": "Greater Than",
+        "description": "检查是否大于",
+        "category": "logic",
+        "subcategory": "compare",
+        "api_endpoint": "/api/greater-than",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "值A"},
+            {"name": "b", "type": "number", "required": True, "description": "值B"}
+        ],
+        "icon": "chevron-right"
+    },
+    "less_than": {
+        "id": "less_than",
+        "name": "小于",
+        "name_en": "Less Than",
+        "description": "检查是否小于",
+        "category": "logic",
+        "subcategory": "compare",
+        "api_endpoint": "/api/less-than",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "值A"},
+            {"name": "b", "type": "number", "required": True, "description": "值B"}
+        ],
+        "icon": "chevron-left"
+    },
+    "and_op": {
+        "id": "and_op",
+        "name": "逻辑与",
+        "name_en": "Logical AND",
+        "description": "逻辑与运算",
+        "category": "logic",
+        "subcategory": "boolean",
+        "api_endpoint": "/api/and",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "boolean", "required": True, "description": "值A"},
+            {"name": "b", "type": "boolean", "required": True, "description": "值B"}
+        ],
+        "icon": "and"
+    },
+    "or_op": {
+        "id": "or_op",
+        "name": "逻辑或",
+        "name_en": "Logical OR",
+        "description": "逻辑或运算",
+        "category": "logic",
+        "subcategory": "boolean",
+        "api_endpoint": "/api/or",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "boolean", "required": True, "description": "值A"},
+            {"name": "b", "type": "boolean", "required": True, "description": "值B"}
+        ],
+        "icon": "or"
+    },
+    "not_op": {
+        "id": "not_op",
+        "name": "逻辑非",
+        "name_en": "Logical NOT",
+        "description": "逻辑非运算",
+        "category": "logic",
+        "subcategory": "boolean",
+        "api_endpoint": "/api/not",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "boolean", "required": True, "description": "值"}
+        ],
+        "icon": "not"
+    },
+    "if_then": {
+        "id": "if_then",
+        "name": "条件执行",
+        "name_en": "If Then",
+        "description": "条件执行",
+        "category": "logic",
+        "subcategory": "conditional",
+        "api_endpoint": "/api/if-then",
+        "method": "POST",
+        "params": [
+            {"name": "condition", "type": "boolean", "required": True, "description": "条件"},
+            {"name": "then_val", "type": "string", "required": True, "description": "真值"},
+            {"name": "else_val", "type": "string", "required": False, "description": "假值"}
+        ],
+        "icon": "toggle-right"
     }
 }
 
