@@ -19774,6 +19774,387 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "link"
     },
+
+    # ========== 数学工具 ==========
+    "percent_of": {
+        "id": "percent_of",
+        "name": "百分比计算",
+        "name_en": "Percent Of",
+        "description": "计算某数占总数的百分比",
+        "category": "math",
+        "subcategory": "percent",
+        "api_endpoint": "/api/percent_of",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "total", "type": "number", "required": True, "description": "总数"}
+        ],
+        "icon": "percent"
+    },
+    "percent_change": {
+        "id": "percent_change",
+        "name": "百分比变化",
+        "name_en": "Percent Change",
+        "description": "计算百分比变化",
+        "category": "math",
+        "subcategory": "percent",
+        "api_endpoint": "/api/percent_change",
+        "method": "POST",
+        "params": [
+            {"name": "old_value", "type": "number", "required": True, "description": "旧值"},
+            {"name": "new_value", "type": "number", "required": True, "description": "新值"}
+        ],
+        "icon": "trending-up"
+    },
+    "percent_diff": {
+        "id": "percent_diff",
+        "name": "百分比差异",
+        "name_en": "Percent Difference",
+        "description": "计算两个数之间的百分比差异",
+        "category": "math",
+        "subcategory": "percent",
+        "api_endpoint": "/api/percent_diff",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "数值A"},
+            {"name": "b", "type": "number", "required": True, "description": "数值B"}
+        ],
+        "icon": "percent"
+    },
+    "percentile": {
+        "id": "percentile",
+        "name": "百分位数",
+        "name_en": "Percentile",
+        "description": "计算数组的百分位数",
+        "category": "math",
+        "subcategory": "statistics",
+        "api_endpoint": "/api/percentile",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数值数组"},
+            {"name": "p", "type": "number", "required": True, "description": "百分位"}
+        ],
+        "icon": "percent"
+    },
+    "sin": {
+        "id": "sin",
+        "name": "正弦",
+        "name_en": "Sine",
+        "description": "计算正弦值",
+        "category": "math",
+        "subcategory": "trigonometry",
+        "api_endpoint": "/api/sin",
+        "method": "POST",
+        "params": [
+            {"name": "angle", "type": "number", "required": True, "description": "角度"}
+        ],
+        "icon": "triangle"
+    },
+    "cos": {
+        "id": "cos",
+        "name": "余弦",
+        "name_en": "Cosine",
+        "description": "计算余弦值",
+        "category": "math",
+        "subcategory": "trigonometry",
+        "api_endpoint": "/api/cos",
+        "method": "POST",
+        "params": [
+            {"name": "angle", "type": "number", "required": True, "description": "角度"}
+        ],
+        "icon": "triangle"
+    },
+    "tan": {
+        "id": "tan",
+        "name": "正切",
+        "name_en": "Tangent",
+        "description": "计算正切值",
+        "category": "math",
+        "subcategory": "trigonometry",
+        "api_endpoint": "/api/tan",
+        "method": "POST",
+        "params": [
+            {"name": "angle", "type": "number", "required": True, "description": "角度"}
+        ],
+        "icon": "triangle"
+    },
+    "asin": {
+        "id": "asin",
+        "name": "反正弦",
+        "name_en": "Arc Sine",
+        "description": "计算反正弦值",
+        "category": "math",
+        "subcategory": "trigonometry",
+        "api_endpoint": "/api/asin",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "triangle"
+    },
+    "acos": {
+        "id": "acos",
+        "name": "反余弦",
+        "name_en": "Arc Cosine",
+        "description": "计算反余弦值",
+        "category": "math",
+        "subcategory": "trigonometry",
+        "api_endpoint": "/api/acos",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "triangle"
+    },
+    "atan": {
+        "id": "atan",
+        "name": "反正切",
+        "name_en": "Arc Tangent",
+        "description": "计算反正切值",
+        "category": "math",
+        "subcategory": "trigonometry",
+        "api_endpoint": "/api/atan",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "triangle"
+    },
+    "complex_add": {
+        "id": "complex_add",
+        "name": "复数加法",
+        "name_en": "Complex Add",
+        "description": "复数相加",
+        "category": "math",
+        "subcategory": "complex",
+        "api_endpoint": "/api/complex_add",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "object", "required": True, "description": "复数A {real, imaginary}"},
+            {"name": "b", "type": "object", "required": True, "description": "复数B {real, imaginary}"}
+        ],
+        "icon": "plus"
+    },
+    "complex_sub": {
+        "id": "complex_sub",
+        "name": "复数减法",
+        "name_en": "Complex Subtract",
+        "description": "复数相减",
+        "category": "math",
+        "subcategory": "complex",
+        "api_endpoint": "/api/complex_sub",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "object", "required": True, "description": "复数A {real, imaginary}"},
+            {"name": "b", "type": "object", "required": True, "description": "复数B {real, imaginary}"}
+        ],
+        "icon": "minus"
+    },
+    "complex_mul": {
+        "id": "complex_mul",
+        "name": "复数乘法",
+        "name_en": "Complex Multiply",
+        "description": "复数相乘",
+        "category": "math",
+        "subcategory": "complex",
+        "api_endpoint": "/api/complex_mul",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "object", "required": True, "description": "复数A {real, imaginary}"},
+            {"name": "b", "type": "object", "required": True, "description": "复数B {real, imaginary}"}
+        ],
+        "icon": "x"
+    },
+    "complex_div": {
+        "id": "complex_div",
+        "name": "复数除法",
+        "name_en": "Complex Divide",
+        "description": "复数相除",
+        "category": "math",
+        "subcategory": "complex",
+        "api_endpoint": "/api/complex_div",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "object", "required": True, "description": "复数A {real, imaginary}"},
+            {"name": "b", "type": "object", "required": True, "description": "复数B {real, imaginary}"}
+        ],
+        "icon": "divide"
+    },
+    "matrix_add": {
+        "id": "matrix_add",
+        "name": "矩阵加法",
+        "name_en": "Matrix Add",
+        "description": "矩阵相加",
+        "category": "math",
+        "subcategory": "matrix",
+        "api_endpoint": "/api/matrix_add",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "矩阵A"},
+            {"name": "b", "type": "array", "required": True, "description": "矩阵B"}
+        ],
+        "icon": "grid"
+    },
+    "matrix_sub": {
+        "id": "matrix_sub",
+        "name": "矩阵减法",
+        "name_en": "Matrix Subtract",
+        "description": "矩阵相减",
+        "category": "math",
+        "subcategory": "matrix",
+        "api_endpoint": "/api/matrix_sub",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "矩阵A"},
+            {"name": "b", "type": "array", "required": True, "description": "矩阵B"}
+        ],
+        "icon": "grid"
+    },
+    "matrix_mul": {
+        "id": "matrix_mul",
+        "name": "矩阵乘法",
+        "name_en": "Matrix Multiply",
+        "description": "矩阵相乘",
+        "category": "math",
+        "subcategory": "matrix",
+        "api_endpoint": "/api/matrix_mul",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "矩阵A"},
+            {"name": "b", "type": "array", "required": True, "description": "矩阵B"}
+        ],
+        "icon": "grid"
+    },
+    "matrix_transpose": {
+        "id": "matrix_transpose",
+        "name": "矩阵转置",
+        "name_en": "Matrix Transpose",
+        "description": "矩阵转置",
+        "category": "math",
+        "subcategory": "matrix",
+        "api_endpoint": "/api/matrix_transpose",
+        "method": "POST",
+        "params": [
+            {"name": "matrix", "type": "array", "required": True, "description": "矩阵"}
+        ],
+        "icon": "grid"
+    },
+    "matrix_inverse": {
+        "id": "matrix_inverse",
+        "name": "矩阵求逆",
+        "name_en": "Matrix Inverse",
+        "description": "求矩阵的逆",
+        "category": "math",
+        "subcategory": "matrix",
+        "api_endpoint": "/api/matrix_inverse",
+        "method": "POST",
+        "params": [
+            {"name": "matrix", "type": "array", "required": True, "description": "矩阵"}
+        ],
+        "icon": "grid"
+    },
+    "matrix_determinant": {
+        "id": "matrix_determinant",
+        "name": "矩阵行列式",
+        "name_en": "Matrix Determinant",
+        "description": "计算矩阵行列式",
+        "category": "math",
+        "subcategory": "matrix",
+        "api_endpoint": "/api/matrix_determinant",
+        "method": "POST",
+        "params": [
+            {"name": "matrix", "type": "array", "required": True, "description": "矩阵"}
+        ],
+        "icon": "grid"
+    },
+    "vector_add": {
+        "id": "vector_add",
+        "name": "向量加法",
+        "name_en": "Vector Add",
+        "description": "向量相加",
+        "category": "math",
+        "subcategory": "vector",
+        "api_endpoint": "/api/vector_add",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "向量A"},
+            {"name": "b", "type": "array", "required": True, "description": "向量B"}
+        ],
+        "icon": "git-compare"
+    },
+    "vector_sub": {
+        "id": "vector_sub",
+        "name": "向量减法",
+        "name_en": "Vector Subtract",
+        "description": "向量相减",
+        "category": "math",
+        "subcategory": "vector",
+        "api_endpoint": "/api/vector_sub",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "向量A"},
+            {"name": "b", "type": "array", "required": True, "description": "向量B"}
+        ],
+        "icon": "git-compare"
+    },
+    "vector_dot": {
+        "id": "vector_dot",
+        "name": "向量点积",
+        "name_en": "Vector Dot Product",
+        "description": "计算向量点积",
+        "category": "math",
+        "subcategory": "vector",
+        "api_endpoint": "/api/vector_dot",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "向量A"},
+            {"name": "b", "type": "array", "required": True, "description": "向量B"}
+        ],
+        "icon": "git-compare"
+    },
+    "vector_cross": {
+        "id": "vector_cross",
+        "name": "向量叉积",
+        "name_en": "Vector Cross Product",
+        "description": "计算向量叉积",
+        "category": "math",
+        "subcategory": "vector",
+        "api_endpoint": "/api/vector_cross",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "向量A"},
+            {"name": "b", "type": "array", "required": True, "description": "向量B"}
+        ],
+        "icon": "git-compare"
+    },
+    "vector_magnitude": {
+        "id": "vector_magnitude",
+        "name": "向量模长",
+        "name_en": "Vector Magnitude",
+        "description": "计算向量模长",
+        "category": "math",
+        "subcategory": "vector",
+        "api_endpoint": "/api/vector_magnitude",
+        "method": "POST",
+        "params": [
+            {"name": "vector", "type": "array", "required": True, "description": "向量"}
+        ],
+        "icon": "maximize"
+    },
+    "vector_normalize": {
+        "id": "vector_normalize",
+        "name": "向量归一化",
+        "name_en": "Vector Normalize",
+        "description": "归一化向量",
+        "category": "math",
+        "subcategory": "vector",
+        "api_endpoint": "/api/vector_normalize",
+        "method": "POST",
+        "params": [
+            {"name": "vector", "type": "array", "required": True, "description": "向量"}
+        ],
+        "icon": "minimize"
+    },
 }
 
 
