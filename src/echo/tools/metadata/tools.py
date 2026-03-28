@@ -4474,6 +4474,107 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "item", "type": "string", "required": True, "description": "对象或数组"}
         ],
         "icon": "hash"
+    },
+    "add_days": {
+        "id": "add_days",
+        "name": "加天数",
+        "name_en": "Add Days",
+        "description": "日期加天数",
+        "category": "date",
+        "subcategory": "add",
+        "api_endpoint": "/api/add-days",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"},
+            {"name": "days", "type": "number", "required": True, "description": "天数"}
+        ],
+        "icon": "plus"
+    },
+    "sub_days": {
+        "id": "sub_days",
+        "name": "减天数",
+        "name_en": "Sub Days",
+        "description": "日期减天数",
+        "category": "date",
+        "subcategory": "sub",
+        "api_endpoint": "/api/sub-days",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"},
+            {"name": "days", "type": "number", "required": True, "description": "天数"}
+        ],
+        "icon": "minus"
+    },
+    "days_diff": {
+        "id": "days_diff",
+        "name": "天数差",
+        "name_en": "Days Difference",
+        "description": "计算两个日期的天数差",
+        "category": "date",
+        "subcategory": "diff",
+        "api_endpoint": "/api/days-diff",
+        "method": "POST",
+        "params": [
+            {"name": "date1", "type": "string", "required": True, "description": "日期1"},
+            {"name": "date2", "type": "string", "required": True, "description": "日期2"}
+        ],
+        "icon": "minus"
+    },
+    "start_of_day": {
+        "id": "start_of_day",
+        "name": "日开始",
+        "name_en": "Start of Day",
+        "description": "获取日期开始时刻",
+        "category": "date",
+        "subcategory": "boundary",
+        "api_endpoint": "/api/start-of-day",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "sunrise"
+    },
+    "end_of_day": {
+        "id": "end_of_day",
+        "name": "日结束",
+        "name_en": "End of Day",
+        "description": "获取日期结束时刻",
+        "category": "date",
+        "subcategory": "boundary",
+        "api_endpoint": "/api/end-of-day",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "sunset"
+    },
+    "start_of_week": {
+        "id": "start_of_week",
+        "name": "周开始",
+        "name_en": "Start of Week",
+        "description": "获取周开始日期",
+        "category": "date",
+        "subcategory": "boundary",
+        "api_endpoint": "/api/start-of-week",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "calendar"
+    },
+    "start_of_month": {
+        "id": "start_of_month",
+        "name": "月开始",
+        "name_en": "Start of Month",
+        "description": "获取月开始日期",
+        "category": "date",
+        "subcategory": "boundary",
+        "api_endpoint": "/api/start-of-month",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "calendar"
     }
 }
 
