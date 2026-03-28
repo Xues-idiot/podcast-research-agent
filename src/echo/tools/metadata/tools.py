@@ -18575,6 +18575,320 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "calendar"
     },
+
+    # ========== 验证工具 ==========
+    "is_valid_email": {
+        "id": "is_valid_email",
+        "name": "邮箱验证",
+        "name_en": "Email Validator",
+        "description": "验证邮箱格式是否有效",
+        "category": "validate",
+        "subcategory": "format",
+        "api_endpoint": "/api/is_valid_email",
+        "method": "POST",
+        "params": [
+            {"name": "email", "type": "string", "required": True, "description": "邮箱地址"}
+        ],
+        "icon": "check"
+    },
+    "is_valid_url": {
+        "id": "is_valid_url",
+        "name": "URL验证",
+        "name_en": "URL Validator",
+        "description": "验证URL格式是否有效",
+        "category": "validate",
+        "subcategory": "format",
+        "api_endpoint": "/api/is_valid_url",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL地址"}
+        ],
+        "icon": "check"
+    },
+    "is_valid_phone": {
+        "id": "is_valid_phone",
+        "name": "电话验证",
+        "name_en": "Phone Validator",
+        "description": "验证电话号码格式是否有效",
+        "category": "validate",
+        "subcategory": "format",
+        "api_endpoint": "/api/is_valid_phone",
+        "method": "POST",
+        "params": [
+            {"name": "phone", "type": "string", "required": True, "description": "电话号码"}
+        ],
+        "icon": "check"
+    },
+    "is_valid_ip": {
+        "id": "is_valid_ip",
+        "name": "IP地址验证",
+        "name_en": "IP Address Validator",
+        "description": "验证IP地址格式是否有效",
+        "category": "validate",
+        "subcategory": "format",
+        "api_endpoint": "/api/is_valid_ip",
+        "method": "POST",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP地址"}
+        ],
+        "icon": "check"
+    },
+    "is_valid_uuid": {
+        "id": "is_valid_uuid",
+        "name": "UUID验证",
+        "name_en": "UUID Validator",
+        "description": "验证UUID格式是否有效",
+        "category": "validate",
+        "subcategory": "format",
+        "api_endpoint": "/api/is_valid_uuid",
+        "method": "POST",
+        "params": [
+            {"name": "uuid", "type": "string", "required": True, "description": "UUID字符串"}
+        ],
+        "icon": "check"
+    },
+    "is_valid_json": {
+        "id": "is_valid_json",
+        "name": "JSON验证",
+        "name_en": "JSON Validator",
+        "description": "验证JSON格式是否有效",
+        "category": "validate",
+        "subcategory": "format",
+        "api_endpoint": "/api/is_valid_json",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "JSON字符串"}
+        ],
+        "icon": "check"
+    },
+    "is_valid_credit_card": {
+        "id": "is_valid_credit_card",
+        "name": "信用卡验证",
+        "name_en": "Credit Card Validator",
+        "description": "验证信用卡号是否有效",
+        "category": "validate",
+        "subcategory": "format",
+        "api_endpoint": "/api/is_valid_credit_card",
+        "method": "POST",
+        "params": [
+            {"name": "card_number", "type": "string", "required": True, "description": "卡号"}
+        ],
+        "icon": "credit-card"
+    },
+    "validate_range": {
+        "id": "validate_range",
+        "name": "范围验证",
+        "name_en": "Range Validator",
+        "description": "验证数值是否在指定范围内",
+        "category": "validate",
+        "subcategory": "range",
+        "api_endpoint": "/api/validate_range",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "min", "type": "number", "required": True, "description": "最小值"},
+            {"name": "max", "type": "number", "required": True, "description": "最大值"}
+        ],
+        "icon": "check"
+    },
+    "is_alpha": {
+        "id": "is_alpha",
+        "name": "纯字母验证",
+        "name_en": "Is Alpha",
+        "description": "验证是否只包含字母",
+        "category": "validate",
+        "subcategory": "string",
+        "api_endpoint": "/api/is_alpha",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "check"
+    },
+    "is_numeric": {
+        "id": "is_numeric",
+        "name": "纯数字验证",
+        "name_en": "Is Numeric",
+        "description": "验证是否只包含数字",
+        "category": "validate",
+        "subcategory": "string",
+        "api_endpoint": "/api/is_numeric",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "check"
+    },
+    "is_alphanumeric": {
+        "id": "is_alphanumeric",
+        "name": "字母数字验证",
+        "name_en": "Is Alphanumeric",
+        "description": "验证是否只包含字母和数字",
+        "category": "validate",
+        "subcategory": "string",
+        "api_endpoint": "/api/is_alphanumeric",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "check"
+    },
+    "is_blank": {
+        "id": "is_blank",
+        "name": "空白验证",
+        "name_en": "Is Blank",
+        "description": "验证是否为空或空白",
+        "category": "validate",
+        "subcategory": "string",
+        "api_endpoint": "/api/is_blank",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 编码解码工具 ==========
+    "decode_base64": {
+        "id": "decode_base64",
+        "name": "Base64解码",
+        "name_en": "Base64 Decode",
+        "description": "将Base64字符串解码",
+        "category": "encoding",
+        "subcategory": "decode",
+        "api_endpoint": "/api/decode_base64",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "Base64字符串"}
+        ],
+        "icon": "code"
+    },
+    "encode_hex": {
+        "id": "encode_hex",
+        "name": "HEX编码",
+        "name_en": "HEX Encode",
+        "description": "将字符串编码为HEX",
+        "category": "encoding",
+        "subcategory": "encode",
+        "api_endpoint": "/api/encode_hex",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "code"
+    },
+    "decode_hex": {
+        "id": "decode_hex",
+        "name": "HEX解码",
+        "name_en": "HEX Decode",
+        "description": "将HEX字符串解码",
+        "category": "encoding",
+        "subcategory": "decode",
+        "api_endpoint": "/api/decode_hex",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "HEX字符串"}
+        ],
+        "icon": "code"
+    },
+    "decode_url": {
+        "id": "decode_url",
+        "name": "URL解码",
+        "name_en": "URL Decode",
+        "description": "将URL编码字符串解码",
+        "category": "encoding",
+        "subcategory": "decode",
+        "api_endpoint": "/api/decode_url",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "URL编码字符串"}
+        ],
+        "icon": "link"
+    },
+    "decode_html": {
+        "id": "decode_html",
+        "name": "HTML解码",
+        "name_en": "HTML Decode",
+        "description": "将HTML实体解码",
+        "category": "encoding",
+        "subcategory": "decode",
+        "api_endpoint": "/api/decode_html",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "HTML实体字符串"}
+        ],
+        "icon": "code"
+    },
+    "strip_tags": {
+        "id": "strip_tags",
+        "name": "去除HTML标签",
+        "name_en": "Strip HTML Tags",
+        "description": "去除字符串中的HTML标签",
+        "category": "encoding",
+        "subcategory": "strip",
+        "api_endpoint": "/api/strip_tags",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "HTML文本"}
+        ],
+        "icon": "code"
+    },
+    "escape_json": {
+        "id": "escape_json",
+        "name": "JSON转义",
+        "name_en": "Escape JSON",
+        "description": "转义JSON特殊字符",
+        "category": "encoding",
+        "subcategory": "escape",
+        "api_endpoint": "/api/escape_json",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "code"
+    },
+    "unescape_json": {
+        "id": "unescape_json",
+        "name": "JSON去转义",
+        "name_en": "Unescape JSON",
+        "description": "反转义JSON特殊字符",
+        "category": "encoding",
+        "subcategory": "unescape",
+        "api_endpoint": "/api/unescape_json",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "code"
+    },
+    "encode_csv": {
+        "id": "encode_csv",
+        "name": "CSV编码",
+        "name_en": "CSV Encode",
+        "description": "将数据编码为CSV格式",
+        "category": "encoding",
+        "subcategory": "encode",
+        "api_endpoint": "/api/encode_csv",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据数组"}
+        ],
+        "icon": "code"
+    },
+    "decode_csv": {
+        "id": "decode_csv",
+        "name": "CSV解码",
+        "name_en": "CSV Decode",
+        "description": "将CSV字符串解码",
+        "category": "encoding",
+        "subcategory": "decode",
+        "api_endpoint": "/api/decode_csv",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "CSV字符串"}
+        ],
+        "icon": "code"
+    },
 }
 
 
