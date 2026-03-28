@@ -25351,6 +25351,432 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "note_id", "type": "string", "required": True, "description": "笔记ID"}
         ],
         "icon": "trash"
+    },
+
+    # ========== API工具 ==========
+    "api_key_generate": {
+        "id": "api_key_generate",
+        "name": "生成API密钥",
+        "name_en": "Generate API Key",
+        "description": "生成新的API密钥",
+        "category": "api",
+        "subcategory": "key",
+        "api_endpoint": "/api/key/generate",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "密钥名称"}
+        ],
+        "icon": "key"
+    },
+    "api_key_revoke": {
+        "id": "api_key_revoke",
+        "name": "撤销API密钥",
+        "name_en": "Revoke API Key",
+        "description": "撤销API密钥",
+        "category": "api",
+        "subcategory": "key",
+        "api_endpoint": "/api/key/revoke",
+        "method": "POST",
+        "params": [
+            {"name": "key_id", "type": "string", "required": True, "description": "密钥ID"}
+        ],
+        "icon": "key"
+    },
+    "api_key_list": {
+        "id": "api_key_list",
+        "name": "API密钥列表",
+        "name_en": "API Key List",
+        "description": "获取API密钥列表",
+        "category": "api",
+        "subcategory": "key",
+        "api_endpoint": "/api/key/list",
+        "method": "GET",
+        "params": [],
+        "icon": "key"
+    },
+    "api_usage": {
+        "id": "api_usage",
+        "name": "API使用统计",
+        "name_en": "API Usage Stats",
+        "description": "获取API使用统计",
+        "category": "api",
+        "subcategory": "stats",
+        "api_endpoint": "/api/usage",
+        "method": "GET",
+        "params": [],
+        "icon": "bar-chart"
+    },
+    "api_rate_limit": {
+        "id": "api_rate_limit",
+        "name": "API速率限制",
+        "name_en": "API Rate Limit",
+        "description": "获取API速率限制信息",
+        "category": "api",
+        "subcategory": "rate",
+        "api_endpoint": "/api/rate/limit",
+        "method": "GET",
+        "params": [],
+        "icon": "gauge"
+    },
+    "api_test": {
+        "id": "api_test",
+        "name": "API测试",
+        "name_en": "API Test",
+        "description": "测试API端点",
+        "category": "api",
+        "subcategory": "test",
+        "api_endpoint": "/api/test",
+        "method": "POST",
+        "params": [
+            {"name": "endpoint", "type": "string", "required": True, "description": "端点"},
+            {"name": "method", "type": "string", "required": True, "description": "方法"},
+            {"name": "data", "type": "any", "required": False, "description": "数据"}
+        ],
+        "icon": "play"
+    },
+
+    # ========== AI/ML工具 ==========
+    "ai_text_classify": {
+        "id": "ai_text_classify",
+        "name": "文本分类",
+        "name_en": "Text Classification",
+        "description": "对文本进行分类",
+        "category": "ai",
+        "subcategory": "classify",
+        "api_endpoint": "/api/ai/classify",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本内容"},
+            {"name": "categories", "type": "array", "required": True, "description": "分类列表"}
+        ],
+        "icon": "tag"
+    },
+    "ai_sentiment": {
+        "id": "ai_sentiment",
+        "name": "情感分析",
+        "name_en": "Sentiment Analysis",
+        "description": "分析文本情感",
+        "category": "ai",
+        "subcategory": "sentiment",
+        "api_endpoint": "/api/ai/sentiment",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本内容"}
+        ],
+        "icon": "heart"
+    },
+    "ai_ner": {
+        "id": "ai_ner",
+        "name": "命名实体识别",
+        "name_en": "Named Entity Recognition",
+        "description": "识别文本中的命名实体",
+        "category": "ai",
+        "subcategory": "ner",
+        "api_endpoint": "/api/ai/ner",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本内容"}
+        ],
+        "icon": "user"
+    },
+    "ai_translate": {
+        "id": "ai_translate",
+        "name": "文本翻译",
+        "name_en": "Text Translation",
+        "description": "翻译文本内容",
+        "category": "ai",
+        "subcategory": "translate",
+        "api_endpoint": "/api/ai/translate",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本内容"},
+            {"name": "target_lang", "type": "string", "required": True, "description": "目标语言"}
+        ],
+        "icon": "globe"
+    },
+    "ai_summarize": {
+        "id": "ai_summarize",
+        "name": "文本摘要",
+        "name_en": "Text Summarization",
+        "description": "生成文本摘要",
+        "category": "ai",
+        "subcategory": "summarize",
+        "api_endpoint": "/api/ai/summarize",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本内容"},
+            {"name": "max_length", "type": "number", "required": False, "description": "最大长度"}
+        ],
+        "icon": "align-left"
+    },
+    "ai_qa": {
+        "id": "ai_qa",
+        "name": "问答系统",
+        "name_en": "Question Answering",
+        "description": "基于文本的问答",
+        "category": "ai",
+        "subcategory": "qa",
+        "api_endpoint": "/api/ai/qa",
+        "method": "POST",
+        "params": [
+            {"name": "question", "type": "string", "required": True, "description": "问题"},
+            {"name": "context", "type": "string", "required": True, "description": "上下文"}
+        ],
+        "icon": "help-circle"
+    },
+    "ai_embedding": {
+        "id": "ai_embedding",
+        "name": "文本嵌入",
+        "name_en": "Text Embedding",
+        "description": "生成文本嵌入向量",
+        "category": "ai",
+        "subcategory": "embedding",
+        "api_endpoint": "/api/ai/embedding",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本内容"}
+        ],
+        "icon": "hash"
+    },
+    "ai_similarity": {
+        "id": "ai_similarity",
+        "name": "文本相似度",
+        "name_en": "Text Similarity",
+        "description": "计算两个文本的相似度",
+        "category": "ai",
+        "subcategory": "similarity",
+        "api_endpoint": "/api/ai/similarity",
+        "method": "POST",
+        "params": [
+            {"name": "text1", "type": "string", "required": True, "description": "文本1"},
+            {"name": "text2", "type": "string", "required": True, "description": "文本2"}
+        ],
+        "icon": "git-compare"
+    },
+
+    # ========== 图像生成工具 ==========
+    "image_generate": {
+        "id": "image_generate",
+        "name": "生成图像",
+        "name_en": "Generate Image",
+        "description": "AI生成图像",
+        "category": "image",
+        "subcategory": "generate",
+        "api_endpoint": "/api/image/generate",
+        "method": "POST",
+        "params": [
+            {"name": "prompt", "type": "string", "required": True, "description": "图像描述"}
+        ],
+        "icon": "image"
+    },
+    "image_edit": {
+        "id": "image_edit",
+        "name": "编辑图像",
+        "name_en": "Edit Image",
+        "description": "AI编辑图像",
+        "category": "image",
+        "subcategory": "edit",
+        "api_endpoint": "/api/image/edit",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图像URL"},
+            {"name": "prompt", "type": "string", "required": True, "description": "编辑指令"}
+        ],
+        "icon": "edit"
+    },
+    "image_variation": {
+        "id": "image_variation",
+        "name": "图像变体",
+        "name_en": "Image Variation",
+        "description": "生成图像变体",
+        "category": "image",
+        "subcategory": "variation",
+        "api_endpoint": "/api/image/variation",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图像URL"}
+        ],
+        "icon": "copy"
+    },
+    "image_upscale": {
+        "id": "image_upscale",
+        "name": "图像放大",
+        "name_en": "Upscale Image",
+        "description": "AI放大图像",
+        "category": "image",
+        "subcategory": "upscale",
+        "api_endpoint": "/api/image/upscale",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图像URL"},
+            {"name": "scale", "type": "number", "required": False, "description": "放大倍数"}
+        ],
+        "icon": "maximize"
+    },
+    "image_remove_bg": {
+        "id": "image_remove_bg",
+        "name": "去除背景",
+        "name_en": "Remove Background",
+        "description": "去除图像背景",
+        "category": "image",
+        "subcategory": "background",
+        "api_endpoint": "/api/image/remove-bg",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图像URL"}
+        ],
+        "icon": "eye-off"
+    },
+
+    # ========== 音频工具 ==========
+    "audio_transcribe": {
+        "id": "audio_transcribe",
+        "name": "音频转录",
+        "name_en": "Audio Transcription",
+        "description": "将音频转录为文字",
+        "category": "audio",
+        "subcategory": "transcribe",
+        "api_endpoint": "/api/audio/transcribe",
+        "method": "POST",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"}
+        ],
+        "icon": "mic"
+    },
+    "audio_synthesis": {
+        "id": "audio_synthesis",
+        "name": "语音合成",
+        "name_en": "Speech Synthesis",
+        "description": "将文字转换为语音",
+        "category": "audio",
+        "subcategory": "synthesis",
+        "api_endpoint": "/api/audio/synthesis",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本内容"},
+            {"name": "voice", "type": "string", "required": False, "description": "语音名称"}
+        ],
+        "icon": "volume-2"
+    },
+    "audio_noise_reduce": {
+        "id": "audio_noise_reduce",
+        "name": "音频降噪",
+        "name_en": "Audio Noise Reduction",
+        "description": "降低音频噪音",
+        "category": "audio",
+        "subcategory": "noise",
+        "api_endpoint": "/api/audio/noise",
+        "method": "POST",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"}
+        ],
+        "icon": "volume-x"
+    },
+    "audio_concat": {
+        "id": "audio_concat",
+        "name": "音频拼接",
+        "name_en": "Concatenate Audio",
+        "description": "拼接多个音频文件",
+        "category": "audio",
+        "subcategory": "concat",
+        "api_endpoint": "/api/audio/concat",
+        "method": "POST",
+        "params": [
+            {"name": "audio_urls", "type": "array", "required": True, "description": "音频URL列表"}
+        ],
+        "icon": "plus"
+    },
+    "audio_split": {
+        "id": "audio_split",
+        "name": "音频分割",
+        "name_en": "Split Audio",
+        "description": "分割音频文件",
+        "category": "audio",
+        "subcategory": "split",
+        "api_endpoint": "/api/audio/split",
+        "method": "POST",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"},
+            {"name": "start", "type": "number", "required": True, "description": "开始时间(秒)"},
+            {"name": "end", "type": "number", "required": True, "description": "结束时间(秒)"}
+        ],
+        "icon": "scissors"
+    },
+
+    # ========== 视频工具 ==========
+    "video_generate": {
+        "id": "video_generate",
+        "name": "生成视频",
+        "name_en": "Generate Video",
+        "description": "AI生成视频",
+        "category": "video",
+        "subcategory": "generate",
+        "api_endpoint": "/api/video/generate",
+        "method": "POST",
+        "params": [
+            {"name": "prompt", "type": "string", "required": True, "description": "视频描述"}
+        ],
+        "icon": "video"
+    },
+    "video_edit": {
+        "id": "video_edit",
+        "name": "编辑视频",
+        "name_en": "Edit Video",
+        "description": "编辑视频",
+        "category": "video",
+        "subcategory": "edit",
+        "api_endpoint": "/api/video/edit",
+        "method": "POST",
+        "params": [
+            {"name": "video_url", "type": "string", "required": True, "description": "视频URL"},
+            {"name": "operations", "type": "array", "required": True, "description": "操作数组"}
+        ],
+        "icon": "video"
+    },
+    "video_thumbnail": {
+        "id": "video_thumbnail",
+        "name": "提取缩略图",
+        "name_en": "Extract Thumbnail",
+        "description": "从视频提取缩略图",
+        "category": "video",
+        "subcategory": "thumbnail",
+        "api_endpoint": "/api/video/thumbnail",
+        "method": "POST",
+        "params": [
+            {"name": "video_url", "type": "string", "required": True, "description": "视频URL"},
+            {"name": "timestamp", "type": "number", "required": False, "description": "时间戳"}
+        ],
+        "icon": "image"
+    },
+    "video_concat": {
+        "id": "video_concat",
+        "name": "视频拼接",
+        "name_en": "Concatenate Video",
+        "description": "拼接多个视频",
+        "category": "video",
+        "subcategory": "concat",
+        "api_endpoint": "/api/video/concat",
+        "method": "POST",
+        "params": [
+            {"name": "video_urls", "type": "array", "required": True, "description": "视频URL列表"}
+        ],
+        "icon": "plus"
+    },
+    "video_split": {
+        "id": "video_split",
+        "name": "视频分割",
+        "name_en": "Split Video",
+        "description": "分割视频",
+        "category": "video",
+        "subcategory": "split",
+        "api_endpoint": "/api/video/split",
+        "method": "POST",
+        "params": [
+            {"name": "video_url", "type": "string", "required": True, "description": "视频URL"},
+            {"name": "start", "type": "number", "required": True, "description": "开始时间(秒)"},
+            {"name": "end", "type": "number", "required": True, "description": "结束时间(秒)"}
+        ],
+        "icon": "scissors"
     }
 }
 
