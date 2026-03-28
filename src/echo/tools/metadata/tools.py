@@ -627,6 +627,18 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "params": [],
         "icon": "circle"
     },
+    "collection_utils": {
+        "id": "collection_utils",
+        "name": "集合工具",
+        "name_en": "Collection Utils",
+        "description": "集合操作：并集、交集、差集、对称差集、子集判断",
+        "category": "data_structures",
+        "subcategory": "collection",
+        "api_endpoint": "/api/collection",
+        "method": "POST",
+        "params": [],
+        "icon": "circle"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
