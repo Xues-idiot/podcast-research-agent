@@ -15509,6 +15509,832 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "order", "type": "number", "required": False, "description": "阶数"}
         ],
         "icon": "activity"
+    },
+
+    # ========== 信号处理工具 ==========
+    "convolve": {
+        "id": "convolve",
+        "name": "卷积",
+        "name_en": "Convolve",
+        "description": "计算卷积",
+        "category": "signal",
+        "subcategory": "convolution",
+        "api_endpoint": "/api/convolve",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"},
+            {"name": "kernel", "type": "array", "required": True, "description": "核"}
+        ],
+        "icon": "activity"
+    },
+    "autocorrelate": {
+        "id": "autocorrelate",
+        "name": "自相关",
+        "name_en": "Autocorrelate",
+        "description": "计算自相关",
+        "category": "signal",
+        "subcategory": "correlation",
+        "api_endpoint": "/api/autocorrelate",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"}
+        ],
+        "icon": "activity"
+    },
+    "crosscorrelate": {
+        "id": "crosscorrelate",
+        "name": "互相关",
+        "name_en": "Crosscorrelate",
+        "description": "计算互相关",
+        "category": "signal",
+        "subcategory": "correlation",
+        "api_endpoint": "/api/crosscorrelate",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "信号A"},
+            {"name": "b", "type": "array", "required": True, "description": "信号B"}
+        ],
+        "icon": "activity"
+    },
+    "fft": {
+        "id": "fft",
+        "name": "FFT",
+        "name_en": "FFT",
+        "description": "快速傅里叶变换",
+        "category": "signal",
+        "subcategory": "transform",
+        "api_endpoint": "/api/fft",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"}
+        ],
+        "icon": "activity"
+    },
+    "ifft": {
+        "id": "ifft",
+        "name": "IFFT",
+        "name_en": "Inverse FFT",
+        "description": "逆快速傅里叶变换",
+        "category": "signal",
+        "subcategory": "transform",
+        "api_endpoint": "/api/ifft",
+        "method": "POST",
+        "params": [
+            {"name": "spectrum", "type": "array", "required": True, "description": "频谱"}
+        ],
+        "icon": "activity"
+    },
+
+    # ========== 滤波器工具 ==========
+    "lowpass_filter": {
+        "id": "lowpass_filter",
+        "name": "低通滤波",
+        "name_en": "Low Pass Filter",
+        "description": "低通滤波器",
+        "category": "filter",
+        "subcategory": "frequency",
+        "api_endpoint": "/api/lowpass-filter",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"},
+            {"name": "cutoff", "type": "number", "required": True, "description": "截止频率"}
+        ],
+        "icon": "filter"
+    },
+    "highpass_filter": {
+        "id": "highpass_filter",
+        "name": "高通滤波",
+        "name_en": "High Pass Filter",
+        "description": "高通滤波器",
+        "category": "filter",
+        "subcategory": "frequency",
+        "api_endpoint": "/api/highpass-filter",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"},
+            {"name": "cutoff", "type": "number", "required": True, "description": "截止频率"}
+        ],
+        "icon": "filter"
+    },
+    "bandpass_filter": {
+        "id": "bandpass_filter",
+        "name": "带通滤波",
+        "name_en": "Band Pass Filter",
+        "description": "带通滤波器",
+        "category": "filter",
+        "subcategory": "frequency",
+        "api_endpoint": "/api/bandpass-filter",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"},
+            {"name": "low", "type": "number", "required": True, "description": "低频"},
+            {"name": "high", "type": "number", "required": True, "description": "高频"}
+        ],
+        "icon": "filter"
+    },
+    "median_filter": {
+        "id": "median_filter",
+        "name": "中值滤波",
+        "name_en": "Median Filter",
+        "description": "中值滤波器",
+        "category": "filter",
+        "subcategory": "order",
+        "api_endpoint": "/api/median-filter",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"},
+            {"name": "window", "type": "number", "required": True, "description": "窗口大小"}
+        ],
+        "icon": "filter"
+    },
+    "kalman_filter": {
+        "id": "kalman_filter",
+        "name": "卡尔曼滤波",
+        "name_en": "Kalman Filter",
+        "description": "卡尔曼滤波器",
+        "category": "filter",
+        "subcategory": "optimal",
+        "api_endpoint": "/api/kalman-filter",
+        "method": "POST",
+        "params": [
+            {"name": "measurement", "type": "number", "required": True, "description": "测量值"},
+            {"name": "estimate", "type": "number", "required": False, "description": "估计值"}
+        ],
+        "icon": "filter"
+    },
+
+    # ========== 检测工具 ==========
+    "peak_detect": {
+        "id": "peak_detect",
+        "name": "峰值检测",
+        "name_en": "Peak Detection",
+        "description": "检测峰值",
+        "category": "detect",
+        "subcategory": "peak",
+        "api_endpoint": "/api/peak-detect",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"},
+            {"name": "threshold", "type": "number", "required": False, "description": "阈值"}
+        ],
+        "icon": "activity"
+    },
+    "zero_crossing": {
+        "id": "zero_crossing",
+        "name": "过零检测",
+        "name_en": "Zero Crossing",
+        "description": "检测过零点",
+        "category": "detect",
+        "subcategory": "zero",
+        "api_endpoint": "/api/zero-crossing",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"}
+        ],
+        "icon": "activity"
+    },
+    "envelope": {
+        "id": "envelope",
+        "name": "包络检测",
+        "name_en": "Envelope Detection",
+        "description": "检测信号包络",
+        "category": "detect",
+        "subcategory": "envelope",
+        "api_endpoint": "/api/envelope",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"}
+        ],
+        "icon": "activity"
+    },
+
+    # ========== 音频工具 ==========
+    "audio_envelope": {
+        "id": "audio_envelope",
+        "name": "音频包络",
+        "name_en": "Audio Envelope",
+        "description": "生成音频包络",
+        "category": "audio",
+        "subcategory": "envelope",
+        "api_endpoint": "/api/audio-envelope",
+        "method": "POST",
+        "params": [
+            {"name": "attack", "type": "number", "required": False, "description": "起音"},
+            {"name": "decay", "type": "number", "required": False, "description": "衰减"},
+            {"name": "sustain", "type": "number", "required": False, "description": "持续"},
+            {"name": "release", "type": "number", "required": False, "description": "释放"}
+        ],
+        "icon": "activity"
+    },
+    "audio_compressor": {
+        "id": "audio_compressor",
+        "name": "音频压缩",
+        "name_en": "Audio Compressor",
+        "description": "音频压缩器",
+        "category": "audio",
+        "subcategory": "dynamics",
+        "api_endpoint": "/api/audio-compressor",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"},
+            {"name": "threshold", "type": "number", "required": False, "description": "阈值"},
+            {"name": "ratio", "type": "number", "required": False, "description": "比率"}
+        ],
+        "icon": "activity"
+    },
+    "audio_delay": {
+        "id": "audio_delay",
+        "name": "音频延迟",
+        "name_en": "Audio Delay",
+        "description": "音频延迟效果",
+        "category": "audio",
+        "subcategory": "effect",
+        "api_endpoint": "/api/audio-delay",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"},
+            {"name": "delay", "type": "number", "required": True, "description": "延迟时间"},
+            {"name": "feedback", "type": "number", "required": False, "description": "反馈"}
+        ],
+        "icon": "activity"
+    },
+    "audio_reverb": {
+        "id": "audio_reverb",
+        "name": "音频混响",
+        "name_en": "Audio Reverb",
+        "description": "音频混响效果",
+        "category": "audio",
+        "subcategory": "effect",
+        "api_endpoint": "/api/audio-reverb",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"},
+            {"name": "room_size", "type": "number", "required": False, "description": "房间大小"},
+            {"name": "damping", "type": "number", "required": False, "description": "阻尼"}
+        ],
+        "icon": "activity"
+    },
+    "audio_chorus": {
+        "id": "audio_chorus",
+        "name": "音频合唱",
+        "name_en": "Audio Chorus",
+        "description": "音频合唱效果",
+        "category": "audio",
+        "subcategory": "effect",
+        "api_endpoint": "/api/audio-chorus",
+        "method": "POST",
+        "params": [
+            {"name": "signal", "type": "array", "required": True, "description": "信号"},
+            {"name": "depth", "type": "number", "required": False, "description": "深度"},
+            {"name": "rate", "type": "number", "required": False, "description": "速率"}
+        ],
+        "icon": "activity"
+    },
+
+    # ========== 图像处理工具 ==========
+    "image_rotate": {
+        "id": "image_rotate",
+        "name": "图像旋转",
+        "name_en": "Image Rotate",
+        "description": "旋转图像",
+        "category": "image",
+        "subcategory": "transform",
+        "api_endpoint": "/api/image-rotate",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "图像数据"},
+            {"name": "angle", "type": "number", "required": True, "description": "角度"}
+        ],
+        "icon": "rotate-cw"
+    },
+    "image_flip": {
+        "id": "image_flip",
+        "name": "图像翻转",
+        "name_en": "Image Flip",
+        "description": "翻转图像",
+        "category": "image",
+        "subcategory": "transform",
+        "api_endpoint": "/api/image-flip",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "图像数据"},
+            {"name": "horizontal", "type": "boolean", "required": False, "description": "水平翻转"}
+        ],
+        "icon": "arrow-up-down"
+    },
+    "image_resize": {
+        "id": "image_resize",
+        "name": "图像缩放",
+        "name_en": "Image Resize",
+        "description": "缩放图像",
+        "category": "image",
+        "subcategory": "transform",
+        "api_endpoint": "/api/image-resize",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "图像数据"},
+            {"name": "width", "type": "number", "required": True, "description": "宽度"},
+            {"name": "height", "type": "number", "required": True, "description": "高度"}
+        ],
+        "icon": "maximize"
+    },
+    "image_crop": {
+        "id": "image_crop",
+        "name": "图像裁剪",
+        "name_en": "Image Crop",
+        "description": "裁剪图像",
+        "category": "image",
+        "subcategory": "transform",
+        "api_endpoint": "/api/image-crop",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "图像数据"},
+            {"name": "x", "type": "number", "required": True, "description": "X"},
+            {"name": "y", "type": "number", "required": True, "description": "Y"},
+            {"name": "width", "type": "number", "required": True, "description": "宽度"},
+            {"name": "height", "type": "number", "required": True, "description": "高度"}
+        ],
+        "icon": "crop"
+    },
+    "image_blur": {
+        "id": "image_blur",
+        "name": "图像模糊",
+        "name_en": "Image Blur",
+        "description": "模糊图像",
+        "category": "image",
+        "subcategory": "filter",
+        "api_endpoint": "/api/image-blur",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "图像数据"},
+            {"name": "radius", "type": "number", "required": False, "description": "半径"}
+        ],
+        "icon": "droplet"
+    },
+
+    # ========== 视频处理工具 ==========
+    "video_rotate": {
+        "id": "video_rotate",
+        "name": "视频旋转",
+        "name_en": "Video Rotate",
+        "description": "旋转视频",
+        "category": "video",
+        "subcategory": "transform",
+        "api_endpoint": "/api/video-rotate",
+        "method": "POST",
+        "params": [
+            {"name": "video", "type": "string", "required": True, "description": "视频数据"},
+            {"name": "angle", "type": "number", "required": True, "description": "角度"}
+        ],
+        "icon": "rotate-cw"
+    },
+    "video_flip": {
+        "id": "video_flip",
+        "name": "视频翻转",
+        "name_en": "Video Flip",
+        "description": "翻转视频",
+        "category": "video",
+        "subcategory": "transform",
+        "api_endpoint": "/api/video-flip",
+        "method": "POST",
+        "params": [
+            {"name": "video", "type": "string", "required": True, "description": "视频数据"},
+            {"name": "horizontal", "type": "boolean", "required": False, "description": "水平翻转"}
+        ],
+        "icon": "arrow-up-down"
+    },
+    "video_scale": {
+        "id": "video_scale",
+        "name": "视频缩放",
+        "name_en": "Video Scale",
+        "description": "缩放视频",
+        "category": "video",
+        "subcategory": "transform",
+        "api_endpoint": "/api/video-scale",
+        "method": "POST",
+        "params": [
+            {"name": "video", "type": "string", "required": True, "description": "视频数据"},
+            {"name": "width", "type": "number", "required": True, "description": "宽度"},
+            {"name": "height", "type": "number", "required": True, "description": "高度"}
+        ],
+        "icon": "maximize"
+    },
+    "video_crop": {
+        "id": "video_crop",
+        "name": "视频裁剪",
+        "name_en": "Video Crop",
+        "description": "裁剪视频",
+        "category": "video",
+        "subcategory": "transform",
+        "api_endpoint": "/api/video-crop",
+        "method": "POST",
+        "params": [
+            {"name": "video", "type": "string", "required": True, "description": "视频数据"},
+            {"name": "x", "type": "number", "required": True, "description": "X"},
+            {"name": "y", "type": "number", "required": True, "description": "Y"},
+            {"name": "width", "type": "number", "required": True, "description": "宽度"},
+            {"name": "height", "type": "number", "required": True, "description": "高度"}
+        ],
+        "icon": "crop"
+    },
+    "video_blur": {
+        "id": "video_blur",
+        "name": "视频模糊",
+        "name_en": "Video Blur",
+        "description": "模糊视频",
+        "category": "video",
+        "subcategory": "filter",
+        "api_endpoint": "/api/video-blur",
+        "method": "POST",
+        "params": [
+            {"name": "video", "type": "string", "required": True, "description": "视频数据"},
+            {"name": "radius", "type": "number", "required": False, "description": "半径"}
+        ],
+        "icon": "droplet"
+    },
+
+    # ========== 几何计算工具 ==========
+    "circle_area": {
+        "id": "circle_area",
+        "name": "圆面积",
+        "name_en": "Circle Area",
+        "description": "计算圆面积",
+        "category": "geometry",
+        "subcategory": "2d",
+        "api_endpoint": "/api/circle-area",
+        "method": "POST",
+        "params": [
+            {"name": "radius", "type": "number", "required": True, "description": "半径"}
+        ],
+        "icon": "circle"
+    },
+    "circle_circumference": {
+        "id": "circle_circumference",
+        "name": "圆周长",
+        "name_en": "Circle Circumference",
+        "description": "计算圆周长",
+        "category": "geometry",
+        "subcategory": "2d",
+        "api_endpoint": "/api/circle-circumference",
+        "method": "POST",
+        "params": [
+            {"name": "radius", "type": "number", "required": True, "description": "半径"}
+        ],
+        "icon": "circle"
+    },
+    "sphere_volume": {
+        "id": "sphere_volume",
+        "name": "球体积",
+        "name_en": "Sphere Volume",
+        "description": "计算球体积",
+        "category": "geometry",
+        "subcategory": "3d",
+        "api_endpoint": "/api/sphere-volume",
+        "method": "POST",
+        "params": [
+            {"name": "radius", "type": "number", "required": True, "description": "半径"}
+        ],
+        "icon": "circle"
+    },
+    "sphere_surface_area": {
+        "id": "sphere_surface_area",
+        "name": "球表面积",
+        "name_en": "Sphere Surface Area",
+        "description": "计算球表面积",
+        "category": "geometry",
+        "subcategory": "3d",
+        "api_endpoint": "/api/sphere-surface-area",
+        "method": "POST",
+        "params": [
+            {"name": "radius", "type": "number", "required": True, "description": "半径"}
+        ],
+        "icon": "circle"
+    },
+    "polygon_area": {
+        "id": "polygon_area",
+        "name": "多边形面积",
+        "name_en": "Polygon Area",
+        "description": "计算多边形面积",
+        "category": "geometry",
+        "subcategory": "2d",
+        "api_endpoint": "/api/polygon-area",
+        "method": "POST",
+        "params": [
+            {"name": "vertices", "type": "array", "required": True, "description": "顶点数组"}
+        ],
+        "icon": "triangle"
+    },
+    "line_intersection": {
+        "id": "line_intersection",
+        "name": "直线交点",
+        "name_en": "Line Intersection",
+        "description": "计算两条直线交点",
+        "category": "geometry",
+        "subcategory": "2d",
+        "api_endpoint": "/api/line-intersection",
+        "method": "POST",
+        "params": [
+            {"name": "p1", "type": "array", "required": True, "description": "直线1起点"},
+            {"name": "p2", "type": "array", "required": True, "description": "直线1终点"},
+            {"name": "p3", "type": "array", "required": True, "description": "直线2起点"},
+            {"name": "p4", "type": "array", "required": True, "description": "直线2终点"}
+        ],
+        "icon": "crosshair"
+    },
+    "point_in_polygon": {
+        "id": "point_in_polygon",
+        "name": "点在多边形内",
+        "name_en": "Point In Polygon",
+        "description": "检查点是否在多边形内",
+        "category": "geometry",
+        "subcategory": "2d",
+        "api_endpoint": "/api/point-in-polygon",
+        "method": "POST",
+        "params": [
+            {"name": "point", "type": "array", "required": True, "description": "点"},
+            {"name": "vertices", "type": "array", "required": True, "description": "多边形顶点"}
+        ],
+        "icon": "check-circle"
+    },
+    "distance_2d": {
+        "id": "distance_2d",
+        "name": "二维距离",
+        "name_en": "2D Distance",
+        "description": "计算两点间距离",
+        "category": "geometry",
+        "subcategory": "2d",
+        "api_endpoint": "/api/distance-2d",
+        "method": "POST",
+        "params": [
+            {"name": "x1", "type": "number", "required": True, "description": "X1"},
+            {"name": "y1", "type": "number", "required": True, "description": "Y1"},
+            {"name": "x2", "type": "number", "required": True, "description": "X2"},
+            {"name": "y2", "type": "number", "required": True, "description": "Y2"}
+        ],
+        "icon": "move"
+    },
+    "distance_3d": {
+        "id": "distance_3d",
+        "name": "三维距离",
+        "name_en": "3D Distance",
+        "description": "计算三维距离",
+        "category": "geometry",
+        "subcategory": "3d",
+        "api_endpoint": "/api/distance-3d",
+        "method": "POST",
+        "params": [
+            {"name": "x1", "type": "number", "required": True, "description": "X1"},
+            {"name": "y1", "type": "number", "required": True, "description": "Y1"},
+            {"name": "z1", "type": "number", "required": True, "description": "Z1"},
+            {"name": "x2", "type": "number", "required": True, "description": "X2"},
+            {"name": "y2", "type": "number", "required": True, "description": "Y2"},
+            {"name": "z2", "type": "number", "required": True, "description": "Z2"}
+        ],
+        "icon": "move"
+    },
+
+    # ========== 单位转换工具 ==========
+    "celsius_to_fahrenheit": {
+        "id": "celsius_to_fahrenheit",
+        "name": "摄氏转华氏",
+        "name_en": "Celsius to Fahrenheit",
+        "description": "摄氏温度转华氏",
+        "category": "convert",
+        "subcategory": "temperature",
+        "api_endpoint": "/api/celsius-to-fahrenheit",
+        "method": "POST",
+        "params": [
+            {"name": "celsius", "type": "number", "required": True, "description": "摄氏温度"}
+        ],
+        "icon": "thermometer"
+    },
+    "fahrenheit_to_celsius": {
+        "id": "fahrenheit_to_celsius",
+        "name": "华氏转摄氏",
+        "name_en": "Fahrenheit to Celsius",
+        "description": "华氏温度转摄氏",
+        "category": "convert",
+        "subcategory": "temperature",
+        "api_endpoint": "/api/fahrenheit-to-celsius",
+        "method": "POST",
+        "params": [
+            {"name": "fahrenheit", "type": "number", "required": True, "description": "华氏温度"}
+        ],
+        "icon": "thermometer"
+    },
+    "km_to_miles": {
+        "id": "km_to_miles",
+        "name": "公里转英里",
+        "name_en": "Km to Miles",
+        "description": "公里转英里",
+        "category": "convert",
+        "subcategory": "distance",
+        "api_endpoint": "/api/km-to-miles",
+        "method": "POST",
+        "params": [
+            {"name": "km", "type": "number", "required": True, "description": "公里"}
+        ],
+        "icon": "map"
+    },
+    "miles_to_km": {
+        "id": "miles_to_km",
+        "name": "英里转公里",
+        "name_en": "Miles to Km",
+        "description": "英里转公里",
+        "category": "convert",
+        "subcategory": "distance",
+        "api_endpoint": "/api/miles-to-km",
+        "method": "POST",
+        "params": [
+            {"name": "miles", "type": "number", "required": True, "description": "英里"}
+        ],
+        "icon": "map"
+    },
+    "kg_to_lbs": {
+        "id": "kg_to_lbs",
+        "name": "公斤转磅",
+        "name_en": "Kg to Lbs",
+        "description": "公斤转磅",
+        "category": "convert",
+        "subcategory": "weight",
+        "api_endpoint": "/api/kg-to-lbs",
+        "method": "POST",
+        "params": [
+            {"name": "kg", "type": "number", "required": True, "description": "公斤"}
+        ],
+        "icon": "scale"
+    },
+    "lbs_to_kg": {
+        "id": "lbs_to_kg",
+        "name": "磅转公斤",
+        "name_en": "Lbs to Kg",
+        "description": "磅转公斤",
+        "category": "convert",
+        "subcategory": "weight",
+        "api_endpoint": "/api/lbs-to-kg",
+        "method": "POST",
+        "params": [
+            {"name": "lbs", "type": "number", "required": True, "description": "磅"}
+        ],
+        "icon": "scale"
+    },
+    "bytes_to_human": {
+        "id": "bytes_to_human",
+        "name": "字节转人类可读",
+        "name_en": "Bytes to Human",
+        "description": "字节数转人类可读格式",
+        "category": "convert",
+        "subcategory": "data",
+        "api_endpoint": "/api/bytes-to-human",
+        "method": "POST",
+        "params": [
+            {"name": "bytes", "type": "number", "required": True, "description": "字节数"}
+        ],
+        "icon": "hard-drive"
+    },
+
+    # ========== 时间相关 ==========
+    "seconds_to_minutes": {
+        "id": "seconds_to_minutes",
+        "name": "秒转分钟",
+        "name_en": "Seconds to Minutes",
+        "description": "秒转分钟",
+        "category": "convert",
+        "subcategory": "time",
+        "api_endpoint": "/api/seconds-to-minutes",
+        "method": "POST",
+        "params": [
+            {"name": "seconds", "type": "number", "required": True, "description": "秒"}
+        ],
+        "icon": "clock"
+    },
+    "minutes_to_hours": {
+        "id": "minutes_to_hours",
+        "name": "分钟转小时",
+        "name_en": "Minutes to Hours",
+        "description": "分钟转小时",
+        "category": "convert",
+        "subcategory": "time",
+        "api_endpoint": "/api/minutes-to-hours",
+        "method": "POST",
+        "params": [
+            {"name": "minutes", "type": "number", "required": True, "description": "分钟"}
+        ],
+        "icon": "clock"
+    },
+    "hours_to_days": {
+        "id": "hours_to_days",
+        "name": "小时转天",
+        "name_en": "Hours to Days",
+        "description": "小时转天",
+        "category": "convert",
+        "subcategory": "time",
+        "api_endpoint": "/api/hours-to-days",
+        "method": "POST",
+        "params": [
+            {"name": "hours", "type": "number", "required": True, "description": "小时"}
+        ],
+        "icon": "calendar"
+    },
+
+    # ========== 通用转换 ==========
+    "int_to_float": {
+        "id": "int_to_float",
+        "name": "整数转浮点",
+        "name_en": "Int to Float",
+        "description": "整数转浮点数",
+        "category": "convert",
+        "subcategory": "type",
+        "api_endpoint": "/api/int-to-float",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "整数"}
+        ],
+        "icon": "hash"
+    },
+    "float_to_int": {
+        "id": "float_to_int",
+        "name": "浮点转整数",
+        "name_en": "Float to Int",
+        "description": "浮点数转整数",
+        "category": "convert",
+        "subcategory": "type",
+        "api_endpoint": "/api/float-to-int",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "浮点数"}
+        ],
+        "icon": "hash"
+    },
+    "str_to_int": {
+        "id": "str_to_int",
+        "name": "字符串转整数",
+        "name_en": "Str to Int",
+        "description": "字符串转整数",
+        "category": "convert",
+        "subcategory": "type",
+        "api_endpoint": "/api/str-to-int",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "字符串"}
+        ],
+        "icon": "type"
+    },
+    "str_to_float": {
+        "id": "str_to_float",
+        "name": "字符串转浮点",
+        "name_en": "Str to Float",
+        "description": "字符串转浮点数",
+        "category": "convert",
+        "subcategory": "type",
+        "api_endpoint": "/api/str-to-float",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "字符串"}
+        ],
+        "icon": "type"
+    },
+    "int_to_str": {
+        "id": "int_to_str",
+        "name": "整数转字符串",
+        "name_en": "Int to Str",
+        "description": "整数转字符串",
+        "category": "convert",
+        "subcategory": "type",
+        "api_endpoint": "/api/int-to-str",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "整数"}
+        ],
+        "icon": "type"
+    },
+    "bool_to_int": {
+        "id": "bool_to_int",
+        "name": "布尔转整数",
+        "name_en": "Bool to Int",
+        "description": "布尔转整数",
+        "category": "convert",
+        "subcategory": "type",
+        "api_endpoint": "/api/bool-to-int",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "boolean", "required": True, "description": "布尔值"}
+        ],
+        "icon": "check-square"
+    },
+    "int_to_bool": {
+        "id": "int_to_bool",
+        "name": "整数转布尔",
+        "name_en": "Int to Bool",
+        "description": "整数转布尔",
+        "category": "convert",
+        "subcategory": "type",
+        "api_endpoint": "/api/int-to-bool",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "整数"}
+        ],
+        "icon": "check-square"
     }
 }
 
