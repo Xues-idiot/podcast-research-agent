@@ -3158,6 +3158,108 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "fn", "type": "string", "required": True, "description": "函数"}
         ],
         "icon": "play"
+    },
+    "hex_to_rgb": {
+        "id": "hex_to_rgb",
+        "name": "HEX转RGB",
+        "name_en": "HEX to RGB",
+        "description": "HEX颜色转RGB",
+        "category": "color",
+        "subcategory": "convert",
+        "api_endpoint": "/api/color/hex-to-rgb",
+        "method": "POST",
+        "params": [
+            {"name": "hex", "type": "string", "required": True, "description": "HEX颜色值"}
+        ],
+        "icon": "palette"
+    },
+    "rgb_to_hex": {
+        "id": "rgb_to_hex",
+        "name": "RGB转HEX",
+        "name_en": "RGB to HEX",
+        "description": "RGB转HEX颜色",
+        "category": "color",
+        "subcategory": "convert",
+        "api_endpoint": "/api/color/rgb-to-hex",
+        "method": "POST",
+        "params": [
+            {"name": "r", "type": "number", "required": True, "description": "红色"},
+            {"name": "g", "type": "number", "required": True, "description": "绿色"},
+            {"name": "b", "type": "number", "required": True, "description": "蓝色"}
+        ],
+        "icon": "palette"
+    },
+    "lighten": {
+        "id": "lighten",
+        "name": "提亮颜色",
+        "name_en": "Lighten Color",
+        "description": "使颜色变亮",
+        "category": "color",
+        "subcategory": "adjust",
+        "api_endpoint": "/api/color/lighten",
+        "method": "POST",
+        "params": [
+            {"name": "hex", "type": "string", "required": True, "description": "HEX颜色值"},
+            {"name": "amount", "type": "number", "required": False, "description": "提亮量"}
+        ],
+        "icon": "sun"
+    },
+    "darken": {
+        "id": "darken",
+        "name": "加深颜色",
+        "name_en": "Darken Color",
+        "description": "使颜色变深",
+        "category": "color",
+        "subcategory": "adjust",
+        "api_endpoint": "/api/color/darken",
+        "method": "POST",
+        "params": [
+            {"name": "hex", "type": "string", "required": True, "description": "HEX颜色值"},
+            {"name": "amount", "type": "number", "required": False, "description": "加深量"}
+        ],
+        "icon": "moon"
+    },
+    "string_to_int": {
+        "id": "string_to_int",
+        "name": "字符串转整数",
+        "name_en": "String to Int",
+        "description": "将字符串转换为整数",
+        "category": "convert",
+        "subcategory": "type",
+        "api_endpoint": "/api/convert/string-to-int",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "字符串"}
+        ],
+        "icon": "type"
+    },
+    "int_to_string": {
+        "id": "int_to_string",
+        "name": "整数转字符串",
+        "name_en": "Int to String",
+        "description": "将整数转换为字符串",
+        "category": "convert",
+        "subcategory": "type",
+        "api_endpoint": "/api/convert/int-to-string",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "整数"}
+        ],
+        "icon": "type"
+    },
+    "to_number": {
+        "id": "to_number",
+        "name": "转数字",
+        "name_en": "To Number",
+        "description": "将字符串转换为数字",
+        "category": "convert",
+        "subcategory": "type",
+        "api_endpoint": "/api/convert/to-number",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "值"}
+        ],
+        "icon": "hash"
     }
 }
 
