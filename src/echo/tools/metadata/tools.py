@@ -1441,6 +1441,113 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "max_val", "type": "number", "required": True, "description": "最大值"}
         ],
         "icon": "sliders"
+    },
+    "dt_now": {
+        "id": "dt_now",
+        "name": "当前时间",
+        "name_en": "Current DateTime",
+        "description": "获取当前日期时间",
+        "category": "datetime",
+        "subcategory": "now",
+        "api_endpoint": "/api/datetime/now",
+        "method": "POST",
+        "params": [
+            {"name": "format", "type": "string", "required": False, "description": "日期格式"}
+        ],
+        "icon": "clock"
+    },
+    "dt_today": {
+        "id": "dt_today",
+        "name": "今日日期",
+        "name_en": "Today",
+        "description": "获取今天的日期",
+        "category": "datetime",
+        "subcategory": "today",
+        "api_endpoint": "/api/datetime/today",
+        "method": "POST",
+        "params": [
+            {"name": "format", "type": "string", "required": False, "description": "日期格式"}
+        ],
+        "icon": "calendar"
+    },
+    "dt_add": {
+        "id": "dt_add",
+        "name": "日期加减",
+        "name_en": "Date Add/Subtract",
+        "description": "日期时间加减计算",
+        "category": "datetime",
+        "subcategory": "add",
+        "api_endpoint": "/api/datetime/add",
+        "method": "POST",
+        "params": [
+            {"name": "dt_str", "type": "string", "required": True, "description": "日期时间"},
+            {"name": "days", "type": "number", "required": False, "description": "天数"},
+            {"name": "hours", "type": "number", "required": False, "description": "小时"},
+            {"name": "minutes", "type": "number", "required": False, "description": "分钟"},
+            {"name": "format", "type": "string", "required": False, "description": "格式"}
+        ],
+        "icon": "plus-circle"
+    },
+    "dt_diff": {
+        "id": "dt_diff",
+        "name": "日期差计算",
+        "name_en": "Date Difference",
+        "description": "计算两个日期之间的差值",
+        "category": "datetime",
+        "subcategory": "diff",
+        "api_endpoint": "/api/datetime/diff",
+        "method": "POST",
+        "params": [
+            {"name": "dt1_str", "type": "string", "required": True, "description": "日期时间1"},
+            {"name": "dt2_str", "type": "string", "required": True, "description": "日期时间2"},
+            {"name": "format", "type": "string", "required": False, "description": "格式"}
+        ],
+        "icon": "minus-circle"
+    },
+    "dt_format": {
+        "id": "dt_format",
+        "name": "日期格式转换",
+        "name_en": "Date Format",
+        "description": "日期格式转换",
+        "category": "datetime",
+        "subcategory": "format",
+        "api_endpoint": "/api/datetime/format",
+        "method": "POST",
+        "params": [
+            {"name": "dt_str", "type": "string", "required": True, "description": "日期时间"},
+            {"name": "from_format", "type": "string", "required": True, "description": "源格式"},
+            {"name": "to_format", "type": "string", "required": True, "description": "目标格式"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "dt_timestamp": {
+        "id": "dt_timestamp",
+        "name": "转时间戳",
+        "name_en": "To Timestamp",
+        "description": "日期时间转时间戳",
+        "category": "datetime",
+        "subcategory": "timestamp",
+        "api_endpoint": "/api/datetime/timestamp",
+        "method": "POST",
+        "params": [
+            {"name": "dt_str", "type": "string", "required": True, "description": "日期时间"},
+            {"name": "format", "type": "string", "required": False, "description": "格式"}
+        ],
+        "icon": "hash"
+    },
+    "dt_from_timestamp": {
+        "id": "dt_from_timestamp",
+        "name": "从时间戳转日期",
+        "name_en": "From Timestamp",
+        "description": "时间戳转日期时间",
+        "category": "datetime",
+        "subcategory": "timestamp",
+        "api_endpoint": "/api/datetime/from-timestamp",
+        "method": "POST",
+        "params": [
+            {"name": "timestamp", "type": "number", "required": True, "description": "时间戳"}
+        ],
+        "icon": "hash"
     }
 }
 
