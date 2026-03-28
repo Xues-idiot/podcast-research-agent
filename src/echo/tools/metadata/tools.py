@@ -2647,6 +2647,112 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "text", "type": "string", "required": True, "description": "HTML文本"}
         ],
         "icon": "code"
+    },
+    "set_union": {
+        "id": "set_union",
+        "name": "集合并集",
+        "name_en": "Set Union",
+        "description": "计算集合并集",
+        "category": "set",
+        "subcategory": "operation",
+        "api_endpoint": "/api/set/union",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "集合A"},
+            {"name": "b", "type": "array", "required": True, "description": "集合B"}
+        ],
+        "icon": "union"
+    },
+    "set_intersection": {
+        "id": "set_intersection",
+        "name": "集合交集",
+        "name_en": "Set Intersection",
+        "description": "计算集合交集",
+        "category": "set",
+        "subcategory": "operation",
+        "api_endpoint": "/api/set/intersection",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "集合A"},
+            {"name": "b", "type": "array", "required": True, "description": "集合B"}
+        ],
+        "icon": "intersection"
+    },
+    "set_diff": {
+        "id": "set_diff",
+        "name": "集合差集",
+        "name_en": "Set Difference",
+        "description": "计算集合差集",
+        "category": "set",
+        "subcategory": "operation",
+        "api_endpoint": "/api/set/diff",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "集合A"},
+            {"name": "b", "type": "array", "required": True, "description": "集合B"}
+        ],
+        "icon": "minus"
+    },
+    "set_sym_diff": {
+        "id": "set_sym_diff",
+        "name": "集合对称差",
+        "name_en": "Symmetric Difference",
+        "description": "计算集合对称差集",
+        "category": "set",
+        "subcategory": "operation",
+        "api_endpoint": "/api/set/sym-diff",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "集合A"},
+            {"name": "b", "type": "array", "required": True, "description": "集合B"}
+        ],
+        "icon": "x"
+    },
+    "set_subset": {
+        "id": "set_subset",
+        "name": "子集检查",
+        "name_en": "Is Subset",
+        "description": "检查是否为子集",
+        "category": "set",
+        "subcategory": "check",
+        "api_endpoint": "/api/set/subset",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "集合A"},
+            {"name": "b", "type": "array", "required": True, "description": "集合B"}
+        ],
+        "icon": "check-circle"
+    },
+    "range_gen": {
+        "id": "range_gen",
+        "name": "范围生成",
+        "name_en": "Range Generate",
+        "description": "生成数字范围",
+        "category": "list",
+        "subcategory": "generate",
+        "api_endpoint": "/api/range",
+        "method": "POST",
+        "params": [
+            {"name": "start", "type": "number", "required": True, "description": "起始值"},
+            {"name": "end", "type": "number", "required": True, "description": "结束值"},
+            {"name": "step", "type": "number", "required": False, "description": "步长"}
+        ],
+        "icon": "list"
+    },
+    "repeat": {
+        "id": "repeat",
+        "name": "重复元素",
+        "name_en": "Repeat",
+        "description": "重复生成元素",
+        "category": "list",
+        "subcategory": "generate",
+        "api_endpoint": "/api/repeat",
+        "method": "POST",
+        "params": [
+            {"name": "item", "type": "string", "required": True, "description": "元素"},
+            {"name": "count", "type": "number", "required": True, "description": "重复次数"}
+        ],
+        "icon": "copy"
     }
 }
 
