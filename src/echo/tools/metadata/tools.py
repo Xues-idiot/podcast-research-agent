@@ -22007,6 +22007,214 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "git-merge"
     },
+
+    # ========== 管道工具 ==========
+    "pipe": {
+        "id": "pipe",
+        "name": "管道",
+        "name_en": "Pipe",
+        "description": "将函数串联成管道",
+        "category": "pipe",
+        "subcategory": "pipe",
+        "api_endpoint": "/api/pipe",
+        "method": "POST",
+        "params": [
+            {"name": "funcs", "type": "array", "required": True, "description": "函数数组"},
+            {"name": "value", "type": "any", "required": True, "description": "初始值"}
+        ],
+        "icon": "git-merge"
+    },
+    "compose": {
+        "id": "compose",
+        "name": "组合函数",
+        "name_en": "Compose",
+        "description": "组合多个函数",
+        "category": "pipe",
+        "subcategory": "compose",
+        "api_endpoint": "/api/compose",
+        "method": "POST",
+        "params": [
+            {"name": "funcs", "type": "array", "required": True, "description": "函数数组"}
+        ],
+        "icon": "git-merge"
+    },
+    "trace": {
+        "id": "trace",
+        "name": "追踪调用",
+        "name_en": "Trace",
+        "description": "追踪函数调用过程",
+        "category": "pipe",
+        "subcategory": "trace",
+        "api_endpoint": "/api/trace",
+        "method": "POST",
+        "params": [
+            {"name": "func", "type": "function", "required": True, "description": "函数"},
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "git-branch"
+    },
+    "tap": {
+        "id": "tap",
+        "name": "分支处理",
+        "name_en": "Tap",
+        "description": "在管道中插入副作用",
+        "category": "pipe",
+        "subcategory": "tap",
+        "api_endpoint": "/api/tap",
+        "method": "POST",
+        "params": [
+            {"name": "func", "type": "function", "required": True, "description": "函数"},
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "git-branch"
+    },
+
+    # ========== 异常处理工具 ==========
+    "try_catch": {
+        "id": "try_catch",
+        "name": "尝试捕获",
+        "name_en": "Try Catch",
+        "description": "捕获异常",
+        "category": "exception",
+        "subcategory": "try",
+        "api_endpoint": "/api/try_catch",
+        "method": "POST",
+        "params": [
+            {"name": "func", "type": "function", "required": True, "description": "函数"},
+            {"name": "catch", "type": "function", "required": False, "description": "捕获函数"}
+        ],
+        "icon": "shield"
+    },
+    "throw": {
+        "id": "throw",
+        "name": "抛出异常",
+        "name_en": "Throw",
+        "description": "抛出异常",
+        "category": "exception",
+        "subcategory": "throw",
+        "api_endpoint": "/api/throw",
+        "method": "POST",
+        "params": [
+            {"name": "message", "type": "string", "required": True, "description": "错误消息"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "is_error": {
+        "id": "is_error",
+        "name": "是否为错误",
+        "name_en": "Is Error",
+        "description": "检查是否为错误对象",
+        "category": "exception",
+        "subcategory": "check",
+        "api_endpoint": "/api/is_error",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "check"
+    },
+    "error_message": {
+        "id": "error_message",
+        "name": "错误消息",
+        "name_en": "Error Message",
+        "description": "获取错误消息",
+        "category": "exception",
+        "subcategory": "message",
+        "api_endpoint": "/api/error_message",
+        "method": "POST",
+        "params": [
+            {"name": "error", "type": "any", "required": True, "description": "错误对象"}
+        ],
+        "icon": "message-circle"
+    },
+    "error_stack": {
+        "id": "error_stack",
+        "name": "错误堆栈",
+        "name_en": "Error Stack",
+        "description": "获取错误堆栈",
+        "category": "exception",
+        "subcategory": "stack",
+        "api_endpoint": "/api/error_stack",
+        "method": "POST",
+        "params": [
+            {"name": "error", "type": "any", "required": True, "description": "错误对象"}
+        ],
+        "icon": "list"
+    },
+
+    # ========== 反射工具 ==========
+    "typeof": {
+        "id": "typeof",
+        "name": "类型查询",
+        "name_en": "Type Of",
+        "description": "获取值的类型",
+        "category": "reflect",
+        "subcategory": "type",
+        "api_endpoint": "/api/typeof",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "tag"
+    },
+    "to_type": {
+        "id": "to_type",
+        "name": "类型转换",
+        "name_en": "To Type",
+        "description": "转换为指定类型",
+        "category": "reflect",
+        "subcategory": "convert",
+        "api_endpoint": "/api/to_type",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "type", "type": "string", "required": True, "description": "目标类型"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "has_method": {
+        "id": "has_method",
+        "name": "是否有方法",
+        "name_en": "Has Method",
+        "description": "检查对象是否有某方法",
+        "category": "reflect",
+        "subcategory": "method",
+        "api_endpoint": "/api/has_method",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "any", "required": True, "description": "对象"},
+            {"name": "name", "type": "string", "required": True, "description": "方法名"}
+        ],
+        "icon": "check"
+    },
+    "get_methods": {
+        "id": "get_methods",
+        "name": "获取方法列表",
+        "name_en": "Get Methods",
+        "description": "获取对象的所有方法",
+        "category": "reflect",
+        "subcategory": "method",
+        "api_endpoint": "/api/get_methods",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "any", "required": True, "description": "对象"}
+        ],
+        "icon": "list"
+    },
+    "get_properties": {
+        "id": "get_properties",
+        "name": "获取属性列表",
+        "name_en": "Get Properties",
+        "description": "获取对象的所有属性",
+        "category": "reflect",
+        "subcategory": "property",
+        "api_endpoint": "/api/get_properties",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "any", "required": True, "description": "对象"}
+        ],
+        "icon": "list"
+    },
 }
 
 
