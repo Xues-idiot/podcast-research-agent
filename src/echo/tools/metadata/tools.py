@@ -30263,6 +30263,507 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "method": "GET",
         "params": [],
         "icon": "list"
+    },
+
+    # ========== 审计工具 ==========
+    "audit_log": {
+        "id": "audit_log",
+        "name": "审计日志",
+        "name_en": "Audit Log",
+        "description": "记录审计日志",
+        "category": "audit",
+        "subcategory": "log",
+        "api_endpoint": "/api/audit/log",
+        "method": "POST",
+        "params": [
+            {"name": "action", "type": "string", "required": True, "description": "动作"},
+            {"name": "resource", "type": "string", "required": True, "description": "资源"},
+            {"name": "user", "type": "string", "required": False, "description": "用户"}
+        ],
+        "icon": "file-text"
+    },
+    "audit_query": {
+        "id": "audit_query",
+        "name": "查询审计日志",
+        "name_en": "Query Audit Logs",
+        "description": "查询审计日志",
+        "category": "audit",
+        "subcategory": "query",
+        "api_endpoint": "/api/audit/query",
+        "method": "POST",
+        "params": [
+            {"name": "from", "type": "string", "required": False, "description": "起始时间"},
+            {"name": "to", "type": "string", "required": False, "description": "结束时间"},
+            {"name": "filters", "type": "object", "required": False, "description": "过滤条件"}
+        ],
+        "icon": "search"
+    },
+    "audit_export": {
+        "id": "audit_export",
+        "name": "导出审计日志",
+        "name_en": "Export Audit Logs",
+        "description": "导出审计日志",
+        "category": "audit",
+        "subcategory": "export",
+        "api_endpoint": "/api/audit/export",
+        "method": "POST",
+        "params": [
+            {"name": "from", "type": "string", "required": False, "description": "起始时间"},
+            {"name": "to", "type": "string", "required": False, "description": "结束时间"},
+            {"name": "format", "type": "string", "required": False, "description": "格式"}
+        ],
+        "icon": "download"
+    },
+
+    # ========== 合规工具 ==========
+    "compliance_check": {
+        "id": "compliance_check",
+        "name": "合规检查",
+        "name_en": "Compliance Check",
+        "description": "执行合规检查",
+        "category": "compliance",
+        "subcategory": "check",
+        "api_endpoint": "/api/compliance/check",
+        "method": "POST",
+        "params": [
+            {"name": "standard", "type": "string", "required": True, "description": "合规标准"}
+        ],
+        "icon": "check"
+    },
+    "compliance_report": {
+        "id": "compliance_report",
+        "name": "合规报告",
+        "name_en": "Compliance Report",
+        "description": "生成合规报告",
+        "category": "compliance",
+        "subcategory": "report",
+        "api_endpoint": "/api/compliance/report",
+        "method": "POST",
+        "params": [
+            {"name": "standard", "type": "string", "required": True, "description": "合规标准"}
+        ],
+        "icon": "file-text"
+    },
+    "compliance_gdpr": {
+        "id": "compliance_gdpr",
+        "name": "GDPR合规",
+        "name_en": "GDPR Compliance",
+        "description": "检查GDPR合规",
+        "category": "compliance",
+        "subcategory": "gdpr",
+        "api_endpoint": "/api/compliance/gdpr",
+        "method": "GET",
+        "params": [],
+        "icon": "shield"
+    },
+    "compliance_hipaa": {
+        "id": "compliance_hipaa",
+        "name": "HIPAA合规",
+        "name_en": "HIPAA Compliance",
+        "description": "检查HIPAA合规",
+        "category": "compliance",
+        "subcategory": "hipaa",
+        "api_endpoint": "/api/compliance/hipaa",
+        "method": "GET",
+        "params": [],
+        "icon": "shield"
+    },
+    "compliance_pci": {
+        "id": "compliance_pci",
+        "name": "PCI DSS合规",
+        "name_en": "PCI DSS Compliance",
+        "description": "检查PCI DSS合规",
+        "category": "compliance",
+        "subcategory": "pci",
+        "api_endpoint": "/api/compliance/pci",
+        "method": "GET",
+        "params": [],
+        "icon": "shield"
+    },
+
+    # ========== 安全扫描工具 ==========
+    "security_scan": {
+        "id": "security_scan",
+        "name": "安全扫描",
+        "name_en": "Security Scan",
+        "description": "执行安全扫描",
+        "category": "security",
+        "subcategory": "scan",
+        "api_endpoint": "/api/security/scan",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "扫描目标"},
+            {"name": "type", "type": "string", "required": False, "description": "扫描类型"}
+        ],
+        "icon": "search"
+    },
+    "security_sast": {
+        "id": "security_sast",
+        "name": "SAST扫描",
+        "name_en": "SAST Scan",
+        "description": "静态应用安全测试",
+        "category": "security",
+        "subcategory": "sast",
+        "api_endpoint": "/api/security/sast",
+        "method": "POST",
+        "params": [
+            {"name": "repo", "type": "string", "required": True, "description": "仓库"}
+        ],
+        "icon": "code"
+    },
+    "security_dast": {
+        "id": "security_dast",
+        "name": "DAST扫描",
+        "name_en": "DAST Scan",
+        "description": "动态应用安全测试",
+        "category": "security",
+        "subcategory": "dast",
+        "api_endpoint": "/api/security/dast",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"}
+        ],
+        "icon": "globe"
+    },
+    "security_secret_scan": {
+        "id": "security_secret_scan",
+        "name": "密钥扫描",
+        "name_en": "Secret Scan",
+        "description": "扫描泄露的密钥",
+        "category": "security",
+        "subcategory": "secret",
+        "api_endpoint": "/api/security/secret",
+        "method": "POST",
+        "params": [
+            {"name": "repo", "type": "string", "required": True, "description": "仓库"}
+        ],
+        "icon": "key"
+    },
+    "security_dependency": {
+        "id": "security_dependency",
+        "name": "依赖扫描",
+        "name_en": "Dependency Scan",
+        "description": "扫描依赖漏洞",
+        "category": "security",
+        "subcategory": "dependency",
+        "api_endpoint": "/api/security/dependency",
+        "method": "POST",
+        "params": [
+            {"name": "project", "type": "string", "required": True, "description": "项目"}
+        ],
+        "icon": "package"
+    },
+
+    # ========== 渗透测试工具 ==========
+    "pentest_scan": {
+        "id": "pentest_scan",
+        "name": "渗透扫描",
+        "name_en": "Penetration Scan",
+        "description": "执行渗透测试扫描",
+        "category": "pentest",
+        "subcategory": "scan",
+        "api_endpoint": "/api/pentest/scan",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "target"
+    },
+    "pentest_vuln": {
+        "id": "pentest_vuln",
+        "name": "漏洞检测",
+        "name_en": "Vulnerability Detection",
+        "description": "检测安全漏洞",
+        "category": "pentest",
+        "subcategory": "vuln",
+        "api_endpoint": "/api/pentest/vuln",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "pentest_report": {
+        "id": "pentest_report",
+        "name": "渗透报告",
+        "name_en": "Pentest Report",
+        "description": "生成渗透测试报告",
+        "category": "pentest",
+        "subcategory": "report",
+        "api_endpoint": "/api/pentest/report",
+        "method": "POST",
+        "params": [
+            {"name": "scan_id", "type": "string", "required": True, "description": "扫描ID"}
+        ],
+        "icon": "file-text"
+    },
+
+    # ========== 漏洞管理工具 ==========
+    "vuln_list": {
+        "id": "vuln_list",
+        "name": "漏洞列表",
+        "name_en": "Vulnerability List",
+        "description": "获取漏洞列表",
+        "category": "vulnerability",
+        "subcategory": "list",
+        "api_endpoint": "/api/vuln/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "vuln_details": {
+        "id": "vuln_details",
+        "name": "漏洞详情",
+        "name_en": "Vulnerability Details",
+        "description": "获取漏洞详情",
+        "category": "vulnerability",
+        "subcategory": "details",
+        "api_endpoint": "/api/vuln/details",
+        "method": "POST",
+        "params": [
+            {"name": "vuln_id", "type": "string", "required": True, "description": "漏洞ID"}
+        ],
+        "icon": "info"
+    },
+    "vuln_remediation": {
+        "id": "vuln_remediation",
+        "name": "漏洞修复",
+        "name_en": "Vulnerability Remediation",
+        "description": "获取漏洞修复建议",
+        "category": "vulnerability",
+        "subcategory": "remediation",
+        "api_endpoint": "/api/vuln/remediation",
+        "method": "POST",
+        "params": [
+            {"name": "vuln_id", "type": "string", "required": True, "description": "漏洞ID"}
+        ],
+        "icon": "tool"
+    },
+
+    # ========== 补丁管理工具 ==========
+    "patch_list": {
+        "id": "patch_list",
+        "name": "补丁列表",
+        "name_en": "Patch List",
+        "description": "获取可用补丁列表",
+        "category": "patch",
+        "subcategory": "list",
+        "api_endpoint": "/api/patch/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "patch_apply": {
+        "id": "patch_apply",
+        "name": "应用补丁",
+        "name_en": "Apply Patch",
+        "description": "应用安全补丁",
+        "category": "patch",
+        "subcategory": "apply",
+        "api_endpoint": "/api/patch/apply",
+        "method": "POST",
+        "params": [
+            {"name": "patch_id", "type": "string", "required": True, "description": "补丁ID"}
+        ],
+        "icon": "download"
+    },
+    "patch_schedule": {
+        "id": "patch_schedule",
+        "name": "计划补丁",
+        "name_en": "Schedule Patch",
+        "description": "计划补丁安装",
+        "category": "patch",
+        "subcategory": "schedule",
+        "api_endpoint": "/api/patch/schedule",
+        "method": "POST",
+        "params": [
+            {"name": "patch_id", "type": "string", "required": True, "description": "补丁ID"},
+            {"name": "schedule_time", "type": "string", "required": True, "description": "计划时间"}
+        ],
+        "icon": "clock"
+    },
+
+    # ========== 资产管理工具 ==========
+    "asset_list": {
+        "id": "asset_list",
+        "name": "资产列表",
+        "name_en": "Asset List",
+        "description": "获取IT资产列表",
+        "category": "asset",
+        "subcategory": "list",
+        "api_endpoint": "/api/asset/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "asset_create": {
+        "id": "asset_create",
+        "name": "创建资产",
+        "name_en": "Create Asset",
+        "description": "创建IT资产记录",
+        "category": "asset",
+        "subcategory": "create",
+        "api_endpoint": "/api/asset/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "资产名称"},
+            {"name": "type", "type": "string", "required": True, "description": "资产类型"},
+            {"name": "owner", "type": "string", "required": False, "description": "负责人"}
+        ],
+        "icon": "plus"
+    },
+    "asset_update": {
+        "id": "asset_update",
+        "name": "更新资产",
+        "name_en": "Update Asset",
+        "description": "更新资产信息",
+        "category": "asset",
+        "subcategory": "update",
+        "api_endpoint": "/api/asset/update",
+        "method": "POST",
+        "params": [
+            {"name": "asset_id", "type": "string", "required": True, "description": "资产ID"},
+            {"name": "data", "type": "object", "required": True, "description": "更新数据"}
+        ],
+        "icon": "edit"
+    },
+    "asset_retire": {
+        "id": "asset_retire",
+        "name": "退役资产",
+        "name_en": "Retire Asset",
+        "description": "退役IT资产",
+        "category": "asset",
+        "subcategory": "retire",
+        "api_endpoint": "/api/asset/retire",
+        "method": "POST",
+        "params": [
+            {"name": "asset_id", "type": "string", "required": True, "description": "资产ID"}
+        ],
+        "icon": "x"
+    },
+
+    # ========== WAF工具 ==========
+    "waf_rule": {
+        "id": "waf_rule",
+        "name": "WAF规则",
+        "name_en": "WAF Rule",
+        "description": "配置WAF规则",
+        "category": "waf",
+        "subcategory": "rule",
+        "api_endpoint": "/api/waf/rule",
+        "method": "POST",
+        "params": [
+            {"name": "rule", "type": "object", "required": True, "description": "规则配置"}
+        ],
+        "icon": "shield"
+    },
+    "waf_block": {
+        "id": "waf_block",
+        "name": "阻止IP",
+        "name_en": "Block IP",
+        "description": "阻止恶意IP",
+        "category": "waf",
+        "subcategory": "block",
+        "api_endpoint": "/api/waf/block",
+        "method": "POST",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP地址"}
+        ],
+        "icon": "x"
+    },
+    "waf_stats": {
+        "id": "waf_stats",
+        "name": "WAF统计",
+        "name_en": "WAF Stats",
+        "description": "获取WAF统计",
+        "category": "waf",
+        "subcategory": "stats",
+        "api_endpoint": "/api/waf/stats",
+        "method": "GET",
+        "params": [],
+        "icon": "bar-chart"
+    },
+
+    # ========== DDoS防护工具 ==========
+    "ddos_protect": {
+        "id": "ddos_protect",
+        "name": "DDoS防护",
+        "name_en": "DDoS Protection",
+        "description": "启用DDoS防护",
+        "category": "ddos",
+        "subcategory": "protect",
+        "api_endpoint": "/api/ddos/protect",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "防护目标"}
+        ],
+        "icon": "shield"
+    },
+    "ddos_status": {
+        "id": "ddos_status",
+        "name": "防护状态",
+        "name_en": "Protection Status",
+        "description": "获取DDoS防护状态",
+        "category": "ddos",
+        "subcategory": "status",
+        "api_endpoint": "/api/ddos/status",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    "ddos_report": {
+        "id": "ddos_report",
+        "name": "攻击报告",
+        "name_en": "Attack Report",
+        "description": "获取DDoS攻击报告",
+        "category": "ddos",
+        "subcategory": "report",
+        "api_endpoint": "/api/ddos/report",
+        "method": "GET",
+        "params": [],
+        "icon": "file-text"
+    },
+
+    # ========== 威胁情报工具 ==========
+    "threat_intel_lookup": {
+        "id": "threat_intel_lookup",
+        "name": "威胁情报查询",
+        "name_en": "Threat Intel Lookup",
+        "description": "查询威胁情报",
+        "category": "threatintel",
+        "subcategory": "lookup",
+        "api_endpoint": "/api/threat/lookup",
+        "method": "POST",
+        "params": [
+            {"name": "indicator", "type": "string", "required": True, "description": "威胁指标"}
+        ],
+        "icon": "search"
+    },
+    "threat_intel_feed": {
+        "id": "threat_intel_feed",
+        "name": "威胁情报源",
+        "name_en": "Threat Intel Feed",
+        "description": "获取威胁情报源",
+        "category": "threatintel",
+        "subcategory": "feed",
+        "api_endpoint": "/api/threat/feed",
+        "method": "GET",
+        "params": [],
+        "icon": "rss"
+    },
+    "threat_intel_analyze": {
+        "id": "threat_intel_analyze",
+        "name": "分析威胁",
+        "name_en": "Analyze Threat",
+        "description": "分析威胁指标",
+        "category": "threatintel",
+        "subcategory": "analyze",
+        "api_endpoint": "/api/threat/analyze",
+        "method": "POST",
+        "params": [
+            {"name": "indicator", "type": "string", "required": True, "description": "威胁指标"}
+        ],
+        "icon": "activity"
     }
 }
 
