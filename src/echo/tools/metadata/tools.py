@@ -1020,6 +1020,103 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "format", "type": "string", "required": False, "description": "ID 格式"}
         ],
         "icon": "hash"
+    },
+    "generate_token": {
+        "id": "generate_token",
+        "name": "Token 生成器",
+        "name_en": "Token Generator",
+        "description": "生成随机 Token",
+        "category": "crypto",
+        "subcategory": "token",
+        "api_endpoint": "/api/crypto/token",
+        "method": "POST",
+        "params": [
+            {"name": "length", "type": "number", "required": False, "description": "Token 长度"}
+        ],
+        "icon": "key"
+    },
+    "generate_random_hex": {
+        "id": "generate_random_hex",
+        "name": "随机十六进制",
+        "name_en": "Random Hex Generator",
+        "description": "生成随机十六进制字符串",
+        "category": "crypto",
+        "subcategory": "hex",
+        "api_endpoint": "/api/crypto/random-hex",
+        "method": "POST",
+        "params": [
+            {"name": "length", "type": "number", "required": False, "description": "长度"}
+        ],
+        "icon": "hash"
+    },
+    "generate_password": {
+        "id": "generate_password",
+        "name": "密码生成器",
+        "name_en": "Password Generator",
+        "description": "生成安全随机密码",
+        "category": "crypto",
+        "subcategory": "password",
+        "api_endpoint": "/api/crypto/password",
+        "method": "POST",
+        "params": [
+            {"name": "length", "type": "number", "required": False, "description": "密码长度"},
+            {"name": "chars", "type": "string", "required": False, "description": "字符集"}
+        ],
+        "icon": "lock"
+    },
+    "secure_random_int": {
+        "id": "secure_random_int",
+        "name": "安全随机整数",
+        "name_en": "Secure Random Integer",
+        "description": "生成安全随机整数",
+        "category": "crypto",
+        "subcategory": "random",
+        "api_endpoint": "/api/crypto/random-int",
+        "method": "POST",
+        "params": [
+            {"name": "min_val", "type": "number", "required": False, "description": "最小值"},
+            {"name": "max_val", "type": "number", "required": False, "description": "最大值"}
+        ],
+        "icon": "hash"
+    },
+    "generate_uuid": {
+        "id": "generate_uuid",
+        "name": "UUID 生成器",
+        "name_en": "UUID Generator",
+        "description": "生成 UUID",
+        "category": "crypto",
+        "subcategory": "uuid",
+        "api_endpoint": "/api/crypto/uuid",
+        "method": "POST",
+        "params": [],
+        "icon": "hash"
+    },
+    "constant_time_compare": {
+        "id": "constant_time_compare",
+        "name": "恒定时间比较",
+        "name_en": "Constant Time Compare",
+        "description": "恒定时间比较两个字符串",
+        "category": "crypto",
+        "subcategory": "compare",
+        "api_endpoint": "/api/crypto/compare",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "string", "required": True, "description": "字符串 A"},
+            {"name": "b", "type": "string", "required": True, "description": "字符串 B"}
+        ],
+        "icon": "equals"
+    },
+    "salt": {
+        "id": "salt",
+        "name": "盐值生成器",
+        "name_en": "Salt Generator",
+        "description": "生成随机盐值",
+        "category": "crypto",
+        "subcategory": "salt",
+        "api_endpoint": "/api/crypto/salt",
+        "method": "POST",
+        "params": [],
+        "icon": "key"
     }
 }
 
