@@ -1325,6 +1325,122 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "a", "type": "number", "required": True, "description": "整数"}
         ],
         "icon": "check-circle"
+    },
+    "validate_email": {
+        "id": "validate_email",
+        "name": "邮箱验证",
+        "name_en": "Email Validator",
+        "description": "验证邮箱格式",
+        "category": "validate",
+        "subcategory": "email",
+        "api_endpoint": "/api/validate/email",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "邮箱地址"}
+        ],
+        "icon": "mail"
+    },
+    "validate_url": {
+        "id": "validate_url",
+        "name": "URL验证",
+        "name_en": "URL Validator",
+        "description": "验证URL格式",
+        "category": "validate",
+        "subcategory": "url",
+        "api_endpoint": "/api/validate/url",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "URL地址"}
+        ],
+        "icon": "link"
+    },
+    "validate_phone": {
+        "id": "validate_phone",
+        "name": "电话验证",
+        "name_en": "Phone Validator",
+        "description": "验证电话号码格式",
+        "category": "validate",
+        "subcategory": "phone",
+        "api_endpoint": "/api/validate/phone",
+        "method": "POST",
+        "params": [
+            {"name": "phone", "type": "string", "required": True, "description": "电话号码"},
+            {"name": "country", "type": "string", "required": False, "description": "国家代码"}
+        ],
+        "icon": "phone"
+    },
+    "validate_ip": {
+        "id": "validate_ip",
+        "name": "IP地址验证",
+        "name_en": "IP Validator",
+        "description": "验证IP地址格式",
+        "category": "validate",
+        "subcategory": "ip",
+        "api_endpoint": "/api/validate/ip",
+        "method": "POST",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP地址"},
+            {"name": "version", "type": "number", "required": False, "description": "IP版本"}
+        ],
+        "icon": "globe"
+    },
+    "validate_credit_card": {
+        "id": "validate_credit_card",
+        "name": "信用卡验证",
+        "name_en": "Credit Card Validator",
+        "description": "验证信用卡号(Luhn算法)",
+        "category": "validate",
+        "subcategory": "card",
+        "api_endpoint": "/api/validate/credit-card",
+        "method": "POST",
+        "params": [
+            {"name": "card", "type": "string", "required": True, "description": "卡号"}
+        ],
+        "icon": "credit-card"
+    },
+    "validate_uuid": {
+        "id": "validate_uuid",
+        "name": "UUID验证",
+        "name_en": "UUID Validator",
+        "description": "验证UUID格式",
+        "category": "validate",
+        "subcategory": "uuid",
+        "api_endpoint": "/api/validate/uuid",
+        "method": "POST",
+        "params": [
+            {"name": "uuid", "type": "string", "required": True, "description": "UUID字符串"}
+        ],
+        "icon": "hash"
+    },
+    "validate_json": {
+        "id": "validate_json",
+        "name": "JSON验证",
+        "name_en": "JSON Validator",
+        "description": "验证JSON格式",
+        "category": "validate",
+        "subcategory": "json",
+        "api_endpoint": "/api/validate/json",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "JSON文本"}
+        ],
+        "icon": "code"
+    },
+    "validate_range": {
+        "id": "validate_range",
+        "name": "范围验证",
+        "name_en": "Range Validator",
+        "description": "验证值是否在指定范围内",
+        "category": "validate",
+        "subcategory": "range",
+        "api_endpoint": "/api/validate/range",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "值"},
+            {"name": "min_val", "type": "number", "required": True, "description": "最小值"},
+            {"name": "max_val", "type": "number", "required": True, "description": "最大值"}
+        ],
+        "icon": "sliders"
     }
 }
 
