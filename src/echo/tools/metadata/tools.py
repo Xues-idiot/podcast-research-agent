@@ -3767,6 +3767,123 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "items", "type": "array", "required": True, "description": "列表"}
         ],
         "icon": "list"
+    },
+    "negate": {
+        "id": "negate",
+        "name": "取反",
+        "name_en": "Negate",
+        "description": "数值取反",
+        "category": "math",
+        "subcategory": "basic",
+        "api_endpoint": "/api/negate",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "minus"
+    },
+    "increment": {
+        "id": "increment",
+        "name": "加一",
+        "name_en": "Increment",
+        "description": "数值加1",
+        "category": "math",
+        "subcategory": "basic",
+        "api_endpoint": "/api/increment",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "plus"
+    },
+    "decrement": {
+        "id": "decrement",
+        "name": "减一",
+        "name_en": "Decrement",
+        "description": "数值减1",
+        "category": "math",
+        "subcategory": "basic",
+        "api_endpoint": "/api/decrement",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "minus"
+    },
+    "add": {
+        "id": "add",
+        "name": "加法",
+        "name_en": "Add",
+        "description": "两数相加",
+        "category": "math",
+        "subcategory": "basic",
+        "api_endpoint": "/api/add",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "数值A"},
+            {"name": "b", "type": "number", "required": True, "description": "数值B"}
+        ],
+        "icon": "plus"
+    },
+    "subtract": {
+        "id": "subtract",
+        "name": "减法",
+        "name_en": "Subtract",
+        "description": "两数相减",
+        "category": "math",
+        "subcategory": "basic",
+        "api_endpoint": "/api/subtract",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "数值A"},
+            {"name": "b", "type": "number", "required": True, "description": "数值B"}
+        ],
+        "icon": "minus"
+    },
+    "multiply": {
+        "id": "multiply",
+        "name": "乘法",
+        "name_en": "Multiply",
+        "description": "两数相乘",
+        "category": "math",
+        "subcategory": "basic",
+        "api_endpoint": "/api/multiply",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "数值A"},
+            {"name": "b", "type": "number", "required": True, "description": "数值B"}
+        ],
+        "icon": "x"
+    },
+    "divide": {
+        "id": "divide",
+        "name": "除法",
+        "name_en": "Divide",
+        "description": "两数相除",
+        "category": "math",
+        "subcategory": "basic",
+        "api_endpoint": "/api/divide",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "数值A"},
+            {"name": "b", "type": "number", "required": True, "description": "数值B"}
+        ],
+        "icon": "divide"
+    },
+    "modulo": {
+        "id": "modulo",
+        "name": "取模",
+        "name_en": "Modulo",
+        "description": "取模运算",
+        "category": "math",
+        "subcategory": "basic",
+        "api_endpoint": "/api/modulo",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "数值A"},
+            {"name": "b", "type": "number", "required": True, "description": "数值B"}
+        ],
+        "icon": "percent"
     }
 }
 
