@@ -2456,6 +2456,91 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "values", "type": "array", "required": True, "description": "数值列表"}
         ],
         "icon": "bar-chart"
+    },
+    "variance": {
+        "id": "variance",
+        "name": "方差",
+        "name_en": "Variance",
+        "description": "计算方差",
+        "category": "math",
+        "subcategory": "stats",
+        "api_endpoint": "/api/variance",
+        "method": "POST",
+        "params": [
+            {"name": "values", "type": "array", "required": True, "description": "数值列表"}
+        ],
+        "icon": "bar-chart"
+    },
+    "std_dev": {
+        "id": "std_dev",
+        "name": "标准差",
+        "name_en": "Standard Deviation",
+        "description": "计算标准差",
+        "category": "math",
+        "subcategory": "stats",
+        "api_endpoint": "/api/std-dev",
+        "method": "POST",
+        "params": [
+            {"name": "values", "type": "array", "required": True, "description": "数值列表"}
+        ],
+        "icon": "bar-chart"
+    },
+    "mode": {
+        "id": "mode",
+        "name": "众数",
+        "name_en": "Mode",
+        "description": "计算众数",
+        "category": "math",
+        "subcategory": "stats",
+        "api_endpoint": "/api/mode",
+        "method": "POST",
+        "params": [
+            {"name": "values", "type": "array", "required": True, "description": "数值列表"}
+        ],
+        "icon": "bar-chart"
+    },
+    "percentile": {
+        "id": "percentile",
+        "name": "百分位数",
+        "name_en": "Percentile",
+        "description": "计算百分位数",
+        "category": "math",
+        "subcategory": "stats",
+        "api_endpoint": "/api/percentile",
+        "method": "POST",
+        "params": [
+            {"name": "values", "type": "array", "required": True, "description": "数值列表"},
+            {"name": "p", "type": "number", "required": True, "description": "百分比(0-100)"}
+        ],
+        "icon": "bar-chart"
+    },
+    "product": {
+        "id": "product",
+        "name": "连乘",
+        "name_en": "Product",
+        "description": "计算连乘结果",
+        "category": "math",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/product",
+        "method": "POST",
+        "params": [
+            {"name": "values", "type": "array", "required": True, "description": "数值列表"}
+        ],
+        "icon": "x"
+    },
+    "is_prime": {
+        "id": "is_prime",
+        "name": "质数检查",
+        "name_en": "Is Prime",
+        "description": "检查是否为质数",
+        "category": "math",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-prime",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "check-circle"
     }
 }
 
