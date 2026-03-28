@@ -3884,6 +3884,107 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "b", "type": "number", "required": True, "description": "数值B"}
         ],
         "icon": "percent"
+    },
+    "is_even": {
+        "id": "is_even",
+        "name": "偶数检查",
+        "name_en": "Is Even",
+        "description": "检查是否为偶数",
+        "category": "math",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-even",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "check-circle"
+    },
+    "is_odd": {
+        "id": "is_odd",
+        "name": "奇数检查",
+        "name_en": "Is Odd",
+        "description": "检查是否为奇数",
+        "category": "math",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-odd",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "check-circle"
+    },
+    "is_positive": {
+        "id": "is_positive",
+        "name": "正数检查",
+        "name_en": "Is Positive",
+        "description": "检查是否为正数",
+        "category": "math",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-positive",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "check-circle"
+    },
+    "is_negative": {
+        "id": "is_negative",
+        "name": "负数检查",
+        "name_en": "Is Negative",
+        "description": "检查是否为负数",
+        "category": "math",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-negative",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "check-circle"
+    },
+    "is_zero": {
+        "id": "is_zero",
+        "name": "零检查",
+        "name_en": "Is Zero",
+        "description": "检查是否为零",
+        "category": "math",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-zero",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "check-circle"
+    },
+    "between": {
+        "id": "between",
+        "name": "范围检查",
+        "name_en": "Between",
+        "description": "检查值是否在范围内",
+        "category": "math",
+        "subcategory": "check",
+        "api_endpoint": "/api/between",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "min", "type": "number", "required": True, "description": "最小值"},
+            {"name": "max", "type": "number", "required": True, "description": "最大值"}
+        ],
+        "icon": "check-circle"
+    },
+    "abs_diff": {
+        "id": "abs_diff",
+        "name": "绝对差",
+        "name_en": "Absolute Difference",
+        "description": "计算两个数的绝对差",
+        "category": "math",
+        "subcategory": "advanced",
+        "api_endpoint": "/api/abs-diff",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "数值A"},
+            {"name": "b", "type": "number", "required": True, "description": "数值B"}
+        ],
+        "icon": "minus"
     }
 }
 
