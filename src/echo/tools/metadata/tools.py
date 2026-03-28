@@ -28670,6 +28670,540 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "method": "GET",
         "params": [],
         "icon": "list"
+    },
+
+    # ========== 数据管道工具 ==========
+    "pipeline_create": {
+        "id": "pipeline_create",
+        "name": "创建数据管道",
+        "name_en": "Create Data Pipeline",
+        "description": "创建数据处理管道",
+        "category": "pipeline",
+        "subcategory": "create",
+        "api_endpoint": "/api/pipeline/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "管道名称"},
+            {"name": "steps", "type": "array", "required": True, "description": "处理步骤"}
+        ],
+        "icon": "git-branch"
+    },
+    "pipeline_run": {
+        "id": "pipeline_run",
+        "name": "运行数据管道",
+        "name_en": "Run Pipeline",
+        "description": "运行数据管道",
+        "category": "pipeline",
+        "subcategory": "run",
+        "api_endpoint": "/api/pipeline/run",
+        "method": "POST",
+        "params": [
+            {"name": "pipeline_id", "type": "string", "required": True, "description": "管道ID"},
+            {"name": "input", "type": "any", "required": False, "description": "输入数据"}
+        ],
+        "icon": "play"
+    },
+    "pipeline_status": {
+        "id": "pipeline_status",
+        "name": "管道状态",
+        "name_en": "Pipeline Status",
+        "description": "获取管道运行状态",
+        "category": "pipeline",
+        "subcategory": "status",
+        "api_endpoint": "/api/pipeline/status",
+        "method": "POST",
+        "params": [
+            {"name": "pipeline_id", "type": "string", "required": True, "description": "管道ID"}
+        ],
+        "icon": "activity"
+    },
+    "pipeline_list": {
+        "id": "pipeline_list",
+        "name": "管道列表",
+        "name_en": "Pipeline List",
+        "description": "获取数据管道列表",
+        "category": "pipeline",
+        "subcategory": "list",
+        "api_endpoint": "/api/pipeline/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "pipeline_logs": {
+        "id": "pipeline_logs",
+        "name": "管道日志",
+        "name_en": "Pipeline Logs",
+        "description": "获取管道运行日志",
+        "category": "pipeline",
+        "subcategory": "logs",
+        "api_endpoint": "/api/pipeline/logs",
+        "method": "POST",
+        "params": [
+            {"name": "pipeline_id", "type": "string", "required": True, "description": "管道ID"}
+        ],
+        "icon": "file-text"
+    },
+
+    # ========== ETL工具 ==========
+    "etl_extract": {
+        "id": "etl_extract",
+        "name": "ETL抽取",
+        "name_en": "ETL Extract",
+        "description": "从数据源抽取数据",
+        "category": "etl",
+        "subcategory": "extract",
+        "api_endpoint": "/api/etl/extract",
+        "method": "POST",
+        "params": [
+            {"name": "source", "type": "string", "required": True, "description": "数据源"},
+            {"name": "query", "type": "string", "required": False, "description": "查询条件"}
+        ],
+        "icon": "download"
+    },
+    "etl_transform": {
+        "id": "etl_transform",
+        "name": "ETL转换",
+        "name_en": "ETL Transform",
+        "description": "转换数据格式",
+        "category": "etl",
+        "subcategory": "transform",
+        "api_endpoint": "/api/etl/transform",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"},
+            {"name": "transforms", "type": "array", "required": True, "description": "转换规则"}
+        ],
+        "icon": "shuffle"
+    },
+    "etl_load": {
+        "id": "etl_load",
+        "name": "ETL加载",
+        "name_en": "ETL Load",
+        "description": "加载数据到目标",
+        "category": "etl",
+        "subcategory": "load",
+        "api_endpoint": "/api/etl/load",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "目标"},
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "upload"
+    },
+
+    # ========== 数据仓库工具 ==========
+    "dw_query": {
+        "id": "dw_query",
+        "name": "数据仓库查询",
+        "name_en": "Data Warehouse Query",
+        "description": "查询数据仓库",
+        "category": "datawarehouse",
+        "subcategory": "query",
+        "api_endpoint": "/api/dw/query",
+        "method": "POST",
+        "params": [
+            {"name": "sql", "type": "string", "required": True, "description": "SQL查询"}
+        ],
+        "icon": "database"
+    },
+    "dw_load": {
+        "id": "dw_load",
+        "name": "数据仓库加载",
+        "name_en": "Data Warehouse Load",
+        "description": "向数据仓库加载数据",
+        "category": "datawarehouse",
+        "subcategory": "load",
+        "api_endpoint": "/api/dw/load",
+        "method": "POST",
+        "params": [
+            {"name": "table", "type": "string", "required": True, "description": "表名"},
+            {"name": "data", "type": "array", "required": True, "description": "数据"}
+        ],
+        "icon": "upload"
+    },
+    "dw_schema": {
+        "id": "dw_schema",
+        "name": "数据仓库架构",
+        "name_en": "Data Warehouse Schema",
+        "description": "获取数据仓库架构",
+        "category": "datawarehouse",
+        "subcategory": "schema",
+        "api_endpoint": "/api/dw/schema",
+        "method": "GET",
+        "params": [],
+        "icon": "git-branch"
+    },
+
+    # ========== 数据可视化工具 ==========
+    "chart_create": {
+        "id": "chart_create",
+        "name": "创建图表",
+        "name_en": "Create Chart",
+        "description": "创建图表",
+        "category": "visualization",
+        "subcategory": "chart",
+        "api_endpoint": "/api/chart/create",
+        "method": "POST",
+        "params": [
+            {"name": "type", "type": "string", "required": True, "description": "图表类型"},
+            {"name": "data", "type": "any", "required": True, "description": "数据"},
+            {"name": "options", "type": "object", "required": False, "description": "配置选项"}
+        ],
+        "icon": "bar-chart"
+    },
+    "chart_render": {
+        "id": "chart_render",
+        "name": "渲染图表",
+        "name_en": "Render Chart",
+        "description": "渲染图表为图片",
+        "category": "visualization",
+        "subcategory": "render",
+        "api_endpoint": "/api/chart/render",
+        "method": "POST",
+        "params": [
+            {"name": "spec", "type": "object", "required": True, "description": "图表规范"}
+        ],
+        "icon": "image"
+    },
+    "dashboard_create": {
+        "id": "dashboard_create",
+        "name": "创建仪表板",
+        "name_en": "Create Dashboard",
+        "description": "创建数据仪表板",
+        "category": "visualization",
+        "subcategory": "dashboard",
+        "api_endpoint": "/api/dashboard/create",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "标题"},
+            {"name": "widgets", "type": "array", "required": True, "description": "组件数组"}
+        ],
+        "icon": "layout"
+    },
+    "dashboard_list": {
+        "id": "dashboard_list",
+        "name": "仪表板列表",
+        "name_en": "Dashboard List",
+        "description": "获取仪表板列表",
+        "category": "visualization",
+        "subcategory": "list",
+        "api_endpoint": "/api/dashboard/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 报表工具 ==========
+    "report_create": {
+        "id": "report_create",
+        "name": "创建报表",
+        "name_en": "Create Report",
+        "description": "创建数据报表",
+        "category": "report",
+        "subcategory": "create",
+        "api_endpoint": "/api/report/create",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "报表标题"},
+            {"name": "data", "type": "any", "required": True, "description": "数据"},
+            {"name": "template", "type": "string", "required": False, "description": "模板"}
+        ],
+        "icon": "file-text"
+    },
+    "report_export": {
+        "id": "report_export",
+        "name": "导出报表",
+        "name_en": "Export Report",
+        "description": "导出报表为指定格式",
+        "category": "report",
+        "subcategory": "export",
+        "api_endpoint": "/api/report/export",
+        "method": "POST",
+        "params": [
+            {"name": "report_id", "type": "string", "required": True, "description": "报表ID"},
+            {"name": "format", "type": "string", "required": True, "description": "格式(pdf/excel/html)"}
+        ],
+        "icon": "download"
+    },
+    "report_schedule": {
+        "id": "report_schedule",
+        "name": "定时报表",
+        "name_en": "Schedule Report",
+        "description": "设置报表定时发送",
+        "category": "report",
+        "subcategory": "schedule",
+        "api_endpoint": "/api/report/schedule",
+        "method": "POST",
+        "params": [
+            {"name": "report_id", "type": "string", "required": True, "description": "报表ID"},
+            {"name": "cron", "type": "string", "required": True, "description": "Cron表达式"},
+            {"name": "recipients", "type": "array", "required": True, "description": "收件人"}
+        ],
+        "icon": "clock"
+    },
+
+    # ========== 数据同步工具 ==========
+    "sync_start": {
+        "id": "sync_start",
+        "name": "开始同步",
+        "name_en": "Start Sync",
+        "description": "开始数据同步",
+        "category": "sync",
+        "subcategory": "start",
+        "api_endpoint": "/api/sync/start",
+        "method": "POST",
+        "params": [
+            {"name": "source", "type": "string", "required": True, "description": "源"},
+            {"name": "target", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "sync_status": {
+        "id": "sync_status",
+        "name": "同步状态",
+        "name_en": "Sync Status",
+        "description": "获取同步状态",
+        "category": "sync",
+        "subcategory": "status",
+        "api_endpoint": "/api/sync/status",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    "sync_pause": {
+        "id": "sync_pause",
+        "name": "暂停同步",
+        "name_en": "Pause Sync",
+        "description": "暂停数据同步",
+        "category": "sync",
+        "subcategory": "pause",
+        "api_endpoint": "/api/sync/pause",
+        "method": "POST",
+        "params": [],
+        "icon": "pause"
+    },
+
+    # ========== 数据备份工具 ==========
+    "backup_create": {
+        "id": "backup_create",
+        "name": "创建备份",
+        "name_en": "Create Backup",
+        "description": "创建数据备份",
+        "category": "backup",
+        "subcategory": "create",
+        "api_endpoint": "/api/backup/create",
+        "method": "POST",
+        "params": [
+            {"name": "source", "type": "string", "required": True, "description": "数据源"}
+        ],
+        "icon": "download"
+    },
+    "backup_restore": {
+        "id": "backup_restore",
+        "name": "恢复备份",
+        "name_en": "Restore Backup",
+        "description": "从备份恢复数据",
+        "category": "backup",
+        "subcategory": "restore",
+        "api_endpoint": "/api/backup/restore",
+        "method": "POST",
+        "params": [
+            {"name": "backup_id", "type": "string", "required": True, "description": "备份ID"},
+            {"name": "target", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "upload"
+    },
+    "backup_list": {
+        "id": "backup_list",
+        "name": "备份列表",
+        "name_en": "Backup List",
+        "description": "获取备份列表",
+        "category": "backup",
+        "subcategory": "list",
+        "api_endpoint": "/api/backup/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 数据迁移工具 ==========
+    "migration_plan": {
+        "id": "migration_plan",
+        "name": "迁移计划",
+        "name_en": "Migration Plan",
+        "description": "创建数据迁移计划",
+        "category": "migration",
+        "subcategory": "plan",
+        "api_endpoint": "/api/migration/plan",
+        "method": "POST",
+        "params": [
+            {"name": "source", "type": "string", "required": True, "description": "源"},
+            {"name": "target", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "map"
+    },
+    "migration_execute": {
+        "id": "migration_execute",
+        "name": "执行迁移",
+        "name_en": "Execute Migration",
+        "description": "执行数据迁移",
+        "category": "migration",
+        "subcategory": "execute",
+        "api_endpoint": "/api/migration/execute",
+        "method": "POST",
+        "params": [
+            {"name": "plan_id", "type": "string", "required": True, "description": "计划ID"}
+        ],
+        "icon": "play"
+    },
+    "migration_validate": {
+        "id": "migration_validate",
+        "name": "验证迁移",
+        "name_en": "Validate Migration",
+        "description": "验证迁移结果",
+        "category": "migration",
+        "subcategory": "validate",
+        "api_endpoint": "/api/migration/validate",
+        "method": "POST",
+        "params": [
+            {"name": "migration_id", "type": "string", "required": True, "description": "迁移ID"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 数据质量工具 ==========
+    "dq_check": {
+        "id": "dq_check",
+        "name": "数据质量检查",
+        "name_en": "Data Quality Check",
+        "description": "检查数据质量",
+        "category": "dataquality",
+        "subcategory": "check",
+        "api_endpoint": "/api/dq/check",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"},
+            {"name": "rules", "type": "array", "required": True, "description": "规则"}
+        ],
+        "icon": "check"
+    },
+    "dq_profile": {
+        "id": "dq_profile",
+        "name": "数据画像",
+        "name_en": "Data Profile",
+        "description": "生成数据画像",
+        "category": "dataquality",
+        "subcategory": "profile",
+        "api_endpoint": "/api/dq/profile",
+        "method": "POST",
+        "params": [
+            {"name": "table", "type": "string", "required": True, "description": "表名"}
+        ],
+        "icon": "user"
+    },
+    "dq_anomaly": {
+        "id": "dq_anomaly",
+        "name": "异常检测",
+        "name_en": "Anomaly Detection",
+        "description": "检测数据异常",
+        "category": "dataquality",
+        "subcategory": "anomaly",
+        "api_endpoint": "/api/dq/anomaly",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "alert-triangle"
+    },
+
+    # ========== 消息队列工具 ==========
+    "mq_publish": {
+        "id": "mq_publish",
+        "name": "发布消息",
+        "name_en": "Publish Message",
+        "description": "发布消息到队列",
+        "category": "messagequeue",
+        "subcategory": "publish",
+        "api_endpoint": "/api/mq/publish",
+        "method": "POST",
+        "params": [
+            {"name": "topic", "type": "string", "required": True, "description": "主题"},
+            {"name": "message", "type": "any", "required": True, "description": "消息内容"}
+        ],
+        "icon": "send"
+    },
+    "mq_subscribe": {
+        "id": "mq_subscribe",
+        "name": "订阅消息",
+        "name_en": "Subscribe Message",
+        "description": "订阅消息主题",
+        "category": "messagequeue",
+        "subcategory": "subscribe",
+        "api_endpoint": "/api/mq/subscribe",
+        "method": "POST",
+        "params": [
+            {"name": "topic", "type": "string", "required": True, "description": "主题"}
+        ],
+        "icon": "inbox"
+    },
+    "mq_list": {
+        "id": "mq_list",
+        "name": "队列列表",
+        "name_en": "Queue List",
+        "description": "获取消息队列列表",
+        "category": "messagequeue",
+        "subcategory": "list",
+        "api_endpoint": "/api/mq/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 流处理工具 ==========
+    "stream_create": {
+        "id": "stream_create",
+        "name": "创建流",
+        "name_en": "Create Stream",
+        "description": "创建数据流",
+        "category": "stream",
+        "subcategory": "create",
+        "api_endpoint": "/api/stream/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "流名称"},
+            {"name": "partitions", "type": "number", "required": False, "description": "分区数"}
+        ],
+        "icon": "activity"
+    },
+    "stream_publish": {
+        "id": "stream_publish",
+        "name": "发布流",
+        "name_en": "Publish to Stream",
+        "description": "向流发布数据",
+        "category": "stream",
+        "subcategory": "publish",
+        "api_endpoint": "/api/stream/publish",
+        "method": "POST",
+        "params": [
+            {"name": "stream", "type": "string", "required": True, "description": "流名称"},
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "send"
+    },
+    "stream_consume": {
+        "id": "stream_consume",
+        "name": "消费流",
+        "name_en": "Consume Stream",
+        "description": "消费数据流",
+        "category": "stream",
+        "subcategory": "consume",
+        "api_endpoint": "/api/stream/consume",
+        "method": "POST",
+        "params": [
+            {"name": "stream", "type": "string", "required": True, "description": "流名称"},
+            {"name": "group", "type": "string", "required": False, "description": "消费组"}
+        ],
+        "icon": "download"
     }
 }
 
