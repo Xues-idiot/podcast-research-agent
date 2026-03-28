@@ -437,6 +437,22 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "list"
     },
+    "list_range": {
+        "id": "list_range",
+        "name": "列表范围",
+        "name_en": "List Range",
+        "description": "生成数值范围列表、重复列表、循环列表",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-range",
+        "method": "POST",
+        "params": [
+            {"name": "start", "type": "number", "required": True, "description": "起始值"},
+            {"name": "stop", "type": "number", "required": True, "description": "结束值"},
+            {"name": "step", "type": "number", "required": False, "description": "步长"}
+        ],
+        "icon": "list"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
