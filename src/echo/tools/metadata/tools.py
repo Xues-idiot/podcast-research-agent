@@ -24776,6 +24776,581 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "threshold", "type": "number", "required": True, "description": "阈值"}
         ],
         "icon": "bell"
+    },
+
+    # ========== PDF工具 ==========
+    "pdf_read": {
+        "id": "pdf_read",
+        "name": "读取PDF",
+        "name_en": "Read PDF",
+        "description": "读取PDF文件内容",
+        "category": "pdf",
+        "subcategory": "read",
+        "api_endpoint": "/api/pdf/read",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "PDF文件路径"}
+        ],
+        "icon": "file"
+    },
+    "pdf_extract_text": {
+        "id": "pdf_extract_text",
+        "name": "提取PDF文本",
+        "name_en": "Extract PDF Text",
+        "description": "从PDF中提取文本",
+        "category": "pdf",
+        "subcategory": "extract",
+        "api_endpoint": "/api/pdf/extract/text",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "PDF文件路径"}
+        ],
+        "icon": "file"
+    },
+    "pdf_extract_images": {
+        "id": "pdf_extract_images",
+        "name": "提取PDF图片",
+        "name_en": "Extract PDF Images",
+        "description": "从PDF中提取图片",
+        "category": "pdf",
+        "subcategory": "extract",
+        "api_endpoint": "/api/pdf/extract/images",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "PDF文件路径"}
+        ],
+        "icon": "image"
+    },
+    "pdf_merge": {
+        "id": "pdf_merge",
+        "name": "合并PDF",
+        "name_en": "Merge PDFs",
+        "description": "合并多个PDF文件",
+        "category": "pdf",
+        "subcategory": "merge",
+        "api_endpoint": "/api/pdf/merge",
+        "method": "POST",
+        "params": [
+            {"name": "files", "type": "array", "required": True, "description": "PDF文件路径列表"}
+        ],
+        "icon": "file-plus"
+    },
+    "pdf_split": {
+        "id": "pdf_split",
+        "name": "拆分PDF",
+        "name_en": "Split PDF",
+        "description": "拆分PDF文件",
+        "category": "pdf",
+        "subcategory": "split",
+        "api_endpoint": "/api/pdf/split",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "PDF文件路径"},
+            {"name": "pages", "type": "string", "required": True, "description": "页码范围"}
+        ],
+        "icon": "file-minus"
+    },
+    "pdf_rotate": {
+        "id": "pdf_rotate",
+        "name": "旋转PDF",
+        "name_en": "Rotate PDF",
+        "description": "旋转PDF页面",
+        "category": "pdf",
+        "subcategory": "rotate",
+        "api_endpoint": "/api/pdf/rotate",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "PDF文件路径"},
+            {"name": "degrees", "type": "number", "required": True, "description": "旋转角度"}
+        ],
+        "icon": "rotate-cw"
+    },
+    "pdf_compress": {
+        "id": "pdf_compress",
+        "name": "压缩PDF",
+        "name_en": "Compress PDF",
+        "description": "压缩PDF文件",
+        "category": "pdf",
+        "subcategory": "compress",
+        "api_endpoint": "/api/pdf/compress",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "PDF文件路径"}
+        ],
+        "icon": "minimize"
+    },
+    "pdf_info": {
+        "id": "pdf_info",
+        "name": "PDF信息",
+        "name_en": "PDF Info",
+        "description": "获取PDF文件信息",
+        "category": "pdf",
+        "subcategory": "info",
+        "api_endpoint": "/api/pdf/info",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "PDF文件路径"}
+        ],
+        "icon": "info"
+    },
+
+    # ========== 文档工具 ==========
+    "docx_create": {
+        "id": "docx_create",
+        "name": "创建Word文档",
+        "name_en": "Create Word Document",
+        "description": "创建Word文档",
+        "category": "document",
+        "subcategory": "docx",
+        "api_endpoint": "/api/doc/create",
+        "method": "POST",
+        "params": [
+            {"name": "content", "type": "string", "required": True, "description": "文档内容"},
+            {"name": "file_path", "type": "string", "required": False, "description": "保存路径"}
+        ],
+        "icon": "file"
+    },
+    "docx_read": {
+        "id": "docx_read",
+        "name": "读取Word文档",
+        "name_en": "Read Word Document",
+        "description": "读取Word文档内容",
+        "category": "document",
+        "subcategory": "docx",
+        "api_endpoint": "/api/doc/read",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "文档路径"}
+        ],
+        "icon": "file"
+    },
+    "docx_to_pdf": {
+        "id": "docx_to_pdf",
+        "name": "Word转PDF",
+        "name_en": "Word to PDF",
+        "description": "将Word文档转换为PDF",
+        "category": "document",
+        "subcategory": "convert",
+        "api_endpoint": "/api/doc/to/pdf",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "Word文件路径"}
+        ],
+        "icon": "file"
+    },
+    "odt_create": {
+        "id": "odt_create",
+        "name": "创建ODT文档",
+        "name_en": "Create ODT Document",
+        "description": "创建ODT文档",
+        "category": "document",
+        "subcategory": "odt",
+        "api_endpoint": "/api/odt/create",
+        "method": "POST",
+        "params": [
+            {"name": "content", "type": "string", "required": True, "description": "文档内容"}
+        ],
+        "icon": "file"
+    },
+    "rtf_read": {
+        "id": "rtf_read",
+        "name": "读取RTF文档",
+        "name_en": "Read RTF Document",
+        "description": "读取RTF文档内容",
+        "category": "document",
+        "subcategory": "rtf",
+        "api_endpoint": "/api/rtf/read",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "RTF文件路径"}
+        ],
+        "icon": "file"
+    },
+
+    # ========== 表格工具 ==========
+    "xlsx_read": {
+        "id": "xlsx_read",
+        "name": "读取Excel",
+        "name_en": "Read Excel",
+        "description": "读取Excel文件",
+        "category": "spreadsheet",
+        "subcategory": "xlsx",
+        "api_endpoint": "/api/xlsx/read",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "Excel文件路径"}
+        ],
+        "icon": "file"
+    },
+    "xlsx_create": {
+        "id": "xlsx_create",
+        "name": "创建Excel",
+        "name_en": "Create Excel",
+        "description": "创建Excel文件",
+        "category": "spreadsheet",
+        "subcategory": "xlsx",
+        "api_endpoint": "/api/xlsx/create",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据数组"}
+        ],
+        "icon": "file-plus"
+    },
+    "xlsx_to_csv": {
+        "id": "xlsx_to_csv",
+        "name": "Excel转CSV",
+        "name_en": "Excel to CSV",
+        "description": "将Excel转换为CSV",
+        "category": "spreadsheet",
+        "subcategory": "convert",
+        "api_endpoint": "/api/xlsx/to/csv",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "Excel文件路径"}
+        ],
+        "icon": "file"
+    },
+    "csv_to_xlsx": {
+        "id": "csv_to_xlsx",
+        "name": "CSV转Excel",
+        "name_en": "CSV to Excel",
+        "description": "将CSV转换为Excel",
+        "category": "spreadsheet",
+        "subcategory": "convert",
+        "api_endpoint": "/api/csv/to/xlsx",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "CSV文件路径"}
+        ],
+        "icon": "file"
+    },
+
+    # ========== 演示文稿工具 ==========
+    "pptx_create": {
+        "id": "pptx_create",
+        "name": "创建PPT",
+        "name_en": "Create PowerPoint",
+        "description": "创建PowerPoint演示文稿",
+        "category": "presentation",
+        "subcategory": "pptx",
+        "api_endpoint": "/api/pptx/create",
+        "method": "POST",
+        "params": [
+            {"name": "slides", "type": "array", "required": True, "description": "幻灯片数组"}
+        ],
+        "icon": "file"
+    },
+    "pptx_read": {
+        "id": "pptx_read",
+        "name": "读取PPT",
+        "name_en": "Read PowerPoint",
+        "description": "读取PowerPoint内容",
+        "category": "presentation",
+        "subcategory": "pptx",
+        "api_endpoint": "/api/pptx/read",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "PPT文件路径"}
+        ],
+        "icon": "file"
+    },
+    "pptx_add_slide": {
+        "id": "pptx_add_slide",
+        "name": "添加幻灯片",
+        "name_en": "Add Slide",
+        "description": "向PPT添加幻灯片",
+        "category": "presentation",
+        "subcategory": "edit",
+        "api_endpoint": "/api/pptx/slide/add",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "PPT文件路径"},
+            {"name": "slide", "type": "object", "required": True, "description": "幻灯片内容"}
+        ],
+        "icon": "plus"
+    },
+
+    # ========== 日历工具 ==========
+    "calendar_today": {
+        "id": "calendar_today",
+        "name": "今日日期",
+        "name_en": "Today",
+        "description": "获取今天的日期",
+        "category": "calendar",
+        "subcategory": "date",
+        "api_endpoint": "/api/calendar/today",
+        "method": "GET",
+        "params": [],
+        "icon": "calendar"
+    },
+    "calendar_events": {
+        "id": "calendar_events",
+        "name": "日历事件",
+        "name_en": "Calendar Events",
+        "description": "获取日历事件列表",
+        "category": "calendar",
+        "subcategory": "events",
+        "api_endpoint": "/api/calendar/events",
+        "method": "GET",
+        "params": [],
+        "icon": "calendar"
+    },
+    "calendar_add_event": {
+        "id": "calendar_add_event",
+        "name": "添加日历事件",
+        "name_en": "Add Event",
+        "description": "添加日历事件",
+        "category": "calendar",
+        "subcategory": "events",
+        "api_endpoint": "/api/calendar/event/add",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "事件标题"},
+            {"name": "start", "type": "string", "required": True, "description": "开始时间"},
+            {"name": "end", "type": "string", "required": False, "description": "结束时间"}
+        ],
+        "icon": "plus"
+    },
+    "calendar_delete_event": {
+        "id": "calendar_delete_event",
+        "name": "删除日历事件",
+        "name_en": "Delete Event",
+        "description": "删除日历事件",
+        "category": "calendar",
+        "subcategory": "events",
+        "api_endpoint": "/api/calendar/event/delete",
+        "method": "POST",
+        "params": [
+            {"name": "event_id", "type": "string", "required": True, "description": "事件ID"}
+        ],
+        "icon": "trash"
+    },
+    "calendar_week_view": {
+        "id": "calendar_week_view",
+        "name": "周视图",
+        "name_en": "Week View",
+        "description": "获取本周日历视图",
+        "category": "calendar",
+        "subcategory": "view",
+        "api_endpoint": "/api/calendar/week",
+        "method": "GET",
+        "params": [],
+        "icon": "calendar"
+    },
+    "calendar_month_view": {
+        "id": "calendar_month_view",
+        "name": "月视图",
+        "name_en": "Month View",
+        "description": "获取本月日历视图",
+        "category": "calendar",
+        "subcategory": "view",
+        "api_endpoint": "/api/calendar/month",
+        "method": "GET",
+        "params": [],
+        "icon": "calendar"
+    },
+
+    # ========== 任务工具 ==========
+    "task_create": {
+        "id": "task_create",
+        "name": "创建任务",
+        "name_en": "Create Task",
+        "description": "创建新任务",
+        "category": "task",
+        "subcategory": "create",
+        "api_endpoint": "/api/task/create",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "任务标题"},
+            {"name": "description", "type": "string", "required": False, "description": "任务描述"}
+        ],
+        "icon": "plus"
+    },
+    "task_list": {
+        "id": "task_list",
+        "name": "任务列表",
+        "name_en": "Task List",
+        "description": "获取任务列表",
+        "category": "task",
+        "subcategory": "list",
+        "api_endpoint": "/api/task/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "task_update": {
+        "id": "task_update",
+        "name": "更新任务",
+        "name_en": "Update Task",
+        "description": "更新任务信息",
+        "category": "task",
+        "subcategory": "update",
+        "api_endpoint": "/api/task/update",
+        "method": "POST",
+        "params": [
+            {"name": "task_id", "type": "string", "required": True, "description": "任务ID"},
+            {"name": "data", "type": "object", "required": True, "description": "更新数据"}
+        ],
+        "icon": "edit"
+    },
+    "task_delete": {
+        "id": "task_delete",
+        "name": "删除任务",
+        "name_en": "Delete Task",
+        "description": "删除任务",
+        "category": "task",
+        "subcategory": "delete",
+        "api_endpoint": "/api/task/delete",
+        "method": "POST",
+        "params": [
+            {"name": "task_id", "type": "string", "required": True, "description": "任务ID"}
+        ],
+        "icon": "trash"
+    },
+    "task_complete": {
+        "id": "task_complete",
+        "name": "完成任务",
+        "name_en": "Complete Task",
+        "description": "标记任务为完成",
+        "category": "task",
+        "subcategory": "status",
+        "api_endpoint": "/api/task/complete",
+        "method": "POST",
+        "params": [
+            {"name": "task_id", "type": "string", "required": True, "description": "任务ID"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 项目管理工具 ==========
+    "project_create": {
+        "id": "project_create",
+        "name": "创建项目",
+        "name_en": "Create Project",
+        "description": "创建新项目",
+        "category": "project",
+        "subcategory": "create",
+        "api_endpoint": "/api/project/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "项目名称"},
+            {"name": "description", "type": "string", "required": False, "description": "项目描述"}
+        ],
+        "icon": "folder-plus"
+    },
+    "project_list": {
+        "id": "project_list",
+        "name": "项目列表",
+        "name_en": "Project List",
+        "description": "获取项目列表",
+        "category": "project",
+        "subcategory": "list",
+        "api_endpoint": "/api/project/list",
+        "method": "GET",
+        "params": [],
+        "icon": "folder"
+    },
+    "project_add_member": {
+        "id": "project_add_member",
+        "name": "添加项目成员",
+        "name_en": "Add Project Member",
+        "description": "向项目添加成员",
+        "category": "project",
+        "subcategory": "member",
+        "api_endpoint": "/api/project/member/add",
+        "method": "POST",
+        "params": [
+            {"name": "project_id", "type": "string", "required": True, "description": "项目ID"},
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "user-plus"
+    },
+    "project_kanban": {
+        "id": "project_kanban",
+        "name": "看板视图",
+        "name_en": "Kanban View",
+        "description": "获取项目看板视图",
+        "category": "project",
+        "subcategory": "view",
+        "api_endpoint": "/api/project/kanban",
+        "method": "POST",
+        "params": [
+            {"name": "project_id", "type": "string", "required": True, "description": "项目ID"}
+        ],
+        "icon": "columns"
+    },
+
+    # ========== 笔记工具 ==========
+    "note_create": {
+        "id": "note_create",
+        "name": "创建笔记",
+        "name_en": "Create Note",
+        "description": "创建新笔记",
+        "category": "note",
+        "subcategory": "create",
+        "api_endpoint": "/api/note/create",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "笔记标题"},
+            {"name": "content", "type": "string", "required": True, "description": "笔记内容"}
+        ],
+        "icon": "file-plus"
+    },
+    "note_list": {
+        "id": "note_list",
+        "name": "笔记列表",
+        "name_en": "Note List",
+        "description": "获取笔记列表",
+        "category": "note",
+        "subcategory": "list",
+        "api_endpoint": "/api/note/list",
+        "method": "GET",
+        "params": [],
+        "icon": "file"
+    },
+    "note_search": {
+        "id": "note_search",
+        "name": "搜索笔记",
+        "name_en": "Search Notes",
+        "description": "搜索笔记内容",
+        "category": "note",
+        "subcategory": "search",
+        "api_endpoint": "/api/note/search",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "搜索关键词"}
+        ],
+        "icon": "search"
+    },
+    "note_update": {
+        "id": "note_update",
+        "name": "更新笔记",
+        "name_en": "Update Note",
+        "description": "更新笔记内容",
+        "category": "note",
+        "subcategory": "update",
+        "api_endpoint": "/api/note/update",
+        "method": "POST",
+        "params": [
+            {"name": "note_id", "type": "string", "required": True, "description": "笔记ID"},
+            {"name": "title", "type": "string", "required": False, "description": "笔记标题"},
+            {"name": "content", "type": "string", "required": False, "description": "笔记内容"}
+        ],
+        "icon": "edit"
+    },
+    "note_delete": {
+        "id": "note_delete",
+        "name": "删除笔记",
+        "name_en": "Delete Note",
+        "description": "删除笔记",
+        "category": "note",
+        "subcategory": "delete",
+        "api_endpoint": "/api/note/delete",
+        "method": "POST",
+        "params": [
+            {"name": "note_id", "type": "string", "required": True, "description": "笔记ID"}
+        ],
+        "icon": "trash"
     }
 }
 
