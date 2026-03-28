@@ -268,6 +268,22 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "circle"
     },
+    "list_union": {
+        "id": "list_union",
+        "name": "列表并集",
+        "name_en": "List Union",
+        "description": "计算多个列表的并集元素（去重）",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-union",
+        "method": "POST",
+        "params": [
+            {"name": "lists", "type": "array", "required": True, "description": "列表数组"},
+            {"name": "use_key", "type": "boolean", "required": False, "description": "是否按键比较"},
+            {"name": "key", "type": "string", "required": False, "description": "字典键名"}
+        ],
+        "icon": "circle"
+    },
 
     # ========== 编码转换工具 ==========
     "base64_tool": {
