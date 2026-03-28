@@ -1962,6 +1962,102 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "text", "type": "string", "required": True, "description": "JSON字符串"}
         ],
         "icon": "code"
+    },
+    "random_int": {
+        "id": "random_int",
+        "name": "随机整数",
+        "name_en": "Random Integer",
+        "description": "生成随机整数",
+        "category": "random",
+        "subcategory": "int",
+        "api_endpoint": "/api/random/int",
+        "method": "POST",
+        "params": [
+            {"name": "min_val", "type": "number", "required": False, "description": "最小值"},
+            {"name": "max_val", "type": "number", "required": False, "description": "最大值"}
+        ],
+        "icon": "hash"
+    },
+    "random_float": {
+        "id": "random_float",
+        "name": "随机小数",
+        "name_en": "Random Float",
+        "description": "生成随机小数",
+        "category": "random",
+        "subcategory": "float",
+        "api_endpoint": "/api/random/float",
+        "method": "POST",
+        "params": [],
+        "icon": "hash"
+    },
+    "random_choice": {
+        "id": "random_choice",
+        "name": "随机选择",
+        "name_en": "Random Choice",
+        "description": "从列表中随机选择",
+        "category": "random",
+        "subcategory": "choice",
+        "api_endpoint": "/api/random/choice",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "shuffle"
+    },
+    "random_sample": {
+        "id": "random_sample",
+        "name": "随机抽样",
+        "name_en": "Random Sample",
+        "description": "从列表中随机抽取多个",
+        "category": "random",
+        "subcategory": "sample",
+        "api_endpoint": "/api/random/sample",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "count", "type": "number", "required": True, "description": "抽取数量"}
+        ],
+        "icon": "shuffle"
+    },
+    "shuffle": {
+        "id": "shuffle",
+        "name": "随机打乱",
+        "name_en": "Shuffle",
+        "description": "随机打乱列表顺序",
+        "category": "random",
+        "subcategory": "shuffle",
+        "api_endpoint": "/api/random/shuffle",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "shuffle"
+    },
+    "uuid_generate": {
+        "id": "uuid_generate",
+        "name": "UUID生成",
+        "name_en": "UUID Generate",
+        "description": "生成UUID",
+        "category": "random",
+        "subcategory": "uuid",
+        "api_endpoint": "/api/uuid/generate",
+        "method": "POST",
+        "params": [],
+        "icon": "hash"
+    },
+    "slug_generate": {
+        "id": "slug_generate",
+        "name": "Slug生成",
+        "name_en": "Slug Generate",
+        "description": "生成URL友好的slug",
+        "category": "random",
+        "subcategory": "slug",
+        "api_endpoint": "/api/slug/generate",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "link"
     }
 }
 
