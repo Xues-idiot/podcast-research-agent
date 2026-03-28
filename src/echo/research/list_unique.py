@@ -1,41 +1,42 @@
-"""列表去重工具"""
+"""列表去重工具 - 去除列表中的重复元素"""
+from typing import Any, List, Callable
+from dataclasses import dataclass
 
-from typing import Optional, Any
+
+@dataclass
+class UniqueResult:
+    items: List[Any]
+    count: int
+    removed_count: int
 
 
-class ListUnique:
-    """列表去重工具"""
-
-    def unique(self, items: list) -> list:
-        """去重保持顺序"""
+def list_unique(lst: List[Any], preserve_order: bool = True) -> UniqueResult:
+    if preserve_order:
         seen = set()
         result = []
-        for item in items:
+        for item in lst:
             if item not in seen:
                 seen.add(item)
                 result.append(item)
-        return result
-
-    def unique_by(self, items: list, key: str) -> list:
-        """按键去重"""
-        seen = set()
-        result = []
-        for item in items:
-            if isinstance(item, dict):
-                k = item.get(key)
-            else:
-                k = getattr(item, key, None)
-            if k not in seen:
-                seen.add(k)
-                result.append(item)
-        return result
+        removed = len(lst) - len(result)
+    else:
+        result = list(set(lst))
+        result.sort()
+        removed = len(lst) - len(result)
+    return UniqueResult(items=result, count=len(result), removed_count=removed)
 
 
-_unique: Optional[ListUnique] = None
+def list_duplicates(lst: List[Any]) -> List[Any]:
+    seen = set()
+    duplicates = set()
+    for item in lst:
+        if item in seen:
+            duplicates.add(item)
+        else:
+            seen.add(item)
+    return list(duplicates)
 
 
-def get_list_unique() -> ListUnique:
-    global _unique
-    if _unique is None:
-        _unique = ListUnique()
-    return _unique
+def list_is_unique(lst: List[Any]) -> bool:
+    return len(lst) == len(set(lst))
+

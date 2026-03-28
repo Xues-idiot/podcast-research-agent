@@ -349,6 +349,22 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "icon": "list"
     },
 
+    "list_unique": {
+        "id": "list_unique",
+        "name": "列表去重",
+        "name_en": "List Unique",
+        "description": "去除列表中的重复元素，找出重复项",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-unique",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "源列表"},
+            {"name": "preserve_order", "type": "boolean", "required": False, "description": "是否保持顺序"}
+        ],
+        "icon": "check"
+    },
+
     # ========== 编码转换工具 ==========
     "base64_tool": {
         "id": "base64_tool",
