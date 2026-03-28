@@ -2960,6 +2960,103 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "else_val", "type": "string", "required": False, "description": "假值"}
         ],
         "icon": "toggle-right"
+    },
+    "coalesce": {
+        "id": "coalesce",
+        "name": "空值合并",
+        "name_en": "Coalesce",
+        "description": "返回第一个非空值",
+        "category": "utility",
+        "subcategory": "null",
+        "api_endpoint": "/api/coalesce",
+        "method": "POST",
+        "params": [
+            {"name": "values", "type": "array", "required": True, "description": "值列表"}
+        ],
+        "icon": "git_merge"
+    },
+    "default": {
+        "id": "default",
+        "name": "默认值",
+        "name_en": "Default",
+        "description": "如果值为空则返回默认值",
+        "category": "utility",
+        "subcategory": "null",
+        "api_endpoint": "/api/default",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "值"},
+            {"name": "default_val", "type": "string", "required": True, "description": "默认值"}
+        ],
+        "icon": "corner-down-left"
+    },
+    "type_of": {
+        "id": "type_of",
+        "name": "类型检查",
+        "name_en": "Type Of",
+        "description": "返回值的类型",
+        "category": "utility",
+        "subcategory": "type",
+        "api_endpoint": "/api/type-of",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "值"}
+        ],
+        "icon": "tag"
+    },
+    "is_empty": {
+        "id": "is_empty",
+        "name": "空值检查",
+        "name_en": "Is Empty",
+        "description": "检查是否为空",
+        "category": "utility",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-empty",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "值"}
+        ],
+        "icon": "check-circle"
+    },
+    "is_null": {
+        "id": "is_null",
+        "name": "空检查",
+        "name_en": "Is Null",
+        "description": "检查是否为null",
+        "category": "utility",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-null",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "值"}
+        ],
+        "icon": "check-circle"
+    },
+    "noop": {
+        "id": "noop",
+        "name": "空操作",
+        "name_en": "No Operation",
+        "description": "不执行任何操作",
+        "category": "utility",
+        "subcategory": "flow",
+        "api_endpoint": "/api/noop",
+        "method": "POST",
+        "params": [],
+        "icon": "slash"
+    },
+    "identity": {
+        "id": "identity",
+        "name": "恒等函数",
+        "name_en": "Identity",
+        "description": "返回输入值本身",
+        "category": "utility",
+        "subcategory": "flow",
+        "api_endpoint": "/api/identity",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "值"}
+        ],
+        "icon": "corner-down-right"
     }
 }
 
