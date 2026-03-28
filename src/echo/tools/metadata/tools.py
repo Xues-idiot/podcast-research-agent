@@ -19251,6 +19251,228 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "check"
     },
+
+    # ========== JSON工具 ==========
+    "parse_json": {
+        "id": "parse_json",
+        "name": "JSON解析",
+        "name_en": "Parse JSON",
+        "description": "将JSON字符串解析为对象",
+        "category": "json",
+        "subcategory": "parse",
+        "api_endpoint": "/api/parse_json",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "JSON字符串"}
+        ],
+        "icon": "code"
+    },
+    "to_json": {
+        "id": "to_json",
+        "name": "JSON序列化",
+        "name_en": "To JSON",
+        "description": "将对象序列化为JSON字符串",
+        "category": "json",
+        "subcategory": "serialize",
+        "api_endpoint": "/api/to_json",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"}
+        ],
+        "icon": "code"
+    },
+    "json_get": {
+        "id": "json_get",
+        "name": "JSON获取",
+        "name_en": "JSON Get",
+        "description": "获取JSON对象中的指定路径的值",
+        "category": "json",
+        "subcategory": "get",
+        "api_endpoint": "/api/json_get",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "JSON对象"},
+            {"name": "path", "type": "string", "required": True, "description": "路径"}
+        ],
+        "icon": "search"
+    },
+    "json_set": {
+        "id": "json_set",
+        "name": "JSON设置",
+        "name_en": "JSON Set",
+        "description": "设置JSON对象中指定路径的值",
+        "category": "json",
+        "subcategory": "set",
+        "api_endpoint": "/api/json_set",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "JSON对象"},
+            {"name": "path", "type": "string", "required": True, "description": "路径"},
+            {"name": "value", "type": "object", "required": True, "description": "值"}
+        ],
+        "icon": "edit"
+    },
+    "json_merge": {
+        "id": "json_merge",
+        "name": "JSON合并",
+        "name_en": "JSON Merge",
+        "description": "合并多个JSON对象",
+        "category": "json",
+        "subcategory": "merge",
+        "api_endpoint": "/api/json_merge",
+        "method": "POST",
+        "params": [
+            {"name": "objects", "type": "array", "required": True, "description": "JSON对象数组"}
+        ],
+        "icon": "git-merge"
+    },
+    "json_keys": {
+        "id": "json_keys",
+        "name": "JSON键列表",
+        "name_en": "JSON Keys",
+        "description": "获取JSON对象的所有键",
+        "category": "json",
+        "subcategory": "keys",
+        "api_endpoint": "/api/json_keys",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "JSON对象"}
+        ],
+        "icon": "list"
+    },
+    "json_values": {
+        "id": "json_values",
+        "name": "JSON值列表",
+        "name_en": "JSON Values",
+        "description": "获取JSON对象的所有值",
+        "category": "json",
+        "subcategory": "values",
+        "api_endpoint": "/api/json_values",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "JSON对象"}
+        ],
+        "icon": "list"
+    },
+    "json_flatten": {
+        "id": "json_flatten",
+        "name": "JSON扁平化",
+        "name_en": "JSON Flatten",
+        "description": "将嵌套JSON对象扁平化",
+        "category": "json",
+        "subcategory": "flatten",
+        "api_endpoint": "/api/json_flatten",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "JSON对象"}
+        ],
+        "icon": "compress"
+    },
+    "json_unflatten": {
+        "id": "json_unflatten",
+        "name": "JSON反扁平化",
+        "name_en": "JSON Unflatten",
+        "description": "将扁平化JSON对象恢复为嵌套结构",
+        "category": "json",
+        "subcategory": "unflatten",
+        "api_endpoint": "/api/json_unflatten",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "扁平化对象"}
+        ],
+        "icon": "expand"
+    },
+
+    # ========== YAML工具 ==========
+    "parse_yaml": {
+        "id": "parse_yaml",
+        "name": "YAML解析",
+        "name_en": "Parse YAML",
+        "description": "将YAML字符串解析为对象",
+        "category": "yaml",
+        "subcategory": "parse",
+        "api_endpoint": "/api/parse_yaml",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "YAML字符串"}
+        ],
+        "icon": "code"
+    },
+    "to_yaml": {
+        "id": "to_yaml",
+        "name": "YAML序列化",
+        "name_en": "To YAML",
+        "description": "将对象序列化为YAML字符串",
+        "category": "yaml",
+        "subcategory": "serialize",
+        "api_endpoint": "/api/to_yaml",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"}
+        ],
+        "icon": "code"
+    },
+
+    # ========== XML工具 ==========
+    "parse_xml": {
+        "id": "parse_xml",
+        "name": "XML解析",
+        "name_en": "Parse XML",
+        "description": "将XML字符串解析为对象",
+        "category": "xml",
+        "subcategory": "parse",
+        "api_endpoint": "/api/parse_xml",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "XML字符串"}
+        ],
+        "icon": "code"
+    },
+    "to_xml": {
+        "id": "to_xml",
+        "name": "XML序列化",
+        "name_en": "To XML",
+        "description": "将对象序列化为XML字符串",
+        "category": "xml",
+        "subcategory": "serialize",
+        "api_endpoint": "/api/to_xml",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "root", "type": "string", "required": False, "description": "根元素名", "default": "root"}
+        ],
+        "icon": "code"
+    },
+
+    # ========== HTML工具 ==========
+    "parse_html": {
+        "id": "parse_html",
+        "name": "HTML解析",
+        "name_en": "Parse HTML",
+        "description": "将HTML字符串解析",
+        "category": "html",
+        "subcategory": "parse",
+        "api_endpoint": "/api/parse_html",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "HTML字符串"}
+        ],
+        "icon": "code"
+    },
+    "to_html": {
+        "id": "to_html",
+        "name": "HTML转换",
+        "name_en": "To HTML",
+        "description": "将文本转换为HTML",
+        "category": "html",
+        "subcategory": "convert",
+        "api_endpoint": "/api/to_html",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "code"
+    },
 }
 
 
