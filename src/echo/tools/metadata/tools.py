@@ -1850,6 +1850,118 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "reverse", "type": "boolean", "required": False, "description": "降序"}
         ],
         "icon": "arrow-up-down"
+    },
+    "encode_base64": {
+        "id": "encode_base64",
+        "name": "Base64编码",
+        "name_en": "Base64 Encode",
+        "description": "字符串Base64编码",
+        "category": "encoding",
+        "subcategory": "base64",
+        "api_endpoint": "/api/base64/encode",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "lock"
+    },
+    "decode_base64": {
+        "id": "decode_base64",
+        "name": "Base64解码",
+        "name_en": "Base64 Decode",
+        "description": "Base64字符串解码",
+        "category": "encoding",
+        "subcategory": "base64",
+        "api_endpoint": "/api/base64/decode",
+        "method": "POST",
+        "params": [
+            {"name": "encoded", "type": "string", "required": True, "description": "编码字符串"}
+        ],
+        "icon": "unlock"
+    },
+    "url_encode": {
+        "id": "url_encode",
+        "name": "URL编码",
+        "name_en": "URL Encode",
+        "description": "URL编码",
+        "category": "encoding",
+        "subcategory": "url",
+        "api_endpoint": "/api/url/encode",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "link"
+    },
+    "url_decode": {
+        "id": "url_decode",
+        "name": "URL解码",
+        "name_en": "URL Decode",
+        "description": "URL解码",
+        "category": "encoding",
+        "subcategory": "url",
+        "api_endpoint": "/api/url/decode",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "URL编码字符串"}
+        ],
+        "icon": "link"
+    },
+    "hex_encode": {
+        "id": "hex_encode",
+        "name": "十六进制编码",
+        "name_en": "Hex Encode",
+        "description": "字符串转十六进制",
+        "category": "encoding",
+        "subcategory": "hex",
+        "api_endpoint": "/api/hex/encode",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "hash"
+    },
+    "hex_decode": {
+        "id": "hex_decode",
+        "name": "十六进制解码",
+        "name_en": "Hex Decode",
+        "description": "十六进制转字符串",
+        "category": "encoding",
+        "subcategory": "hex",
+        "api_endpoint": "/api/hex/decode",
+        "method": "POST",
+        "params": [
+            {"name": "hex", "type": "string", "required": True, "description": "十六进制字符串"}
+        ],
+        "icon": "hash"
+    },
+    "json_encode": {
+        "id": "json_encode",
+        "name": "JSON编码",
+        "name_en": "JSON Encode",
+        "description": "对象转JSON字符串",
+        "category": "encoding",
+        "subcategory": "json",
+        "api_endpoint": "/api/json/encode",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"}
+        ],
+        "icon": "code"
+    },
+    "json_decode": {
+        "id": "json_decode",
+        "name": "JSON解码",
+        "name_en": "JSON Decode",
+        "description": "JSON字符串转对象",
+        "category": "encoding",
+        "subcategory": "json",
+        "api_endpoint": "/api/json/decode",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "JSON字符串"}
+        ],
+        "icon": "code"
     }
 }
 
