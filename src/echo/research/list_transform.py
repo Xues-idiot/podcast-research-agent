@@ -1,29 +1,55 @@
-"""列表转换工具"""
-
-from typing import Optional, Callable
-
-
-class ListTransform:
-    """列表转换工具"""
-
-    def map(self, items: list, func: Callable) -> list:
-        """映射"""
-        return [func(item) for item in items]
-
-    def filter(self, items: list, func: Callable) -> list:
-        """过滤"""
-        return [item for item in items if func(item)]
-
-    def reduce(self, items: list, func: Callable, initial: any = None) -> any:
-        """聚合"""
-        return func(initial, items[0]) if len(items) == 1 else func(initial if initial is not None else items[0], items[1])
+"""列表变换工具 - 对列表进行各种变换"""
+from typing import Any, List, Callable
+from dataclasses import dataclass
 
 
-_transform: Optional[ListTransform] = None
+@dataclass
+class TransformResult:
+    items: List[Any]
+    count: int
 
 
-def get_list_transform() -> ListTransform:
-    global _transform
-    if _transform is None:
-        _transform = ListTransform()
-    return _transform
+def list_transform(lst: List[Any], transform: Callable[[Any], Any]) -> TransformResult:
+    result = [transform(item) for item in lst]
+    return TransformResult(items=result, count=len(result))
+
+
+def list_accumulate(lst: List[Any], func: Callable[[Any, Any], Any] = lambda a, b: a + b, initial: Any = None) -> List[Any]:
+    if not lst:
+        return []
+    if initial is None:
+        result = [lst[0]]
+        for item in lst[1:]:
+            result.append(func(result[-1], item))
+    else:
+        result = [initial]
+        for item in lst:
+            result.append(func(result[-1], item))
+    return result
+
+
+def list_distinct(lst: List[Any]) -> List[Any]:
+    seen = set()
+    result = []
+    for item in lst:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+    return result
+
+
+def list_compact(lst: List[Any]) -> List[Any]:
+    return [item for item in lst if item]
+
+
+def list_flatten_deep(lst: List[Any], depth: int = -1) -> List[Any]:
+    result = []
+    def _flatten(items, current_depth):
+        for item in items:
+            if isinstance(item, (list, tuple)) and (depth < 0 or current_depth < depth):
+                _flatten(item, current_depth + 1)
+            else:
+                result.append(item)
+    _flatten(lst, 0)
+    return result
+

@@ -482,6 +482,20 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "check"
     },
+    "list_transform": {
+        "id": "list_transform",
+        "name": "列表变换",
+        "name_en": "List Transform",
+        "description": "对列表进行累积、去重、压缩、深度扁平化等变换",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-transform",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "源列表"}
+        ],
+        "icon": "list"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
