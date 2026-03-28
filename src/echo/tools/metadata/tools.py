@@ -28184,6 +28184,492 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "function", "type": "string", "required": True, "description": "函数名称"}
         ],
         "icon": "file-text"
+    },
+
+    # ========== 云函数工具 ==========
+    "lambda_invoke": {
+        "id": "lambda_invoke",
+        "name": "调用云函数",
+        "name_en": "Invoke Lambda",
+        "description": "调用AWS Lambda函数",
+        "category": "lambda",
+        "subcategory": "invoke",
+        "api_endpoint": "/api/lambda/invoke",
+        "method": "POST",
+        "params": [
+            {"name": "function", "type": "string", "required": True, "description": "函数名称"},
+            {"name": "payload", "type": "any", "required": False, "description": "负载数据"}
+        ],
+        "icon": "zap"
+    },
+    "lambda_deploy": {
+        "id": "lambda_deploy",
+        "name": "部署云函数",
+        "name_en": "Deploy Lambda",
+        "description": "部署AWS Lambda函数",
+        "category": "lambda",
+        "subcategory": "deploy",
+        "api_endpoint": "/api/lambda/deploy",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "函数名称"},
+            {"name": "runtime", "type": "string", "required": True, "description": "运行时"},
+            {"name": "code", "type": "string", "required": True, "description": "函数代码"}
+        ],
+        "icon": "upload"
+    },
+    "lambda_list": {
+        "id": "lambda_list",
+        "name": "云函数列表",
+        "name_en": "Lambda List",
+        "description": "获取Lambda函数列表",
+        "category": "lambda",
+        "subcategory": "list",
+        "api_endpoint": "/api/lambda/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "lambda_delete": {
+        "id": "lambda_delete",
+        "name": "删除云函数",
+        "name_en": "Delete Lambda",
+        "description": "删除Lambda函数",
+        "category": "lambda",
+        "subcategory": "delete",
+        "api_endpoint": "/api/lambda/delete",
+        "method": "POST",
+        "params": [
+            {"name": "function", "type": "string", "required": True, "description": "函数名称"}
+        ],
+        "icon": "trash"
+    },
+
+    # ========== 密钥管理工具 ==========
+    "kms_create_key": {
+        "id": "kms_create_key",
+        "name": "创建密钥",
+        "name_en": "Create Key",
+        "description": "创建密钥",
+        "category": "kms",
+        "subcategory": "key",
+        "api_endpoint": "/api/kms/key/create",
+        "method": "POST",
+        "params": [
+            {"name": "alias", "type": "string", "required": True, "description": "密钥别名"}
+        ],
+        "icon": "key"
+    },
+    "kms_encrypt": {
+        "id": "kms_encrypt",
+        "name": "加密数据",
+        "name_en": "Encrypt Data",
+        "description": "使用KMS加密数据",
+        "category": "kms",
+        "subcategory": "encrypt",
+        "api_endpoint": "/api/kms/encrypt",
+        "method": "POST",
+        "params": [
+            {"name": "key_id", "type": "string", "required": True, "description": "密钥ID"},
+            {"name": "plaintext", "type": "string", "required": True, "description": "明文数据"}
+        ],
+        "icon": "lock"
+    },
+    "kms_decrypt": {
+        "id": "kms_decrypt",
+        "name": "解密数据",
+        "name_en": "Decrypt Data",
+        "description": "使用KMS解密数据",
+        "category": "kms",
+        "subcategory": "decrypt",
+        "api_endpoint": "/api/kms/decrypt",
+        "method": "POST",
+        "params": [
+            {"name": "ciphertext", "type": "string", "required": True, "description": "密文数据"}
+        ],
+        "icon": "unlock"
+    },
+    "kms_list_keys": {
+        "id": "kms_list_keys",
+        "name": "密钥列表",
+        "name_en": "List Keys",
+        "description": "获取密钥列表",
+        "category": "kms",
+        "subcategory": "list",
+        "api_endpoint": "/api/kms/keys",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 负载均衡工具 ==========
+    "lb_create": {
+        "id": "lb_create",
+        "name": "创建负载均衡器",
+        "name_en": "Create Load Balancer",
+        "description": "创建负载均衡器",
+        "category": "loadbalancer",
+        "subcategory": "create",
+        "api_endpoint": "/api/lb/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"},
+            {"name": "type", "type": "string", "required": True, "description": "类型"}
+        ],
+        "icon": "git-branch"
+    },
+    "lb_attach": {
+        "id": "lb_attach",
+        "name": "附加后端",
+        "name_en": "Attach Backend",
+        "description": "向负载均衡器附加后端",
+        "category": "loadbalancer",
+        "subcategory": "attach",
+        "api_endpoint": "/api/lb/attach",
+        "method": "POST",
+        "params": [
+            {"name": "lb_id", "type": "string", "required": True, "description": "负载均衡器ID"},
+            {"name": "target", "type": "string", "required": True, "description": "目标ID"}
+        ],
+        "icon": "plus"
+    },
+    "lb_list": {
+        "id": "lb_list",
+        "name": "负载均衡器列表",
+        "name_en": "Load Balancer List",
+        "description": "获取负载均衡器列表",
+        "category": "loadbalancer",
+        "subcategory": "list",
+        "api_endpoint": "/api/lb/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "lb_stats": {
+        "id": "lb_stats",
+        "name": "负载均衡统计",
+        "name_en": "Load Balancer Stats",
+        "description": "获取负载均衡统计",
+        "category": "loadbalancer",
+        "subcategory": "stats",
+        "api_endpoint": "/api/lb/stats",
+        "method": "POST",
+        "params": [
+            {"name": "lb_id", "type": "string", "required": True, "description": "负载均衡器ID"}
+        ],
+        "icon": "bar-chart"
+    },
+
+    # ========== CDN工具 ==========
+    "cdn_purge": {
+        "id": "cdn_purge",
+        "name": "刷新CDN缓存",
+        "name_en": "Purge CDN Cache",
+        "description": "刷新CDN缓存",
+        "category": "cdn",
+        "subcategory": "purge",
+        "api_endpoint": "/api/cdn/purge",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "cdn_invalidate": {
+        "id": "cdn_invalidate",
+        "name": "使缓存失效",
+        "name_en": "Invalidate Cache",
+        "description": "使CDN缓存失效",
+        "category": "cdn",
+        "subcategory": "invalidate",
+        "api_endpoint": "/api/cdn/invalidate",
+        "method": "POST",
+        "params": [
+            {"name": "paths", "type": "array", "required": True, "description": "路径数组"}
+        ],
+        "icon": "x"
+    },
+    "cdn_stats": {
+        "id": "cdn_stats",
+        "name": "CDN统计",
+        "name_en": "CDN Stats",
+        "description": "获取CDN使用统计",
+        "category": "cdn",
+        "subcategory": "stats",
+        "api_endpoint": "/api/cdn/stats",
+        "method": "GET",
+        "params": [],
+        "icon": "bar-chart"
+    },
+
+    # ========== DNS工具 ==========
+    "dns_records": {
+        "id": "dns_records",
+        "name": "获取DNS记录",
+        "name_en": "Get DNS Records",
+        "description": "获取域名的DNS记录",
+        "category": "dns",
+        "subcategory": "records",
+        "api_endpoint": "/api/dns/records",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "globe"
+    },
+    "dns_add_record": {
+        "id": "dns_add_record",
+        "name": "添加DNS记录",
+        "name_en": "Add DNS Record",
+        "description": "添加DNS记录",
+        "category": "dns",
+        "subcategory": "add",
+        "api_endpoint": "/api/dns/record/add",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"},
+            {"name": "type", "type": "string", "required": True, "description": "记录类型"},
+            {"name": "value", "type": "string", "required": True, "description": "记录值"}
+        ],
+        "icon": "plus"
+    },
+    "dns_delete_record": {
+        "id": "dns_delete_record",
+        "name": "删除DNS记录",
+        "name_en": "Delete DNS Record",
+        "description": "删除DNS记录",
+        "category": "dns",
+        "subcategory": "delete",
+        "api_endpoint": "/api/dns/record/delete",
+        "method": "POST",
+        "params": [
+            {"name": "record_id", "type": "string", "required": True, "description": "记录ID"}
+        ],
+        "icon": "trash"
+    },
+
+    # ========== 域名工具 ==========
+    "domain_register": {
+        "id": "domain_register",
+        "name": "注册域名",
+        "name_en": "Register Domain",
+        "description": "注册新域名",
+        "category": "domain",
+        "subcategory": "register",
+        "api_endpoint": "/api/domain/register",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "globe"
+    },
+    "domain_transfer": {
+        "id": "domain_transfer",
+        "name": "转移域名",
+        "name_en": "Transfer Domain",
+        "description": "转移域名",
+        "category": "domain",
+        "subcategory": "transfer",
+        "api_endpoint": "/api/domain/transfer",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"},
+            {"name": "auth_code", "type": "string", "required": True, "description": "授权码"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "domain_list": {
+        "id": "domain_list",
+        "name": "域名列表",
+        "name_en": "Domain List",
+        "description": "获取域名列表",
+        "category": "domain",
+        "subcategory": "list",
+        "api_endpoint": "/api/domain/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "domain_dns": {
+        "id": "domain_dns",
+        "name": "域名DNS配置",
+        "name_en": "Domain DNS Config",
+        "description": "配置域名DNS",
+        "category": "domain",
+        "subcategory": "dns",
+        "api_endpoint": "/api/domain/dns",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "settings"
+    },
+
+    # ========== SSL证书工具 ==========
+    "ssl_create": {
+        "id": "ssl_create",
+        "name": "创建SSL证书",
+        "name_en": "Create SSL Certificate",
+        "description": "创建SSL证书",
+        "category": "ssl",
+        "subcategory": "create",
+        "api_endpoint": "/api/ssl/create",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "lock"
+    },
+    "ssl_list": {
+        "id": "ssl_list",
+        "name": "SSL证书列表",
+        "name_en": "SSL Certificate List",
+        "description": "获取SSL证书列表",
+        "category": "ssl",
+        "subcategory": "list",
+        "api_endpoint": "/api/ssl/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "ssl_renew": {
+        "id": "ssl_renew",
+        "name": "续期SSL证书",
+        "name_en": "Renew SSL Certificate",
+        "description": "续期SSL证书",
+        "category": "ssl",
+        "subcategory": "renew",
+        "api_endpoint": "/api/ssl/renew",
+        "method": "POST",
+        "params": [
+            {"name": "certificate_id", "type": "string", "required": True, "description": "证书ID"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "ssl_attach": {
+        "id": "ssl_attach",
+        "name": "绑定SSL证书",
+        "name_en": "Attach SSL Certificate",
+        "description": "绑定SSL证书到域名",
+        "category": "ssl",
+        "subcategory": "attach",
+        "api_endpoint": "/api/ssl/attach",
+        "method": "POST",
+        "params": [
+            {"name": "certificate_id", "type": "string", "required": True, "description": "证书ID"},
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "link"
+    },
+
+    # ========== 短信服务工具 ==========
+    "sms_send": {
+        "id": "sms_send",
+        "name": "发送短信",
+        "name_en": "Send SMS",
+        "description": "发送短信",
+        "category": "sms",
+        "subcategory": "send",
+        "api_endpoint": "/api/sms/send",
+        "method": "POST",
+        "params": [
+            {"name": "to", "type": "string", "required": True, "description": "手机号"},
+            {"name": "message", "type": "string", "required": True, "description": "消息内容"}
+        ],
+        "icon": "message-square"
+    },
+    "sms_batch": {
+        "id": "sms_batch",
+        "name": "批量发送短信",
+        "name_en": "Batch Send SMS",
+        "description": "批量发送短信",
+        "category": "sms",
+        "subcategory": "batch",
+        "api_endpoint": "/api/sms/batch",
+        "method": "POST",
+        "params": [
+            {"name": "recipients", "type": "array", "required": True, "description": "收件人列表"},
+            {"name": "message", "type": "string", "required": True, "description": "消息内容"}
+        ],
+        "icon": "users"
+    },
+    "sms_template": {
+        "id": "sms_template",
+        "name": "短信模板",
+        "name_en": "SMS Template",
+        "description": "使用模板发送短信",
+        "category": "sms",
+        "subcategory": "template",
+        "api_endpoint": "/api/sms/template",
+        "method": "POST",
+        "params": [
+            {"name": "to", "type": "string", "required": True, "description": "手机号"},
+            {"name": "template_id", "type": "string", "required": True, "description": "模板ID"},
+            {"name": "params", "type": "object", "required": False, "description": "模板参数"}
+        ],
+        "icon": "file-text"
+    },
+
+    # ========== 邮件服务工具 ==========
+    "email_send": {
+        "id": "email_send",
+        "name": "发送邮件",
+        "name_en": "Send Email",
+        "description": "发送邮件",
+        "category": "email",
+        "subcategory": "send",
+        "api_endpoint": "/api/email/send",
+        "method": "POST",
+        "params": [
+            {"name": "to", "type": "string", "required": True, "description": "收件人"},
+            {"name": "subject", "type": "string", "required": True, "description": "主题"},
+            {"name": "body", "type": "string", "required": True, "description": "正文"}
+        ],
+        "icon": "mail"
+    },
+    "email_batch": {
+        "id": "email_batch",
+        "name": "批量发送邮件",
+        "name_en": "Batch Send Email",
+        "description": "批量发送邮件",
+        "category": "email",
+        "subcategory": "batch",
+        "api_endpoint": "/api/email/batch",
+        "method": "POST",
+        "params": [
+            {"name": "recipients", "type": "array", "required": True, "description": "收件人列表"},
+            {"name": "subject", "type": "string", "required": True, "description": "主题"},
+            {"name": "body", "type": "string", "required": True, "description": "正文"}
+        ],
+        "icon": "users"
+    },
+    "email_template": {
+        "id": "email_template",
+        "name": "邮件模板",
+        "name_en": "Email Template",
+        "description": "使用模板发送邮件",
+        "category": "email",
+        "subcategory": "template",
+        "api_endpoint": "/api/email/template",
+        "method": "POST",
+        "params": [
+            {"name": "to", "type": "string", "required": True, "description": "收件人"},
+            {"name": "template_id", "type": "string", "required": True, "description": "模板ID"},
+            {"name": "params", "type": "object", "required": False, "description": "模板参数"}
+        ],
+        "icon": "file-text"
+    },
+    "email_list": {
+        "id": "email_list",
+        "name": "邮件列表",
+        "name_en": "Email List",
+        "description": "获取邮件列表",
+        "category": "email",
+        "subcategory": "list",
+        "api_endpoint": "/api/email/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
     }
 }
 
