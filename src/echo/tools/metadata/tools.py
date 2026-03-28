@@ -2753,6 +2753,108 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "count", "type": "number", "required": True, "description": "重复次数"}
         ],
         "icon": "copy"
+    },
+    "cycle": {
+        "id": "cycle",
+        "name": "循环生成",
+        "name_en": "Cycle",
+        "description": "循环生成列表元素",
+        "category": "list",
+        "subcategory": "generate",
+        "api_endpoint": "/api/cycle",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "元素列表"},
+            {"name": "count", "type": "number", "required": True, "description": "总数量"}
+        ],
+        "icon": "repeat"
+    },
+    "dedupe": {
+        "id": "dedupe",
+        "name": "去重",
+        "name_en": "Deduplicate",
+        "description": "去除相邻重复项",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/dedupe",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "filter"
+    },
+    "partition": {
+        "id": "partition",
+        "name": "分区",
+        "name_en": "Partition",
+        "description": "将列表按条件分区",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/partition",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "columns"
+    },
+    "zip_longest": {
+        "id": "zip_longest",
+        "name": "最长合并",
+        "name_en": "Zip Longest",
+        "description": "将多个列表最长合并",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/zip-longest",
+        "method": "POST",
+        "params": [
+            {"name": "lists", "type": "array", "required": True, "description": "列表数组"},
+            {"name": "fill", "type": "string", "required": False, "description": "填充值"}
+        ],
+        "icon": "columns"
+    },
+    "take": {
+        "id": "take",
+        "name": "获取前N个",
+        "name_en": "Take",
+        "description": "获取列表前N个元素",
+        "category": "list",
+        "subcategory": "access",
+        "api_endpoint": "/api/take",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "count", "type": "number", "required": True, "description": "数量"}
+        ],
+        "icon": "arrow-right"
+    },
+    "skip": {
+        "id": "skip",
+        "name": "跳过前N个",
+        "name_en": "Skip",
+        "description": "跳过列表前N个元素",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/skip",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "count", "type": "number", "required": True, "description": "数量"}
+        ],
+        "icon": "arrow-right"
+    },
+    "compact": {
+        "id": "compact",
+        "name": "去除空值",
+        "name_en": "Compact",
+        "description": "去除列表中的空值",
+        "category": "list",
+        "subcategory": "clean",
+        "api_endpoint": "/api/compact",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "filter"
     }
 }
 
