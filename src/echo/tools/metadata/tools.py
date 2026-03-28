@@ -25777,6 +25777,474 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "end", "type": "number", "required": True, "description": "结束时间(秒)"}
         ],
         "icon": "scissors"
+    },
+
+    # ========== Markdown工具 ==========
+    "md_to_html": {
+        "id": "md_to_html",
+        "name": "Markdown转HTML",
+        "name_en": "Markdown to HTML",
+        "description": "将Markdown转换为HTML",
+        "category": "markdown",
+        "subcategory": "convert",
+        "api_endpoint": "/api/md/to/html",
+        "method": "POST",
+        "params": [
+            {"name": "markdown", "type": "string", "required": True, "description": "Markdown文本"}
+        ],
+        "icon": "code"
+    },
+    "md_to_pdf": {
+        "id": "md_to_pdf",
+        "name": "Markdown转PDF",
+        "name_en": "Markdown to PDF",
+        "description": "将Markdown转换为PDF",
+        "category": "markdown",
+        "subcategory": "convert",
+        "api_endpoint": "/api/md/to/pdf",
+        "method": "POST",
+        "params": [
+            {"name": "markdown", "type": "string", "required": True, "description": "Markdown文本"}
+        ],
+        "icon": "file"
+    },
+    "md_to_docx": {
+        "id": "md_to_docx",
+        "name": "Markdown转Word",
+        "name_en": "Markdown to Word",
+        "description": "将Markdown转换为Word文档",
+        "category": "markdown",
+        "subcategory": "convert",
+        "api_endpoint": "/api/md/to/docx",
+        "method": "POST",
+        "params": [
+            {"name": "markdown", "type": "string", "required": True, "description": "Markdown文本"}
+        ],
+        "icon": "file"
+    },
+    "html_to_md": {
+        "id": "html_to_md",
+        "name": "HTML转Markdown",
+        "name_en": "HTML to Markdown",
+        "description": "将HTML转换为Markdown",
+        "category": "markdown",
+        "subcategory": "convert",
+        "api_endpoint": "/api/html/to/md",
+        "method": "POST",
+        "params": [
+            {"name": "html", "type": "string", "required": True, "description": "HTML文本"}
+        ],
+        "icon": "code"
+    },
+    "md_toc": {
+        "id": "md_toc",
+        "name": "生成目录",
+        "name_en": "Generate Table of Contents",
+        "description": "从Markdown生成目录",
+        "category": "markdown",
+        "subcategory": "toc",
+        "api_endpoint": "/api/md/toc",
+        "method": "POST",
+        "params": [
+            {"name": "markdown", "type": "string", "required": True, "description": "Markdown文本"}
+        ],
+        "icon": "list"
+    },
+    "md_validate": {
+        "id": "md_validate",
+        "name": "验证Markdown",
+        "name_en": "Validate Markdown",
+        "description": "验证Markdown语法",
+        "category": "markdown",
+        "subcategory": "validate",
+        "api_endpoint": "/api/md/validate",
+        "method": "POST",
+        "params": [
+            {"name": "markdown", "type": "string", "required": True, "description": "Markdown文本"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 序列化工具 ==========
+    "serialize_json": {
+        "id": "serialize_json",
+        "name": "序列化JSON",
+        "name_en": "Serialize JSON",
+        "description": "将对象序列化为JSON",
+        "category": "serialization",
+        "subcategory": "json",
+        "api_endpoint": "/api/serialize/json",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据对象"}
+        ],
+        "icon": "code"
+    },
+    "deserialize_json": {
+        "id": "deserialize_json",
+        "name": "反序列化JSON",
+        "name_en": "Deserialize JSON",
+        "description": "将JSON反序列化为对象",
+        "category": "serialization",
+        "subcategory": "json",
+        "api_endpoint": "/api/deserialize/json",
+        "method": "POST",
+        "params": [
+            {"name": "json", "type": "string", "required": True, "description": "JSON字符串"}
+        ],
+        "icon": "code"
+    },
+    "serialize_pickle": {
+        "id": "serialize_pickle",
+        "name": "Pickle序列化",
+        "name_en": "Pickle Serialize",
+        "description": "将对象序列化为Pickle",
+        "category": "serialization",
+        "subcategory": "pickle",
+        "api_endpoint": "/api/serialize/pickle",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据对象"}
+        ],
+        "icon": "archive"
+    },
+    "deserialize_pickle": {
+        "id": "deserialize_pickle",
+        "name": "Pickle反序列化",
+        "name_en": "Pickle Deserialize",
+        "description": "将Pickle反序列化",
+        "category": "serialization",
+        "subcategory": "pickle",
+        "api_endpoint": "/api/deserialize/pickle",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "Pickle数据"}
+        ],
+        "icon": "archive"
+    },
+    "serialize_msgpack": {
+        "id": "serialize_msgpack",
+        "name": "MsgPack序列化",
+        "name_en": "MsgPack Serialize",
+        "description": "将对象序列化为MsgPack",
+        "category": "serialization",
+        "subcategory": "msgpack",
+        "api_endpoint": "/api/serialize/msgpack",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据对象"}
+        ],
+        "icon": "package"
+    },
+    "deserialize_msgpack": {
+        "id": "deserialize_msgpack",
+        "name": "MsgPack反序列化",
+        "name_en": "MsgPack Deserialize",
+        "description": "将MsgPack反序列化",
+        "category": "serialization",
+        "subcategory": "msgpack",
+        "api_endpoint": "/api/deserialize/msgpack",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "MsgPack数据"}
+        ],
+        "icon": "package"
+    },
+
+    # ========== 压缩工具 ==========
+    "compress_gzip": {
+        "id": "compress_gzip",
+        "name": "GZip压缩",
+        "name_en": "GZip Compress",
+        "description": "使用GZip压缩数据",
+        "category": "compression",
+        "subcategory": "gzip",
+        "api_endpoint": "/api/compress/gzip",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"}
+        ],
+        "icon": "archive"
+    },
+    "decompress_gzip": {
+        "id": "decompress_gzip",
+        "name": "GZip解压",
+        "name_en": "GZip Decompress",
+        "description": "解压GZip数据",
+        "category": "compression",
+        "subcategory": "gzip",
+        "api_endpoint": "/api/decompress/gzip",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "压缩数据"}
+        ],
+        "icon": "archive"
+    },
+    "compress_zlib": {
+        "id": "compress_zlib",
+        "name": "Zlib压缩",
+        "name_en": "Zlib Compress",
+        "description": "使用Zlib压缩数据",
+        "category": "compression",
+        "subcategory": "zlib",
+        "api_endpoint": "/api/compress/zlib",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"}
+        ],
+        "icon": "archive"
+    },
+    "decompress_zlib": {
+        "id": "decompress_zlib",
+        "name": "Zlib解压",
+        "name_en": "Zlib Decompress",
+        "description": "解压Zlib数据",
+        "category": "compression",
+        "subcategory": "zlib",
+        "api_endpoint": "/api/decompress/zlib",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "压缩数据"}
+        ],
+        "icon": "archive"
+    },
+    "compress_bz2": {
+        "id": "compress_bz2",
+        "name": "BZ2压缩",
+        "name_en": "BZ2 Compress",
+        "description": "使用BZ2压缩数据",
+        "category": "compression",
+        "subcategory": "bz2",
+        "api_endpoint": "/api/compress/bz2",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"}
+        ],
+        "icon": "archive"
+    },
+    "decompress_bz2": {
+        "id": "decompress_bz2",
+        "name": "BZ2解压",
+        "name_en": "BZ2 Decompress",
+        "description": "解压BZ2数据",
+        "category": "compression",
+        "subcategory": "bz2",
+        "api_endpoint": "/api/decompress/bz2",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "压缩数据"}
+        ],
+        "icon": "archive"
+    },
+    "compress_lzma": {
+        "id": "compress_lzma",
+        "name": "LZMA压缩",
+        "name_en": "LZMA Compress",
+        "description": "使用LZMA压缩数据",
+        "category": "compression",
+        "subcategory": "lzma",
+        "api_endpoint": "/api/compress/lzma",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"}
+        ],
+        "icon": "archive"
+    },
+    "decompress_lzma": {
+        "id": "decompress_lzma",
+        "name": "LZMA解压",
+        "name_en": "LZMA Decompress",
+        "description": "解压LZMA数据",
+        "category": "compression",
+        "subcategory": "lzma",
+        "api_endpoint": "/api/decompress/lzma",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "压缩数据"}
+        ],
+        "icon": "archive"
+    },
+
+    # ========== 归档工具 ==========
+    "archive_create_zip": {
+        "id": "archive_create_zip",
+        "name": "创建ZIP归档",
+        "name_en": "Create ZIP Archive",
+        "description": "创建ZIP归档文件",
+        "category": "archive",
+        "subcategory": "zip",
+        "api_endpoint": "/api/archive/zip/create",
+        "method": "POST",
+        "params": [
+            {"name": "files", "type": "array", "required": True, "description": "文件路径列表"},
+            {"name": "output", "type": "string", "required": False, "description": "输出路径"}
+        ],
+        "icon": "folder-plus"
+    },
+    "archive_extract_zip": {
+        "id": "archive_extract_zip",
+        "name": "解压ZIP",
+        "name_en": "Extract ZIP",
+        "description": "解压ZIP归档文件",
+        "category": "archive",
+        "subcategory": "zip",
+        "api_endpoint": "/api/archive/zip/extract",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "ZIP文件路径"},
+            {"name": "output", "type": "string", "required": False, "description": "输出目录"}
+        ],
+        "icon": "folder"
+    },
+    "archive_create_tar": {
+        "id": "archive_create_tar",
+        "name": "创建TAR归档",
+        "name_en": "Create TAR Archive",
+        "description": "创建TAR归档文件",
+        "category": "archive",
+        "subcategory": "tar",
+        "api_endpoint": "/api/archive/tar/create",
+        "method": "POST",
+        "params": [
+            {"name": "files", "type": "array", "required": True, "description": "文件路径列表"},
+            {"name": "output", "type": "string", "required": False, "description": "输出路径"}
+        ],
+        "icon": "folder-plus"
+    },
+    "archive_extract_tar": {
+        "id": "archive_extract_tar",
+        "name": "解压TAR",
+        "name_en": "Extract TAR",
+        "description": "解压TAR归档文件",
+        "category": "archive",
+        "subcategory": "tar",
+        "api_endpoint": "/api/archive/tar/extract",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "TAR文件路径"},
+            {"name": "output", "type": "string", "required": False, "description": "输出目录"}
+        ],
+        "icon": "folder"
+    },
+    "archive_create_gz": {
+        "id": "archive_create_gz",
+        "name": "创建GZ归档",
+        "name_en": "Create GZ Archive",
+        "description": "创建GZ归档文件",
+        "category": "archive",
+        "subcategory": "gz",
+        "api_endpoint": "/api/archive/gz/create",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "文件路径"},
+            {"name": "output", "type": "string", "required": False, "description": "输出路径"}
+        ],
+        "icon": "folder-plus"
+    },
+    "archive_extract_gz": {
+        "id": "archive_extract_gz",
+        "name": "解压GZ",
+        "name_en": "Extract GZ",
+        "description": "解压GZ归档文件",
+        "category": "archive",
+        "subcategory": "gz",
+        "api_endpoint": "/api/archive/gz/extract",
+        "method": "POST",
+        "params": [
+            {"name": "file_path", "type": "string", "required": True, "description": "GZ文件路径"},
+            {"name": "output", "type": "string", "required": False, "description": "输出路径"}
+        ],
+        "icon": "folder"
+    },
+
+    # ========== 标记语言工具 ==========
+    "markup_to_html": {
+        "id": "markup_to_html",
+        "name": "标记转HTML",
+        "name_en": "Markup to HTML",
+        "description": "将各种标记语言转换为HTML",
+        "category": "markup",
+        "subcategory": "html",
+        "api_endpoint": "/api/markup/to/html",
+        "method": "POST",
+        "params": [
+            {"name": "markup", "type": "string", "required": True, "description": "标记内容"},
+            {"name": "format", "type": "string", "required": True, "description": "源格式"}
+        ],
+        "icon": "code"
+    },
+    "markup_validate": {
+        "id": "markup_validate",
+        "name": "验证标记",
+        "name_en": "Validate Markup",
+        "description": "验证标记语言语法",
+        "category": "markup",
+        "subcategory": "validate",
+        "api_endpoint": "/api/markup/validate",
+        "method": "POST",
+        "params": [
+            {"name": "markup", "type": "string", "required": True, "description": "标记内容"},
+            {"name": "format", "type": "string", "required": True, "description": "格式类型"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 模板工具 ==========
+    "template_render": {
+        "id": "template_render",
+        "name": "渲染模板",
+        "name_en": "Render Template",
+        "description": "渲染模板",
+        "category": "template",
+        "subcategory": "render",
+        "api_endpoint": "/api/template/render",
+        "method": "POST",
+        "params": [
+            {"name": "template", "type": "string", "required": True, "description": "模板内容"},
+            {"name": "data", "type": "object", "required": True, "description": "数据对象"}
+        ],
+        "icon": "file"
+    },
+    "template_create": {
+        "id": "template_create",
+        "name": "创建模板",
+        "name_en": "Create Template",
+        "description": "创建新模板",
+        "category": "template",
+        "subcategory": "create",
+        "api_endpoint": "/api/template/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "模板名称"},
+            {"name": "content", "type": "string", "required": True, "description": "模板内容"}
+        ],
+        "icon": "file-plus"
+    },
+    "template_list": {
+        "id": "template_list",
+        "name": "模板列表",
+        "name_en": "Template List",
+        "description": "获取模板列表",
+        "category": "template",
+        "subcategory": "list",
+        "api_endpoint": "/api/template/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "template_delete": {
+        "id": "template_delete",
+        "name": "删除模板",
+        "name_en": "Delete Template",
+        "description": "删除模板",
+        "category": "template",
+        "subcategory": "delete",
+        "api_endpoint": "/api/template/delete",
+        "method": "POST",
+        "params": [
+            {"name": "template_id", "type": "string", "required": True, "description": "模板ID"}
+        ],
+        "icon": "trash"
     }
 }
 
