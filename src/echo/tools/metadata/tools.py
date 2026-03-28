@@ -333,6 +333,22 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "icon": "hash"
     },
 
+    "list_flatten": {
+        "id": "list_flatten",
+        "name": "列表扁平化",
+        "name_en": "List Flatten",
+        "description": "将嵌套列表展开，支持深度控制、分块和滑动窗口",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-flatten",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "源列表"},
+            {"name": "depth", "type": "number", "required": False, "description": "展开深度，-1全部"}
+        ],
+        "icon": "list"
+    },
+
     # ========== 编码转换工具 ==========
     "base64_tool": {
         "id": "base64_tool",
