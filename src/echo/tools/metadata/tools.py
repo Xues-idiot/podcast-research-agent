@@ -27553,6 +27553,637 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "content", "type": "string", "required": True, "description": "邮件内容"}
         ],
         "icon": "tag"
+    },
+
+    # ========== A/B测试工具 ==========
+    "ab_test_create": {
+        "id": "ab_test_create",
+        "name": "创建A/B测试",
+        "name_en": "Create A/B Test",
+        "description": "创建A/B测试实验",
+        "category": "abtest",
+        "subcategory": "create",
+        "api_endpoint": "/api/abtest/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "测试名称"},
+            {"name": "variants", "type": "array", "required": True, "description": "变体数组"}
+        ],
+        "icon": "git-branch"
+    },
+    "ab_test_assign": {
+        "id": "ab_test_assign",
+        "name": "分配用户",
+        "name_en": "Assign User",
+        "description": "为用户分配测试变体",
+        "category": "abtest",
+        "subcategory": "assign",
+        "api_endpoint": "/api/abtest/assign",
+        "method": "POST",
+        "params": [
+            {"name": "test_id", "type": "string", "required": True, "description": "测试ID"},
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "user"
+    },
+    "ab_test_result": {
+        "id": "ab_test_result",
+        "name": "测试结果",
+        "name_en": "A/B Test Result",
+        "description": "获取测试结果",
+        "category": "abtest",
+        "subcategory": "result",
+        "api_endpoint": "/api/abtest/result",
+        "method": "POST",
+        "params": [
+            {"name": "test_id", "type": "string", "required": True, "description": "测试ID"}
+        ],
+        "icon": "bar-chart"
+    },
+    "ab_test_list": {
+        "id": "ab_test_list",
+        "name": "测试列表",
+        "name_en": "A/B Test List",
+        "description": "获取A/B测试列表",
+        "category": "abtest",
+        "subcategory": "list",
+        "api_endpoint": "/api/abtest/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 特性开关工具 ==========
+    "feature_flag_get": {
+        "id": "feature_flag_get",
+        "name": "获取特性开关",
+        "name_en": "Get Feature Flag",
+        "description": "获取特性开关状态",
+        "category": "feature",
+        "subcategory": "get",
+        "api_endpoint": "/api/feature/get",
+        "method": "POST",
+        "params": [
+            {"name": "flag_key", "type": "string", "required": True, "description": "开关键"},
+            {"name": "user_id", "type": "string", "required": False, "description": "用户ID"}
+        ],
+        "icon": "toggle-right"
+    },
+    "feature_flag_set": {
+        "id": "feature_flag_set",
+        "name": "设置特性开关",
+        "name_en": "Set Feature Flag",
+        "description": "设置特性开关状态",
+        "category": "feature",
+        "subcategory": "set",
+        "api_endpoint": "/api/feature/set",
+        "method": "POST",
+        "params": [
+            {"name": "flag_key", "type": "string", "required": True, "description": "开关键"},
+            {"name": "enabled", "type": "boolean", "required": True, "description": "是否启用"}
+        ],
+        "icon": "toggle-right"
+    },
+    "feature_flag_list": {
+        "id": "feature_flag_list",
+        "name": "特性开关列表",
+        "name_en": "Feature Flag List",
+        "description": "获取特性开关列表",
+        "category": "feature",
+        "subcategory": "list",
+        "api_endpoint": "/api/feature/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== SEO工具 ==========
+    "seo_analyze": {
+        "id": "seo_analyze",
+        "name": "SEO分析",
+        "name_en": "SEO Analyze",
+        "description": "分析网页SEO",
+        "category": "seo",
+        "subcategory": "analyze",
+        "api_endpoint": "/api/seo/analyze",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网页URL"}
+        ],
+        "icon": "search"
+    },
+    "seo_meta": {
+        "id": "seo_meta",
+        "name": "获取Meta信息",
+        "name_en": "Get Meta Tags",
+        "description": "获取网页Meta标签",
+        "category": "seo",
+        "subcategory": "meta",
+        "api_endpoint": "/api/seo/meta",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网页URL"}
+        ],
+        "icon": "tag"
+    },
+    "seo_sitemap": {
+        "id": "seo_sitemap",
+        "name": "生成站点地图",
+        "name_en": "Generate Sitemap",
+        "description": "生成XML站点地图",
+        "category": "seo",
+        "subcategory": "sitemap",
+        "api_endpoint": "/api/seo/sitemap",
+        "method": "POST",
+        "params": [
+            {"name": "base_url", "type": "string", "required": True, "description": "基础URL"}
+        ],
+        "icon": "map"
+    },
+    "seo_robots": {
+        "id": "seo_robots",
+        "name": "生成Robots.txt",
+        "name_en": "Generate Robots.txt",
+        "description": "生成Robots.txt文件",
+        "category": "seo",
+        "subcategory": "robots",
+        "api_endpoint": "/api/seo/robots",
+        "method": "POST",
+        "params": [
+            {"name": "rules", "type": "array", "required": False, "description": "规则数组"}
+        ],
+        "icon": "file"
+    },
+
+    # ========== 错误追踪工具 ==========
+    "error_track": {
+        "id": "error_track",
+        "name": "追踪错误",
+        "name_en": "Track Error",
+        "description": "追踪应用错误",
+        "category": "error",
+        "subcategory": "track",
+        "api_endpoint": "/api/error/track",
+        "method": "POST",
+        "params": [
+            {"name": "error", "type": "object", "required": True, "description": "错误对象"},
+            {"name": "context", "type": "object", "required": False, "description": "上下文"}
+        ],
+        "icon": "alert-circle"
+    },
+    "error_list": {
+        "id": "error_list",
+        "name": "错误列表",
+        "name_en": "Error List",
+        "description": "获取错误列表",
+        "category": "error",
+        "subcategory": "list",
+        "api_endpoint": "/api/error/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "error_details": {
+        "id": "error_details",
+        "name": "错误详情",
+        "name_en": "Error Details",
+        "description": "获取错误详情",
+        "category": "error",
+        "subcategory": "details",
+        "api_endpoint": "/api/error/details",
+        "method": "POST",
+        "params": [
+            {"name": "error_id", "type": "string", "required": True, "description": "错误ID"}
+        ],
+        "icon": "info"
+    },
+
+    # ========== 日志聚合工具 ==========
+    "log_aggregate": {
+        "id": "log_aggregate",
+        "name": "聚合日志",
+        "name_en": "Aggregate Logs",
+        "description": "聚合查询日志",
+        "category": "logging",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/logs/aggregate",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询条件"},
+            {"name": "from", "type": "string", "required": False, "description": "起始时间"},
+            {"name": "to", "type": "string", "required": False, "description": "结束时间"}
+        ],
+        "icon": "database"
+    },
+    "log_stream": {
+        "id": "log_stream",
+        "name": "日志流",
+        "name_en": "Log Stream",
+        "description": "实时获取日志流",
+        "category": "logging",
+        "subcategory": "stream",
+        "api_endpoint": "/api/logs/stream",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    "log_index": {
+        "id": "log_index",
+        "name": "创建索引",
+        "name_en": "Create Index",
+        "description": "创建日志索引",
+        "category": "logging",
+        "subcategory": "index",
+        "api_endpoint": "/api/logs/index",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "索引名称"},
+            {"name": "mapping", "type": "object", "required": False, "description": "映射配置"}
+        ],
+        "icon": "plus"
+    },
+
+    # ========== 追踪工具 ==========
+    "trace_start": {
+        "id": "trace_start",
+        "name": "开始追踪",
+        "name_en": "Start Trace",
+        "description": "开始分布式追踪",
+        "category": "tracing",
+        "subcategory": "start",
+        "api_endpoint": "/api/trace/start",
+        "method": "POST",
+        "params": [
+            {"name": "operation", "type": "string", "required": True, "description": "操作名称"}
+        ],
+        "icon": "activity"
+    },
+    "trace_span": {
+        "id": "trace_span",
+        "name": "记录Span",
+        "name_en": "Record Span",
+        "description": "记录追踪Span",
+        "category": "tracing",
+        "subcategory": "span",
+        "api_endpoint": "/api/trace/span",
+        "method": "POST",
+        "params": [
+            {"name": "trace_id", "type": "string", "required": True, "description": "追踪ID"},
+            {"name": "span", "type": "object", "required": True, "description": "Span数据"}
+        ],
+        "icon": "git-branch"
+    },
+    "trace_get": {
+        "id": "trace_get",
+        "name": "获取追踪",
+        "name_en": "Get Trace",
+        "description": "获取追踪详情",
+        "category": "tracing",
+        "subcategory": "get",
+        "api_endpoint": "/api/trace/get",
+        "method": "POST",
+        "params": [
+            {"name": "trace_id", "type": "string", "required": True, "description": "追踪ID"}
+        ],
+        "icon": "search"
+    },
+
+    # ========== 指标工具 ==========
+    "metrics_record": {
+        "id": "metrics_record",
+        "name": "记录指标",
+        "name_en": "Record Metric",
+        "description": "记录指标数据",
+        "category": "metrics",
+        "subcategory": "record",
+        "api_endpoint": "/api/metrics/record",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "指标名称"},
+            {"name": "value", "type": "number", "required": True, "description": "指标值"},
+            {"name": "tags", "type": "object", "required": False, "description": "标签"}
+        ],
+        "icon": "plus"
+    },
+    "metrics_query": {
+        "id": "metrics_query",
+        "name": "查询指标",
+        "name_en": "Query Metrics",
+        "description": "查询指标数据",
+        "category": "metrics",
+        "subcategory": "query",
+        "api_endpoint": "/api/metrics/query",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询条件"},
+            {"name": "from", "type": "string", "required": False, "description": "起始时间"},
+            {"name": "to", "type": "string", "required": False, "description": "结束时间"}
+        ],
+        "icon": "search"
+    },
+    "metrics_list": {
+        "id": "metrics_list",
+        "name": "指标列表",
+        "name_en": "Metrics List",
+        "description": "获取指标列表",
+        "category": "metrics",
+        "subcategory": "list",
+        "api_endpoint": "/api/metrics/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 插桩工具 ==========
+    "instrument_auto": {
+        "id": "instrument_auto",
+        "name": "自动插桩",
+        "name_en": "Auto Instrument",
+        "description": "自动为应用添加插桩",
+        "category": "instrumentation",
+        "subcategory": "auto",
+        "api_endpoint": "/api/instrument/auto",
+        "method": "POST",
+        "params": [
+            {"name": "service", "type": "string", "required": True, "description": "服务名称"}
+        ],
+        "icon": "cpu"
+    },
+    "instrument_custom": {
+        "id": "instrument_custom",
+        "name": "自定义插桩",
+        "name_en": "Custom Instrumentation",
+        "description": "添加自定义插桩",
+        "category": "instrumentation",
+        "subcategory": "custom",
+        "api_endpoint": "/api/instrument/custom",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "插桩名称"},
+            {"name": "type", "type": "string", "required": True, "description": "插桩类型"}
+        ],
+        "icon": "cpu"
+    },
+
+    # ========== CI/CD工具 ==========
+    "cicd_build": {
+        "id": "cicd_build",
+        "name": "触发构建",
+        "name_en": "Trigger Build",
+        "description": "触发CI/CD构建",
+        "category": "cicd",
+        "subcategory": "build",
+        "api_endpoint": "/api/cicd/build",
+        "method": "POST",
+        "params": [
+            {"name": "project", "type": "string", "required": True, "description": "项目名称"},
+            {"name": "branch", "type": "string", "required": False, "description": "分支名称"}
+        ],
+        "icon": "play"
+    },
+    "cicd_deploy": {
+        "id": "cicd_deploy",
+        "name": "触发部署",
+        "name_en": "Trigger Deploy",
+        "description": "触发CI/CD部署",
+        "category": "cicd",
+        "subcategory": "deploy",
+        "api_endpoint": "/api/cicd/deploy",
+        "method": "POST",
+        "params": [
+            {"name": "project", "type": "string", "required": True, "description": "项目名称"},
+            {"name": "environment", "type": "string", "required": True, "description": "环境名称"}
+        ],
+        "icon": "upload"
+    },
+    "cicd_status": {
+        "id": "cicd_status",
+        "name": "构建状态",
+        "name_en": "Build Status",
+        "description": "获取构建状态",
+        "category": "cicd",
+        "subcategory": "status",
+        "api_endpoint": "/api/cicd/status",
+        "method": "POST",
+        "params": [
+            {"name": "build_id", "type": "string", "required": True, "description": "构建ID"}
+        ],
+        "icon": "activity"
+    },
+    "cicd_logs": {
+        "id": "cicd_logs",
+        "name": "构建日志",
+        "name_en": "Build Logs",
+        "description": "获取构建日志",
+        "category": "cicd",
+        "subcategory": "logs",
+        "api_endpoint": "/api/cicd/logs",
+        "method": "POST",
+        "params": [
+            {"name": "build_id", "type": "string", "required": True, "description": "构建ID"}
+        ],
+        "icon": "file-text"
+    },
+
+    # ========== 容器工具 ==========
+    "container_list": {
+        "id": "container_list",
+        "name": "容器列表",
+        "name_en": "Container List",
+        "description": "获取容器列表",
+        "category": "container",
+        "subcategory": "list",
+        "api_endpoint": "/api/container/list",
+        "method": "GET",
+        "params": [],
+        "icon": "box"
+    },
+    "container_create": {
+        "id": "container_create",
+        "name": "创建容器",
+        "name_en": "Create Container",
+        "description": "创建新容器",
+        "category": "container",
+        "subcategory": "create",
+        "api_endpoint": "/api/container/create",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "镜像名称"},
+            {"name": "name", "type": "string", "required": False, "description": "容器名称"}
+        ],
+        "icon": "plus"
+    },
+    "container_start": {
+        "id": "container_start",
+        "name": "启动容器",
+        "name_en": "Start Container",
+        "description": "启动容器",
+        "category": "container",
+        "subcategory": "start",
+        "api_endpoint": "/api/container/start",
+        "method": "POST",
+        "params": [
+            {"name": "container_id", "type": "string", "required": True, "description": "容器ID"}
+        ],
+        "icon": "play"
+    },
+    "container_stop": {
+        "id": "container_stop",
+        "name": "停止容器",
+        "name_en": "Stop Container",
+        "description": "停止容器",
+        "category": "container",
+        "subcategory": "stop",
+        "api_endpoint": "/api/container/stop",
+        "method": "POST",
+        "params": [
+            {"name": "container_id", "type": "string", "required": True, "description": "容器ID"}
+        ],
+        "icon": "stop-circle"
+    },
+    "container_delete": {
+        "id": "container_delete",
+        "name": "删除容器",
+        "name_en": "Delete Container",
+        "description": "删除容器",
+        "category": "container",
+        "subcategory": "delete",
+        "api_endpoint": "/api/container/delete",
+        "method": "POST",
+        "params": [
+            {"name": "container_id", "type": "string", "required": True, "description": "容器ID"}
+        ],
+        "icon": "trash"
+    },
+    "container_logs": {
+        "id": "container_logs",
+        "name": "容器日志",
+        "name_en": "Container Logs",
+        "description": "获取容器日志",
+        "category": "container",
+        "subcategory": "logs",
+        "api_endpoint": "/api/container/logs",
+        "method": "POST",
+        "params": [
+            {"name": "container_id", "type": "string", "required": True, "description": "容器ID"}
+        ],
+        "icon": "file-text"
+    },
+
+    # ========== Kubernetes工具 ==========
+    "k8s_pods": {
+        "id": "k8s_pods",
+        "name": "Pod列表",
+        "name_en": "Pod List",
+        "description": "获取Pod列表",
+        "category": "kubernetes",
+        "subcategory": "pods",
+        "api_endpoint": "/api/k8s/pods",
+        "method": "GET",
+        "params": [],
+        "icon": "box"
+    },
+    "k8s_deploy": {
+        "id": "k8s_deploy",
+        "name": "部署服务",
+        "name_en": "Deploy Service",
+        "description": "部署Kubernetes服务",
+        "category": "kubernetes",
+        "subcategory": "deploy",
+        "api_endpoint": "/api/k8s/deploy",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "服务名称"},
+            {"name": "image", "type": "string", "required": True, "description": "镜像名称"}
+        ],
+        "icon": "upload"
+    },
+    "k8s_scale": {
+        "id": "k8s_scale",
+        "name": "扩缩容",
+        "name_en": "Scale Service",
+        "description": "扩缩容服务",
+        "category": "kubernetes",
+        "subcategory": "scale",
+        "api_endpoint": "/api/k8s/scale",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "服务名称"},
+            {"name": "replicas", "type": "number", "required": True, "description": "副本数"}
+        ],
+        "icon": "maximize"
+    },
+    "k8s_logs": {
+        "id": "k8s_logs",
+        "name": "Pod日志",
+        "name_en": "Pod Logs",
+        "description": "获取Pod日志",
+        "category": "kubernetes",
+        "subcategory": "logs",
+        "api_endpoint": "/api/k8s/logs",
+        "method": "POST",
+        "params": [
+            {"name": "pod", "type": "string", "required": True, "description": "Pod名称"}
+        ],
+        "icon": "file-text"
+    },
+
+    # ========== 无服务器工具 ==========
+    "serverless_invoke": {
+        "id": "serverless_invoke",
+        "name": "调用函数",
+        "name_en": "Invoke Function",
+        "description": "调用无服务器函数",
+        "category": "serverless",
+        "subcategory": "invoke",
+        "api_endpoint": "/api/serverless/invoke",
+        "method": "POST",
+        "params": [
+            {"name": "function", "type": "string", "required": True, "description": "函数名称"},
+            {"name": "payload", "type": "any", "required": False, "description": "负载数据"}
+        ],
+        "icon": "zap"
+    },
+    "serverless_deploy": {
+        "id": "serverless_deploy",
+        "name": "部署函数",
+        "name_en": "Deploy Function",
+        "description": "部署无服务器函数",
+        "category": "serverless",
+        "subcategory": "deploy",
+        "api_endpoint": "/api/serverless/deploy",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "函数名称"},
+            {"name": "code", "type": "string", "required": True, "description": "函数代码"}
+        ],
+        "icon": "upload"
+    },
+    "serverless_list": {
+        "id": "serverless_list",
+        "name": "函数列表",
+        "name_en": "Function List",
+        "description": "获取函数列表",
+        "category": "serverless",
+        "subcategory": "list",
+        "api_endpoint": "/api/serverless/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "serverless_logs": {
+        "id": "serverless_logs",
+        "name": "函数日志",
+        "name_en": "Function Logs",
+        "description": "获取函数日志",
+        "category": "serverless",
+        "subcategory": "logs",
+        "api_endpoint": "/api/serverless/logs",
+        "method": "POST",
+        "params": [
+            {"name": "function", "type": "string", "required": True, "description": "函数名称"}
+        ],
+        "icon": "file-text"
     }
 }
 
