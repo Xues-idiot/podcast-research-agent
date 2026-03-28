@@ -24415,6 +24415,367 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "command", "type": "string", "required": True, "description": "命令"}
         ],
         "icon": "terminal"
+    },
+
+    # ========== 数据库工具 ==========
+    "db_query": {
+        "id": "db_query",
+        "name": "数据库查询",
+        "name_en": "Database Query",
+        "description": "执行SQL查询",
+        "category": "database",
+        "subcategory": "query",
+        "api_endpoint": "/api/db/query",
+        "method": "POST",
+        "params": [
+            {"name": "sql", "type": "string", "required": True, "description": "SQL语句"}
+        ],
+        "icon": "database"
+    },
+    "db_insert": {
+        "id": "db_insert",
+        "name": "插入数据",
+        "name_en": "Insert Data",
+        "description": "向数据库插入数据",
+        "category": "database",
+        "subcategory": "insert",
+        "api_endpoint": "/api/db/insert",
+        "method": "POST",
+        "params": [
+            {"name": "table", "type": "string", "required": True, "description": "表名"},
+            {"name": "data", "type": "object", "required": True, "description": "数据对象"}
+        ],
+        "icon": "database"
+    },
+    "db_update": {
+        "id": "db_update",
+        "name": "更新数据",
+        "name_en": "Update Data",
+        "description": "更新数据库中的数据",
+        "category": "database",
+        "subcategory": "update",
+        "api_endpoint": "/api/db/update",
+        "method": "POST",
+        "params": [
+            {"name": "table", "type": "string", "required": True, "description": "表名"},
+            {"name": "data", "type": "object", "required": True, "description": "更新数据"},
+            {"name": "where", "type": "string", "required": True, "description": "WHERE条件"}
+        ],
+        "icon": "database"
+    },
+    "db_delete": {
+        "id": "db_delete",
+        "name": "删除数据",
+        "name_en": "Delete Data",
+        "description": "从数据库删除数据",
+        "category": "database",
+        "subcategory": "delete",
+        "api_endpoint": "/api/db/delete",
+        "method": "POST",
+        "params": [
+            {"name": "table", "type": "string", "required": True, "description": "表名"},
+            {"name": "where", "type": "string", "required": True, "description": "WHERE条件"}
+        ],
+        "icon": "database"
+    },
+    "db_list_tables": {
+        "id": "db_list_tables",
+        "name": "列出表",
+        "name_en": "List Tables",
+        "description": "列出数据库中的所有表",
+        "category": "database",
+        "subcategory": "meta",
+        "api_endpoint": "/api/db/tables",
+        "method": "GET",
+        "params": [],
+        "icon": "database"
+    },
+    "db_table_info": {
+        "id": "db_table_info",
+        "name": "表信息",
+        "name_en": "Table Info",
+        "description": "获取表结构信息",
+        "category": "database",
+        "subcategory": "meta",
+        "api_endpoint": "/api/db/table/info",
+        "method": "POST",
+        "params": [
+            {"name": "table", "type": "string", "required": True, "description": "表名"}
+        ],
+        "icon": "database"
+    },
+
+    # ========== 认证授权工具 ==========
+    "auth_login": {
+        "id": "auth_login",
+        "name": "用户登录",
+        "name_en": "User Login",
+        "description": "用户登录认证",
+        "category": "auth",
+        "subcategory": "login",
+        "api_endpoint": "/api/auth/login",
+        "method": "POST",
+        "params": [
+            {"name": "username", "type": "string", "required": True, "description": "用户名"},
+            {"name": "password", "type": "string", "required": True, "description": "密码"}
+        ],
+        "icon": "user"
+    },
+    "auth_logout": {
+        "id": "auth_logout",
+        "name": "用户登出",
+        "name_en": "User Logout",
+        "description": "用户登出",
+        "category": "auth",
+        "subcategory": "logout",
+        "api_endpoint": "/api/auth/logout",
+        "method": "POST",
+        "params": [],
+        "icon": "user"
+    },
+    "auth_register": {
+        "id": "auth_register",
+        "name": "用户注册",
+        "name_en": "User Register",
+        "description": "用户注册",
+        "category": "auth",
+        "subcategory": "register",
+        "api_endpoint": "/api/auth/register",
+        "method": "POST",
+        "params": [
+            {"name": "username", "type": "string", "required": True, "description": "用户名"},
+            {"name": "password", "type": "string", "required": True, "description": "密码"}
+        ],
+        "icon": "user"
+    },
+    "auth_refresh": {
+        "id": "auth_refresh",
+        "name": "刷新令牌",
+        "name_en": "Refresh Token",
+        "description": "刷新认证令牌",
+        "category": "auth",
+        "subcategory": "token",
+        "api_endpoint": "/api/auth/refresh",
+        "method": "POST",
+        "params": [],
+        "icon": "key"
+    },
+    "auth_change_password": {
+        "id": "auth_change_password",
+        "name": "修改密码",
+        "name_en": "Change Password",
+        "description": "修改用户密码",
+        "category": "auth",
+        "subcategory": "password",
+        "api_endpoint": "/api/auth/password",
+        "method": "POST",
+        "params": [
+            {"name": "old_password", "type": "string", "required": True, "description": "旧密码"},
+            {"name": "new_password", "type": "string", "required": True, "description": "新密码"}
+        ],
+        "icon": "key"
+    },
+    "auth_reset_password": {
+        "id": "auth_reset_password",
+        "name": "重置密码",
+        "name_en": "Reset Password",
+        "description": "重置用户密码",
+        "category": "auth",
+        "subcategory": "password",
+        "api_endpoint": "/api/auth/reset",
+        "method": "POST",
+        "params": [
+            {"name": "email", "type": "string", "required": True, "description": "邮箱"}
+        ],
+        "icon": "key"
+    },
+    "auth_verify": {
+        "id": "auth_verify",
+        "name": "验证令牌",
+        "name_en": "Verify Token",
+        "description": "验证认证令牌",
+        "category": "auth",
+        "subcategory": "verify",
+        "api_endpoint": "/api/auth/verify",
+        "method": "POST",
+        "params": [
+            {"name": "token", "type": "string", "required": True, "description": "令牌"}
+        ],
+        "icon": "key"
+    },
+
+    # ========== 通知工具 ==========
+    "notify_email": {
+        "id": "notify_email",
+        "name": "发送邮件",
+        "name_en": "Send Email",
+        "description": "发送电子邮件",
+        "category": "notification",
+        "subcategory": "email",
+        "api_endpoint": "/api/notify/email",
+        "method": "POST",
+        "params": [
+            {"name": "to", "type": "string", "required": True, "description": "收件人"},
+            {"name": "subject", "type": "string", "required": True, "description": "主题"},
+            {"name": "body", "type": "string", "required": True, "description": "内容"}
+        ],
+        "icon": "mail"
+    },
+    "notify_sms": {
+        "id": "notify_sms",
+        "name": "发送短信",
+        "name_en": "Send SMS",
+        "description": "发送短信",
+        "category": "notification",
+        "subcategory": "sms",
+        "api_endpoint": "/api/notify/sms",
+        "method": "POST",
+        "params": [
+            {"name": "phone", "type": "string", "required": True, "description": "手机号"},
+            {"name": "message", "type": "string", "required": True, "description": "消息内容"}
+        ],
+        "icon": "smartphone"
+    },
+    "notify_push": {
+        "id": "notify_push",
+        "name": "推送通知",
+        "name_en": "Push Notification",
+        "description": "发送推送通知",
+        "category": "notification",
+        "subcategory": "push",
+        "api_endpoint": "/api/notify/push",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "标题"},
+            {"name": "body", "type": "string", "required": True, "description": "内容"}
+        ],
+        "icon": "bell"
+    },
+    "notify_webhook": {
+        "id": "notify_webhook",
+        "name": "发送Webhook",
+        "name_en": "Send Webhook",
+        "description": "发送Webhook请求",
+        "category": "notification",
+        "subcategory": "webhook",
+        "api_endpoint": "/api/notify/webhook",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "Webhook URL"},
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "zap"
+    },
+
+    # ========== 日志工具 ==========
+    "log_debug": {
+        "id": "log_debug",
+        "name": "调试日志",
+        "name_en": "Debug Log",
+        "description": "记录调试级别日志",
+        "category": "logging",
+        "subcategory": "debug",
+        "api_endpoint": "/api/log/debug",
+        "method": "POST",
+        "params": [
+            {"name": "message", "type": "string", "required": True, "description": "日志消息"}
+        ],
+        "icon": "info"
+    },
+    "log_info": {
+        "id": "log_info",
+        "name": "信息日志",
+        "name_en": "Info Log",
+        "description": "记录信息级别日志",
+        "category": "logging",
+        "subcategory": "info",
+        "api_endpoint": "/api/log/info",
+        "method": "POST",
+        "params": [
+            {"name": "message", "type": "string", "required": True, "description": "日志消息"}
+        ],
+        "icon": "info"
+    },
+    "log_warn": {
+        "id": "log_warn",
+        "name": "警告日志",
+        "name_en": "Warn Log",
+        "description": "记录警告级别日志",
+        "category": "logging",
+        "subcategory": "warn",
+        "api_endpoint": "/api/log/warn",
+        "method": "POST",
+        "params": [
+            {"name": "message", "type": "string", "required": True, "description": "日志消息"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "log_error": {
+        "id": "log_error",
+        "name": "错误日志",
+        "name_en": "Error Log",
+        "description": "记录错误级别日志",
+        "category": "logging",
+        "subcategory": "error",
+        "api_endpoint": "/api/log/error",
+        "method": "POST",
+        "params": [
+            {"name": "message", "type": "string", "required": True, "description": "日志消息"}
+        ],
+        "icon": "alert-circle"
+    },
+
+    # ========== 监控工具 ==========
+    "monitor_uptime": {
+        "id": "monitor_uptime",
+        "name": "运行时间",
+        "name_en": "Uptime",
+        "description": "获取系统运行时间",
+        "category": "monitoring",
+        "subcategory": "uptime",
+        "api_endpoint": "/api/monitor/uptime",
+        "method": "GET",
+        "params": [],
+        "icon": "clock"
+    },
+    "monitor_health": {
+        "id": "monitor_health",
+        "name": "健康检查",
+        "name_en": "Health Check",
+        "description": "检查系统健康状态",
+        "category": "monitoring",
+        "subcategory": "health",
+        "api_endpoint": "/api/monitor/health",
+        "method": "GET",
+        "params": [],
+        "icon": "heart"
+    },
+    "monitor_metrics": {
+        "id": "monitor_metrics",
+        "name": "系统指标",
+        "name_en": "System Metrics",
+        "description": "获取系统指标数据",
+        "category": "monitoring",
+        "subcategory": "metrics",
+        "api_endpoint": "/api/monitor/metrics",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    "monitor_alert": {
+        "id": "monitor_alert",
+        "name": "设置告警",
+        "name_en": "Set Alert",
+        "description": "设置系统告警",
+        "category": "monitoring",
+        "subcategory": "alert",
+        "api_endpoint": "/api/monitor/alert",
+        "method": "POST",
+        "params": [
+            {"name": "condition", "type": "string", "required": True, "description": "告警条件"},
+            {"name": "threshold", "type": "number", "required": True, "description": "阈值"}
+        ],
+        "icon": "bell"
     }
 }
 
