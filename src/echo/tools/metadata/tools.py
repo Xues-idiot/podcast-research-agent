@@ -1208,6 +1208,123 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "seq", "type": "array", "required": True, "description": "源序列"}
         ],
         "icon": "rotate-ccw"
+    },
+    "bitwise_and": {
+        "id": "bitwise_and",
+        "name": "位与运算",
+        "name_en": "Bitwise AND",
+        "description": "执行位与运算",
+        "category": "bitwise",
+        "subcategory": "and",
+        "api_endpoint": "/api/bitwise/and",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数A"},
+            {"name": "b", "type": "number", "required": True, "description": "操作数B"}
+        ],
+        "icon": "check-square"
+    },
+    "bitwise_or": {
+        "id": "bitwise_or",
+        "name": "位或运算",
+        "name_en": "Bitwise OR",
+        "description": "执行位或运算",
+        "category": "bitwise",
+        "subcategory": "or",
+        "api_endpoint": "/api/bitwise/or",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数A"},
+            {"name": "b", "type": "number", "required": True, "description": "操作数B"}
+        ],
+        "icon": "check-square"
+    },
+    "bitwise_xor": {
+        "id": "bitwise_xor",
+        "name": "位异或运算",
+        "name_en": "Bitwise XOR",
+        "description": "执行位异或运算",
+        "category": "bitwise",
+        "subcategory": "xor",
+        "api_endpoint": "/api/bitwise/xor",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数A"},
+            {"name": "b", "type": "number", "required": True, "description": "操作数B"}
+        ],
+        "icon": "check-square"
+    },
+    "bitwise_not": {
+        "id": "bitwise_not",
+        "name": "位非运算",
+        "name_en": "Bitwise NOT",
+        "description": "执行位非运算",
+        "category": "bitwise",
+        "subcategory": "not",
+        "api_endpoint": "/api/bitwise/not",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数"}
+        ],
+        "icon": "check-square"
+    },
+    "left_shift": {
+        "id": "left_shift",
+        "name": "左移运算",
+        "name_en": "Left Shift",
+        "description": "执行左移运算",
+        "category": "bitwise",
+        "subcategory": "shift",
+        "api_endpoint": "/api/bitwise/left-shift",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数"},
+            {"name": "b", "type": "number", "required": True, "description": "移位位数"}
+        ],
+        "icon": "arrow-right"
+    },
+    "right_shift": {
+        "id": "right_shift",
+        "name": "右移运算",
+        "name_en": "Right Shift",
+        "description": "执行右移运算",
+        "category": "bitwise",
+        "subcategory": "shift",
+        "api_endpoint": "/api/bitwise/right-shift",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "操作数"},
+            {"name": "b", "type": "number", "required": True, "description": "移位位数"}
+        ],
+        "icon": "arrow-left"
+    },
+    "count_set_bits": {
+        "id": "count_set_bits",
+        "name": "计数1的个数",
+        "name_en": "Count Set Bits",
+        "description": "统计整数中1的个数",
+        "category": "bitwise",
+        "subcategory": "count",
+        "api_endpoint": "/api/bitwise/count-bits",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "整数"}
+        ],
+        "icon": "hash"
+    },
+    "is_power_of_two": {
+        "id": "is_power_of_two",
+        "name": "2的幂检查",
+        "name_en": "Is Power of Two",
+        "description": "判断整数是否为2的幂",
+        "category": "bitwise",
+        "subcategory": "check",
+        "api_endpoint": "/api/bitwise/is-power-of-two",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "整数"}
+        ],
+        "icon": "check-circle"
     }
 }
 
