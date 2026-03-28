@@ -26245,6 +26245,467 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "template_id", "type": "string", "required": True, "description": "模板ID"}
         ],
         "icon": "trash"
+    },
+
+    # ========== 验证工具 ==========
+    "validate_email": {
+        "id": "validate_email",
+        "name": "验证邮箱",
+        "name_en": "Validate Email",
+        "description": "验证邮箱格式",
+        "category": "validation",
+        "subcategory": "email",
+        "api_endpoint": "/api/validate/email",
+        "method": "POST",
+        "params": [
+            {"name": "email", "type": "string", "required": True, "description": "邮箱地址"}
+        ],
+        "icon": "check"
+    },
+    "validate_url": {
+        "id": "validate_url",
+        "name": "验证URL",
+        "name_en": "Validate URL",
+        "description": "验证URL格式",
+        "category": "validation",
+        "subcategory": "url",
+        "api_endpoint": "/api/validate/url",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL地址"}
+        ],
+        "icon": "check"
+    },
+    "validate_phone": {
+        "id": "validate_phone",
+        "name": "验证手机号",
+        "name_en": "Validate Phone",
+        "description": "验证手机号格式",
+        "category": "validation",
+        "subcategory": "phone",
+        "api_endpoint": "/api/validate/phone",
+        "method": "POST",
+        "params": [
+            {"name": "phone", "type": "string", "required": True, "description": "手机号"}
+        ],
+        "icon": "check"
+    },
+    "validate_credit_card": {
+        "id": "validate_credit_card",
+        "name": "验证信用卡",
+        "name_en": "Validate Credit Card",
+        "description": "验证信用卡号",
+        "category": "validation",
+        "subcategory": "credit_card",
+        "api_endpoint": "/api/validate/credit-card",
+        "method": "POST",
+        "params": [
+            {"name": "card_number", "type": "string", "required": True, "description": "卡号"}
+        ],
+        "icon": "credit-card"
+    },
+    "validate_iban": {
+        "id": "validate_iban",
+        "name": "验证IBAN",
+        "name_en": "Validate IBAN",
+        "description": "验证IBAN格式",
+        "category": "validation",
+        "subcategory": "iban",
+        "api_endpoint": "/api/validate/iban",
+        "method": "POST",
+        "params": [
+            {"name": "iban", "type": "string", "required": True, "description": "IBAN"}
+        ],
+        "icon": "check"
+    },
+    "validate_postal_code": {
+        "id": "validate_postal_code",
+        "name": "验证邮编",
+        "name_en": "Validate Postal Code",
+        "description": "验证邮政编码",
+        "category": "validation",
+        "subcategory": "postal",
+        "api_endpoint": "/api/validate/postal",
+        "method": "POST",
+        "params": [
+            {"name": "code", "type": "string", "required": True, "description": "邮编"},
+            {"name": "country", "type": "string", "required": False, "description": "国家"}
+        ],
+        "icon": "check"
+    },
+    "validate_json": {
+        "id": "validate_json",
+        "name": "验证JSON",
+        "name_en": "Validate JSON",
+        "description": "验证JSON格式",
+        "category": "validation",
+        "subcategory": "json",
+        "api_endpoint": "/api/validate/json",
+        "method": "POST",
+        "params": [
+            {"name": "json", "type": "string", "required": True, "description": "JSON字符串"}
+        ],
+        "icon": "check"
+    },
+    "validate_xml": {
+        "id": "validate_xml",
+        "name": "验证XML",
+        "name_en": "Validate XML",
+        "description": "验证XML格式",
+        "category": "validation",
+        "subcategory": "xml",
+        "api_endpoint": "/api/validate/xml",
+        "method": "POST",
+        "params": [
+            {"name": "xml", "type": "string", "required": True, "description": "XML字符串"}
+        ],
+        "icon": "check"
+    },
+    "validate_regex": {
+        "id": "validate_regex",
+        "name": "验证正则表达式",
+        "name_en": "Validate Regex",
+        "description": "验证正则表达式",
+        "category": "validation",
+        "subcategory": "regex",
+        "api_endpoint": "/api/validate/regex",
+        "method": "POST",
+        "params": [
+            {"name": "pattern", "type": "string", "required": True, "description": "正则表达式"},
+            {"name": "value", "type": "string", "required": True, "description": "待验证值"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 表单工具 ==========
+    "form_create": {
+        "id": "form_create",
+        "name": "创建表单",
+        "name_en": "Create Form",
+        "description": "创建新表单",
+        "category": "form",
+        "subcategory": "create",
+        "api_endpoint": "/api/form/create",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "表单标题"},
+            {"name": "fields", "type": "array", "required": True, "description": "字段定义"}
+        ],
+        "icon": "file-plus"
+    },
+    "form_submit": {
+        "id": "form_submit",
+        "name": "提交表单",
+        "name_en": "Submit Form",
+        "description": "提交表单数据",
+        "category": "form",
+        "subcategory": "submit",
+        "api_endpoint": "/api/form/submit",
+        "method": "POST",
+        "params": [
+            {"name": "form_id", "type": "string", "required": True, "description": "表单ID"},
+            {"name": "data", "type": "object", "required": True, "description": "表单数据"}
+        ],
+        "icon": "send"
+    },
+    "form_list": {
+        "id": "form_list",
+        "name": "表单列表",
+        "name_en": "Form List",
+        "description": "获取表单列表",
+        "category": "form",
+        "subcategory": "list",
+        "api_endpoint": "/api/form/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "form_responses": {
+        "id": "form_responses",
+        "name": "表单响应列表",
+        "name_en": "Form Responses",
+        "description": "获取表单响应列表",
+        "category": "form",
+        "subcategory": "responses",
+        "api_endpoint": "/api/form/responses",
+        "method": "POST",
+        "params": [
+            {"name": "form_id", "type": "string", "required": True, "description": "表单ID"}
+        ],
+        "icon": "list"
+    },
+
+    # ========== Webhook工具 ==========
+    "webhook_create": {
+        "id": "webhook_create",
+        "name": "创建Webhook",
+        "name_en": "Create Webhook",
+        "description": "创建Webhook端点",
+        "category": "webhook",
+        "subcategory": "create",
+        "api_endpoint": "/api/webhook/create",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "回调URL"},
+            {"name": "events", "type": "array", "required": True, "description": "订阅事件"}
+        ],
+        "icon": "webhook"
+    },
+    "webhook_delete": {
+        "id": "webhook_delete",
+        "name": "删除Webhook",
+        "name_en": "Delete Webhook",
+        "description": "删除Webhook端点",
+        "category": "webhook",
+        "subcategory": "delete",
+        "api_endpoint": "/api/webhook/delete",
+        "method": "POST",
+        "params": [
+            {"name": "webhook_id", "type": "string", "required": True, "description": "Webhook ID"}
+        ],
+        "icon": "trash"
+    },
+    "webhook_list": {
+        "id": "webhook_list",
+        "name": "Webhook列表",
+        "name_en": "Webhook List",
+        "description": "获取Webhook列表",
+        "category": "webhook",
+        "subcategory": "list",
+        "api_endpoint": "/api/webhook/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "webhook_test": {
+        "id": "webhook_test",
+        "name": "测试Webhook",
+        "name_en": "Test Webhook",
+        "description": "发送测试Webhook",
+        "category": "webhook",
+        "subcategory": "test",
+        "api_endpoint": "/api/webhook/test",
+        "method": "POST",
+        "params": [
+            {"name": "webhook_id", "type": "string", "required": True, "description": "Webhook ID"},
+            {"name": "data", "type": "any", "required": False, "description": "测试数据"}
+        ],
+        "icon": "play"
+    },
+    "webhook_logs": {
+        "id": "webhook_logs",
+        "name": "Webhook日志",
+        "name_en": "Webhook Logs",
+        "description": "获取Webhook调用日志",
+        "category": "webhook",
+        "subcategory": "logs",
+        "api_endpoint": "/api/webhook/logs",
+        "method": "POST",
+        "params": [
+            {"name": "webhook_id", "type": "string", "required": True, "description": "Webhook ID"}
+        ],
+        "icon": "file-text"
+    },
+
+    # ========== 支付工具 ==========
+    "payment_create": {
+        "id": "payment_create",
+        "name": "创建支付",
+        "name_en": "Create Payment",
+        "description": "创建支付请求",
+        "category": "payment",
+        "subcategory": "create",
+        "api_endpoint": "/api/payment/create",
+        "method": "POST",
+        "params": [
+            {"name": "amount", "type": "number", "required": True, "description": "金额"},
+            {"name": "currency", "type": "string", "required": True, "description": "货币"},
+            {"name": "description", "type": "string", "required": False, "description": "描述"}
+        ],
+        "icon": "credit-card"
+    },
+    "payment_status": {
+        "id": "payment_status",
+        "name": "支付状态",
+        "name_en": "Payment Status",
+        "description": "查询支付状态",
+        "category": "payment",
+        "subcategory": "status",
+        "api_endpoint": "/api/payment/status",
+        "method": "POST",
+        "params": [
+            {"name": "payment_id", "type": "string", "required": True, "description": "支付ID"}
+        ],
+        "icon": "check"
+    },
+    "payment_refund": {
+        "id": "payment_refund",
+        "name": "退款",
+        "name_en": "Refund Payment",
+        "description": "申请退款",
+        "category": "payment",
+        "subcategory": "refund",
+        "api_endpoint": "/api/payment/refund",
+        "method": "POST",
+        "params": [
+            {"name": "payment_id", "type": "string", "required": True, "description": "支付ID"},
+            {"name": "amount", "type": "number", "required": False, "description": "退款金额"}
+        ],
+        "icon": "rotate-ccw"
+    },
+    "payment_list": {
+        "id": "payment_list",
+        "name": "支付列表",
+        "name_en": "Payment List",
+        "description": "获取支付列表",
+        "category": "payment",
+        "subcategory": "list",
+        "api_endpoint": "/api/payment/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 分析工具 ==========
+    "analytics_track": {
+        "id": "analytics_track",
+        "name": "追踪事件",
+        "name_en": "Track Event",
+        "description": "追踪分析事件",
+        "category": "analytics",
+        "subcategory": "track",
+        "api_endpoint": "/api/analytics/track",
+        "method": "POST",
+        "params": [
+            {"name": "event", "type": "string", "required": True, "description": "事件名称"},
+            {"name": "properties", "type": "object", "required": False, "description": "事件属性"}
+        ],
+        "icon": "activity"
+    },
+    "analytics_pageview": {
+        "id": "analytics_pageview",
+        "name": "页面浏览",
+        "name_en": "Page View",
+        "description": "追踪页面浏览",
+        "category": "analytics",
+        "subcategory": "pageview",
+        "api_endpoint": "/api/analytics/pageview",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "页面URL"},
+            {"name": "title", "type": "string", "required": False, "description": "页面标题"}
+        ],
+        "icon": "eye"
+    },
+    "analytics_user": {
+        "id": "analytics_user",
+        "name": "用户分析",
+        "name_en": "User Analytics",
+        "description": "获取用户分析数据",
+        "category": "analytics",
+        "subcategory": "user",
+        "api_endpoint": "/api/analytics/user",
+        "method": "GET",
+        "params": [],
+        "icon": "users"
+    },
+    "analytics_realtime": {
+        "id": "analytics_realtime",
+        "name": "实时分析",
+        "name_en": "Real-time Analytics",
+        "description": "获取实时分析数据",
+        "category": "analytics",
+        "subcategory": "realtime",
+        "api_endpoint": "/api/analytics/realtime",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    "analytics_funnels": {
+        "id": "analytics_funnels",
+        "name": "漏斗分析",
+        "name_en": "Funnel Analytics",
+        "description": "获取漏斗分析数据",
+        "category": "analytics",
+        "subcategory": "funnels",
+        "api_endpoint": "/api/analytics/funnels",
+        "method": "POST",
+        "params": [
+            {"name": "funnel_id", "type": "string", "required": True, "description": "漏斗ID"}
+        ],
+        "icon": "filter"
+    },
+
+    # ========== OCR工具 ==========
+    "ocr_image": {
+        "id": "ocr_image",
+        "name": "图片OCR",
+        "name_en": "OCR Image",
+        "description": "从图片提取文字",
+        "category": "ocr",
+        "subcategory": "image",
+        "api_endpoint": "/api/ocr/image",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "type"
+    },
+    "ocr_pdf": {
+        "id": "ocr_pdf",
+        "name": "PDF OCR",
+        "name_en": "OCR PDF",
+        "description": "从PDF提取文字",
+        "category": "ocr",
+        "subcategory": "pdf",
+        "api_endpoint": "/api/ocr/pdf",
+        "method": "POST",
+        "params": [
+            {"name": "pdf_url", "type": "string", "required": True, "description": "PDF URL"}
+        ],
+        "icon": "type"
+    },
+    "ocr_document": {
+        "id": "ocr_document",
+        "name": "文档OCR",
+        "name_en": "OCR Document",
+        "description": "从文档提取文字",
+        "category": "ocr",
+        "subcategory": "document",
+        "api_endpoint": "/api/ocr/document",
+        "method": "POST",
+        "params": [
+            {"name": "document_url", "type": "string", "required": True, "description": "文档URL"}
+        ],
+        "icon": "type"
+    },
+    "ocr_table": {
+        "id": "ocr_table",
+        "name": "表格OCR",
+        "name_en": "OCR Table",
+        "description": "从图片提取表格数据",
+        "category": "ocr",
+        "subcategory": "table",
+        "api_endpoint": "/api/ocr/table",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "table"
+    },
+    "ocr_badge": {
+        "id": "ocr_badge",
+        "name": "名片OCR",
+        "name_en": "OCR Business Card",
+        "description": "从名片提取联系信息",
+        "category": "ocr",
+        "subcategory": "badge",
+        "api_endpoint": "/api/ocr/badge",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "名片图片URL"}
+        ],
+        "icon": "credit-card"
     }
 }
 
