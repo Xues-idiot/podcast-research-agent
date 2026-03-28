@@ -23283,6 +23283,257 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "type"
     },
+
+    # ========== 格式化工具 ==========
+    "pluralize": {
+        "id": "pluralize",
+        "name": "复数化",
+        "name_en": "Pluralize",
+        "description": "将单词变为复数",
+        "category": "format",
+        "subcategory": "plural",
+        "api_endpoint": "/api/pluralize",
+        "method": "POST",
+        "params": [
+            {"name": "word", "type": "string", "required": True, "description": "单词"}
+        ],
+        "icon": "type"
+    },
+    "singularize": {
+        "id": "singularize",
+        "name": "单数化",
+        "name_en": "Singularize",
+        "description": "将单词变为单数",
+        "category": "format",
+        "subcategory": "singular",
+        "api_endpoint": "/api/singularize",
+        "method": "POST",
+        "params": [
+            {"name": "word", "type": "string", "required": True, "description": "单词"}
+        ],
+        "icon": "type"
+    },
+    "titleize": {
+        "id": "titleize",
+        "name": "标题化",
+        "name_en": "Titleize",
+        "description": "将文本标题化",
+        "category": "format",
+        "subcategory": "title",
+        "api_endpoint": "/api/titleize",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "humanize": {
+        "id": "humanize",
+        "name": "人性化",
+        "name_en": "Humanize",
+        "description": "转换为人类可读格式",
+        "category": "format",
+        "subcategory": "human",
+        "api_endpoint": "/api/humanize",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "user"
+    },
+    "ordinalize": {
+        "id": "ordinalize",
+        "name": "序数化",
+        "name_en": "Ordinalize",
+        "description": "将数字转换为序数词",
+        "category": "format",
+        "subcategory": "ordinal",
+        "api_endpoint": "/api/ordinalize",
+        "method": "POST",
+        "params": [
+            {"name": "number", "type": "number", "required": True, "description": "数字"}
+        ],
+        "icon": "hash"
+    },
+    "camelize": {
+        "id": "camelize",
+        "name": "驼峰化",
+        "name_en": "Camelize",
+        "description": "转换为驼峰格式",
+        "category": "format",
+        "subcategory": "camel",
+        "api_endpoint": "/api/camelize",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "underscore": {
+        "id": "underscore",
+        "name": "下划线化",
+        "name_en": "Underscore",
+        "description": "转换为下划线格式",
+        "category": "format",
+        "subcategory": "underscore",
+        "api_endpoint": "/api/underscore",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "dasherize": {
+        "id": "dasherize",
+        "name": "中划线化",
+        "name_en": "Dasherize",
+        "description": "转换为中划线格式",
+        "category": "format",
+        "subcategory": "dash",
+        "api_endpoint": "/api/dasherize",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "parameterize": {
+        "id": "parameterize",
+        "name": "参数化",
+        "name_en": "Parameterize",
+        "description": "转换为URL参数格式",
+        "category": "format",
+        "subcategory": "param",
+        "api_endpoint": "/api/parameterize",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "link"
+    },
+
+    # ========== 媒体工具 ==========
+    "image_resize": {
+        "id": "image_resize",
+        "name": "图片缩放",
+        "name_en": "Image Resize",
+        "description": "调整图片大小",
+        "category": "image",
+        "subcategory": "resize",
+        "api_endpoint": "/api/image_resize",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "图片数据"},
+            {"name": "width", "type": "number", "required": True, "description": "宽度"},
+            {"name": "height", "type": "number", "required": True, "description": "高度"}
+        ],
+        "icon": "image"
+    },
+    "image_crop": {
+        "id": "image_crop",
+        "name": "图片裁剪",
+        "name_en": "Image Crop",
+        "description": "裁剪图片",
+        "category": "image",
+        "subcategory": "crop",
+        "api_endpoint": "/api/image_crop",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "图片数据"},
+            {"name": "x", "type": "number", "required": True, "description": "X坐标"},
+            {"name": "y", "type": "number", "required": True, "description": "Y坐标"},
+            {"name": "width", "type": "number", "required": True, "description": "宽度"},
+            {"name": "height", "type": "number", "required": True, "description": "高度"}
+        ],
+        "icon": "image"
+    },
+    "image_rotate": {
+        "id": "image_rotate",
+        "name": "图片旋转",
+        "name_en": "Image Rotate",
+        "description": "旋转图片",
+        "category": "image",
+        "subcategory": "rotate",
+        "api_endpoint": "/api/image_rotate",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "图片数据"},
+            {"name": "angle", "type": "number", "required": True, "description": "角度"}
+        ],
+        "icon": "image"
+    },
+    "image_flip": {
+        "id": "image_flip",
+        "name": "图片翻转",
+        "name_en": "Image Flip",
+        "description": "翻转图片",
+        "category": "image",
+        "subcategory": "flip",
+        "api_endpoint": "/api/image_flip",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "图片数据"},
+            {"name": "horizontal", "type": "boolean", "required": False, "description": "水平翻转", "default": True}
+        ],
+        "icon": "image"
+    },
+    "image_blur": {
+        "id": "image_blur",
+        "name": "图片模糊",
+        "name_en": "Image Blur",
+        "description": "模糊图片",
+        "category": "image",
+        "subcategory": "blur",
+        "api_endpoint": "/api/image_blur",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "图片数据"},
+            {"name": "radius", "type": "number", "required": False, "description": "模糊半径", "default": 5}
+        ],
+        "icon": "image"
+    },
+    "image_grayscale": {
+        "id": "image_grayscale",
+        "name": "图片灰度",
+        "name_en": "Image Grayscale",
+        "description": "将图片转为灰度",
+        "category": "image",
+        "subcategory": "grayscale",
+        "api_endpoint": "/api/image_grayscale",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "图片数据"}
+        ],
+        "icon": "image"
+    },
+    "image_sepia": {
+        "id": "image_sepia",
+        "name": "图片复古",
+        "name_en": "Image Sepia",
+        "description": "将图片转为复古色",
+        "category": "image",
+        "subcategory": "sepia",
+        "api_endpoint": "/api/image_sepia",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "图片数据"}
+        ],
+        "icon": "image"
+    },
+    "image_invert": {
+        "id": "image_invert",
+        "name": "图片反色",
+        "name_en": "Image Invert",
+        "description": "反转图片颜色",
+        "category": "image",
+        "subcategory": "invert",
+        "api_endpoint": "/api/image_invert",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "图片数据"}
+        ],
+        "icon": "image"
+    },
 }
 
 
