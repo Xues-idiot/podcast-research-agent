@@ -409,6 +409,20 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "shuffle"
     },
+    "list_stats": {
+        "id": "list_stats",
+        "name": "列表统计",
+        "name_en": "List Stats",
+        "description": "计算列表的统计信息：计数、和、平均值、最大最小值",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-stats",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "源列表"}
+        ],
+        "icon": "bar-chart"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
