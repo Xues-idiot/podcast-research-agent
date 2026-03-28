@@ -579,6 +579,18 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "lock"
     },
+    "random_utils": {
+        "id": "random_utils",
+        "name": "随机工具",
+        "name_en": "Random Utils",
+        "description": "随机数、随机选择、随机字符串、UUID等",
+        "category": "random",
+        "subcategory": "random",
+        "api_endpoint": "/api/random",
+        "method": "POST",
+        "params": [],
+        "icon": "shuffle"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
