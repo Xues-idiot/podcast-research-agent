@@ -591,6 +591,18 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "params": [],
         "icon": "shuffle"
     },
+    "format_utils": {
+        "id": "format_utils",
+        "name": "格式化工具",
+        "name_en": "Format Utils",
+        "description": "JSON、数字、货币、百分比、文件大小、时长等格式化",
+        "category": "text_processing",
+        "subcategory": "format",
+        "api_endpoint": "/api/format",
+        "method": "POST",
+        "params": [],
+        "icon": "file"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
