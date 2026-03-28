@@ -3558,6 +3558,113 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "fn", "type": "string", "required": True, "description": "聚合函数"}
         ],
         "icon": "git_merge"
+    },
+    "intersect": {
+        "id": "intersect",
+        "name": "交集",
+        "name_en": "Intersect",
+        "description": "获取两个列表的交集",
+        "category": "list",
+        "subcategory": "set",
+        "api_endpoint": "/api/intersect",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "列表A"},
+            {"name": "b", "type": "array", "required": True, "description": "列表B"}
+        ],
+        "icon": "git_intersection"
+    },
+    "union": {
+        "id": "union",
+        "name": "并集",
+        "name_en": "Union",
+        "description": "获取两个列表的并集",
+        "category": "list",
+        "subcategory": "set",
+        "api_endpoint": "/api/union",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "列表A"},
+            {"name": "b", "type": "array", "required": True, "description": "列表B"}
+        ],
+        "icon": "git_merge"
+    },
+    "diff": {
+        "id": "diff",
+        "name": "差集",
+        "name_en": "Difference",
+        "description": "获取两个列表的差集",
+        "category": "list",
+        "subcategory": "set",
+        "api_endpoint": "/api/diff",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "列表A"},
+            {"name": "b", "type": "array", "required": True, "description": "列表B"}
+        ],
+        "icon": "minus"
+    },
+    "append": {
+        "id": "append",
+        "name": "追加",
+        "name_en": "Append",
+        "description": "追加元素到列表",
+        "category": "list",
+        "subcategory": "modify",
+        "api_endpoint": "/api/append",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "item", "type": "string", "required": True, "description": "元素"}
+        ],
+        "icon": "plus"
+    },
+    "prepend": {
+        "id": "prepend",
+        "name": "前置",
+        "name_en": "Prepend",
+        "description": "前置元素到列表",
+        "category": "list",
+        "subcategory": "modify",
+        "api_endpoint": "/api/prepend",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "item", "type": "string", "required": True, "description": "元素"}
+        ],
+        "icon": "plus"
+    },
+    "insert": {
+        "id": "insert",
+        "name": "插入",
+        "name_en": "Insert",
+        "description": "在指定位置插入元素",
+        "category": "list",
+        "subcategory": "modify",
+        "api_endpoint": "/api/insert",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "index", "type": "number", "required": True, "description": "位置"},
+            {"name": "item", "type": "string", "required": True, "description": "元素"}
+        ],
+        "icon": "plus"
+    },
+    "update_item": {
+        "id": "update_item",
+        "name": "更新元素",
+        "name_en": "Update Item",
+        "description": "更新列表中的元素",
+        "category": "list",
+        "subcategory": "modify",
+        "api_endpoint": "/api/update",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "index", "type": "number", "required": True, "description": "位置"},
+            {"name": "item", "type": "string", "required": True, "description": "新元素"}
+        ],
+        "icon": "edit"
     }
 }
 
