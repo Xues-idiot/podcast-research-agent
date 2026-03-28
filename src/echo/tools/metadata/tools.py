@@ -23534,6 +23534,205 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "image"
     },
+
+    # ========== 音频工具 ==========
+    "audio_normalize": {
+        "id": "audio_normalize",
+        "name": "音频标准化",
+        "name_en": "Audio Normalize",
+        "description": "标准化音频音量",
+        "category": "audio",
+        "subcategory": "normalize",
+        "api_endpoint": "/api/audio_normalize",
+        "method": "POST",
+        "params": [
+            {"name": "audio", "type": "string", "required": True, "description": "音频数据"}
+        ],
+        "icon": "volume-2"
+    },
+    "audio_trim": {
+        "id": "audio_trim",
+        "name": "音频裁剪",
+        "name_en": "Audio Trim",
+        "description": "裁剪音频片段",
+        "category": "audio",
+        "subcategory": "trim",
+        "api_endpoint": "/api/audio_trim",
+        "method": "POST",
+        "params": [
+            {"name": "audio", "type": "string", "required": True, "description": "音频数据"},
+            {"name": "start", "type": "number", "required": True, "description": "起始秒"},
+            {"name": "end", "type": "number", "required": True, "description": "结束秒"}
+        ],
+        "icon": "scissors"
+    },
+    "audio_concat": {
+        "id": "audio_concat",
+        "name": "音频拼接",
+        "name_en": "Audio Concat",
+        "description": "拼接多个音频",
+        "category": "audio",
+        "subcategory": "concat",
+        "api_endpoint": "/api/audio_concat",
+        "method": "POST",
+        "params": [
+            {"name": "audios", "type": "array", "required": True, "description": "音频数组"}
+        ],
+        "icon": "plus"
+    },
+    "audio_fade": {
+        "id": "audio_fade",
+        "name": "音频淡入淡出",
+        "name_en": "Audio Fade",
+        "description": "添加淡入淡出效果",
+        "category": "audio",
+        "subcategory": "fade",
+        "api_endpoint": "/api/audio_fade",
+        "method": "POST",
+        "params": [
+            {"name": "audio", "type": "string", "required": True, "description": "音频数据"},
+            {"name": "fade_in", "type": "number", "required": False, "description": "淡入秒数", "default": 0},
+            {"name": "fade_out", "type": "number", "required": False, "description": "淡出秒数", "default": 0}
+        ],
+        "icon": "volume-2"
+    },
+    "audio_reverse": {
+        "id": "audio_reverse",
+        "name": "音频反转",
+        "name_en": "Audio Reverse",
+        "description": "反转音频",
+        "category": "audio",
+        "subcategory": "reverse",
+        "api_endpoint": "/api/audio_reverse",
+        "method": "POST",
+        "params": [
+            {"name": "audio", "type": "string", "required": True, "description": "音频数据"}
+        ],
+        "icon": "rotate-ccw"
+    },
+    "audio_pitch": {
+        "id": "audio_pitch",
+        "name": "音频音调调整",
+        "name_en": "Audio Pitch",
+        "description": "调整音频音调",
+        "category": "audio",
+        "subcategory": "pitch",
+        "api_endpoint": "/api/audio_pitch",
+        "method": "POST",
+        "params": [
+            {"name": "audio", "type": "string", "required": True, "description": "音频数据"},
+            {"name": "semitones", "type": "number", "required": True, "description": "半音数"}
+        ],
+        "icon": "music"
+    },
+    "audio_speed": {
+        "id": "audio_speed",
+        "name": "音频速度调整",
+        "name_en": "Audio Speed",
+        "description": "调整音频播放速度",
+        "category": "audio",
+        "subcategory": "speed",
+        "api_endpoint": "/api/audio_speed",
+        "method": "POST",
+        "params": [
+            {"name": "audio", "type": "string", "required": True, "description": "音频数据"},
+            {"name": "factor", "type": "number", "required": True, "description": "速度因子"}
+        ],
+        "icon": "fast-forward"
+    },
+    "audio_volume": {
+        "id": "audio_volume",
+        "name": "音频音量调整",
+        "name_en": "Audio Volume",
+        "description": "调整音频音量",
+        "category": "audio",
+        "subcategory": "volume",
+        "api_endpoint": "/api/audio_volume",
+        "method": "POST",
+        "params": [
+            {"name": "audio", "type": "string", "required": True, "description": "音频数据"},
+            {"name": "level", "type": "number", "required": True, "description": "音量级别"}
+        ],
+        "icon": "volume-2"
+    },
+
+    # ========== 视频工具 ==========
+    "video_trim": {
+        "id": "video_trim",
+        "name": "视频裁剪",
+        "name_en": "Video Trim",
+        "description": "裁剪视频片段",
+        "category": "video",
+        "subcategory": "trim",
+        "api_endpoint": "/api/video_trim",
+        "method": "POST",
+        "params": [
+            {"name": "video", "type": "string", "required": True, "description": "视频数据"},
+            {"name": "start", "type": "number", "required": True, "description": "起始秒"},
+            {"name": "end", "type": "number", "required": True, "description": "结束秒"}
+        ],
+        "icon": "scissors"
+    },
+    "video_concat": {
+        "id": "video_concat",
+        "name": "视频拼接",
+        "name_en": "Video Concat",
+        "description": "拼接多个视频",
+        "category": "video",
+        "subcategory": "concat",
+        "api_endpoint": "/api/video_concat",
+        "method": "POST",
+        "params": [
+            {"name": "videos", "type": "array", "required": True, "description": "视频数组"}
+        ],
+        "icon": "plus"
+    },
+    "video_snapshot": {
+        "id": "video_snapshot",
+        "name": "视频截图",
+        "name_en": "Video Snapshot",
+        "description": "从视频提取截图",
+        "category": "video",
+        "subcategory": "snapshot",
+        "api_endpoint": "/api/video_snapshot",
+        "method": "POST",
+        "params": [
+            {"name": "video", "type": "string", "required": True, "description": "视频数据"},
+            {"name": "time", "type": "number", "required": True, "description": "时间点"}
+        ],
+        "icon": "image"
+    },
+    "video_rotate": {
+        "id": "video_rotate",
+        "name": "视频旋转",
+        "name_en": "Video Rotate",
+        "description": "旋转视频",
+        "category": "video",
+        "subcategory": "rotate",
+        "api_endpoint": "/api/video_rotate",
+        "method": "POST",
+        "params": [
+            {"name": "video", "type": "string", "required": True, "description": "视频数据"},
+            {"name": "angle", "type": "number", "required": True, "description": "角度"}
+        ],
+        "icon": "rotate-cw"
+    },
+    "video_resize": {
+        "id": "video_resize",
+        "name": "视频缩放",
+        "name_en": "Video Resize",
+        "description": "缩放视频尺寸",
+        "category": "video",
+        "subcategory": "resize",
+        "api_endpoint": "/api/video_resize",
+        "method": "POST",
+        "params": [
+            {"name": "video", "type": "string", "required": True, "description": "视频数据"},
+            {"name": "width", "type": "number", "required": True, "description": "宽度"},
+            {"name": "height", "type": "number", "required": True, "description": "高度"}
+        ],
+        "icon": "maximize"
+    },
 }
 
 
