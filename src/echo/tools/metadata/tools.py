@@ -22442,6 +22442,212 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "git-branch"
     },
+
+    # ========== 算法工具 ==========
+    "bubble_sort": {
+        "id": "bubble_sort",
+        "name": "冒泡排序",
+        "name_en": "Bubble Sort",
+        "description": "冒泡排序算法",
+        "category": "algorithm",
+        "subcategory": "sort",
+        "api_endpoint": "/api/bubble_sort",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "arrow-up-down"
+    },
+    "quick_sort": {
+        "id": "quick_sort",
+        "name": "快速排序",
+        "name_en": "Quick Sort",
+        "description": "快速排序算法",
+        "category": "algorithm",
+        "subcategory": "sort",
+        "api_endpoint": "/api/quick_sort",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "arrow-up-down"
+    },
+    "merge_sort": {
+        "id": "merge_sort",
+        "name": "归并排序",
+        "name_en": "Merge Sort",
+        "description": "归并排序算法",
+        "category": "algorithm",
+        "subcategory": "sort",
+        "api_endpoint": "/api/merge_sort",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "arrow-up-down"
+    },
+    "binary_search": {
+        "id": "binary_search",
+        "name": "二分搜索",
+        "name_en": "Binary Search",
+        "description": "在有序数组中二分搜索",
+        "category": "algorithm",
+        "subcategory": "search",
+        "api_endpoint": "/api/binary_search",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "有序数组"},
+            {"name": "target", "type": "any", "required": True, "description": "目标值"}
+        ],
+        "icon": "search"
+    },
+    "linear_search": {
+        "id": "linear_search",
+        "name": "线性搜索",
+        "name_en": "Linear Search",
+        "description": "在线性数组中搜索",
+        "category": "algorithm",
+        "subcategory": "search",
+        "api_endpoint": "/api/linear_search",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数组"},
+            {"name": "target", "type": "any", "required": True, "description": "目标值"}
+        ],
+        "icon": "search"
+    },
+    "dijkstra": {
+        "id": "dijkstra",
+        "name": "Dijkstra算法",
+        "name_en": "Dijkstra Algorithm",
+        "description": "Dijkstra最短路径算法",
+        "category": "algorithm",
+        "subcategory": "path",
+        "api_endpoint": "/api/dijkstra",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "object", "required": True, "description": "图"},
+            {"name": "start", "type": "any", "required": True, "description": "起始节点"}
+        ],
+        "icon": "git-branch"
+    },
+    "bellman_ford": {
+        "id": "bellman_ford",
+        "name": "Bellman-Ford算法",
+        "name_en": "Bellman-Ford Algorithm",
+        "description": "Bellman-Ford最短路径算法",
+        "category": "algorithm",
+        "subcategory": "path",
+        "api_endpoint": "/api/bellman_ford",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "object", "required": True, "description": "图"},
+            {"name": "start", "type": "any", "required": True, "description": "起始节点"}
+        ],
+        "icon": "git-branch"
+    },
+    "floyd_warshall": {
+        "id": "floyd_warshall",
+        "name": "Floyd-Warshall算法",
+        "name_en": "Floyd-Warshall Algorithm",
+        "description": "Floyd-Warshall全源最短路径",
+        "category": "algorithm",
+        "subcategory": "path",
+        "api_endpoint": "/api/floyd_warshall",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "object", "required": True, "description": "图"}
+        ],
+        "icon": "git-branch"
+    },
+    "kruskal": {
+        "id": "kruskal",
+        "name": "Kruskal算法",
+        "name_en": "Kruskal Algorithm",
+        "description": "Kruskal最小生成树算法",
+        "category": "algorithm",
+        "subcategory": "tree",
+        "api_endpoint": "/api/kruskal",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "object", "required": True, "description": "图"}
+        ],
+        "icon": "git-branch"
+    },
+    "prim": {
+        "id": "prim",
+        "name": "Prim算法",
+        "name_en": "Prim Algorithm",
+        "description": "Prim最小生成树算法",
+        "category": "algorithm",
+        "subcategory": "tree",
+        "api_endpoint": "/api/prim",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "object", "required": True, "description": "图"},
+            {"name": "start", "type": "any", "required": True, "description": "起始节点"}
+        ],
+        "icon": "git-branch"
+    },
+    "topological_sort": {
+        "id": "topological_sort",
+        "name": "拓扑排序",
+        "name_en": "Topological Sort",
+        "description": "拓扑排序算法",
+        "category": "algorithm",
+        "subcategory": "sort",
+        "api_endpoint": "/api/topological_sort",
+        "method": "POST",
+        "params": [
+            {"name": "graph", "type": "object", "required": True, "description": "有向无环图"}
+        ],
+        "icon": "git-branch"
+    },
+    "knapsack": {
+        "id": "knapsack",
+        "name": "背包问题",
+        "name_en": "Knapsack Problem",
+        "description": "0-1背包问题动态规划",
+        "category": "algorithm",
+        "subcategory": "dp",
+        "api_endpoint": "/api/knapsack",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "物品数组"},
+            {"name": "capacity", "type": "number", "required": True, "description": "背包容量"}
+        ],
+        "icon": "package"
+    },
+    "levenshtein": {
+        "id": "levenshtein",
+        "name": "编辑距离",
+        "name_en": "Levenshtein Distance",
+        "description": "计算编辑距离",
+        "category": "algorithm",
+        "subcategory": "distance",
+        "api_endpoint": "/api/levenshtein",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "string", "required": True, "description": "字符串A"},
+            {"name": "b", "type": "string", "required": True, "description": "字符串B"}
+        ],
+        "icon": "git-compare"
+    },
+    "lcs": {
+        "id": "lcs",
+        "name": "最长公共子序列",
+        "name_en": "Longest Common Subsequence",
+        "description": "计算最长公共子序列",
+        "category": "algorithm",
+        "subcategory": "sequence",
+        "api_endpoint": "/api/lcs",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "序列A"},
+            {"name": "b", "type": "array", "required": True, "description": "序列B"}
+        ],
+        "icon": "git-compare"
+    },
 }
 
 
