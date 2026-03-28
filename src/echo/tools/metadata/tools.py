@@ -4843,6 +4843,109 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "bytes", "type": "number", "required": True, "description": "字节数"}
         ],
         "icon": "file"
+    },
+    "intersperse": {
+        "id": "intersperse",
+        "name": "插入分隔符",
+        "name_en": "Intersperse",
+        "description": "在元素间插入分隔符",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/intersperse",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "separator", "type": "string", "required": True, "description": "分隔符"}
+        ],
+        "icon": "plus"
+    },
+    "interleave": {
+        "id": "interleave",
+        "name": "交错合并",
+        "name_en": "Interleave",
+        "description": "交错合并多个数组",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/interleave",
+        "method": "POST",
+        "params": [
+            {"name": "arrays", "type": "array", "required": True, "description": "数组数组"}
+        ],
+        "icon": "columns"
+    },
+    "zip_with_index": {
+        "id": "zip_with_index",
+        "name": "带索引合并",
+        "name_en": "Zip with Index",
+        "description": "数组元素与索引配对",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/zip-with-index",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "start", "type": "number", "required": False, "description": "起始索引"}
+        ],
+        "icon": "list"
+    },
+    "scan": {
+        "id": "scan",
+        "name": "扫描累加",
+        "name_en": "Scan",
+        "description": "扫描累加数组元素",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/scan",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "git_merge"
+    },
+    "iterate": {
+        "id": "iterate",
+        "name": "迭代生成",
+        "name_en": "Iterate",
+        "description": "迭代生成数组",
+        "category": "array",
+        "subcategory": "generate",
+        "api_endpoint": "/api/iterate",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "initial", "type": "string", "required": True, "description": "初始值"},
+            {"name": "count", "type": "number", "required": True, "description": "数量"}
+        ],
+        "icon": "repeat"
+    },
+    "unzip": {
+        "id": "unzip",
+        "name": "解压",
+        "name_en": "Unzip",
+        "description": "解压配对数组",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/unzip",
+        "method": "POST",
+        "params": [
+            {"name": "pairs", "type": "array", "required": True, "description": "配对数组"}
+        ],
+        "icon": "unlock"
+    },
+    "append_any": {
+        "id": "append_any",
+        "name": "批量追加",
+        "name_en": "Append Any",
+        "description": "批量追加元素到数组",
+        "category": "array",
+        "subcategory": "modify",
+        "api_endpoint": "/api/append-any",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "new_items", "type": "array", "required": True, "description": "新元素"}
+        ],
+        "icon": "plus"
     }
 }
 
