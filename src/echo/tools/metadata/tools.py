@@ -687,6 +687,18 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "params": [],
         "icon": "refresh-cw"
     },
+    "hash_utils": {
+        "id": "hash_utils",
+        "name": "哈希工具",
+        "name_en": "Hash Utils",
+        "description": "哈希计算：MD5、SHA1、SHA256、SHA512",
+        "category": "encoding",
+        "subcategory": "hash",
+        "api_endpoint": "/api/hash",
+        "method": "POST",
+        "params": [],
+        "icon": "lock"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
