@@ -1117,6 +1117,97 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "method": "POST",
         "params": [],
         "icon": "key"
+    },
+    "arithmetic_sequence": {
+        "id": "arithmetic_sequence",
+        "name": "等差数列生成",
+        "name_en": "Arithmetic Sequence",
+        "description": "生成等差数列",
+        "category": "sequence",
+        "subcategory": "arithmetic",
+        "api_endpoint": "/api/sequence/arithmetic",
+        "method": "POST",
+        "params": [
+            {"name": "start", "type": "number", "required": False, "description": "起始值"},
+            {"name": "step", "type": "number", "required": False, "description": "步长"},
+            {"name": "length", "type": "number", "required": False, "description": "数量"}
+        ],
+        "icon": "list"
+    },
+    "geometric_sequence": {
+        "id": "geometric_sequence",
+        "name": "等比数列生成",
+        "name_en": "Geometric Sequence",
+        "description": "生成等比数列",
+        "category": "sequence",
+        "subcategory": "geometric",
+        "api_endpoint": "/api/sequence/geometric",
+        "method": "POST",
+        "params": [
+            {"name": "start", "type": "number", "required": False, "description": "起始值"},
+            {"name": "ratio", "type": "number", "required": False, "description": "公比"},
+            {"name": "length", "type": "number", "required": False, "description": "数量"}
+        ],
+        "icon": "list"
+    },
+    "fibonacci_sequence": {
+        "id": "fibonacci_sequence",
+        "name": "斐波那契数列",
+        "name_en": "Fibonacci Sequence",
+        "description": "生成斐波那契数列",
+        "category": "sequence",
+        "subcategory": "fibonacci",
+        "api_endpoint": "/api/sequence/fibonacci",
+        "method": "POST",
+        "params": [
+            {"name": "length", "type": "number", "required": False, "description": "数量"}
+        ],
+        "icon": "list"
+    },
+    "prime_sequence": {
+        "id": "prime_sequence",
+        "name": "素数序列",
+        "name_en": "Prime Sequence",
+        "description": "生成素数序列",
+        "category": "sequence",
+        "subcategory": "prime",
+        "api_endpoint": "/api/sequence/primes",
+        "method": "POST",
+        "params": [
+            {"name": "length", "type": "number", "required": False, "description": "数量"}
+        ],
+        "icon": "list"
+    },
+    "sequence_slice": {
+        "id": "sequence_slice",
+        "name": "序列切片",
+        "name_en": "Sequence Slice",
+        "description": "对序列进行切片操作",
+        "category": "sequence",
+        "subcategory": "slice",
+        "api_endpoint": "/api/sequence/slice",
+        "method": "POST",
+        "params": [
+            {"name": "seq", "type": "array", "required": True, "description": "源序列"},
+            {"name": "start", "type": "number", "required": False, "description": "起始索引"},
+            {"name": "end", "type": "number", "required": False, "description": "结束索引"},
+            {"name": "step", "type": "number", "required": False, "description": "步长"}
+        ],
+        "icon": "scissors"
+    },
+    "sequence_reverse": {
+        "id": "sequence_reverse",
+        "name": "序列反转",
+        "name_en": "Sequence Reverse",
+        "description": "反转序列顺序",
+        "category": "sequence",
+        "subcategory": "reverse",
+        "api_endpoint": "/api/sequence/reverse",
+        "method": "POST",
+        "params": [
+            {"name": "seq", "type": "array", "required": True, "description": "源序列"}
+        ],
+        "icon": "rotate-ccw"
     }
 }
 
