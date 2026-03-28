@@ -17055,6 +17055,827 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "b", "type": "array", "required": True, "description": "数组B"}
         ],
         "icon": "git-merge"
+    },
+
+    # ========== 函数式编程工具 ==========
+    "compose": {
+        "id": "compose",
+        "name": "组合函数",
+        "name_en": "Compose Functions",
+        "description": "组合多个函数",
+        "category": "function",
+        "subcategory": "compose",
+        "api_endpoint": "/api/compose",
+        "method": "POST",
+        "params": [
+            {"name": "fns", "type": "array", "required": True, "description": "函数数组"}
+        ],
+        "icon": "link"
+    },
+    "pipe": {
+        "id": "pipe",
+        "name": "管道函数",
+        "name_en": "Pipe Functions",
+        "description": "将值通过管道传递给函数",
+        "category": "function",
+        "subcategory": "pipe",
+        "api_endpoint": "/api/pipe",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "初始值"},
+            {"name": "fns", "type": "array", "required": True, "description": "函数数组"}
+        ],
+        "icon": "arrow-right"
+    },
+    "curry": {
+        "id": "curry",
+        "name": "柯里化",
+        "name_en": "Curry",
+        "description": "函数柯里化",
+        "category": "function",
+        "subcategory": "transform",
+        "api_endpoint": "/api/curry",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "arity", "type": "number", "required": True, "description": "参数数量"}
+        ],
+        "icon": "corner-down-right"
+    },
+    "partial": {
+        "id": "partial",
+        "name": "偏函数",
+        "name_en": "Partial",
+        "description": "创建偏函数",
+        "category": "function",
+        "subcategory": "transform",
+        "api_endpoint": "/api/partial",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "args", "type": "array", "required": True, "description": "预设参数"}
+        ],
+        "icon": "git-branch"
+    },
+    "memoize": {
+        "id": "memoize",
+        "name": "记忆化",
+        "name_en": "Memoize",
+        "description": "缓存函数结果",
+        "category": "function",
+        "subcategory": "cache",
+        "api_endpoint": "/api/memoize",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "args", "type": "array", "required": True, "description": "参数"}
+        ],
+        "icon": "database"
+    },
+    "once": {
+        "id": "once",
+        "name": "单次执行",
+        "name_en": "Once",
+        "description": "确保函数只执行一次",
+        "category": "function",
+        "subcategory": "control",
+        "api_endpoint": "/api/once",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "lock"
+    },
+    "after": {
+        "id": "after",
+        "name": "之后执行",
+        "name_en": "After",
+        "description": "函数在N次调用后执行",
+        "category": "function",
+        "subcategory": "control",
+        "api_endpoint": "/api/after",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "调用次数"},
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "clock"
+    },
+    "before": {
+        "id": "before",
+        "name": "之前执行",
+        "name_en": "Before",
+        "description": "函数在N次调用前执行",
+        "category": "function",
+        "subcategory": "control",
+        "api_endpoint": "/api/before",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "调用次数"},
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "clock"
+    },
+    "flip": {
+        "id": "flip",
+        "name": "翻转参数",
+        "name_en": "Flip",
+        "description": "翻转函数参数顺序",
+        "category": "function",
+        "subcategory": "transform",
+        "api_endpoint": "/api/flip",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "repeat"
+    },
+    "unary": {
+        "id": "unary",
+        "name": "一元化",
+        "name_en": "Unary",
+        "description": "将多参数函数转为一元",
+        "category": "function",
+        "subcategory": "transform",
+        "api_endpoint": "/api/unary",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "arrow-right"
+    },
+    "binary": {
+        "id": "binary",
+        "name": "二元化",
+        "name_en": "Binary",
+        "description": "将多参数函数转为二元",
+        "category": "function",
+        "subcategory": "transform",
+        "api_endpoint": "/api/binary",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "arrow-right"
+    },
+    "throttle": {
+        "id": "throttle",
+        "name": "节流",
+        "name_en": "Throttle",
+        "description": "节流函数调用",
+        "category": "function",
+        "subcategory": "timing",
+        "api_endpoint": "/api/throttle",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "wait", "type": "number", "required": True, "description": "等待毫秒"}
+        ],
+        "icon": "clock"
+    },
+    "debounce": {
+        "id": "debounce",
+        "name": "防抖",
+        "name_en": "Debounce",
+        "description": "防抖函数调用",
+        "category": "function",
+        "subcategory": "timing",
+        "api_endpoint": "/api/debounce",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "wait", "type": "number", "required": True, "description": "等待毫秒"}
+        ],
+        "icon": "clock"
+    },
+    "wrap": {
+        "id": "wrap",
+        "name": "包装函数",
+        "name_en": "Wrap",
+        "description": "包装函数",
+        "category": "function",
+        "subcategory": "transform",
+        "api_endpoint": "/api/wrap",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "wrapper", "type": "string", "required": True, "description": "包装函数"}
+        ],
+        "icon": "package"
+    },
+    "negate": {
+        "id": "negate",
+        "name": "求反",
+        "name_en": "Negate",
+        "description": "返回函数的否定",
+        "category": "function",
+        "subcategory": "transform",
+        "api_endpoint": "/api/negate",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "minus"
+    },
+
+    # ========== 条件判断工具 ==========
+    "is_empty": {
+        "id": "is_empty",
+        "name": "为空检查",
+        "name_en": "Is Empty",
+        "description": "检查是否为空",
+        "category": "predicate",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-empty",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "minus"
+    },
+    "is_nil": {
+        "id": "is_nil",
+        "name": "nil检查",
+        "name_en": "Is Nil",
+        "description": "检查是否为nil",
+        "category": "predicate",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-nil",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "minus"
+    },
+    "is_undefined": {
+        "id": "is_undefined",
+        "name": "未定义检查",
+        "name_en": "Is Undefined",
+        "description": "检查是否未定义",
+        "category": "predicate",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-undefined",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "help-circle"
+    },
+    "is_null": {
+        "id": "is_null",
+        "name": "null检查",
+        "name_en": "Is Null",
+        "description": "检查是否为null",
+        "category": "predicate",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-null",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "minus"
+    },
+    "is_string": {
+        "id": "is_string",
+        "name": "字符串检查",
+        "name_en": "Is String",
+        "description": "检查是否为字符串",
+        "category": "predicate",
+        "subcategory": "type",
+        "api_endpoint": "/api/is-string",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "type"
+    },
+    "is_number": {
+        "id": "is_number",
+        "name": "数字检查",
+        "name_en": "Is Number",
+        "description": "检查是否为数字",
+        "category": "predicate",
+        "subcategory": "type",
+        "api_endpoint": "/api/is-number",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "hash"
+    },
+    "is_boolean": {
+        "id": "is_boolean",
+        "name": "布尔检查",
+        "name_en": "Is Boolean",
+        "description": "检查是否为布尔值",
+        "category": "predicate",
+        "subcategory": "type",
+        "api_endpoint": "/api/is-boolean",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "check-square"
+    },
+    "is_array": {
+        "id": "is_array",
+        "name": "数组检查",
+        "name_en": "Is Array",
+        "description": "检查是否为数组",
+        "category": "predicate",
+        "subcategory": "type",
+        "api_endpoint": "/api/is-array",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "list"
+    },
+    "is_object": {
+        "id": "is_object",
+        "name": "对象检查",
+        "name_en": "Is Object",
+        "description": "检查是否为对象",
+        "category": "predicate",
+        "subcategory": "type",
+        "api_endpoint": "/api/is-object",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "square"
+    },
+    "is_function": {
+        "id": "is_function",
+        "name": "函数检查",
+        "name_en": "Is Function",
+        "description": "检查是否为函数",
+        "category": "predicate",
+        "subcategory": "type",
+        "api_endpoint": "/api/is-function",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "code"
+    },
+    "is_date": {
+        "id": "is_date",
+        "name": "日期检查",
+        "name_en": "Is Date",
+        "description": "检查是否为日期",
+        "category": "predicate",
+        "subcategory": "type",
+        "api_endpoint": "/api/is-date",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "calendar"
+    },
+    "is_symbol": {
+        "id": "is_symbol",
+        "name": "Symbol检查",
+        "name_en": "Is Symbol",
+        "description": "检查是否为Symbol",
+        "category": "predicate",
+        "subcategory": "type",
+        "api_endpoint": "/api/is-symbol",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "hash"
+    },
+    "is_promise": {
+        "id": "is_promise",
+        "name": "Promise检查",
+        "name_en": "Is Promise",
+        "description": "检查是否为Promise",
+        "category": "predicate",
+        "subcategory": "type",
+        "api_endpoint": "/api/is-promise",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "clock"
+    },
+    "is_iterable": {
+        "id": "is_iterable",
+        "name": "可迭代检查",
+        "name_en": "Is Iterable",
+        "description": "检查是否可迭代",
+        "category": "predicate",
+        "subcategory": "type",
+        "api_endpoint": "/api/is-iterable",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "list"
+    },
+    "is_array_like": {
+        "id": "is_array_like",
+        "name": "类数组检查",
+        "name_en": "Is Array Like",
+        "description": "检查是否类数组",
+        "category": "predicate",
+        "subcategory": "type",
+        "api_endpoint": "/api/is-array-like",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "list"
+    },
+
+    # ========== 实用工具 ==========
+    "noop": {
+        "id": "noop",
+        "name": "空操作",
+        "name_en": "Noop",
+        "description": "空操作函数",
+        "category": "utility",
+        "subcategory": "basic",
+        "api_endpoint": "/api/noop",
+        "method": "POST",
+        "params": [],
+        "icon": "minus"
+    },
+    "identity": {
+        "id": "identity",
+        "name": "恒等函数",
+        "name_en": "Identity",
+        "description": "返回输入值本身",
+        "category": "utility",
+        "subcategory": "basic",
+        "api_endpoint": "identity",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "任意值"}
+        ],
+        "icon": "equal"
+    },
+    "always": {
+        "id": "always",
+        "name": "总是返回",
+        "name_en": "Always",
+        "description": "总是返回指定值",
+        "category": "utility",
+        "subcategory": "function",
+        "api_endpoint": "/api/always",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "返回值"}
+        ],
+        "icon": "check"
+    },
+    "never": {
+        "id": "never",
+        "name": "从不返回",
+        "name_en": "Never",
+        "description": "从不返回",
+        "category": "utility",
+        "subcategory": "function",
+        "api_endpoint": "/api/never",
+        "method": "POST",
+        "params": [],
+        "icon": "x"
+    },
+    "default_to": {
+        "id": "default_to",
+        "name": "默认值",
+        "name_en": "Default To",
+        "description": "为空值设置默认值",
+        "category": "utility",
+        "subcategory": "value",
+        "api_endpoint": "/api/default-to",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "default", "type": "any", "required": True, "description": "默认值"}
+        ],
+        "icon": "plus"
+    },
+    "coalesce": {
+        "id": "coalesce",
+        "name": "空值合并",
+        "name_en": "Coalesce",
+        "description": "返回第一个非空值",
+        "category": "utility",
+        "subcategory": "value",
+        "api_endpoint": "/api/coalesce",
+        "method": "POST",
+        "params": [
+            {"name": "values", "type": "array", "required": True, "description": "值数组"}
+        ],
+        "icon": "git-merge"
+    },
+    "tap": {
+        "id": "tap",
+        "name": "点击",
+        "name_en": "Tap",
+        "description": "执行函数并返回值",
+        "category": "utility",
+        "subcategory": "function",
+        "api_endpoint": "/api/tap",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "pointer"
+    },
+    " juxt": {
+        "id": "juxt",
+        "name": "并列函数",
+        "name_en": "Juxtapose",
+        "description": "应用多个函数返回数组",
+        "category": "utility",
+        "subcategory": "function",
+        "api_endpoint": "/api/juxt",
+        "method": "POST",
+        "params": [
+            {"name": "fns", "type": "array", "required": True, "description": "函数数组"},
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "columns"
+    },
+    "converge": {
+        "id": "converge",
+        "name": "收敛函数",
+        "name_en": "Converge",
+        "description": "收敛函数结果",
+        "category": "utility",
+        "subcategory": "function",
+        "api_endpoint": "/api/converge",
+        "method": "POST",
+        "params": [
+            {"name": "fns", "type": "array", "required": True, "description": "函数数组"},
+            {"name": "fn", "type": "string", "required": True, "description": "最终函数"}
+        ],
+        "icon": "git-merge"
+    },
+    "apply": {
+        "id": "apply",
+        "name": "应用函数",
+        "name_en": "Apply",
+        "description": "将数组展开为函数参数",
+        "category": "utility",
+        "subcategory": "function",
+        "api_endpoint": "/api/apply",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "args", "type": "array", "required": True, "description": "参数数组"}
+        ],
+        "icon": "arrow-right"
+    },
+    "spread": {
+        "id": "spread",
+        "name": "展开",
+        "name_en": "Spread",
+        "description": "展开数组为多个参数",
+        "category": "utility",
+        "subcategory": "function",
+        "api_endpoint": "/api/spread",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "args", "type": "array", "required": True, "description": "参数数组"}
+        ],
+        "icon": "maximize"
+    },
+    "flip": {
+        "id": "flip",
+        "name": "翻转",
+        "name_en": "Flip",
+        "description": "翻转函数参数顺序",
+        "category": "utility",
+        "subcategory": "function",
+        "api_endpoint": "/api/flip",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "repeat"
+    },
+
+    # ========== 字符串工具 ==========
+    "camel_case": {
+        "id": "camel_case",
+        "name": "驼峰命名",
+        "name_en": "Camel Case",
+        "description": "转驼峰命名",
+        "category": "string",
+        "subcategory": "case",
+        "api_endpoint": "/api/camel-case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "arrow-up"
+    },
+    "snake_case": {
+        "id": "snake_case",
+        "name": "蛇形命名",
+        "name_en": "Snake Case",
+        "description": "转蛇形命名",
+        "category": "string",
+        "subcategory": "case",
+        "api_endpoint": "/api/snake-case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "minus"
+    },
+    "pascal_case": {
+        "id": "pascal_case",
+        "name": "帕斯卡命名",
+        "name_en": "Pascal Case",
+        "description": "转帕斯卡命名",
+        "category": "string",
+        "subcategory": "case",
+        "api_endpoint": "/api/pascal-case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "arrow-up-circle"
+    },
+    "kebab_case": {
+        "id": "kebab_case",
+        "name": "串形命名",
+        "name_en": "Kebab Case",
+        "description": "转串形命名",
+        "category": "string",
+        "subcategory": "case",
+        "api_endpoint": "/api/kebab-case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "minus"
+    },
+    "capitalize": {
+        "id": "capitalize",
+        "name": "首字母大写",
+        "name_en": "Capitalize",
+        "description": "首字母大写",
+        "category": "string",
+        "subcategory": "case",
+        "api_endpoint": "/api/capitalize",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "upper_first": {
+        "id": "upper_first",
+        "name": "首字母大写",
+        "name_en": "Upper First",
+        "description": "首字母大写其余小写",
+        "category": "string",
+        "subcategory": "case",
+        "api_endpoint": "/api/upper-first",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "lower_first": {
+        "id": "lower_first",
+        "name": "首字母小写",
+        "name_en": "Lower First",
+        "description": "首字母小写",
+        "category": "string",
+        "subcategory": "case",
+        "api_endpoint": "/api/lower-first",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "swap_case": {
+        "id": "swap_case",
+        "name": "大小写互换",
+        "name_en": "Swap Case",
+        "description": "大小写互换",
+        "category": "string",
+        "subcategory": "case",
+        "api_endpoint": "/api/swap-case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "arrow-up-down"
+    },
+    "reverse_string": {
+        "id": "reverse_string",
+        "name": "反转字符串",
+        "name_en": "Reverse String",
+        "description": "反转字符串",
+        "category": "string",
+        "subcategory": "transform",
+        "api_endpoint": "/api/reverse-string",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "rotate-ccw"
+    },
+    "truncate_string": {
+        "id": "truncate_string",
+        "name": "截断字符串",
+        "name_en": "Truncate String",
+        "description": "截断字符串",
+        "category": "string",
+        "subcategory": "transform",
+        "api_endpoint": "/api/truncate-string",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "length", "type": "number", "required": True, "description": "长度"},
+            {"name": "suffix", "type": "string", "required": False, "description": "后缀"}
+        ],
+        "icon": "scissors"
+    },
+    "pad": {
+        "id": "pad",
+        "name": "填充",
+        "name_en": "Pad",
+        "description": "填充字符串",
+        "category": "string",
+        "subcategory": "transform",
+        "api_endpoint": "/api/pad",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "length", "type": "number", "required": True, "description": "长度"},
+            {"name": "char", "type": "string", "required": False, "description": "填充字符"}
+        ],
+        "icon": "plus"
+    },
+    "words": {
+        "id": "words",
+        "name": "分词",
+        "name_en": "Words",
+        "description": "将字符串拆分为单词数组",
+        "category": "string",
+        "subcategory": "transform",
+        "api_endpoint": "/api/words",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "list"
+    },
+    "unwords": {
+        "id": "unwords",
+        "name": "合并词",
+        "name_en": "Unwords",
+        "description": "将单词数组合并为字符串",
+        "category": "string",
+        "subcategory": "transform",
+        "api_endpoint": "/api/unwords",
+        "method": "POST",
+        "params": [
+            {"name": "words", "type": "array", "required": True, "description": "单词数组"}
+        ],
+        "icon": "link"
+    },
+    "lines": {
+        "id": "lines",
+        "name": "分行",
+        "name_en": "Lines",
+        "description": "将字符串拆分为行数组",
+        "category": "string",
+        "subcategory": "transform",
+        "api_endpoint": "/api/lines",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "list"
+    },
+    "unlines": {
+        "id": "unlines",
+        "name": "合并行",
+        "name_en": "Unlines",
+        "description": "将行数组合并为字符串",
+        "category": "string",
+        "subcategory": "transform",
+        "api_endpoint": "/api/unlines",
+        "method": "POST",
+        "params": [
+            {"name": "lines", "type": "array", "required": True, "description": "行数组"}
+        ],
+        "icon": "link"
     }
 }
 
