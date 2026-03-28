@@ -3260,6 +3260,101 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "value", "type": "string", "required": True, "description": "值"}
         ],
         "icon": "hash"
+    },
+    "batch": {
+        "id": "batch",
+        "name": "批量处理",
+        "name_en": "Batch Process",
+        "description": "批量处理元素",
+        "category": "utility",
+        "subcategory": "batch",
+        "api_endpoint": "/api/batch",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "元素列表"},
+            {"name": "fn", "type": "string", "required": True, "description": "处理函数"}
+        ],
+        "icon": "layers"
+    },
+    "chunk_batch": {
+        "id": "chunk_batch",
+        "name": "分块批处理",
+        "name_en": "Chunk Batch",
+        "description": "分块批量处理",
+        "category": "utility",
+        "subcategory": "batch",
+        "api_endpoint": "/api/chunk-batch",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "元素列表"},
+            {"name": "size", "type": "number", "required": True, "description": "块大小"}
+        ],
+        "icon": "grid"
+    },
+    "retry": {
+        "id": "retry",
+        "name": "重试",
+        "name_en": "Retry",
+        "description": "失败自动重试",
+        "category": "utility",
+        "subcategory": "retry",
+        "api_endpoint": "/api/retry",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "attempts", "type": "number", "required": False, "description": "重试次数"}
+        ],
+        "icon": "rotate-cw"
+    },
+    "sleep": {
+        "id": "sleep",
+        "name": "延迟",
+        "name_en": "Sleep",
+        "description": "延迟执行",
+        "category": "utility",
+        "subcategory": "timing",
+        "api_endpoint": "/api/sleep",
+        "method": "POST",
+        "params": [
+            {"name": "seconds", "type": "number", "required": True, "description": "秒数"}
+        ],
+        "icon": "clock"
+    },
+    "now": {
+        "id": "now",
+        "name": "当前时刻",
+        "name_en": "Now",
+        "description": "获取当前时刻",
+        "category": "datetime",
+        "subcategory": "now",
+        "api_endpoint": "/api/now",
+        "method": "POST",
+        "params": [],
+        "icon": "clock"
+    },
+    "today": {
+        "id": "today",
+        "name": "今日日期",
+        "name_en": "Today",
+        "description": "获取今天的日期",
+        "category": "datetime",
+        "subcategory": "date",
+        "api_endpoint": "/api/today",
+        "method": "POST",
+        "params": [],
+        "icon": "calendar"
+    },
+    "timestamp": {
+        "id": "timestamp",
+        "name": "时间戳",
+        "name_en": "Timestamp",
+        "description": "获取当前时间戳",
+        "category": "datetime",
+        "subcategory": "timestamp",
+        "api_endpoint": "/api/timestamp",
+        "method": "POST",
+        "params": [],
+        "icon": "hash"
     }
 }
 
