@@ -364,6 +364,21 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "list"
     },
+    "list_find": {
+        "id": "list_find",
+        "name": "列表查找",
+        "name_en": "List Find",
+        "description": "在列表中查找元素及其索引",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-find",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "源列表"},
+            {"name": "value", "type": "any", "required": False, "description": "要查找的值"}
+        ],
+        "icon": "search"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
