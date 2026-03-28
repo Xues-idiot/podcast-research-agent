@@ -4371,6 +4371,109 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "key", "type": "string", "required": True, "description": "键名"}
         ],
         "icon": "list"
+    },
+    "pick": {
+        "id": "pick",
+        "name": "选择键",
+        "name_en": "Pick",
+        "description": "从对象中选择指定键",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/pick",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "keys", "type": "array", "required": True, "description": "键数组"}
+        ],
+        "icon": "check-square"
+    },
+    "omit": {
+        "id": "omit",
+        "name": "排除键",
+        "name_en": "Omit",
+        "description": "排除对象中的指定键",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/omit",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "keys", "type": "array", "required": True, "description": "键数组"}
+        ],
+        "icon": "x-square"
+    },
+    "has_key": {
+        "id": "has_key",
+        "name": "键存在检查",
+        "name_en": "Has Key",
+        "description": "检查对象是否有指定键",
+        "category": "object",
+        "subcategory": "check",
+        "api_endpoint": "/api/has-key",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "key", "type": "string", "required": True, "description": "键名"}
+        ],
+        "icon": "check-circle"
+    },
+    "invert": {
+        "id": "invert",
+        "name": "反转对象",
+        "name_en": "Invert",
+        "description": "反转对象的键值",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/invert",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "map_values": {
+        "id": "map_values",
+        "name": "映射值",
+        "name_en": "Map Values",
+        "description": "对对象每个值应用函数",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/map-values",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "map"
+    },
+    "map_keys": {
+        "id": "map_keys",
+        "name": "映射键",
+        "name_en": "Map Keys",
+        "description": "对对象每个键应用函数",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/map-keys",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "map"
+    },
+    "size": {
+        "id": "size",
+        "name": "大小",
+        "name_en": "Size",
+        "description": "获取对象或数组大小",
+        "category": "utility",
+        "subcategory": "property",
+        "api_endpoint": "/api/size",
+        "method": "POST",
+        "params": [
+            {"name": "item", "type": "string", "required": True, "description": "对象或数组"}
+        ],
+        "icon": "hash"
     }
 }
 
