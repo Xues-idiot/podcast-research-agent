@@ -379,6 +379,20 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "search"
     },
+    "list_batch": {
+        "id": "list_batch",
+        "name": "列表批处理",
+        "name_en": "List Batch",
+        "description": "对列表元素进行批量映射和过滤操作",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-batch",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "源列表"}
+        ],
+        "icon": "list"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
