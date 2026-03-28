@@ -22648,6 +22648,192 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "git-compare"
     },
+
+    # ========== 并发工具 ==========
+    "semaphore_acquire": {
+        "id": "semaphore_acquire",
+        "name": "信号量获取",
+        "name_en": "Semaphore Acquire",
+        "description": "获取信号量",
+        "category": "concurrency",
+        "subcategory": "semaphore",
+        "api_endpoint": "/api/semaphore_acquire",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "信号量名称"}
+        ],
+        "icon": "lock"
+    },
+    "semaphore_release": {
+        "id": "semaphore_release",
+        "name": "信号量释放",
+        "name_en": "Semaphore Release",
+        "description": "释放信号量",
+        "category": "concurrency",
+        "subcategory": "semaphore",
+        "api_endpoint": "/api/semaphore_release",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "信号量名称"}
+        ],
+        "icon": "unlock"
+    },
+    "mutex_lock": {
+        "id": "mutex_lock",
+        "name": "互斥锁加锁",
+        "name_en": "Mutex Lock",
+        "description": "获取互斥锁",
+        "category": "concurrency",
+        "subcategory": "mutex",
+        "api_endpoint": "/api/mutex_lock",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "锁名称"}
+        ],
+        "icon": "lock"
+    },
+    "mutex_unlock": {
+        "id": "mutex_unlock",
+        "name": "互斥锁解锁",
+        "name_en": "Mutex Unlock",
+        "description": "释放互斥锁",
+        "category": "concurrency",
+        "subcategory": "mutex",
+        "api_endpoint": "/api/mutex_unlock",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "锁名称"}
+        ],
+        "icon": "unlock"
+    },
+    "rwlock_read": {
+        "id": "rwlock_read",
+        "name": "读写锁读",
+        "name_en": "Read Lock",
+        "description": "获取读锁",
+        "category": "concurrency",
+        "subcategory": "rwlock",
+        "api_endpoint": "/api/rwlock_read",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "锁名称"}
+        ],
+        "icon": "lock"
+    },
+    "rwlock_write": {
+        "id": "rwlock_write",
+        "name": "读写锁写",
+        "name_en": "Write Lock",
+        "description": "获取写锁",
+        "category": "concurrency",
+        "subcategory": "rwlock",
+        "api_endpoint": "/api/rwlock_write",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "锁名称"}
+        ],
+        "icon": "lock"
+    },
+    "atomic_counter": {
+        "id": "atomic_counter",
+        "name": "原子计数器",
+        "name_en": "Atomic Counter",
+        "description": "原子递增计数器",
+        "category": "concurrency",
+        "subcategory": "atomic",
+        "api_endpoint": "/api/atomic_counter",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "计数器名称"},
+            {"name": "delta", "type": "number", "required": False, "description": "增量", "default": 1}
+        ],
+        "icon": "hash"
+    },
+    "once": {
+        "id": "once",
+        "name": "单次执行",
+        "name_en": "Once",
+        "description": "确保函数只执行一次",
+        "category": "concurrency",
+        "subcategory": "once",
+        "api_endpoint": "/api/once",
+        "method": "POST",
+        "params": [
+            {"name": "func", "type": "function", "required": True, "description": "函数"}
+        ],
+        "icon": "check-circle"
+    },
+    "wait_group": {
+        "id": "wait_group",
+        "name": "等待组",
+        "name_en": "Wait Group",
+        "description": "等待一组协程完成",
+        "category": "concurrency",
+        "subcategory": "wait",
+        "api_endpoint": "/api/wait_group",
+        "method": "POST",
+        "params": [
+            {"name": "funcs", "type": "array", "required": True, "description": "函数数组"}
+        ],
+        "icon": "clock"
+    },
+    "channel_create": {
+        "id": "channel_create",
+        "name": "创建通道",
+        "name_en": "Create Channel",
+        "description": "创建通道",
+        "category": "concurrency",
+        "subcategory": "channel",
+        "api_endpoint": "/api/channel_create",
+        "method": "POST",
+        "params": [
+            {"name": "buffer", "type": "number", "required": False, "description": "缓冲区大小", "default": 0}
+        ],
+        "icon": "git-merge"
+    },
+    "channel_send": {
+        "id": "channel_send",
+        "name": "发送数据",
+        "name_en": "Channel Send",
+        "description": "向通道发送数据",
+        "category": "concurrency",
+        "subcategory": "channel",
+        "api_endpoint": "/api/channel_send",
+        "method": "POST",
+        "params": [
+            {"name": "channel", "type": "string", "required": True, "description": "通道"},
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "arrow-right"
+    },
+    "channel_recv": {
+        "id": "channel_recv",
+        "name": "接收数据",
+        "name_en": "Channel Receive",
+        "description": "从通道接收数据",
+        "category": "concurrency",
+        "subcategory": "channel",
+        "api_endpoint": "/api/channel_recv",
+        "method": "POST",
+        "params": [
+            {"name": "channel", "type": "string", "required": True, "description": "通道"}
+        ],
+        "icon": "arrow-left"
+    },
+    "select": {
+        "id": "select",
+        "name": "选择器",
+        "name_en": "Select",
+        "description": "等待多个通道中的任意一个",
+        "category": "concurrency",
+        "subcategory": "select",
+        "api_endpoint": "/api/select",
+        "method": "POST",
+        "params": [
+            {"name": "channels", "type": "array", "required": True, "description": "通道数组"}
+        ],
+        "icon": "git-merge"
+    },
 }
 
 
