@@ -22834,6 +22834,224 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "git-merge"
     },
+
+    # ========== 时间序列工具 ==========
+    "timeseries_parse": {
+        "id": "timeseries_parse",
+        "name": "时间序列解析",
+        "name_en": "Parse Time Series",
+        "description": "解析时间序列数据",
+        "category": "timeseries",
+        "subcategory": "parse",
+        "api_endpoint": "/api/timeseries_parse",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"}
+        ],
+        "icon": "activity"
+    },
+    "timeseries_sample": {
+        "id": "timeseries_sample",
+        "name": "时间序列采样",
+        "name_en": "Time Series Sample",
+        "description": "对时间序列进行采样",
+        "category": "timeseries",
+        "subcategory": "sample",
+        "api_endpoint": "/api/timeseries_sample",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "时间序列"},
+            {"name": "interval", "type": "number", "required": True, "description": "采样间隔"}
+        ],
+        "icon": "activity"
+    },
+    "timeseries_aggregate": {
+        "id": "timeseries_aggregate",
+        "name": "时间序列聚合",
+        "name_en": "Time Series Aggregate",
+        "description": "对时间序列进行聚合",
+        "category": "timeseries",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/timeseries_aggregate",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "时间序列"},
+            {"name": "window", "type": "string", "required": True, "description": "窗口大小"},
+            {"name": "func", "type": "string", "required": True, "description": "聚合函数"}
+        ],
+        "icon": "activity"
+    },
+    "timeseries_diff": {
+        "id": "timeseries_diff",
+        "name": "时间序列差分",
+        "name_en": "Time Series Difference",
+        "description": "计算时间序列差分",
+        "category": "timeseries",
+        "subcategory": "diff",
+        "api_endpoint": "/api/timeseries_diff",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "时间序列"},
+            {"name": "periods", "type": "number", "required": False, "description": "周期数", "default": 1}
+        ],
+        "icon": "activity"
+    },
+    "timeseries_rolling": {
+        "id": "timeseries_rolling",
+        "name": "时间序列滚动",
+        "name_en": "Time Series Rolling",
+        "description": "计算滚动统计",
+        "category": "timeseries",
+        "subcategory": "rolling",
+        "api_endpoint": "/api/timeseries_rolling",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "时间序列"},
+            {"name": "window", "type": "number", "required": True, "description": "窗口大小"},
+            {"name": "func", "type": "string", "required": False, "description": "函数", "default": "mean"}
+        ],
+        "icon": "activity"
+    },
+    "timeseries_resample": {
+        "id": "timeseries_resample",
+        "name": "时间序列重采样",
+        "name_en": "Time Series Resample",
+        "description": "重新采样时间序列",
+        "category": "timeseries",
+        "subcategory": "resample",
+        "api_endpoint": "/api/timeseries_resample",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "时间序列"},
+            {"name": "rule", "type": "string", "required": True, "description": "重采样规则"}
+        ],
+        "icon": "activity"
+    },
+    "timeseries_interpolate": {
+        "id": "timeseries_interpolate",
+        "name": "时间序列插值",
+        "name_en": "Time Series Interpolate",
+        "description": "对时间序列进行插值",
+        "category": "timeseries",
+        "subcategory": "interpolate",
+        "api_endpoint": "/api/timeseries_interpolate",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "时间序列"},
+            {"name": "method", "type": "string", "required": False, "description": "方法", "default": "linear"}
+        ],
+        "icon": "activity"
+    },
+
+    # ========== 财务工具 ==========
+    "currency_convert": {
+        "id": "currency_convert",
+        "name": "货币转换",
+        "name_en": "Currency Convert",
+        "description": "货币换算",
+        "category": "finance",
+        "subcategory": "convert",
+        "api_endpoint": "/api/currency_convert",
+        "method": "POST",
+        "params": [
+            {"name": "amount", "type": "number", "required": True, "description": "金额"},
+            {"name": "from", "type": "string", "required": True, "description": "源货币"},
+            {"name": "to", "type": "string", "required": True, "description": "目标货币"}
+        ],
+        "icon": "dollar-sign"
+    },
+    "compound_interest": {
+        "id": "compound_interest",
+        "name": "复利计算",
+        "name_en": "Compound Interest",
+        "description": "计算复利",
+        "category": "finance",
+        "subcategory": "interest",
+        "api_endpoint": "/api/compound_interest",
+        "method": "POST",
+        "params": [
+            {"name": "principal", "type": "number", "required": True, "description": "本金"},
+            {"name": "rate", "type": "number", "required": True, "description": "利率"},
+            {"name": "time", "type": "number", "required": True, "description": "时间"}
+        ],
+        "icon": "trending-up"
+    },
+    "simple_interest": {
+        "id": "simple_interest",
+        "name": "单利计算",
+        "name_en": "Simple Interest",
+        "description": "计算单利",
+        "category": "finance",
+        "subcategory": "interest",
+        "api_endpoint": "/api/simple_interest",
+        "method": "POST",
+        "params": [
+            {"name": "principal", "type": "number", "required": True, "description": "本金"},
+            {"name": "rate", "type": "number", "required": True, "description": "利率"},
+            {"name": "time", "type": "number", "required": True, "description": "时间"}
+        ],
+        "icon": "trending-up"
+    },
+    "loan_payment": {
+        "id": "loan_payment",
+        "name": "贷款还款",
+        "name_en": "Loan Payment",
+        "description": "计算贷款月供",
+        "category": "finance",
+        "subcategory": "loan",
+        "api_endpoint": "/api/loan_payment",
+        "method": "POST",
+        "params": [
+            {"name": "principal", "type": "number", "required": True, "description": "贷款本金"},
+            {"name": "rate", "type": "number", "required": True, "description": "年利率"},
+            {"name": "terms", "type": "number", "required": True, "description": "还款月数"}
+        ],
+        "icon": "credit-card"
+    },
+    "roi": {
+        "id": "roi",
+        "name": "投资回报率",
+        "name_en": "ROI",
+        "description": "计算投资回报率",
+        "category": "finance",
+        "subcategory": "ratio",
+        "api_endpoint": "/api/roi",
+        "method": "POST",
+        "params": [
+            {"name": "gain", "type": "number", "required": True, "description": "收益"},
+            {"name": "cost", "type": "number", "required": True, "description": "成本"}
+        ],
+        "icon": "trending-up"
+    },
+    "npv": {
+        "id": "npv",
+        "name": "净现值",
+        "name_en": "NPV",
+        "description": "计算净现值",
+        "category": "finance",
+        "subcategory": "valuation",
+        "api_endpoint": "/api/npv",
+        "method": "POST",
+        "params": [
+            {"name": "rate", "type": "number", "required": True, "description": "折现率"},
+            {"name": "cashflows", "type": "array", "required": True, "description": "现金流"}
+        ],
+        "icon": "calculator"
+    },
+    "irr": {
+        "id": "irr",
+        "name": "内部收益率",
+        "name_en": "IRR",
+        "description": "计算内部收益率",
+        "category": "finance",
+        "subcategory": "valuation",
+        "api_endpoint": "/api/irr",
+        "method": "POST",
+        "params": [
+            {"name": "cashflows", "type": "array", "required": True, "description": "现金流"}
+        ],
+        "icon": "calculator"
+    },
 }
 
 
