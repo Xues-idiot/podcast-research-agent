@@ -4069,6 +4069,109 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "text", "type": "string", "required": True, "description": "文本"}
         ],
         "icon": "type"
+    },
+    "parse_url": {
+        "id": "parse_url",
+        "name": "解析URL",
+        "name_en": "Parse URL",
+        "description": "解析URL各部分",
+        "category": "web",
+        "subcategory": "url",
+        "api_endpoint": "/api/parse-url",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"}
+        ],
+        "icon": "link"
+    },
+    "build_url": {
+        "id": "build_url",
+        "name": "构建URL",
+        "name_en": "Build URL",
+        "description": "构建URL",
+        "category": "web",
+        "subcategory": "url",
+        "api_endpoint": "/api/build-url",
+        "method": "POST",
+        "params": [
+            {"name": "scheme", "type": "string", "required": True, "description": "协议"},
+            {"name": "host", "type": "string", "required": True, "description": "主机"},
+            {"name": "path", "type": "string", "required": False, "description": "路径"}
+        ],
+        "icon": "link"
+    },
+    "query_param": {
+        "id": "query_param",
+        "name": "获取查询参数",
+        "name_en": "Query Param",
+        "description": "从URL获取查询参数",
+        "category": "web",
+        "subcategory": "url",
+        "api_endpoint": "/api/query-param",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"},
+            {"name": "key", "type": "string", "required": True, "description": "参数名"}
+        ],
+        "icon": "search"
+    },
+    "add_query_param": {
+        "id": "add_query_param",
+        "name": "添加查询参数",
+        "name_en": "Add Query Param",
+        "description": "向URL添加查询参数",
+        "category": "web",
+        "subcategory": "url",
+        "api_endpoint": "/api/add-query",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"},
+            {"name": "key", "type": "string", "required": True, "description": "参数名"},
+            {"name": "value", "type": "string", "required": True, "description": "参数值"}
+        ],
+        "icon": "plus"
+    },
+    "strip_tags": {
+        "id": "strip_tags",
+        "name": "去除所有标签",
+        "name_en": "Strip Tags",
+        "description": "去除HTML所有标签",
+        "category": "text",
+        "subcategory": "clean",
+        "api_endpoint": "/api/strip-tags",
+        "method": "POST",
+        "params": [
+            {"name": "html", "type": "string", "required": True, "description": "HTML文本"}
+        ],
+        "icon": "code"
+    },
+    "escape_html": {
+        "id": "escape_html",
+        "name": "HTML转义",
+        "name_en": "Escape HTML",
+        "description": "HTML特殊字符转义",
+        "category": "text",
+        "subcategory": "escape",
+        "api_endpoint": "/api/escape-html",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "code"
+    },
+    "unescape_html": {
+        "id": "unescape_html",
+        "name": "HTML反转义",
+        "name_en": "Unescape HTML",
+        "description": "HTML实体反转义",
+        "category": "text",
+        "subcategory": "escape",
+        "api_endpoint": "/api/unescape-html",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "HTML文本"}
+        ],
+        "icon": "code"
     }
 }
 
