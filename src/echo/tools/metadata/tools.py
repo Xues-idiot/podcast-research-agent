@@ -21757,6 +21757,256 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "trash-2"
     },
+
+    # ========== 缓存工具 ==========
+    "cache_set": {
+        "id": "cache_set",
+        "name": "缓存设置",
+        "name_en": "Cache Set",
+        "description": "设置缓存值",
+        "category": "cache",
+        "subcategory": "set",
+        "api_endpoint": "/api/cache_set",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键"},
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "ttl", "type": "number", "required": False, "description": "过期秒数"}
+        ],
+        "icon": "database"
+    },
+    "cache_get": {
+        "id": "cache_get",
+        "name": "缓存获取",
+        "name_en": "Cache Get",
+        "description": "获取缓存值",
+        "category": "cache",
+        "subcategory": "get",
+        "api_endpoint": "/api/cache_get",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键"}
+        ],
+        "icon": "database"
+    },
+    "cache_has": {
+        "id": "cache_has",
+        "name": "缓存存在",
+        "name_en": "Cache Has",
+        "description": "检查缓存是否存在",
+        "category": "cache",
+        "subcategory": "has",
+        "api_endpoint": "/api/cache_has",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键"}
+        ],
+        "icon": "check"
+    },
+    "cache_delete": {
+        "id": "cache_delete",
+        "name": "缓存删除",
+        "name_en": "Cache Delete",
+        "description": "删除缓存",
+        "category": "cache",
+        "subcategory": "delete",
+        "api_endpoint": "/api/cache_delete",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键"}
+        ],
+        "icon": "trash-2"
+    },
+    "cache_clear": {
+        "id": "cache_clear",
+        "name": "缓存清空",
+        "name_en": "Cache Clear",
+        "description": "清空所有缓存",
+        "category": "cache",
+        "subcategory": "clear",
+        "api_endpoint": "/api/cache_clear",
+        "method": "POST",
+        "params": [],
+        "icon": "trash"
+    },
+    "cache_keys": {
+        "id": "cache_keys",
+        "name": "缓存键列表",
+        "name_en": "Cache Keys",
+        "description": "获取所有缓存键",
+        "category": "cache",
+        "subcategory": "keys",
+        "api_endpoint": "/api/cache_keys",
+        "method": "POST",
+        "params": [],
+        "icon": "list"
+    },
+    "cache_ttl": {
+        "id": "cache_ttl",
+        "name": "缓存TTL",
+        "name_en": "Cache TTL",
+        "description": "获取缓存剩余生存时间",
+        "category": "cache",
+        "subcategory": "ttl",
+        "api_endpoint": "/api/cache_ttl",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键"}
+        ],
+        "icon": "clock"
+    },
+
+    # ========== 流控工具 ==========
+    "rate_limit": {
+        "id": "rate_limit",
+        "name": "限流",
+        "name_en": "Rate Limit",
+        "description": "限制调用频率",
+        "category": "rate_limiter",
+        "subcategory": "limit",
+        "api_endpoint": "/api/rate_limit",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键"},
+            {"name": "max_calls", "type": "number", "required": True, "description": "最大调用数"},
+            {"name": "window", "type": "number", "required": True, "description": "时间窗口秒数"}
+        ],
+        "icon": "zap"
+    },
+    "rate_check": {
+        "id": "rate_check",
+        "name": "限流检查",
+        "name_en": "Rate Check",
+        "description": "检查是否超过限制",
+        "category": "rate_limiter",
+        "subcategory": "check",
+        "api_endpoint": "/api/rate_check",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键"}
+        ],
+        "icon": "check"
+    },
+    "rate_reset": {
+        "id": "rate_reset",
+        "name": "限流重置",
+        "name_en": "Rate Reset",
+        "description": "重置限流计数器",
+        "category": "rate_limiter",
+        "subcategory": "reset",
+        "api_endpoint": "/api/rate_reset",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键"}
+        ],
+        "icon": "refresh-cw"
+    },
+
+    # ========== 批处理工具 ==========
+    "batch_process": {
+        "id": "batch_process",
+        "name": "批量处理",
+        "name_en": "Batch Process",
+        "description": "批量处理数据",
+        "category": "batch",
+        "subcategory": "process",
+        "api_endpoint": "/api/batch_process",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数据项"},
+            {"name": "func", "type": "function", "required": True, "description": "处理函数"}
+        ],
+        "icon": "layers"
+    },
+    "batch_map": {
+        "id": "batch_map",
+        "name": "批量映射",
+        "name_en": "Batch Map",
+        "description": "批量映射数据",
+        "category": "batch",
+        "subcategory": "map",
+        "api_endpoint": "/api/batch_map",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数据项"},
+            {"name": "func", "type": "function", "required": True, "description": "映射函数"}
+        ],
+        "icon": "git-merge"
+    },
+    "batch_filter": {
+        "id": "batch_filter",
+        "name": "批量过滤",
+        "name_en": "Batch Filter",
+        "description": "批量过滤数据",
+        "category": "batch",
+        "subcategory": "filter",
+        "api_endpoint": "/api/batch_filter",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数据项"},
+            {"name": "func", "type": "function", "required": True, "description": "过滤函数"}
+        ],
+        "icon": "filter"
+    },
+    "batch_reduce": {
+        "id": "batch_reduce",
+        "name": "批量聚合",
+        "name_en": "Batch Reduce",
+        "description": "批量聚合数据",
+        "category": "batch",
+        "subcategory": "reduce",
+        "api_endpoint": "/api/batch_reduce",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数据项"},
+            {"name": "func", "type": "function", "required": True, "description": "聚合函数"},
+            {"name": "initial", "type": "any", "required": False, "description": "初始值"}
+        ],
+        "icon": "sliders"
+    },
+    "batch_chunk": {
+        "id": "batch_chunk",
+        "name": "批量分块",
+        "name_en": "Batch Chunk",
+        "description": "将数据分块",
+        "category": "batch",
+        "subcategory": "chunk",
+        "api_endpoint": "/api/batch_chunk",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数据项"},
+            {"name": "size", "type": "number", "required": True, "description": "块大小"}
+        ],
+        "icon": "grid"
+    },
+    "batch_flatten": {
+        "id": "batch_flatten",
+        "name": "批量扁平化",
+        "name_en": "Batch Flatten",
+        "description": "扁平化嵌套数组",
+        "category": "batch",
+        "subcategory": "flatten",
+        "api_endpoint": "/api/batch_flatten",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "嵌套数组"}
+        ],
+        "icon": "minimize-2"
+    },
+    "batch_zip": {
+        "id": "batch_zip",
+        "name": "批量合并",
+        "name_en": "Batch Zip",
+        "description": "合并多个数组",
+        "category": "batch",
+        "subcategory": "zip",
+        "api_endpoint": "/api/batch_zip",
+        "method": "POST",
+        "params": [
+            {"name": "arrays", "type": "array", "required": True, "description": "数组列表"}
+        ],
+        "icon": "git-merge"
+    },
 }
 
 
