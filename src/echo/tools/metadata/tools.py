@@ -651,6 +651,18 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "params": [],
         "icon": "search"
     },
+    "path_utils": {
+        "id": "path_utils",
+        "name": "路径工具",
+        "name_en": "Path Utils",
+        "description": "路径操作：拼接、分割、获取目录、文件名、扩展名",
+        "category": "file",
+        "subcategory": "path",
+        "api_endpoint": "/api/path",
+        "method": "POST",
+        "params": [],
+        "icon": "folder"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",

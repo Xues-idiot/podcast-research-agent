@@ -1,38 +1,48 @@
-"""路径工具"""
-
+"""路径工具集合"""
 import os
-from typing import Optional
+from pathlib import Path
+from typing import List
 
 
-class PathUtils:
-    """路径工具"""
-
-    def get_extension(self, path: str) -> str:
-        """获取扩展名"""
-        return os.path.splitext(path)[1].lstrip('.')
-
-    def get_filename(self, path: str) -> str:
-        """获取文件名"""
-        return os.path.basename(path)
-
-    def get_basename(self, path: str) -> str:
-        """获取不含扩展名的文件名"""
-        return os.path.splitext(os.path.basename(path))[0]
-
-    def join(self, *parts: str) -> str:
-        """拼接路径"""
-        return os.path.join(*parts)
-
-    def normalize(self, path: str) -> str:
-        """标准化路径"""
-        return os.path.normpath(path)
+def path_join(*parts: str) -> str:
+    return os.path.join(*parts)
 
 
-_utils: Optional[PathUtils] = None
+def path_split(path: str) -> List[str]:
+    return path.split(os.sep)
 
 
-def get_path_utils() -> PathUtils:
-    global _utils
-    if _utils is None:
-        _utils = PathUtils()
-    return _utils
+def path_basename(path: str) -> str:
+    return os.path.basename(path)
+
+
+def path_dirname(path: str) -> str:
+    return os.path.dirname(path)
+
+
+def path_ext(path: str) -> str:
+    return os.path.splitext(path)[1]
+
+
+def path_stem(path: str) -> str:
+    return os.path.splitext(path)[0]
+
+
+def path_exists(path: str) -> bool:
+    return os.path.exists(path)
+
+
+def path_is_file(path: str) -> bool:
+    return os.path.isfile(path)
+
+
+def path_is_dir(path: str) -> bool:
+    return os.path.isdir(path)
+
+
+def path_abs(path: str) -> str:
+    return os.path.abspath(path)
+
+
+def path_norm(path: str) -> str:
+    return os.path.normpath(path)
