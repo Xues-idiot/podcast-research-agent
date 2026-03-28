@@ -27175,6 +27175,384 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "locale", "type": "string", "required": True, "description": "语言环境"}
         ],
         "icon": "globe"
+    },
+
+    # ========== RSS/Atom工具 ==========
+    "rss_parse": {
+        "id": "rss_parse",
+        "name": "解析RSS",
+        "name_en": "Parse RSS",
+        "description": "解析RSS订阅源",
+        "category": "rss",
+        "subcategory": "parse",
+        "api_endpoint": "/api/rss/parse",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "RSS URL"}
+        ],
+        "icon": "rss"
+    },
+    "rss_generate": {
+        "id": "rss_generate",
+        "name": "生成RSS",
+        "name_en": "Generate RSS",
+        "description": "生成RSS订阅源",
+        "category": "rss",
+        "subcategory": "generate",
+        "api_endpoint": "/api/rss/generate",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "条目数组"},
+            {"name": "title", "type": "string", "required": True, "description": "标题"}
+        ],
+        "icon": "rss"
+    },
+    "atom_parse": {
+        "id": "atom_parse",
+        "name": "解析Atom",
+        "name_en": "Parse Atom",
+        "description": "解析Atom订阅源",
+        "category": "rss",
+        "subcategory": "atom",
+        "api_endpoint": "/api/atom/parse",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "Atom URL"}
+        ],
+        "icon": "rss"
+    },
+    "sitemap_parse": {
+        "id": "sitemap_parse",
+        "name": "解析网站地图",
+        "name_en": "Parse Sitemap",
+        "description": "解析XML网站地图",
+        "category": "rss",
+        "subcategory": "sitemap",
+        "api_endpoint": "/api/sitemap/parse",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网站地图URL"}
+        ],
+        "icon": "map"
+    },
+
+    # ========== 网页抓取工具 ==========
+    "scrape_html": {
+        "id": "scrape_html",
+        "name": "抓取HTML",
+        "name_en": "Scrape HTML",
+        "description": "抓取网页HTML",
+        "category": "scraping",
+        "subcategory": "html",
+        "api_endpoint": "/api/scrape/html",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网页URL"}
+        ],
+        "icon": "download"
+    },
+    "scrape_text": {
+        "id": "scrape_text",
+        "name": "抓取文本",
+        "name_en": "Scrape Text",
+        "description": "抓取网页文本",
+        "category": "scraping",
+        "subcategory": "text",
+        "api_endpoint": "/api/scrape/text",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网页URL"}
+        ],
+        "icon": "download"
+    },
+    "scrape_json": {
+        "id": "scrape_json",
+        "name": "抓取JSON",
+        "name_en": "Scrape JSON",
+        "description": "抓取JSON数据",
+        "category": "scraping",
+        "subcategory": "json",
+        "api_endpoint": "/api/scrape/json",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "API URL"}
+        ],
+        "icon": "download"
+    },
+    "scrape_element": {
+        "id": "scrape_element",
+        "name": "抓取元素",
+        "name_en": "Scrape Element",
+        "description": "抓取特定元素",
+        "category": "scraping",
+        "subcategory": "element",
+        "api_endpoint": "/api/scrape/element",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网页URL"},
+            {"name": "selector", "type": "string", "required": True, "description": "CSS选择器"}
+        ],
+        "icon": "target"
+    },
+
+    # ========== 爬虫工具 ==========
+    "crawl_start": {
+        "id": "crawl_start",
+        "name": "启动爬虫",
+        "name_en": "Start Crawler",
+        "description": "启动网页爬虫",
+        "category": "crawler",
+        "subcategory": "control",
+        "api_endpoint": "/api/crawl/start",
+        "method": "POST",
+        "params": [
+            {"name": "start_url", "type": "string", "required": True, "description": "起始URL"},
+            {"name": "depth", "type": "number", "required": False, "description": "爬取深度"}
+        ],
+        "icon": "play"
+    },
+    "crawl_stop": {
+        "id": "crawl_stop",
+        "name": "停止爬虫",
+        "name_en": "Stop Crawler",
+        "description": "停止网页爬虫",
+        "category": "crawler",
+        "subcategory": "control",
+        "api_endpoint": "/api/crawl/stop",
+        "method": "POST",
+        "params": [],
+        "icon": "stop-circle"
+    },
+    "crawl_status": {
+        "id": "crawl_status",
+        "name": "爬虫状态",
+        "name_en": "Crawler Status",
+        "description": "获取爬虫状态",
+        "category": "crawler",
+        "subcategory": "status",
+        "api_endpoint": "/api/crawl/status",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    "crawl_results": {
+        "id": "crawl_results",
+        "name": "爬取结果",
+        "name_en": "Crawl Results",
+        "description": "获取爬取结果",
+        "category": "crawler",
+        "subcategory": "results",
+        "api_endpoint": "/api/crawl/results",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 机器人工具 ==========
+    "bot_create": {
+        "id": "bot_create",
+        "name": "创建机器人",
+        "name_en": "Create Bot",
+        "description": "创建聊天机器人",
+        "category": "bot",
+        "subcategory": "create",
+        "api_endpoint": "/api/bot/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "机器人名称"},
+            {"name": "description", "type": "string", "required": False, "description": "描述"}
+        ],
+        "icon": "bot"
+    },
+    "bot_send_message": {
+        "id": "bot_send_message",
+        "name": "发送消息",
+        "name_en": "Send Message",
+        "description": "向机器人发送消息",
+        "category": "bot",
+        "subcategory": "message",
+        "api_endpoint": "/api/bot/message",
+        "method": "POST",
+        "params": [
+            {"name": "bot_id", "type": "string", "required": True, "description": "机器人ID"},
+            {"name": "message", "type": "string", "required": True, "description": "消息内容"}
+        ],
+        "icon": "send"
+    },
+    "bot_webhook": {
+        "id": "bot_webhook",
+        "name": "设置Webhook",
+        "name_en": "Set Webhook",
+        "description": "设置机器人Webhook",
+        "category": "bot",
+        "subcategory": "webhook",
+        "api_endpoint": "/api/bot/webhook",
+        "method": "POST",
+        "params": [
+            {"name": "bot_id", "type": "string", "required": True, "description": "机器人ID"},
+            {"name": "url", "type": "string", "required": True, "description": "Webhook URL"}
+        ],
+        "icon": "webhook"
+    },
+
+    # ========== 自动化工具 ==========
+    "automation_create": {
+        "id": "automation_create",
+        "name": "创建自动化",
+        "name_en": "Create Automation",
+        "description": "创建自动化流程",
+        "category": "automation",
+        "subcategory": "create",
+        "api_endpoint": "/api/automation/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "自动化名称"},
+            {"name": "trigger", "type": "object", "required": True, "description": "触发器配置"},
+            {"name": "actions", "type": "array", "required": True, "description": "动作数组"}
+        ],
+        "icon": "zap"
+    },
+    "automation_run": {
+        "id": "automation_run",
+        "name": "运行自动化",
+        "name_en": "Run Automation",
+        "description": "手动运行自动化",
+        "category": "automation",
+        "subcategory": "run",
+        "api_endpoint": "/api/automation/run",
+        "method": "POST",
+        "params": [
+            {"name": "automation_id", "type": "string", "required": True, "description": "自动化ID"}
+        ],
+        "icon": "play"
+    },
+    "automation_list": {
+        "id": "automation_list",
+        "name": "自动化列表",
+        "name_en": "Automation List",
+        "description": "获取自动化列表",
+        "category": "automation",
+        "subcategory": "list",
+        "api_endpoint": "/api/automation/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "automation_logs": {
+        "id": "automation_logs",
+        "name": "自动化日志",
+        "name_en": "Automation Logs",
+        "description": "获取自动化执行日志",
+        "category": "automation",
+        "subcategory": "logs",
+        "api_endpoint": "/api/automation/logs",
+        "method": "POST",
+        "params": [
+            {"name": "automation_id", "type": "string", "required": True, "description": "自动化ID"}
+        ],
+        "icon": "file-text"
+    },
+    "automation_delete": {
+        "id": "automation_delete",
+        "name": "删除自动化",
+        "name_en": "Delete Automation",
+        "description": "删除自动化流程",
+        "category": "automation",
+        "subcategory": "delete",
+        "api_endpoint": "/api/automation/delete",
+        "method": "POST",
+        "params": [
+            {"name": "automation_id", "type": "string", "required": True, "description": "自动化ID"}
+        ],
+        "icon": "trash"
+    },
+
+    # ========== 工作流工具 ==========
+    "workflow_create": {
+        "id": "workflow_create",
+        "name": "创建工作流",
+        "name_en": "Create Workflow",
+        "description": "创建工作流",
+        "category": "workflow",
+        "subcategory": "create",
+        "api_endpoint": "/api/workflow/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "工作流名称"},
+            {"name": "steps", "type": "array", "required": True, "description": "步骤数组"}
+        ],
+        "icon": "git-branch"
+    },
+    "workflow_execute": {
+        "id": "workflow_execute",
+        "name": "执行工作流",
+        "name_en": "Execute Workflow",
+        "description": "执行工作流",
+        "category": "workflow",
+        "subcategory": "execute",
+        "api_endpoint": "/api/workflow/execute",
+        "method": "POST",
+        "params": [
+            {"name": "workflow_id", "type": "string", "required": True, "description": "工作流ID"},
+            {"name": "input", "type": "object", "required": False, "description": "输入数据"}
+        ],
+        "icon": "play"
+    },
+    "workflow_status": {
+        "id": "workflow_status",
+        "name": "工作流状态",
+        "name_en": "Workflow Status",
+        "description": "获取工作流执行状态",
+        "category": "workflow",
+        "subcategory": "status",
+        "api_endpoint": "/api/workflow/status",
+        "method": "POST",
+        "params": [
+            {"name": "execution_id", "type": "string", "required": True, "description": "执行ID"}
+        ],
+        "icon": "activity"
+    },
+    "workflow_list": {
+        "id": "workflow_list",
+        "name": "工作流列表",
+        "name_en": "Workflow List",
+        "description": "获取工作流列表",
+        "category": "workflow",
+        "subcategory": "list",
+        "api_endpoint": "/api/workflow/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 反垃圾工具 ==========
+    "spam_check": {
+        "id": "spam_check",
+        "name": "检查垃圾邮件",
+        "name_en": "Check Spam",
+        "description": "检查是否为垃圾邮件",
+        "category": "antispam",
+        "subcategory": "check",
+        "api_endpoint": "/api/spam/check",
+        "method": "POST",
+        "params": [
+            {"name": "content", "type": "string", "required": True, "description": "内容"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "spam_classify": {
+        "id": "spam_classify",
+        "name": "分类邮件",
+        "name_en": "Classify Email",
+        "description": "分类邮件内容",
+        "category": "antispam",
+        "subcategory": "classify",
+        "api_endpoint": "/api/spam/classify",
+        "method": "POST",
+        "params": [
+            {"name": "content", "type": "string", "required": True, "description": "邮件内容"}
+        ],
+        "icon": "tag"
     }
 }
 
