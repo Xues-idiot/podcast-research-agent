@@ -17876,7 +17876,317 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "lines", "type": "array", "required": True, "description": "行数组"}
         ],
         "icon": "link"
-    }
+    },
+
+    # ========== 格式化工具 ==========
+    "format_template": {
+        "id": "format_template",
+        "name": "模板格式化",
+        "name_en": "Template Formatter",
+        "description": "使用模板格式化字符串",
+        "category": "string",
+        "subcategory": "format",
+        "api_endpoint": "/api/format_template",
+        "method": "POST",
+        "params": [
+            {"name": "template", "type": "string", "required": True, "description": "模板字符串"},
+            {"name": "values", "type": "object", "required": True, "description": "填充值"}
+        ],
+        "icon": "file-text"
+    },
+    "indent": {
+        "id": "indent",
+        "name": "缩进",
+        "name_en": "Indent",
+        "description": "为每行添加缩进",
+        "category": "string",
+        "subcategory": "format",
+        "api_endpoint": "/api/indent",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "spaces", "type": "number", "required": False, "description": "缩进空格数", "default": 2}
+        ],
+        "icon": "align-left"
+    },
+    "dedent": {
+        "id": "dedent",
+        "name": "去除缩进",
+        "name_en": "Dedent",
+        "description": "去除每行的公共缩进",
+        "category": "string",
+        "subcategory": "format",
+        "api_endpoint": "/api/dedent",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "align-left"
+    },
+    "wrap_text": {
+        "id": "wrap_text",
+        "name": "文本包裹",
+        "name_en": "Wrap Text",
+        "description": "将长文本按指定宽度换行",
+        "category": "string",
+        "subcategory": "format",
+        "api_endpoint": "/api/wrap_text",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "width", "type": "number", "required": False, "description": "行宽度", "default": 80}
+        ],
+        "icon": "wrap-text"
+    },
+    "center": {
+        "id": "center",
+        "name": "居中对齐",
+        "name_en": "Center",
+        "description": "将文本居中对齐",
+        "category": "string",
+        "subcategory": "format",
+        "api_endpoint": "/api/center",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "width", "type": "number", "required": False, "description": "总宽度", "default": 80}
+        ],
+        "icon": "align-center"
+    },
+    "ljust": {
+        "id": "ljust",
+        "name": "左对齐",
+        "name_en": "Left Justify",
+        "description": "将文本左对齐到指定宽度",
+        "category": "string",
+        "subcategory": "format",
+        "api_endpoint": "/api/ljust",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "width", "type": "number", "required": False, "description": "总宽度", "default": 80}
+        ],
+        "icon": "align-left"
+    },
+    "rjust": {
+        "id": "rjust",
+        "name": "右对齐",
+        "name_en": "Right Justify",
+        "description": "将文本右对齐到指定宽度",
+        "category": "string",
+        "subcategory": "format",
+        "api_endpoint": "/api/rjust",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "width", "type": "number", "required": False, "description": "总宽度", "default": 80}
+        ],
+        "icon": "align-right"
+    },
+
+    # ========== UUID工具 ==========
+    "uuid_v1": {
+        "id": "uuid_v1",
+        "name": "UUID v1",
+        "name_en": "UUID v1",
+        "description": "生成基于时间的UUID",
+        "category": "uuid",
+        "subcategory": "generate",
+        "api_endpoint": "/api/uuid_v1",
+        "method": "POST",
+        "params": [],
+        "icon": "hash"
+    },
+    "uuid_v4": {
+        "id": "uuid_v4",
+        "name": "UUID v4",
+        "name_en": "UUID v4",
+        "description": "生成随机UUID",
+        "category": "uuid",
+        "subcategory": "generate",
+        "api_endpoint": "/api/uuid_v4",
+        "method": "POST",
+        "params": [],
+        "icon": "hash"
+    },
+    "uuid_validate": {
+        "id": "uuid_validate",
+        "name": "UUID验证",
+        "name_en": "UUID Validate",
+        "description": "验证UUID格式是否有效",
+        "category": "uuid",
+        "subcategory": "validate",
+        "api_endpoint": "/api/uuid_validate",
+        "method": "POST",
+        "params": [
+            {"name": "uuid", "type": "string", "required": True, "description": "UUID字符串"}
+        ],
+        "icon": "check"
+    },
+    "uuid_version": {
+        "id": "uuid_version",
+        "name": "UUID版本",
+        "name_en": "UUID Version",
+        "description": "获取UUID的版本号",
+        "category": "uuid",
+        "subcategory": "info",
+        "api_endpoint": "/api/uuid_version",
+        "method": "POST",
+        "params": [
+            {"name": "uuid", "type": "string", "required": True, "description": "UUID字符串"}
+        ],
+        "icon": "info"
+    },
+
+    # ========== NanoID工具 ==========
+    "nanoid": {
+        "id": "nanoid",
+        "name": "NanoID生成",
+        "name_en": "NanoID Generator",
+        "description": "生成小型唯一的ID字符串",
+        "category": "uuid",
+        "subcategory": "generate",
+        "api_endpoint": "/api/nanoid",
+        "method": "POST",
+        "params": [
+            {"name": "size", "type": "number", "required": False, "description": "ID长度", "default": 21}
+        ],
+        "icon": "hash"
+    },
+    "nanoid_alphabet": {
+        "id": "nanoid_alphabet",
+        "name": "自定义NanoID",
+        "name_en": "NanoID Custom",
+        "description": "使用自定义字母表生成NanoID",
+        "category": "uuid",
+        "subcategory": "generate",
+        "api_endpoint": "/api/nanoid_alphabet",
+        "method": "POST",
+        "params": [
+            {"name": "alphabet", "type": "string", "required": True, "description": "字符集"},
+            {"name": "size", "type": "number", "required": False, "description": "ID长度", "default": 21}
+        ],
+        "icon": "hash"
+    },
+
+    # ========== 哈希工具 ==========
+    "hash_md5": {
+        "id": "hash_md5",
+        "name": "MD5哈希",
+        "name_en": "MD5 Hash",
+        "description": "计算字符串的MD5哈希值",
+        "category": "crypto",
+        "subcategory": "hash",
+        "api_endpoint": "/api/hash_md5",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "lock"
+    },
+    "hash_sha1": {
+        "id": "hash_sha1",
+        "name": "SHA1哈希",
+        "name_en": "SHA1 Hash",
+        "description": "计算字符串的SHA1哈希值",
+        "category": "crypto",
+        "subcategory": "hash",
+        "api_endpoint": "/api/hash_sha1",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "lock"
+    },
+    "hash_sha256": {
+        "id": "hash_sha256",
+        "name": "SHA256哈希",
+        "name_en": "SHA256 Hash",
+        "description": "计算字符串的SHA256哈希值",
+        "category": "crypto",
+        "subcategory": "hash",
+        "api_endpoint": "/api/hash_sha256",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "lock"
+    },
+    "hash_bcrypt": {
+        "id": "hash_bcrypt",
+        "name": "Bcrypt哈希",
+        "name_en": "Bcrypt Hash",
+        "description": "使用Bcrypt算法哈希密码",
+        "category": "crypto",
+        "subcategory": "hash",
+        "api_endpoint": "/api/hash_bcrypt",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "密码"}
+        ],
+        "icon": "lock"
+    },
+    "verify_bcrypt": {
+        "id": "verify_bcrypt",
+        "name": "Bcrypt验证",
+        "name_en": "Bcrypt Verify",
+        "description": "验证密码与Bcrypt哈希是否匹配",
+        "category": "crypto",
+        "subcategory": "verify",
+        "api_endpoint": "/api/verify_bcrypt",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "密码"},
+            {"name": "hash", "type": "string", "required": True, "description": "哈希值"}
+        ],
+        "icon": "check"
+    },
+    "generate_token": {
+        "id": "generate_token",
+        "name": "生成令牌",
+        "name_en": "Generate Token",
+        "description": "生成随机令牌",
+        "category": "crypto",
+        "subcategory": "generate",
+        "api_endpoint": "/api/generate_token",
+        "method": "POST",
+        "params": [
+            {"name": "length", "type": "number", "required": False, "description": "令牌长度", "default": 32}
+        ],
+        "icon": "key"
+    },
+
+    # ========== HMAC工具 ==========
+    "hmac_md5": {
+        "id": "hmac_md5",
+        "name": "HMAC-MD5",
+        "name_en": "HMAC-MD5",
+        "description": "生成HMAC-MD5认证码",
+        "category": "crypto",
+        "subcategory": "hmac",
+        "api_endpoint": "/api/hmac_md5",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "消息"},
+            {"name": "key", "type": "string", "required": True, "description": "密钥"}
+        ],
+        "icon": "key"
+    },
+    "hmac_sha256": {
+        "id": "hmac_sha256",
+        "name": "HMAC-SHA256",
+        "name_en": "HMAC-SHA256",
+        "description": "生成HMAC-SHA256认证码",
+        "category": "crypto",
+        "subcategory": "hmac",
+        "api_endpoint": "/api/hmac_sha256",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "消息"},
+            {"name": "key", "type": "string", "required": True, "description": "密钥"}
+        ],
+        "icon": "key"
+    },
 }
 
 
