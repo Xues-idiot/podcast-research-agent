@@ -2354,6 +2354,108 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "keywords", "type": "array", "required": True, "description": "关键词列表"}
         ],
         "icon": "search"
+    },
+    "power": {
+        "id": "power",
+        "name": "幂运算",
+        "name_en": "Power",
+        "description": "计算幂",
+        "category": "math",
+        "subcategory": "advanced",
+        "api_endpoint": "/api/power",
+        "method": "POST",
+        "params": [
+            {"name": "base", "type": "number", "required": True, "description": "底数"},
+            {"name": "exponent", "type": "number", "required": True, "description": "指数"}
+        ],
+        "icon": "superscript"
+    },
+    "sqrt": {
+        "id": "sqrt",
+        "name": "平方根",
+        "name_en": "Square Root",
+        "description": "计算平方根",
+        "category": "math",
+        "subcategory": "advanced",
+        "api_endpoint": "/api/sqrt",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "superscript"
+    },
+    "log": {
+        "id": "log",
+        "name": "对数",
+        "name_en": "Logarithm",
+        "description": "计算对数",
+        "category": "math",
+        "subcategory": "advanced",
+        "api_endpoint": "/api/log",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "base", "type": "number", "required": False, "description": "底数"}
+        ],
+        "icon": "superscript"
+    },
+    "factorial": {
+        "id": "factorial",
+        "name": "阶乘",
+        "name_en": "Factorial",
+        "description": "计算阶乘",
+        "category": "math",
+        "subcategory": "advanced",
+        "api_endpoint": "/api/factorial",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "hash"
+    },
+    "gcd": {
+        "id": "gcd",
+        "name": "最大公约数",
+        "name_en": "GCD",
+        "description": "计算最大公约数",
+        "category": "math",
+        "subcategory": "advanced",
+        "api_endpoint": "/api/gcd",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "数值A"},
+            {"name": "b", "type": "number", "required": True, "description": "数值B"}
+        ],
+        "icon": "divide"
+    },
+    "lcm": {
+        "id": "lcm",
+        "name": "最小公倍数",
+        "name_en": "LCM",
+        "description": "计算最小公倍数",
+        "category": "math",
+        "subcategory": "advanced",
+        "api_endpoint": "/api/lcm",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "数值A"},
+            {"name": "b", "type": "number", "required": True, "description": "数值B"}
+        ],
+        "icon": "divide"
+    },
+    "median": {
+        "id": "median",
+        "name": "中位数",
+        "name_en": "Median",
+        "description": "计算中位数",
+        "category": "math",
+        "subcategory": "stats",
+        "api_endpoint": "/api/median",
+        "method": "POST",
+        "params": [
+            {"name": "values", "type": "array", "required": True, "description": "数值列表"}
+        ],
+        "icon": "bar-chart"
     }
 }
 
