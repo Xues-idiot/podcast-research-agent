@@ -23733,8 +23733,253 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "maximize"
     },
-}
 
+    # ========== 条件工具 ==========
+    "if": {
+        "id": "if",
+        "name": "条件执行",
+        "name_en": "If",
+        "description": "条件执行函数",
+        "category": "conditional",
+        "subcategory": "if",
+        "api_endpoint": "/api/if",
+        "method": "POST",
+        "params": [
+            {"name": "condition", "type": "boolean", "required": True, "description": "条件"},
+            {"name": "then", "type": "function", "required": True, "description": "then函数"},
+            {"name": "else", "type": "function", "required": False, "description": "else函数"}
+        ],
+        "icon": "git-branch"
+    },
+    "switch": {
+        "id": "switch",
+        "name": "开关执行",
+        "name_en": "Switch",
+        "description": "根据值选择执行",
+        "category": "conditional",
+        "subcategory": "switch",
+        "api_endpoint": "/api/switch",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "cases", "type": "object", "required": True, "description": "case映射"}
+        ],
+        "icon": "git-branch"
+    },
+    "match": {
+        "id": "match",
+        "name": "模式匹配",
+        "name_en": "Match",
+        "description": "模式匹配执行",
+        "category": "conditional",
+        "subcategory": "match",
+        "api_endpoint": "/api/match",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "patterns", "type": "array", "required": True, "description": "模式数组"}
+        ],
+        "icon": "git-branch"
+    },
+    "when": {
+        "id": "when",
+        "name": "条件满足时执行",
+        "name_en": "When",
+        "description": "条件满足时执行函数",
+        "category": "conditional",
+        "subcategory": "when",
+        "api_endpoint": "/api/when",
+        "method": "POST",
+        "params": [
+            {"name": "condition", "type": "boolean", "required": True, "description": "条件"},
+            {"name": "func", "type": "function", "required": True, "description": "函数"}
+        ],
+        "icon": "git-branch"
+    },
+    "unless": {
+        "id": "unless",
+        "name": "条件不满足时执行",
+        "name_en": "Unless",
+        "description": "条件不满足时执行函数",
+        "category": "conditional",
+        "subcategory": "unless",
+        "api_endpoint": "/api/unless",
+        "method": "POST",
+        "params": [
+            {"name": "condition", "type": "boolean", "required": True, "description": "条件"},
+            {"name": "func", "type": "function", "required": True, "description": "函数"}
+        ],
+        "icon": "git-branch"
+    },
+    "both": {
+        "id": "both",
+        "name": "同时满足",
+        "name_en": "Both",
+        "description": "两个条件都满足",
+        "category": "conditional",
+        "subcategory": "and",
+        "api_endpoint": "/api/both",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "boolean", "required": True, "description": "条件A"},
+            {"name": "b", "type": "boolean", "required": True, "description": "条件B"}
+        ],
+        "icon": "git-branch"
+    },
+    "either": {
+        "id": "either",
+        "name": "任一满足",
+        "name_en": "Either",
+        "description": "任一条件满足",
+        "category": "conditional",
+        "subcategory": "or",
+        "api_endpoint": "/api/either",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "boolean", "required": True, "description": "条件A"},
+            {"name": "b", "type": "boolean", "required": True, "description": "条件B"}
+        ],
+        "icon": "git-branch"
+    },
+    "neither": {
+        "id": "neither",
+        "name": "都不满足",
+        "name_en": "Neither",
+        "description": "两个条件都不满足",
+        "category": "conditional",
+        "subcategory": "nor",
+        "api_endpoint": "/api/neither",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "boolean", "required": True, "description": "条件A"},
+            {"name": "b", "type": "boolean", "required": True, "description": "条件B"}
+        ],
+        "icon": "git-branch"
+    },
+
+    # ========== 比较工具 ==========
+    "eq": {
+        "id": "eq",
+        "name": "相等",
+        "name_en": "Equal",
+        "description": "检查是否相等",
+        "category": "compare",
+        "subcategory": "equal",
+        "api_endpoint": "/api/eq",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "any", "required": True, "description": "值A"},
+            {"name": "b", "type": "any", "required": True, "description": "值B"}
+        ],
+        "icon": "check"
+    },
+    "neq": {
+        "id": "neq",
+        "name": "不相等",
+        "name_en": "Not Equal",
+        "description": "检查是否不相等",
+        "category": "compare",
+        "subcategory": "not_equal",
+        "api_endpoint": "/api/neq",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "any", "required": True, "description": "值A"},
+            {"name": "b", "type": "any", "required": True, "description": "值B"}
+        ],
+        "icon": "check"
+    },
+    "gt": {
+        "id": "gt",
+        "name": "大于",
+        "name_en": "Greater Than",
+        "description": "检查是否大于",
+        "category": "compare",
+        "subcategory": "greater",
+        "api_endpoint": "/api/gt",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "any", "required": True, "description": "值A"},
+            {"name": "b", "type": "any", "required": True, "description": "值B"}
+        ],
+        "icon": "check"
+    },
+    "gte": {
+        "id": "gte",
+        "name": "大于等于",
+        "name_en": "Greater Than or Equal",
+        "description": "检查是否大于等于",
+        "category": "compare",
+        "subcategory": "greater_equal",
+        "api_endpoint": "/api/gte",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "any", "required": True, "description": "值A"},
+            {"name": "b", "type": "any", "required": True, "description": "值B"}
+        ],
+        "icon": "check"
+    },
+    "lt": {
+        "id": "lt",
+        "name": "小于",
+        "name_en": "Less Than",
+        "description": "检查是否小于",
+        "category": "compare",
+        "subcategory": "less",
+        "api_endpoint": "/api/lt",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "any", "required": True, "description": "值A"},
+            {"name": "b", "type": "any", "required": True, "description": "值B"}
+        ],
+        "icon": "check"
+    },
+    "lte": {
+        "id": "lte",
+        "name": "小于等于",
+        "name_en": "Less Than or Equal",
+        "description": "检查是否小于等于",
+        "category": "compare",
+        "subcategory": "less_equal",
+        "api_endpoint": "/api/lte",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "any", "required": True, "description": "值A"},
+            {"name": "b", "type": "any", "required": True, "description": "值B"}
+        ],
+        "icon": "check"
+    },
+    "between": {
+        "id": "between",
+        "name": "范围内",
+        "name_en": "Between",
+        "description": "检查值是否在范围内",
+        "category": "compare",
+        "subcategory": "range",
+        "api_endpoint": "/api/between",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "min", "type": "any", "required": True, "description": "最小值"},
+            {"name": "max", "type": "any", "required": True, "description": "最大值"}
+        ],
+        "icon": "check"
+    },
+    "in": {
+        "id": "in",
+        "name": "包含于",
+        "name_en": "In",
+        "description": "检查是否包含于数组",
+        "category": "compare",
+        "subcategory": "contain",
+        "api_endpoint": "/api/in",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "array", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "check"
+    }
+}
 
 def get_tool_by_id(tool_id: str) -> Optional[Dict]:
     """根据ID获取工具"""
