@@ -496,6 +496,20 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "list"
     },
+    "string_utils": {
+        "id": "string_utils",
+        "name": "字符串处理",
+        "name_en": "String Utils",
+        "description": "字符串反转、大小写、分割、替换等操作",
+        "category": "text_processing",
+        "subcategory": "string",
+        "api_endpoint": "/api/string",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "字符串"}
+        ],
+        "icon": "code"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
