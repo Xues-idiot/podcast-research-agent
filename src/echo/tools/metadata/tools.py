@@ -29204,6 +29204,499 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "group", "type": "string", "required": False, "description": "消费组"}
         ],
         "icon": "download"
+    },
+
+    # ========== API网关工具 ==========
+    "apigw_create": {
+        "id": "apigw_create",
+        "name": "创建API网关",
+        "name_en": "Create API Gateway",
+        "description": "创建API网关",
+        "category": "apigateway",
+        "subcategory": "create",
+        "api_endpoint": "/api/apigw/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"},
+            {"name": "routes", "type": "array", "required": True, "description": "路由配置"}
+        ],
+        "icon": "cloud"
+    },
+    "apigw_route": {
+        "id": "apigw_route",
+        "name": "添加路由",
+        "name_en": "Add Route",
+        "description": "向网关添加路由",
+        "category": "apigateway",
+        "subcategory": "route",
+        "api_endpoint": "/api/apigw/route",
+        "method": "POST",
+        "params": [
+            {"name": "gateway_id", "type": "string", "required": True, "description": "网关ID"},
+            {"name": "route", "type": "object", "required": True, "description": "路由配置"}
+        ],
+        "icon": "git-branch"
+    },
+    "apigw_list": {
+        "id": "apigw_list",
+        "name": "API网关列表",
+        "name_en": "API Gateway List",
+        "description": "获取API网关列表",
+        "category": "apigateway",
+        "subcategory": "list",
+        "api_endpoint": "/api/apigw/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "apigw_stats": {
+        "id": "apigw_stats",
+        "name": "网关统计",
+        "name_en": "Gateway Stats",
+        "description": "获取API网关统计",
+        "category": "apigateway",
+        "subcategory": "stats",
+        "api_endpoint": "/api/apigw/stats",
+        "method": "POST",
+        "params": [
+            {"name": "gateway_id", "type": "string", "required": True, "description": "网关ID"}
+        ],
+        "icon": "bar-chart"
+    },
+
+    # ========== 服务网格工具 ==========
+    "mesh_register": {
+        "id": "mesh_register",
+        "name": "注册服务",
+        "name_en": "Register Service",
+        "description": "注册服务到服务网格",
+        "category": " servicemesh",
+        "subcategory": "register",
+        "api_endpoint": "/api/mesh/register",
+        "method": "POST",
+        "params": [
+            {"name": "service", "type": "string", "required": True, "description": "服务名称"},
+            {"name": "endpoint", "type": "string", "required": True, "description": "端点"}
+        ],
+        "icon": "plus"
+    },
+    "mesh_discovery": {
+        "id": "mesh_discovery",
+        "name": "服务发现",
+        "name_en": "Service Discovery",
+        "description": "发现可用服务",
+        "category": " servicemesh",
+        "subcategory": "discovery",
+        "api_endpoint": "/api/mesh/discovery",
+        "method": "POST",
+        "params": [
+            {"name": "service", "type": "string", "required": True, "description": "服务名称"}
+        ],
+        "icon": "search"
+    },
+    "mesh_traffic": {
+        "id": "mesh_traffic",
+        "name": "流量管理",
+        "name_en": "Traffic Management",
+        "description": "管理服务间流量",
+        "category": " servicemesh",
+        "subcategory": "traffic",
+        "api_endpoint": "/api/mesh/traffic",
+        "method": "POST",
+        "params": [
+            {"name": "from_service", "type": "string", "required": True, "description": "源服务"},
+            {"name": "to_service", "type": "string", "required": True, "description": "目标服务"},
+            {"name": "weight", "type": "number", "required": False, "description": "权重"}
+        ],
+        "icon": "git-branch"
+    },
+
+    # ========== 熔断器工具 ==========
+    "cb_create": {
+        "id": "cb_create",
+        "name": "创建熔断器",
+        "name_en": "Create Circuit Breaker",
+        "description": "创建熔断器",
+        "category": "circuitbreaker",
+        "subcategory": "create",
+        "api_endpoint": "/api/cb/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"},
+            {"name": "threshold", "type": "number", "required": False, "description": "阈值"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "cb_status": {
+        "id": "cb_status",
+        "name": "熔断器状态",
+        "name_en": "Circuit Breaker Status",
+        "description": "获取熔断器状态",
+        "category": "circuitbreaker",
+        "subcategory": "status",
+        "api_endpoint": "/api/cb/status",
+        "method": "POST",
+        "params": [
+            {"name": "cb_id", "type": "string", "required": True, "description": "熔断器ID"}
+        ],
+        "icon": "activity"
+    },
+    "cb_reset": {
+        "id": "cb_reset",
+        "name": "重置熔断器",
+        "name_en": "Reset Circuit Breaker",
+        "description": "重置熔断器",
+        "category": "circuitbreaker",
+        "subcategory": "reset",
+        "api_endpoint": "/api/cb/reset",
+        "method": "POST",
+        "params": [
+            {"name": "cb_id", "type": "string", "required": True, "description": "熔断器ID"}
+        ],
+        "icon": "refresh-cw"
+    },
+
+    # ========== 重试机制工具 ==========
+    "retry_execute": {
+        "id": "retry_execute",
+        "name": "重试执行",
+        "name_en": "Execute with Retry",
+        "description": "带重试的执行",
+        "category": "retry",
+        "subcategory": "execute",
+        "api_endpoint": "/api/retry/execute",
+        "method": "POST",
+        "params": [
+            {"name": "operation", "type": "string", "required": True, "description": "操作"},
+            {"name": "max_attempts", "type": "number", "required": False, "description": "最大重试次数"}
+        ],
+        "icon": "rotate-cw"
+    },
+    "retry_config": {
+        "id": "retry_config",
+        "name": "配置重试策略",
+        "name_en": "Configure Retry Policy",
+        "description": "配置重试策略",
+        "category": "retry",
+        "subcategory": "config",
+        "api_endpoint": "/api/retry/config",
+        "method": "POST",
+        "params": [
+            {"name": "max_attempts", "type": "number", "required": True, "description": "最大重试次数"},
+            {"name": "backoff", "type": "string", "required": False, "description": "退避策略"}
+        ],
+        "icon": "settings"
+    },
+
+    # ========== 限流工具 ==========
+    "ratelimit_create": {
+        "id": "ratelimit_create",
+        "name": "创建限流器",
+        "name_en": "Create Rate Limiter",
+        "description": "创建限流器",
+        "category": "ratelimit",
+        "subcategory": "create",
+        "api_endpoint": "/api/ratelimit/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"},
+            {"name": "rate", "type": "number", "required": True, "description": "速率"}
+        ],
+        "icon": "gauge"
+    },
+    "ratelimit_check": {
+        "id": "ratelimit_check",
+        "name": "检查限流",
+        "name_en": "Check Rate Limit",
+        "description": "检查是否超过限流",
+        "category": "ratelimit",
+        "subcategory": "check",
+        "api_endpoint": "/api/ratelimit/check",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "限流键"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== GraphQL工具 ==========
+    "graphql_query": {
+        "id": "graphql_query",
+        "name": "GraphQL查询",
+        "name_en": "GraphQL Query",
+        "description": "执行GraphQL查询",
+        "category": "graphql",
+        "subcategory": "query",
+        "api_endpoint": "/api/graphql/query",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询语句"},
+            {"name": "variables", "type": "object", "required": False, "description": "变量"}
+        ],
+        "icon": "code"
+    },
+    "graphql_mutate": {
+        "id": "graphql_mutate",
+        "name": "GraphQL变更",
+        "name_en": "GraphQL Mutation",
+        "description": "执行GraphQL变更",
+        "category": "graphql",
+        "subcategory": "mutation",
+        "api_endpoint": "/api/graphql/mutate",
+        "method": "POST",
+        "params": [
+            {"name": "mutation", "type": "string", "required": True, "description": "变更语句"},
+            {"name": "variables", "type": "object", "required": False, "description": "变量"}
+        ],
+        "icon": "code"
+    },
+    "graphql_schema": {
+        "id": "graphql_schema",
+        "name": "获取Schema",
+        "name_en": "Get GraphQL Schema",
+        "description": "获取GraphQL Schema",
+        "category": "graphql",
+        "subcategory": "schema",
+        "api_endpoint": "/api/graphql/schema",
+        "method": "GET",
+        "params": [],
+        "icon": "git-branch"
+    },
+    "graphql_validate": {
+        "id": "graphql_validate",
+        "name": "验证Query",
+        "name_en": "Validate GraphQL Query",
+        "description": "验证GraphQL查询",
+        "category": "graphql",
+        "subcategory": "validate",
+        "api_endpoint": "/api/graphql/validate",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询语句"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== gRPC工具 ==========
+    "grpc_call": {
+        "id": "grpc_call",
+        "name": "gRPC调用",
+        "name_en": "gRPC Call",
+        "description": "发起gRPC调用",
+        "category": "grpc",
+        "subcategory": "call",
+        "api_endpoint": "/api/grpc/call",
+        "method": "POST",
+        "params": [
+            {"name": "service", "type": "string", "required": True, "description": "服务名"},
+            {"name": "method", "type": "string", "required": True, "description": "方法名"},
+            {"name": "request", "type": "any", "required": True, "description": "请求数据"}
+        ],
+        "icon": "zap"
+    },
+    "grpc_list": {
+        "id": "grpc_list",
+        "name": "gRPC服务列表",
+        "name_en": "gRPC Service List",
+        "description": "获取gRPC服务列表",
+        "category": "grpc",
+        "subcategory": "list",
+        "api_endpoint": "/api/grpc/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "grpc_reflect": {
+        "id": "grpc_reflect",
+        "name": "gRPC反射",
+        "name_en": "gRPC Reflection",
+        "description": "使用gRPC反射获取服务定义",
+        "category": "grpc",
+        "subcategory": "reflect",
+        "api_endpoint": "/api/grpc/reflect",
+        "method": "POST",
+        "params": [
+            {"name": "host", "type": "string", "required": True, "description": "主机"}
+        ],
+        "icon": "search"
+    },
+
+    # ========== WebSocket工具 ==========
+    "ws_connect": {
+        "id": "ws_connect",
+        "name": "建立连接",
+        "name_en": "WebSocket Connect",
+        "description": "建立WebSocket连接",
+        "category": "websocket",
+        "subcategory": "connect",
+        "api_endpoint": "/api/ws/connect",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "WebSocket URL"}
+        ],
+        "icon": "link"
+    },
+    "ws_send": {
+        "id": "ws_send",
+        "name": "发送消息",
+        "name_en": "WebSocket Send",
+        "description": "通过WebSocket发送消息",
+        "category": "websocket",
+        "subcategory": "send",
+        "api_endpoint": "/api/ws/send",
+        "method": "POST",
+        "params": [
+            {"name": "connection_id", "type": "string", "required": True, "description": "连接ID"},
+            {"name": "message", "type": "any", "required": True, "description": "消息内容"}
+        ],
+        "icon": "send"
+    },
+    "ws_close": {
+        "id": "ws_close",
+        "name": "关闭连接",
+        "name_en": "WebSocket Close",
+        "description": "关闭WebSocket连接",
+        "category": "websocket",
+        "subcategory": "close",
+        "api_endpoint": "/api/ws/close",
+        "method": "POST",
+        "params": [
+            {"name": "connection_id", "type": "string", "required": True, "description": "连接ID"}
+        ],
+        "icon": "x"
+    },
+
+    # ========== API设计工具 ==========
+    "api_design_create": {
+        "id": "api_design_create",
+        "name": "创建API设计",
+        "name_en": "Create API Design",
+        "description": "创建API设计",
+        "category": "apidesign",
+        "subcategory": "create",
+        "api_endpoint": "/api/design/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"},
+            {"name": "spec", "type": "object", "required": True, "description": "API规范"}
+        ],
+        "icon": "edit"
+    },
+    "api_design_openapi": {
+        "id": "api_design_openapi",
+        "name": "生成OpenAPI",
+        "name_en": "Generate OpenAPI Spec",
+        "description": "从设计生成OpenAPI规范",
+        "category": "apidesign",
+        "subcategory": "openapi",
+        "api_endpoint": "/api/design/openapi",
+        "method": "POST",
+        "params": [
+            {"name": "design_id", "type": "string", "required": True, "description": "设计ID"}
+        ],
+        "icon": "file"
+    },
+    "api_design_validate": {
+        "id": "api_design_validate",
+        "name": "验证API设计",
+        "name_en": "Validate API Design",
+        "description": "验证API设计",
+        "category": "apidesign",
+        "subcategory": "validate",
+        "api_endpoint": "/api/design/validate",
+        "method": "POST",
+        "params": [
+            {"name": "spec", "type": "object", "required": True, "description": "API规范"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== API测试工具 ==========
+    "apitest_create": {
+        "id": "apitest_create",
+        "name": "创建API测试",
+        "name_en": "Create API Test",
+        "description": "创建API测试用例",
+        "category": "apitest",
+        "subcategory": "create",
+        "api_endpoint": "/api/test/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "测试名称"},
+            {"name": "requests", "type": "array", "required": True, "description": "请求序列"}
+        ],
+        "icon": "plus"
+    },
+    "apitest_run": {
+        "id": "apitest_run",
+        "name": "运行API测试",
+        "name_en": "Run API Test",
+        "description": "运行API测试",
+        "category": "apitest",
+        "subcategory": "run",
+        "api_endpoint": "/api/test/run",
+        "method": "POST",
+        "params": [
+            {"name": "test_id", "type": "string", "required": True, "description": "测试ID"}
+        ],
+        "icon": "play"
+    },
+    "apitest_results": {
+        "id": "apitest_results",
+        "name": "测试结果",
+        "name_en": "API Test Results",
+        "description": "获取API测试结果",
+        "category": "apitest",
+        "subcategory": "results",
+        "api_endpoint": "/api/test/results",
+        "method": "POST",
+        "params": [
+            {"name": "test_id", "type": "string", "required": True, "description": "测试ID"}
+        ],
+        "icon": "bar-chart"
+    },
+
+    # ========== API Mock工具 ==========
+    "mock_create": {
+        "id": "mock_create",
+        "name": "创建Mock",
+        "name_en": "Create Mock API",
+        "description": "创建Mock API",
+        "category": "mock",
+        "subcategory": "create",
+        "api_endpoint": "/api/mock/create",
+        "method": "POST",
+        "params": [
+            {"name": "path", "type": "string", "required": True, "description": "路径"},
+            {"name": "response", "type": "object", "required": True, "description": "响应配置"}
+        ],
+        "icon": "box"
+    },
+    "mock_list": {
+        "id": "mock_list",
+        "name": "Mock列表",
+        "name_en": "Mock API List",
+        "description": "获取Mock API列表",
+        "category": "mock",
+        "subcategory": "list",
+        "api_endpoint": "/api/mock/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "mock_delete": {
+        "id": "mock_delete",
+        "name": "删除Mock",
+        "name_en": "Delete Mock API",
+        "description": "删除Mock API",
+        "category": "mock",
+        "subcategory": "delete",
+        "api_endpoint": "/api/mock/delete",
+        "method": "POST",
+        "params": [
+            {"name": "mock_id", "type": "string", "required": True, "description": "Mock ID"}
+        ],
+        "icon": "trash"
     }
 }
 
