@@ -2249,6 +2249,111 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "updates", "type": "object", "required": True, "description": "更新内容"}
         ],
         "icon": "refresh-cw"
+    },
+    "pad_left": {
+        "id": "pad_left",
+        "name": "左侧填充",
+        "name_en": "Pad Left",
+        "description": "在字符串左侧填充字符",
+        "category": "text",
+        "subcategory": "format",
+        "api_endpoint": "/api/pad-left",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "length", "type": "number", "required": True, "description": "目标长度"},
+            {"name": "char", "type": "string", "required": False, "description": "填充字符"}
+        ],
+        "icon": "align-left"
+    },
+    "pad_right": {
+        "id": "pad_right",
+        "name": "右侧填充",
+        "name_en": "Pad Right",
+        "description": "在字符串右侧填充字符",
+        "category": "text",
+        "subcategory": "format",
+        "api_endpoint": "/api/pad-right",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "length", "type": "number", "required": True, "description": "目标长度"},
+            {"name": "char", "type": "string", "required": False, "description": "填充字符"}
+        ],
+        "icon": "align-right"
+    },
+    "truncate": {
+        "id": "truncate",
+        "name": "截断文本",
+        "name_en": "Truncate",
+        "description": "截断字符串到指定长度",
+        "category": "text",
+        "subcategory": "format",
+        "api_endpoint": "/api/truncate",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "length", "type": "number", "required": True, "description": "最大长度"},
+            {"name": "suffix", "type": "string", "required": False, "description": "后缀"}
+        ],
+        "icon": "maximize-2"
+    },
+    "word_count": {
+        "id": "word_count",
+        "name": "字数统计",
+        "name_en": "Word Count",
+        "description": "统计文本字数",
+        "category": "text",
+        "subcategory": "stats",
+        "api_endpoint": "/api/word-count",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "hash"
+    },
+    "char_count": {
+        "id": "char_count",
+        "name": "字符统计",
+        "name_en": "Char Count",
+        "description": "统计字符数",
+        "category": "text",
+        "subcategory": "stats",
+        "api_endpoint": "/api/char-count",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "hash"
+    },
+    "line_count": {
+        "id": "line_count",
+        "name": "行数统计",
+        "name_en": "Line Count",
+        "description": "统计行数",
+        "category": "text",
+        "subcategory": "stats",
+        "api_endpoint": "/api/line-count",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "hash"
+    },
+    "contains_any": {
+        "id": "contains_any",
+        "name": "包含任一",
+        "name_en": "Contains Any",
+        "description": "检查是否包含任一关键词",
+        "category": "text",
+        "subcategory": "check",
+        "api_endpoint": "/api/contains-any",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "keywords", "type": "array", "required": True, "description": "关键词列表"}
+        ],
+        "icon": "search"
     }
 }
 
