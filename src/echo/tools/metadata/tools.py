@@ -3057,6 +3057,107 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "value", "type": "string", "required": True, "description": "值"}
         ],
         "icon": "corner-down-right"
+    },
+    "compose": {
+        "id": "compose",
+        "name": "函数组合",
+        "name_en": "Compose",
+        "description": "组合多个函数",
+        "category": "function",
+        "subcategory": "compose",
+        "api_endpoint": "/api/compose",
+        "method": "POST",
+        "params": [
+            {"name": "fns", "type": "array", "required": True, "description": "函数列表"}
+        ],
+        "icon": "git_merge"
+    },
+    "curry": {
+        "id": "curry",
+        "name": "柯里化",
+        "name_en": "Curry",
+        "description": "函数柯里化",
+        "category": "function",
+        "subcategory": "transform",
+        "api_endpoint": "/api/curry",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "git_branch"
+    },
+    "partial": {
+        "id": "partial",
+        "name": "偏函数",
+        "name_en": "Partial",
+        "description": "创建偏函数",
+        "category": "function",
+        "subcategory": "transform",
+        "api_endpoint": "/api/partial",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "args", "type": "array", "required": True, "description": "预设参数"}
+        ],
+        "icon": "git_branch"
+    },
+    "throttle": {
+        "id": "throttle",
+        "name": "节流",
+        "name_en": "Throttle",
+        "description": "函数节流",
+        "category": "function",
+        "subcategory": "timing",
+        "api_endpoint": "/api/throttle",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "wait", "type": "number", "required": True, "description": "等待时间(毫秒)"}
+        ],
+        "icon": "clock"
+    },
+    "debounce": {
+        "id": "debounce",
+        "name": "防抖",
+        "name_en": "Debounce",
+        "description": "函数防抖",
+        "category": "function",
+        "subcategory": "timing",
+        "api_endpoint": "/api/debounce",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"},
+            {"name": "wait", "type": "number", "required": True, "description": "等待时间(毫秒)"}
+        ],
+        "icon": "clock"
+    },
+    "memoize": {
+        "id": "memoize",
+        "name": "记忆化",
+        "name_en": "Memoize",
+        "description": "函数记忆化",
+        "category": "function",
+        "subcategory": "cache",
+        "api_endpoint": "/api/memoize",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "database"
+    },
+    "once": {
+        "id": "once",
+        "name": "单次执行",
+        "name_en": "Once",
+        "description": "函数只执行一次",
+        "category": "function",
+        "subcategory": "timing",
+        "api_endpoint": "/api/once",
+        "method": "POST",
+        "params": [
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "play"
     }
 }
 
