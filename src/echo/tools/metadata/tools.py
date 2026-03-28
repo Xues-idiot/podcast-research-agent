@@ -639,6 +639,18 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "params": [],
         "icon": "circle"
     },
+    "regex_utils": {
+        "id": "regex_utils",
+        "name": "正则工具",
+        "name_en": "Regex Utils",
+        "description": "正则表达式匹配、搜索、替换、分割",
+        "category": "developer",
+        "subcategory": "regex",
+        "api_endpoint": "/api/regex",
+        "method": "POST",
+        "params": [],
+        "icon": "search"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
