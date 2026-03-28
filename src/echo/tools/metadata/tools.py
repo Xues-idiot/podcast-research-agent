@@ -3665,6 +3665,108 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "item", "type": "string", "required": True, "description": "新元素"}
         ],
         "icon": "edit"
+    },
+    "delete": {
+        "id": "delete",
+        "name": "删除",
+        "name_en": "Delete",
+        "description": "删除列表中指定位置的元素",
+        "category": "list",
+        "subcategory": "modify",
+        "api_endpoint": "/api/delete",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "index", "type": "number", "required": True, "description": "位置"}
+        ],
+        "icon": "trash-2"
+    },
+    "slice": {
+        "id": "slice",
+        "name": "切片",
+        "name_en": "Slice",
+        "description": "获取列表切片",
+        "category": "list",
+        "subcategory": "access",
+        "api_endpoint": "/api/slice",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "start", "type": "number", "required": False, "description": "起始位置"},
+            {"name": "end", "type": "number", "required": False, "description": "结束位置"},
+            {"name": "step", "type": "number", "required": False, "description": "步长"}
+        ],
+        "icon": "scissors"
+    },
+    "reverse_list": {
+        "id": "reverse_list",
+        "name": "反转列表",
+        "name_en": "Reverse List",
+        "description": "反转列表顺序",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/reverse",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "rotate-cw"
+    },
+    "concat": {
+        "id": "concat",
+        "name": "连接列表",
+        "name_en": "Concat",
+        "description": "连接多个列表",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/concat",
+        "method": "POST",
+        "params": [
+            {"name": "lists", "type": "array", "required": True, "description": "列表数组"}
+        ],
+        "icon": "plus"
+    },
+    "head": {
+        "id": "head",
+        "name": "首元素",
+        "name_en": "Head",
+        "description": "获取列表首元素",
+        "category": "list",
+        "subcategory": "access",
+        "api_endpoint": "/api/head",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "arrow-right"
+    },
+    "tail": {
+        "id": "tail",
+        "name": "尾元素",
+        "name_en": "Tail",
+        "description": "获取列表尾元素",
+        "category": "list",
+        "subcategory": "access",
+        "api_endpoint": "/api/tail",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "arrow-left"
+    },
+    "init": {
+        "id": "init",
+        "name": "去尾列表",
+        "name_en": "Init",
+        "description": "获取列表除最后一个元素外的所有元素",
+        "category": "list",
+        "subcategory": "access",
+        "api_endpoint": "/api/init",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "list"
     }
 }
 
