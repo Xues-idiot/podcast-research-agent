@@ -4268,6 +4268,109 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "length", "type": "number", "required": False, "description": "长度"}
         ],
         "icon": "hash"
+    },
+    "chunk_array": {
+        "id": "chunk_array",
+        "name": "数组分块",
+        "name_en": "Chunk Array",
+        "description": "将数组分成指定大小的块",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/chunk-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "size", "type": "number", "required": True, "description": "块大小"}
+        ],
+        "icon": "grid"
+    },
+    "flatten_once": {
+        "id": "flatten_once",
+        "name": "扁平化一层",
+        "name_en": "Flatten Once",
+        "description": "只扁平化一层嵌套",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/flatten-once",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "嵌套数组"}
+        ],
+        "icon": "minimize-2"
+    },
+    "deep_flatten": {
+        "id": "deep_flatten",
+        "name": "深度扁平化",
+        "name_en": "Deep Flatten",
+        "description": "完全扁平化嵌套数组",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/deep-flatten",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "嵌套数组"}
+        ],
+        "icon": "minimize"
+    },
+    "unique_by": {
+        "id": "unique_by",
+        "name": "按键去重",
+        "name_en": "Unique By",
+        "description": "按指定键去重",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/unique-by",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "key", "type": "string", "required": True, "description": "键名"}
+        ],
+        "icon": "filter"
+    },
+    "sort_by": {
+        "id": "sort_by",
+        "name": "按键排序",
+        "name_en": "Sort By",
+        "description": "按指定键排序",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/sort-by",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "key", "type": "string", "required": True, "description": "键名"}
+        ],
+        "icon": "arrow-up-down"
+    },
+    "group_by_key": {
+        "id": "group_by_key",
+        "name": "按键分组",
+        "name_en": "Group By Key",
+        "description": "按键分组数组",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/group-by-key",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "key", "type": "string", "required": True, "description": "键名"}
+        ],
+        "icon": "folder"
+    },
+    "pluck": {
+        "id": "pluck",
+        "name": "提取键值",
+        "name_en": "Pluck",
+        "description": "提取数组中每个对象的指定键值",
+        "category": "array",
+        "subcategory": "access",
+        "api_endpoint": "/api/pluck",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "对象数组"},
+            {"name": "key", "type": "string", "required": True, "description": "键名"}
+        ],
+        "icon": "list"
     }
 }
 
