@@ -3985,6 +3985,90 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "b", "type": "number", "required": True, "description": "数值B"}
         ],
         "icon": "minus"
+    },
+    "is_blank": {
+        "id": "is_blank",
+        "name": "空白检查",
+        "name_en": "Is Blank",
+        "description": "检查字符串是否空白",
+        "category": "text",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-blank",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "check-circle"
+    },
+    "is_alpha": {
+        "id": "is_alpha",
+        "name": "字母检查",
+        "name_en": "Is Alpha",
+        "description": "检查是否全为字母",
+        "category": "text",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-alpha",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "check-circle"
+    },
+    "is_digit": {
+        "id": "is_digit",
+        "name": "数字检查",
+        "name_en": "Is Digit",
+        "description": "检查是否全为数字",
+        "category": "text",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-digit",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "check-circle"
+    },
+    "is_alphanumeric": {
+        "id": "is_alphanumeric",
+        "name": "字母数字检查",
+        "name_en": "Is Alphanumeric",
+        "description": "检查是否全为字母或数字",
+        "category": "text",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-alphanumeric",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "check-circle"
+    },
+    "swap_case": {
+        "id": "swap_case",
+        "name": "大小写互换",
+        "name_en": "Swap Case",
+        "description": "大写转小写,小写转大写",
+        "category": "text",
+        "subcategory": "case",
+        "api_endpoint": "/api/swap-case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "title_case": {
+        "id": "title_case",
+        "name": "标题大写",
+        "name_en": "Title Case",
+        "description": "每个单词首字母大写",
+        "category": "text",
+        "subcategory": "case",
+        "api_endpoint": "/api/title-case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
     }
 }
 
