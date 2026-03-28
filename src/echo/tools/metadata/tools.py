@@ -284,6 +284,21 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "circle"
     },
+    "list_diff": {
+        "id": "list_diff",
+        "name": "列表差集",
+        "name_en": "List Difference",
+        "description": "计算列表的差集或对称差集",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-diff",
+        "method": "POST",
+        "params": [
+            {"name": "lists", "type": "array", "required": True, "description": "列表数组"},
+            {"name": "symmetric", "type": "boolean", "required": False, "description": "是否对称差集"}
+        ],
+        "icon": "circle"
+    },
 
     # ========== 编码转换工具 ==========
     "base64_tool": {
