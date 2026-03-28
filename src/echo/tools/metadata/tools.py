@@ -4575,6 +4575,91 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "date", "type": "string", "required": True, "description": "日期"}
         ],
         "icon": "calendar"
+    },
+    "end_of_month": {
+        "id": "end_of_month",
+        "name": "月结束",
+        "name_en": "End of Month",
+        "description": "获取月结束日期",
+        "category": "date",
+        "subcategory": "boundary",
+        "api_endpoint": "/api/end-of-month",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "calendar"
+    },
+    "quarter": {
+        "id": "quarter",
+        "name": "季度",
+        "name_en": "Quarter",
+        "description": "获取日期所在季度",
+        "category": "date",
+        "subcategory": "extract",
+        "api_endpoint": "/api/quarter",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "calendar"
+    },
+    "week_of_year": {
+        "id": "week_of_year",
+        "name": "年周数",
+        "name_en": "Week of Year",
+        "description": "获取日期所在年周数",
+        "category": "date",
+        "subcategory": "extract",
+        "api_endpoint": "/api/week-of-year",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "calendar"
+    },
+    "is_weekday": {
+        "id": "is_weekday",
+        "name": "工作日检查",
+        "name_en": "Is Weekday",
+        "description": "检查是否为工作日",
+        "category": "date",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-weekday",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "check-circle"
+    },
+    "is_weekend": {
+        "id": "is_weekend",
+        "name": "周末检查",
+        "name_en": "Is Weekend",
+        "description": "检查是否为周末",
+        "category": "date",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-weekend",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "check-circle"
+    },
+    "days_in_month": {
+        "id": "days_in_month",
+        "name": "月天数",
+        "name_en": "Days in Month",
+        "description": "获取月份天数",
+        "category": "date",
+        "subcategory": "extract",
+        "api_endpoint": "/api/days-in-month",
+        "method": "POST",
+        "params": [
+            {"name": "year", "type": "number", "required": True, "description": "年份"},
+            {"name": "month", "type": "number", "required": True, "description": "月份"}
+        ],
+        "icon": "calendar"
     }
 }
 
