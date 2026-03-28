@@ -111,8 +111,7 @@ export default function ExportPage() {
               <ThemeToggle />
               <a href="/podcast" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">研究</a>
               <a href="/knowledge" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">知识库</a>
-              <a href="/export" className="text-sm font-medium text-[#2C3E50] hover:text-[#E67E22]">导出</a>
-              <a href="/history" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">历史</a>
+              <a href="/tools" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">工具中心</a>
             </nav>
           </div>
         </div>

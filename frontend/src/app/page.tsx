@@ -21,8 +21,7 @@ export default function Home() {
             <ThemeToggle />
             <Link href="/podcast" className="text-sm font-medium text-[#2C3E50] hover:text-[#E67E22]">研究</Link>
             <Link href="/knowledge" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">知识库</Link>
-            <Link href="/export" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">导出</Link>
-            <Link href="/history" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">历史</Link>
+            <Link href="/tools" className="text-sm font-medium text-gray-600 hover:text-[#E67E22]">工具中心</Link>
           </nav>
         </div>
       </header>

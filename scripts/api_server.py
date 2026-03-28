@@ -19,6 +19,7 @@ from echo.api.sources import router as sources_router
 from echo.api.export import router as export_router
 from echo.api.navigation import router as navigation_router
 from echo.api.memory import router as memory_router
+from echo.api.tools import router as tools_router
 
 
 def create_app() -> FastAPI:
@@ -46,6 +47,7 @@ def create_app() -> FastAPI:
     app.include_router(export_router)
     app.include_router(navigation_router)
     app.include_router(memory_router)
+    app.include_router(tools_router)
 
     @app.get("/")
     async def root():
