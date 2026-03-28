@@ -510,6 +510,21 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "code"
     },
+    "math_utils": {
+        "id": "math_utils",
+        "name": "数学工具",
+        "name_en": "Math Utils",
+        "description": "基本数学运算：加减乘除、幂、开方、阶乘等",
+        "category": "math",
+        "subcategory": "basic",
+        "api_endpoint": "/api/math",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "第一个数"},
+            {"name": "b", "type": "number", "required": False, "description": "第二个数"}
+        ],
+        "icon": "calculator"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",

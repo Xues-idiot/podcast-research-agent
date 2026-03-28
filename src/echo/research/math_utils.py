@@ -1,45 +1,77 @@
-"""数学工具"""
-
+"""数学工具集合"""
+from typing import Any, List, Union
+from dataclasses import dataclass
 import math
-from typing import Optional
 
 
-class MathUtils:
-    """数学工具"""
-
-    def clamp(self, value: float, min_val: float, max_val: float) -> float:
-        """限制在范围内"""
-        return max(min_val, min(max_val, value))
-
-    def lerp(self, a: float, b: float, t: float) -> float:
-        """线性插值"""
-        return a + (b - a) * t
-
-    def map_range(self, value: float, in_min: float, in_max: float, out_min: float, out_max: float) -> float:
-        """范围映射"""
-        return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
-
-    def gcd(self, a: int, b: int) -> int:
-        """最大公约数"""
-        while b:
-            a, b = b, a % b
-        return a
-
-    def lcm(self, a: int, b: int) -> int:
-        """最小公倍数"""
-        return abs(a * b) // self.gcd(a, b)
-
-    def round_to(self, value: float, precision: int) -> float:
-        """四舍五入到指定精度"""
-        multiplier = 10 ** precision
-        return math.round(value * multiplier) / multiplier
+@dataclass
+class MathResult:
+    result: float
+    exact: bool
 
 
-_utils: Optional[MathUtils] = None
+def math_add(a: Union[int, float], b: Union[int, float]) -> float:
+    return a + b
 
 
-def get_math_utils() -> MathUtils:
-    global _utils
-    if _utils is None:
-        _utils = MathUtils()
-    return _utils
+def math_subtract(a: Union[int, float], b: Union[int, float]) -> float:
+    return a - b
+
+
+def math_multiply(a: Union[int, float], b: Union[int, float]) -> float:
+    return a * b
+
+
+def math_divide(a: Union[int, float], b: Union[int, float]) -> Union[float, str]:
+    if b == 0:
+        return "division by zero"
+    return a / b
+
+
+def math_power(a: Union[int, float], b: Union[int, float]) -> float:
+    return a ** b
+
+
+def math_sqrt(a: Union[int, float]) -> float:
+    return math.sqrt(a) if a >= 0 else "invalid input"
+
+
+def math_abs(a: Union[int, float]) -> float:
+    return abs(a)
+
+
+def math_floor(a: float) -> int:
+    return math.floor(a)
+
+
+def math_ceil(a: float) -> int:
+    return math.ceil(a)
+
+
+def math_round(a: float, n: int = 0) -> Union[float, int]:
+    return round(a, n)
+
+
+def math_factorial(n: int) -> int:
+    if n < 0:
+        return "invalid input"
+    return math.factorial(n) if n <= 170 else "too large"
+
+
+def math_gcd(*nums: int) -> int:
+    from math import gcd as math_gcd
+    result = nums[0]
+    for n in nums[1:]:
+        result = math_gcd(result, n)
+    return result
+
+
+def math_lcm(*nums: int) -> int:
+    from math import gcd
+    if not nums:
+        return 1
+    result = nums[0]
+    for n in nums[1:]:
+        result = result * n // gcd(result, n)
+    return result
+
