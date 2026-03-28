@@ -393,6 +393,22 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "list"
     },
+    "list_sample": {
+        "id": "list_sample",
+        "name": "列表采样",
+        "name_en": "List Sample",
+        "description": "从列表中随机抽取样本",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-sample",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "源列表"},
+            {"name": "n", "type": "number", "required": False, "description": "抽取数量"},
+            {"name": "replace", "type": "boolean", "required": False, "description": "放回抽样"}
+        ],
+        "icon": "shuffle"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
