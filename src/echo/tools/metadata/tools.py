@@ -299,6 +299,23 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "circle"
     },
+    "list_slice": {
+        "id": "list_slice",
+        "name": "列表切片",
+        "name_en": "List Slice",
+        "description": "获取列表的切片、前n个或后n个元素",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-slice",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "源列表"},
+            {"name": "start", "type": "number", "required": False, "description": "起始索引"},
+            {"name": "end", "type": "number", "required": False, "description": "结束索引"},
+            {"name": "step", "type": "number", "required": False, "description": "步长"}
+        ],
+        "icon": "list"
+    },
 
     # ========== 编码转换工具 ==========
     "base64_tool": {
