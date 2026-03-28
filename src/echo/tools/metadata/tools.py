@@ -1548,6 +1548,107 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "timestamp", "type": "number", "required": True, "description": "时间戳"}
         ],
         "icon": "hash"
+    },
+    "absolute_value": {
+        "id": "absolute_value",
+        "name": "绝对值",
+        "name_en": "Absolute Value",
+        "description": "计算绝对值",
+        "category": "math",
+        "subcategory": "basic",
+        "api_endpoint": "/api/absolute-value",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "数值"}
+        ],
+        "icon": "hash"
+    },
+    "round_number": {
+        "id": "round_number",
+        "name": "四舍五入",
+        "name_en": "Round Number",
+        "description": "对数字四舍五入",
+        "category": "math",
+        "subcategory": "basic",
+        "api_endpoint": "/api/round",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "数值"},
+            {"name": "decimals", "type": "number", "required": False, "description": "小数位数"}
+        ],
+        "icon": "hash"
+    },
+    "clamp": {
+        "id": "clamp",
+        "name": "区间限制",
+        "name_en": "Clamp",
+        "description": "将值限制在指定范围内",
+        "category": "math",
+        "subcategory": "basic",
+        "api_endpoint": "/api/clamp",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "值"},
+            {"name": "min_val", "type": "number", "required": True, "description": "最小值"},
+            {"name": "max_val", "type": "number", "required": True, "description": "最大值"}
+        ],
+        "icon": "sliders"
+    },
+    "min_value": {
+        "id": "min_value",
+        "name": "最小值",
+        "name_en": "Minimum",
+        "description": "获取最小值",
+        "category": "math",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/min",
+        "method": "POST",
+        "params": [
+            {"name": "values", "type": "array", "required": True, "description": "数值列表"}
+        ],
+        "icon": "arrow-down"
+    },
+    "max_value": {
+        "id": "max_value",
+        "name": "最大值",
+        "name_en": "Maximum",
+        "description": "获取最大值",
+        "category": "math",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/max",
+        "method": "POST",
+        "params": [
+            {"name": "values", "type": "array", "required": True, "description": "数值列表"}
+        ],
+        "icon": "arrow-up"
+    },
+    "sum_values": {
+        "id": "sum_values",
+        "name": "求和",
+        "name_en": "Sum",
+        "description": "计算总和",
+        "category": "math",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/sum",
+        "method": "POST",
+        "params": [
+            {"name": "values", "type": "array", "required": True, "description": "数值列表"}
+        ],
+        "icon": "plus"
+    },
+    "avg_value": {
+        "id": "avg_value",
+        "name": "平均值",
+        "name_en": "Average",
+        "description": "计算平均值",
+        "category": "math",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/avg",
+        "method": "POST",
+        "params": [
+            {"name": "values", "type": "array", "required": True, "description": "数值列表"}
+        ],
+        "icon": "divide"
     }
 }
 
