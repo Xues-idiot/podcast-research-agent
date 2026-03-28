@@ -551,6 +551,20 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "params": [],
         "icon": "calendar"
     },
+    "validator_utils": {
+        "id": "validator_utils",
+        "name": "验证工具",
+        "name_en": "Validator Utils",
+        "description": "验证邮箱、URL、手机号、JSON等格式",
+        "category": "validation",
+        "subcategory": "validator",
+        "api_endpoint": "/api/validate",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "string", "required": True, "description": "待验证值"}
+        ],
+        "icon": "check"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
