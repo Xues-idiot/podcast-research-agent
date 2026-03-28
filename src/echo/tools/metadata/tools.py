@@ -19473,6 +19473,307 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "code"
     },
+
+    # ========== 颜色工具 ==========
+    "hex_to_rgb": {
+        "id": "hex_to_rgb",
+        "name": "HEX转RGB",
+        "name_en": "HEX to RGB",
+        "description": "将HEX颜色值转换为RGB",
+        "category": "color",
+        "subcategory": "convert",
+        "api_endpoint": "/api/hex_to_rgb",
+        "method": "POST",
+        "params": [
+            {"name": "hex", "type": "string", "required": True, "description": "HEX颜色值"}
+        ],
+        "icon": "palette"
+    },
+    "rgb_to_hex": {
+        "id": "rgb_to_hex",
+        "name": "RGB转HEX",
+        "name_en": "RGB to HEX",
+        "description": "将RGB值转换为HEX颜色",
+        "category": "color",
+        "subcategory": "convert",
+        "api_endpoint": "/api/rgb_to_hex",
+        "method": "POST",
+        "params": [
+            {"name": "r", "type": "number", "required": True, "description": "红色分量"},
+            {"name": "g", "type": "number", "required": True, "description": "绿色分量"},
+            {"name": "b", "type": "number", "required": True, "description": "蓝色分量"}
+        ],
+        "icon": "palette"
+    },
+    "rgb_to_hsl": {
+        "id": "rgb_to_hsl",
+        "name": "RGB转HSL",
+        "name_en": "RGB to HSL",
+        "description": "将RGB值转换为HSL",
+        "category": "color",
+        "subcategory": "convert",
+        "api_endpoint": "/api/rgb_to_hsl",
+        "method": "POST",
+        "params": [
+            {"name": "r", "type": "number", "required": True, "description": "红色分量"},
+            {"name": "g", "type": "number", "required": True, "description": "绿色分量"},
+            {"name": "b", "type": "number", "required": True, "description": "蓝色分量"}
+        ],
+        "icon": "palette"
+    },
+    "hsl_to_rgb": {
+        "id": "hsl_to_rgb",
+        "name": "HSL转RGB",
+        "name_en": "HSL to RGB",
+        "description": "将HSL值转换为RGB",
+        "category": "color",
+        "subcategory": "convert",
+        "api_endpoint": "/api/hsl_to_rgb",
+        "method": "POST",
+        "params": [
+            {"name": "h", "type": "number", "required": True, "description": "色调"},
+            {"name": "s", "type": "number", "required": True, "description": "饱和度"},
+            {"name": "l", "type": "number", "required": True, "description": "亮度"}
+        ],
+        "icon": "palette"
+    },
+    "lighten": {
+        "id": "lighten",
+        "name": "提亮颜色",
+        "name_en": "Lighten Color",
+        "description": "将颜色值调亮",
+        "category": "color",
+        "subcategory": "adjust",
+        "api_endpoint": "/api/lighten",
+        "method": "POST",
+        "params": [
+            {"name": "hex", "type": "string", "required": True, "description": "HEX颜色值"},
+            {"name": "amount", "type": "number", "required": False, "description": "提亮量", "default": 10}
+        ],
+        "icon": "sun"
+    },
+    "darken": {
+        "id": "darken",
+        "name": "加深颜色",
+        "name_en": "Darken Color",
+        "description": "将颜色值调深",
+        "category": "color",
+        "subcategory": "adjust",
+        "api_endpoint": "/api/darken",
+        "method": "POST",
+        "params": [
+            {"name": "hex", "type": "string", "required": True, "description": "HEX颜色值"},
+            {"name": "amount", "type": "number", "required": False, "description": "加深量", "default": 10}
+        ],
+        "icon": "moon"
+    },
+    "saturate": {
+        "id": "saturate",
+        "name": "饱和度调整",
+        "name_en": "Saturate Color",
+        "description": "调整颜色饱和度",
+        "category": "color",
+        "subcategory": "adjust",
+        "api_endpoint": "/api/saturate",
+        "method": "POST",
+        "params": [
+            {"name": "hex", "type": "string", "required": True, "description": "HEX颜色值"},
+            {"name": "amount", "type": "number", "required": False, "description": "调整量", "default": 10}
+        ],
+        "icon": "palette"
+    },
+    "desaturate": {
+        "id": "desaturate",
+        "name": "去饱和",
+        "name_en": "Desaturate Color",
+        "description": "降低颜色饱和度",
+        "category": "color",
+        "subcategory": "adjust",
+        "api_endpoint": "/api/desaturate",
+        "method": "POST",
+        "params": [
+            {"name": "hex", "type": "string", "required": True, "description": "HEX颜色值"},
+            {"name": "amount", "type": "number", "required": False, "description": "调整量", "default": 10}
+        ],
+        "icon": "palette"
+    },
+    "grayscale": {
+        "id": "grayscale",
+        "name": "灰度转换",
+        "name_en": "Grayscale",
+        "description": "将颜色转换为灰度",
+        "category": "color",
+        "subcategory": "convert",
+        "api_endpoint": "/api/grayscale",
+        "method": "POST",
+        "params": [
+            {"name": "hex", "type": "string", "required": True, "description": "HEX颜色值"}
+        ],
+        "icon": "palette"
+    },
+    "invert": {
+        "id": "invert",
+        "name": "反相颜色",
+        "name_en": "Invert Color",
+        "description": "将颜色反相",
+        "category": "color",
+        "subcategory": "convert",
+        "api_endpoint": "/api/invert",
+        "method": "POST",
+        "params": [
+            {"name": "hex", "type": "string", "required": True, "description": "HEX颜色值"}
+        ],
+        "icon": "refresh"
+    },
+
+    # ========== URL工具 ==========
+    "parse_url": {
+        "id": "parse_url",
+        "name": "URL解析",
+        "name_en": "Parse URL",
+        "description": "解析URL字符串",
+        "category": "url",
+        "subcategory": "parse",
+        "api_endpoint": "/api/parse_url",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL字符串"}
+        ],
+        "icon": "link"
+    },
+    "build_url": {
+        "id": "build_url",
+        "name": "URL构建",
+        "name_en": "Build URL",
+        "description": "构建URL字符串",
+        "category": "url",
+        "subcategory": "build",
+        "api_endpoint": "/api/build_url",
+        "method": "POST",
+        "params": [
+            {"name": "scheme", "type": "string", "required": True, "description": "协议"},
+            {"name": "host", "type": "string", "required": True, "description": "主机"},
+            {"name": "path", "type": "string", "required": False, "description": "路径"},
+            {"name": "query", "type": "object", "required": False, "description": "查询参数"}
+        ],
+        "icon": "link"
+    },
+    "get_query_params": {
+        "id": "get_query_params",
+        "name": "获取查询参数",
+        "name_en": "Get Query Params",
+        "description": "从URL中获取查询参数",
+        "category": "url",
+        "subcategory": "query",
+        "api_endpoint": "/api/get_query_params",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL字符串"}
+        ],
+        "icon": "search"
+    },
+    "add_query_param": {
+        "id": "add_query_param",
+        "name": "添加查询参数",
+        "name_en": "Add Query Param",
+        "description": "向URL添加查询参数",
+        "category": "url",
+        "subcategory": "query",
+        "api_endpoint": "/api/add_query_param",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL字符串"},
+            {"name": "key", "type": "string", "required": True, "description": "参数名"},
+            {"name": "value", "type": "string", "required": True, "description": "参数值"}
+        ],
+        "icon": "plus"
+    },
+
+    # ========== 文件路径工具 ==========
+    "get_extension": {
+        "id": "get_extension",
+        "name": "获取扩展名",
+        "name_en": "Get Extension",
+        "description": "获取文件路径的扩展名",
+        "category": "file",
+        "subcategory": "path",
+        "api_endpoint": "/api/get_extension",
+        "method": "POST",
+        "params": [
+            {"name": "path", "type": "string", "required": True, "description": "文件路径"}
+        ],
+        "icon": "file"
+    },
+    "get_filename": {
+        "id": "get_filename",
+        "name": "获取文件名",
+        "name_en": "Get Filename",
+        "description": "获取文件路径的文件名",
+        "category": "file",
+        "subcategory": "path",
+        "api_endpoint": "/api/get_filename",
+        "method": "POST",
+        "params": [
+            {"name": "path", "type": "string", "required": True, "description": "文件路径"}
+        ],
+        "icon": "file"
+    },
+    "get_basename": {
+        "id": "get_basename",
+        "name": "获取基名",
+        "name_en": "Get Basename",
+        "description": "获取文件路径的基名（不含扩展名）",
+        "category": "file",
+        "subcategory": "path",
+        "api_endpoint": "/api/get_basename",
+        "method": "POST",
+        "params": [
+            {"name": "path", "type": "string", "required": True, "description": "文件路径"}
+        ],
+        "icon": "file"
+    },
+    "get_dirname": {
+        "id": "get_dirname",
+        "name": "获取目录名",
+        "name_en": "Get Dirname",
+        "description": "获取文件路径的目录名",
+        "category": "file",
+        "subcategory": "path",
+        "api_endpoint": "/api/get_dirname",
+        "method": "POST",
+        "params": [
+            {"name": "path", "type": "string", "required": True, "description": "文件路径"}
+        ],
+        "icon": "folder"
+    },
+    "join_path": {
+        "id": "join_path",
+        "name": "拼接路径",
+        "name_en": "Join Path",
+        "description": "拼接多个路径组件",
+        "category": "file",
+        "subcategory": "path",
+        "api_endpoint": "/api/join_path",
+        "method": "POST",
+        "params": [
+            {"name": "parts", "type": "array", "required": True, "description": "路径部分"}
+        ],
+        "icon": "link"
+    },
+    "normalize_path": {
+        "id": "normalize_path",
+        "name": "规范化路径",
+        "name_en": "Normalize Path",
+        "description": "规范化文件路径",
+        "category": "file",
+        "subcategory": "path",
+        "api_endpoint": "/api/normalize_path",
+        "method": "POST",
+        "params": [
+            {"name": "path", "type": "string", "required": True, "description": "文件路径"}
+        ],
+        "icon": "link"
+    },
 }
 
 
