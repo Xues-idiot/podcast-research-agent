@@ -467,6 +467,21 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "list"
     },
+    "list_compare": {
+        "id": "list_compare",
+        "name": "列表比较",
+        "name_en": "List Compare",
+        "description": "比较两个列表，找出共同元素和差异",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-compare",
+        "method": "POST",
+        "params": [
+            {"name": "list1", "type": "array", "required": True, "description": "第一个列表"},
+            {"name": "list2", "type": "array", "required": True, "description": "第二个列表"}
+        ],
+        "icon": "check"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
