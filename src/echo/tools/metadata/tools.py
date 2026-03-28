@@ -16335,6 +16335,726 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "value", "type": "number", "required": True, "description": "整数"}
         ],
         "icon": "check-square"
+    },
+
+    # ========== 对象操作工具 ==========
+    "object_get": {
+        "id": "object_get",
+        "name": "对象取值",
+        "name_en": "Object Get",
+        "description": "安全获取对象属性",
+        "category": "object",
+        "subcategory": "access",
+        "api_endpoint": "/api/object-get",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "path", "type": "string", "required": True, "description": "属性路径"},
+            {"name": "default", "type": "any", "required": False, "description": "默认值"}
+        ],
+        "icon": "key"
+    },
+    "object_set": {
+        "id": "object_set",
+        "name": "对象设值",
+        "name_en": "Object Set",
+        "description": "设置对象属性",
+        "category": "object",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/object-set",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "path", "type": "string", "required": True, "description": "属性路径"},
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "edit"
+    },
+    "object_delete": {
+        "id": "object_delete",
+        "name": "对象删除",
+        "name_en": "Object Delete",
+        "description": "删除对象属性",
+        "category": "object",
+        "subcategory": "mutate",
+        "api_endpoint": "/api/object-delete",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "path", "type": "string", "required": True, "description": "属性路径"}
+        ],
+        "icon": "trash"
+    },
+    "object_has": {
+        "id": "object_has",
+        "name": "对象属性检查",
+        "name_en": "Object Has",
+        "description": "检查对象是否有属性",
+        "category": "object",
+        "subcategory": "predicate",
+        "api_endpoint": "/api/object-has",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "path", "type": "string", "required": True, "description": "属性路径"}
+        ],
+        "icon": "key"
+    },
+    "object_keys": {
+        "id": "object_keys",
+        "name": "对象键列表",
+        "name_en": "Object Keys",
+        "description": "获取对象所有键",
+        "category": "object",
+        "subcategory": "access",
+        "api_endpoint": "/api/object-keys",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"}
+        ],
+        "icon": "list"
+    },
+    "object_values": {
+        "id": "object_values",
+        "name": "对象值列表",
+        "name_en": "Object Values",
+        "description": "获取对象所有值",
+        "category": "object",
+        "subcategory": "access",
+        "api_endpoint": "/api/object-values",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"}
+        ],
+        "icon": "list"
+    },
+    "object_entries": {
+        "id": "object_entries",
+        "name": "对象条目列表",
+        "name_en": "Object Entries",
+        "description": "获取对象所有键值对",
+        "category": "object",
+        "subcategory": "access",
+        "api_endpoint": "/api/object-entries",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"}
+        ],
+        "icon": "list"
+    },
+    "object_merge": {
+        "id": "object_merge",
+        "name": "对象合并",
+        "name_en": "Object Merge",
+        "description": "合并多个对象",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/object-merge",
+        "method": "POST",
+        "params": [
+            {"name": "objects", "type": "array", "required": True, "description": "对象数组"}
+        ],
+        "icon": "git-merge"
+    },
+    "object_pick": {
+        "id": "object_pick",
+        "name": "对象选择",
+        "name_en": "Object Pick",
+        "description": "选择对象部分属性",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/object-pick",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "keys", "type": "array", "required": True, "description": "要选择的键"}
+        ],
+        "icon": "check-square"
+    },
+    "object_omit": {
+        "id": "object_omit",
+        "name": "对象排除",
+        "name_en": "Object Omit",
+        "description": "排除对象部分属性",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/object-omit",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "keys", "type": "array", "required": True, "description": "要排除的键"}
+        ],
+        "icon": "x-square"
+    },
+    "object_clone": {
+        "id": "object_clone",
+        "name": "对象克隆",
+        "name_en": "Object Clone",
+        "description": "克隆对象",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/object-clone",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"}
+        ],
+        "icon": "copy"
+    },
+
+    # ========== 数组查找工具 ==========
+    "array_find": {
+        "id": "array_find",
+        "name": "数组查找",
+        "name_en": "Array Find",
+        "description": "查找满足条件的元素",
+        "category": "array",
+        "subcategory": "search",
+        "api_endpoint": "/api/array-find",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "fn", "type": "string", "required": True, "description": "查找函数"}
+        ],
+        "icon": "search"
+    },
+    "array_find_index": {
+        "id": "array_find_index",
+        "name": "数组查找索引",
+        "name_en": "Array Find Index",
+        "description": "查找满足条件的元素索引",
+        "category": "array",
+        "subcategory": "search",
+        "api_endpoint": "/api/array-find-index",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "fn", "type": "string", "required": True, "description": "查找函数"}
+        ],
+        "icon": "hash"
+    },
+    "array_includes": {
+        "id": "array_includes",
+        "name": "数组包含",
+        "name_en": "Array Includes",
+        "description": "检查数组是否包含元素",
+        "category": "array",
+        "subcategory": "search",
+        "api_endpoint": "/api/array-includes",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "value", "type": "any", "required": True, "description": "要检查的值"}
+        ],
+        "icon": "check-circle"
+    },
+    "array_index_of": {
+        "id": "array_index_of",
+        "name": "数组索引",
+        "name_en": "Array Index Of",
+        "description": "查找元素首次出现的索引",
+        "category": "array",
+        "subcategory": "search",
+        "api_endpoint": "/api/array-index-of",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "value", "type": "any", "required": True, "description": "要查找的值"}
+        ],
+        "icon": "hash"
+    },
+    "array_last_index_of": {
+        "id": "array_last_index_of",
+        "name": "数组最后索引",
+        "name_en": "Array Last Index Of",
+        "description": "查找元素最后出现的位置",
+        "category": "array",
+        "subcategory": "search",
+        "api_endpoint": "/api/array-last-index-of",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "value", "type": "any", "required": True, "description": "要查找的值"}
+        ],
+        "icon": "hash"
+    },
+
+    # ========== 数组变换工具 ==========
+    "array_map": {
+        "id": "array_map",
+        "name": "数组映射",
+        "name_en": "Array Map",
+        "description": "映射数组元素",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/array-map",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "fn", "type": "string", "required": True, "description": "映射函数"}
+        ],
+        "icon": "map"
+    },
+    "array_filter": {
+        "id": "array_filter",
+        "name": "数组过滤",
+        "name_en": "Array Filter",
+        "description": "过滤数组元素",
+        "category": "array",
+        "subcategory": "filter",
+        "api_endpoint": "/api/array-filter",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "fn", "type": "string", "required": True, "description": "过滤函数"}
+        ],
+        "icon": "filter"
+    },
+    "array_reduce": {
+        "id": "array_reduce",
+        "name": "数组归约",
+        "name_en": "Array Reduce",
+        "description": "归约数组元素",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/array-reduce",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "fn", "type": "string", "required": True, "description": "归约函数"},
+            {"name": "initial", "type": "any", "required": False, "description": "初始值"}
+        ],
+        "icon": "git-merge"
+    },
+    "array_flatten": {
+        "id": "array_flatten",
+        "name": "数组扁平化",
+        "name_en": "Array Flatten",
+        "description": "扁平化数组",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/array-flatten",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "嵌套数组"}
+        ],
+        "icon": "minimize"
+    },
+    "array_unique": {
+        "id": "array_unique",
+        "name": "数组去重",
+        "name_en": "Array Unique",
+        "description": "数组去重",
+        "category": "array",
+        "subcategory": "filter",
+        "api_endpoint": "/api/array-unique",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "trash-2"
+    },
+    "array_compact": {
+        "id": "array_compact",
+        "name": "数组压缩",
+        "name_en": "Array Compact",
+        "description": "移除假值",
+        "category": "array",
+        "subcategory": "filter",
+        "api_endpoint": "/api/array-compact",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "compress"
+    },
+    "array_sort": {
+        "id": "array_sort",
+        "name": "数组排序",
+        "name_en": "Array Sort",
+        "description": "排序数组",
+        "category": "array",
+        "subcategory": "sort",
+        "api_endpoint": "/api/array-sort",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "fn", "type": "string", "required": False, "description": "排序函数"}
+        ],
+        "icon": "sort-asc"
+    },
+    "array_reverse": {
+        "id": "array_reverse",
+        "name": "数组反转",
+        "name_en": "Array Reverse",
+        "description": "反转数组",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/array-reverse",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "rotate-ccw"
+    },
+    "array_concat": {
+        "id": "array_concat",
+        "name": "数组连接",
+        "name_en": "Array Concat",
+        "description": "连接多个数组",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/array-concat",
+        "method": "POST",
+        "params": [
+            {"name": "arrays", "type": "array", "required": True, "description": "数组数组"}
+        ],
+        "icon": "link"
+    },
+    "array_slice": {
+        "id": "array_slice",
+        "name": "数组切片",
+        "name_en": "Array Slice",
+        "description": "切片数组",
+        "category": "array",
+        "subcategory": "access",
+        "api_endpoint": "/api/array-slice",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "start", "type": "number", "required": True, "description": "起始"},
+            {"name": "end", "type": "number", "required": False, "description": "结束"}
+        ],
+        "icon": "scissors"
+    },
+
+    # ========== 数组聚合工具 ==========
+    "array_sum": {
+        "id": "array_sum",
+        "name": "数组求和",
+        "name_en": "Array Sum",
+        "description": "计算数组总和",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/array-sum",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "plus"
+    },
+    "array_product": {
+        "id": "array_product",
+        "name": "数组求积",
+        "name_en": "Array Product",
+        "description": "计算数组乘积",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/array-product",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "x"
+    },
+    "array_average": {
+        "id": "array_average",
+        "name": "数组平均值",
+        "name_en": "Array Average",
+        "description": "计算数组平均值",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/array-average",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "divide"
+    },
+    "array_count": {
+        "id": "array_count",
+        "name": "数组计数",
+        "name_en": "Array Count",
+        "description": "计算满足条件的元素数",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/array-count",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "fn", "type": "string", "required": False, "description": "计数函数"}
+        ],
+        "icon": "hash"
+    },
+    "array_every": {
+        "id": "array_every",
+        "name": "数组全部满足",
+        "name_en": "Array Every",
+        "description": "检查是否所有元素都满足条件",
+        "category": "array",
+        "subcategory": "search",
+        "api_endpoint": "/api/array-every",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "fn", "type": "string", "required": True, "description": "检查函数"}
+        ],
+        "icon": "check"
+    },
+    "array_some": {
+        "id": "array_some",
+        "name": "数组部分满足",
+        "name_en": "Array Some",
+        "description": "检查是否有元素满足条件",
+        "category": "array",
+        "subcategory": "search",
+        "api_endpoint": "/api/array-some",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "fn", "type": "string", "required": True, "description": "检查函数"}
+        ],
+        "icon": "check-square"
+    },
+
+    # ========== 数组分组工具 ==========
+    "array_group_by": {
+        "id": "array_group_by",
+        "name": "数组分组",
+        "name_en": "Array Group By",
+        "description": "按键分组",
+        "category": "array",
+        "subcategory": "group",
+        "api_endpoint": "/api/array-group-by",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "key", "type": "string", "required": True, "description": "分组键"}
+        ],
+        "icon": "group"
+    },
+    "array_partition": {
+        "id": "array_partition",
+        "name": "数组分区",
+        "name_en": "Array Partition",
+        "description": "将数组分为两部分",
+        "category": "array",
+        "subcategory": "group",
+        "api_endpoint": "/api/array-partition",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "fn", "type": "string", "required": True, "description": "分区函数"}
+        ],
+        "icon": "columns"
+    },
+    "array_chunk": {
+        "id": "array_chunk",
+        "name": "数组分块",
+        "name_en": "Array Chunk",
+        "description": "将数组分成多个块",
+        "category": "array",
+        "subcategory": "group",
+        "api_endpoint": "/api/array-chunk",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "size", "type": "number", "required": True, "description": "块大小"}
+        ],
+        "icon": "grid"
+    },
+
+    # ========== 数组操作工具 ==========
+    "array_drop": {
+        "id": "array_drop",
+        "name": "数组丢弃",
+        "name_en": "Array Drop",
+        "description": "丢弃前N个元素",
+        "category": "array",
+        "subcategory": "access",
+        "api_endpoint": "/api/array-drop",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "n", "type": "number", "required": True, "description": "丢弃数量"}
+        ],
+        "icon": "arrow-right"
+    },
+    "array_take": {
+        "id": "array_take",
+        "name": "数组取",
+        "name_en": "Array Take",
+        "description": "取前N个元素",
+        "category": "array",
+        "subcategory": "access",
+        "api_endpoint": "/api/array-take",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "n", "type": "number", "required": True, "description": "取数量"}
+        ],
+        "icon": "arrow-left"
+    },
+    "array_head": {
+        "id": "array_head",
+        "name": "数组头部",
+        "name_en": "Array Head",
+        "description": "获取数组第一个元素",
+        "category": "array",
+        "subcategory": "access",
+        "api_endpoint": "/api/array-head",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "arrow-left"
+    },
+    "array_tail": {
+        "id": "array_tail",
+        "name": "数组尾部",
+        "name_en": "Array Tail",
+        "description": "获取数组除第一个外的所有元素",
+        "category": "array",
+        "subcategory": "access",
+        "api_endpoint": "/api/array-tail",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "arrow-right"
+    },
+    "array_init": {
+        "id": "array_init",
+        "name": "数组初始",
+        "name_en": "Array Init",
+        "description": "获取数组除最后一个外的所有元素",
+        "category": "array",
+        "subcategory": "access",
+        "api_endpoint": "/api/array-init",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "arrow-left"
+    },
+    "array_last": {
+        "id": "array_last",
+        "name": "数组最后一个",
+        "name_en": "Array Last",
+        "description": "获取数组最后一个元素",
+        "category": "array",
+        "subcategory": "access",
+        "api_endpoint": "/api/array-last",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "arrow-right"
+    },
+
+    # ========== 数组数学工具 ==========
+    "array_min": {
+        "id": "array_min",
+        "name": "数组最小值",
+        "name_en": "Array Min",
+        "description": "获取数组最小值",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/array-min",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "chevron-down"
+    },
+    "array_max": {
+        "id": "array_max",
+        "name": "数组最大值",
+        "name_en": "Array Max",
+        "description": "获取数组最大值",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/array-max",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "chevron-up"
+    },
+    "array_min_by": {
+        "id": "array_min_by",
+        "name": "数组最小值by",
+        "name_en": "Array Min By",
+        "description": "按函数获取最小值",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/array-min-by",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "fn", "type": "string", "required": True, "description": "比较函数"}
+        ],
+        "icon": "chevron-down"
+    },
+    "array_max_by": {
+        "id": "array_max_by",
+        "name": "数组最大值by",
+        "name_en": "Array Max By",
+        "description": "按函数获取最大值",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/array-max-by",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "fn", "type": "string", "required": True, "description": "比较函数"}
+        ],
+        "icon": "chevron-up"
+    },
+
+    # ========== 数组交集并集差集 ==========
+    "array_union": {
+        "id": "array_union",
+        "name": "数组并集",
+        "name_en": "Array Union",
+        "description": "获取数组并集",
+        "category": "array",
+        "subcategory": "set",
+        "api_endpoint": "/api/array-union",
+        "method": "POST",
+        "params": [
+            {"name": "arrays", "type": "array", "required": True, "description": "数组数组"}
+        ],
+        "icon": "git-merge"
+    },
+    "array_intersection": {
+        "id": "array_intersection",
+        "name": "数组交集",
+        "name_en": "Array Intersection",
+        "description": "获取数组交集",
+        "category": "array",
+        "subcategory": "set",
+        "api_endpoint": "/api/array-intersection",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "数组A"},
+            {"name": "b", "type": "array", "required": True, "description": "数组B"}
+        ],
+        "icon": "git-intersect"
+    },
+    "array_difference": {
+        "id": "array_difference",
+        "name": "数组差集",
+        "name_en": "Array Difference",
+        "description": "获取数组差集",
+        "category": "array",
+        "subcategory": "set",
+        "api_endpoint": "/api/array-difference",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "数组A"},
+            {"name": "b", "type": "array", "required": True, "description": "数组B"}
+        ],
+        "icon": "git-merge"
     }
 }
 
