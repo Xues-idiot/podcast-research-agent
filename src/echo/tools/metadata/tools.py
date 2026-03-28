@@ -26706,6 +26706,475 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "image_url", "type": "string", "required": True, "description": "名片图片URL"}
         ],
         "icon": "credit-card"
+    },
+
+    # ========== 二维码工具 ==========
+    "qr_generate": {
+        "id": "qr_generate",
+        "name": "生成二维码",
+        "name_en": "Generate QR Code",
+        "description": "生成二维码图像",
+        "category": "qrcode",
+        "subcategory": "generate",
+        "api_endpoint": "/api/qr/generate",
+        "method": "POST",
+        "params": [
+            {"name": "content", "type": "string", "required": True, "description": "二维码内容"},
+            {"name": "size", "type": "number", "required": False, "description": "尺寸"}
+        ],
+        "icon": "qr-code"
+    },
+    "qr_decode": {
+        "id": "qr_decode",
+        "name": "解码二维码",
+        "name_en": "Decode QR Code",
+        "description": "解码二维码图像",
+        "category": "qrcode",
+        "subcategory": "decode",
+        "api_endpoint": "/api/qr/decode",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "二维码图片URL"}
+        ],
+        "icon": "qr-code"
+    },
+
+    # ========== 条形码工具 ==========
+    "barcode_generate": {
+        "id": "barcode_generate",
+        "name": "生成条形码",
+        "name_en": "Generate Barcode",
+        "description": "生成条形码图像",
+        "category": "barcode",
+        "subcategory": "generate",
+        "api_endpoint": "/api/barcode/generate",
+        "method": "POST",
+        "params": [
+            {"name": "content", "type": "string", "required": True, "description": "条形码内容"},
+            {"name": "format", "type": "string", "required": False, "description": "格式"}
+        ],
+        "icon": "barcode"
+    },
+    "barcode_decode": {
+        "id": "barcode_decode",
+        "name": "解码条形码",
+        "name_en": "Decode Barcode",
+        "description": "解码条形码图像",
+        "category": "barcode",
+        "subcategory": "decode",
+        "api_endpoint": "/api/barcode/decode",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "条形码图片URL"}
+        ],
+        "icon": "barcode"
+    },
+
+    # ========== 地理编码工具 ==========
+    "geocode": {
+        "id": "geocode",
+        "name": "地理编码",
+        "name_en": "Geocode",
+        "description": "将地址转换为坐标",
+        "category": "geocoding",
+        "subcategory": "geocode",
+        "api_endpoint": "/api/geocode",
+        "method": "POST",
+        "params": [
+            {"name": "address", "type": "string", "required": True, "description": "地址"}
+        ],
+        "icon": "map-pin"
+    },
+    "reverse_geocode": {
+        "id": "reverse_geocode",
+        "name": "反向地理编码",
+        "name_en": "Reverse Geocode",
+        "description": "将坐标转换为地址",
+        "category": "geocoding",
+        "subcategory": "reverse",
+        "api_endpoint": "/api/geocode/reverse",
+        "method": "POST",
+        "params": [
+            {"name": "latitude", "type": "number", "required": True, "description": "纬度"},
+            {"name": "longitude", "type": "number", "required": True, "description": "经度"}
+        ],
+        "icon": "map-pin"
+    },
+    "distance": {
+        "id": "distance",
+        "name": "距离计算",
+        "name_en": "Calculate Distance",
+        "description": "计算两点之间的距离",
+        "category": "geocoding",
+        "subcategory": "distance",
+        "api_endpoint": "/api/distance",
+        "method": "POST",
+        "params": [
+            {"name": "lat1", "type": "number", "required": True, "description": "起点纬度"},
+            {"name": "lon1", "type": "number", "required": True, "description": "起点经度"},
+            {"name": "lat2", "type": "number", "required": True, "description": "终点纬度"},
+            {"name": "lon2", "type": "number", "required": True, "description": "终点经度"}
+        ],
+        "icon": "map"
+    },
+
+    # ========== 天气工具 ==========
+    "weather_current": {
+        "id": "weather_current",
+        "name": "当前天气",
+        "name_en": "Current Weather",
+        "description": "获取当前天气",
+        "category": "weather",
+        "subcategory": "current",
+        "api_endpoint": "/api/weather/current",
+        "method": "POST",
+        "params": [
+            {"name": "location", "type": "string", "required": True, "description": "位置"}
+        ],
+        "icon": "cloud"
+    },
+    "weather_forecast": {
+        "id": "weather_forecast",
+        "name": "天气预报",
+        "name_en": "Weather Forecast",
+        "description": "获取天气预报",
+        "category": "weather",
+        "subcategory": "forecast",
+        "api_endpoint": "/api/weather/forecast",
+        "method": "POST",
+        "params": [
+            {"name": "location", "type": "string", "required": True, "description": "位置"},
+            {"name": "days", "type": "number", "required": False, "description": "天数"}
+        ],
+        "icon": "cloud"
+    },
+    "weather_air_quality": {
+        "id": "weather_air_quality",
+        "name": "空气质量",
+        "name_en": "Air Quality",
+        "description": "获取空气质量指数",
+        "category": "weather",
+        "subcategory": "air",
+        "api_endpoint": "/api/weather/air",
+        "method": "POST",
+        "params": [
+            {"name": "location", "type": "string", "required": True, "description": "位置"}
+        ],
+        "icon": "wind"
+    },
+
+    # ========== 地图工具 ==========
+    "map_static": {
+        "id": "map_static",
+        "name": "静态地图",
+        "name_en": "Static Map",
+        "description": "生成静态地图图片",
+        "category": "map",
+        "subcategory": "static",
+        "api_endpoint": "/api/map/static",
+        "method": "POST",
+        "params": [
+            {"name": "center", "type": "string", "required": True, "description": "中心点"},
+            {"name": "zoom", "type": "number", "required": False, "description": "缩放级别"}
+        ],
+        "icon": "map"
+    },
+    "map_route": {
+        "id": "map_route",
+        "name": "路线规划",
+        "name_en": "Route Planning",
+        "description": "规划行驶路线",
+        "category": "map",
+        "subcategory": "route",
+        "api_endpoint": "/api/map/route",
+        "method": "POST",
+        "params": [
+            {"name": "from", "type": "string", "required": True, "description": "起点"},
+            {"name": "to", "type": "string", "required": True, "description": "终点"}
+        ],
+        "icon": "navigation"
+    },
+    "map_places": {
+        "id": "map_places",
+        "name": "地点搜索",
+        "name_en": "Places Search",
+        "description": "搜索附近地点",
+        "category": "map",
+        "subcategory": "places",
+        "api_endpoint": "/api/map/places",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "搜索词"},
+            {"name": "location", "type": "string", "required": False, "description": "位置"}
+        ],
+        "icon": "search"
+    },
+
+    # ========== 翻译工具 ==========
+    "translate_text": {
+        "id": "translate_text",
+        "name": "文本翻译",
+        "name_en": "Translate Text",
+        "description": "翻译文本",
+        "category": "translation",
+        "subcategory": "text",
+        "api_endpoint": "/api/translate/text",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "source", "type": "string", "required": False, "description": "源语言"},
+            {"name": "target", "type": "string", "required": True, "description": "目标语言"}
+        ],
+        "icon": "globe"
+    },
+    "translate_html": {
+        "id": "translate_html",
+        "name": "HTML翻译",
+        "name_en": "Translate HTML",
+        "description": "翻译HTML内容",
+        "category": "translation",
+        "subcategory": "html",
+        "api_endpoint": "/api/translate/html",
+        "method": "POST",
+        "params": [
+            {"name": "html", "type": "string", "required": True, "description": "HTML内容"},
+            {"name": "target", "type": "string", "required": True, "description": "目标语言"}
+        ],
+        "icon": "globe"
+    },
+    "translate_detect": {
+        "id": "translate_detect",
+        "name": "语言检测",
+        "name_en": "Detect Language",
+        "description": "检测文本语言",
+        "category": "translation",
+        "subcategory": "detect",
+        "api_endpoint": "/api/translate/detect",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "globe"
+    },
+
+    # ========== 货币工具 ==========
+    "currency_convert": {
+        "id": "currency_convert",
+        "name": "货币转换",
+        "name_en": "Currency Convert",
+        "description": "转换货币",
+        "category": "currency",
+        "subcategory": "convert",
+        "api_endpoint": "/api/currency/convert",
+        "method": "POST",
+        "params": [
+            {"name": "amount", "type": "number", "required": True, "description": "金额"},
+            {"name": "from", "type": "string", "required": True, "description": "源货币"},
+            {"name": "to", "type": "string", "required": True, "description": "目标货币"}
+        ],
+        "icon": "dollar-sign"
+    },
+    "currency_rate": {
+        "id": "currency_rate",
+        "name": "汇率查询",
+        "name_en": "Exchange Rate",
+        "description": "查询汇率",
+        "category": "currency",
+        "subcategory": "rate",
+        "api_endpoint": "/api/currency/rate",
+        "method": "POST",
+        "params": [
+            {"name": "from", "type": "string", "required": True, "description": "源货币"},
+            {"name": "to", "type": "string", "required": True, "description": "目标货币"}
+        ],
+        "icon": "trending-up"
+    },
+    "currency_list": {
+        "id": "currency_list",
+        "name": "货币列表",
+        "name_en": "Currency List",
+        "description": "获取支持的货币列表",
+        "category": "currency",
+        "subcategory": "list",
+        "api_endpoint": "/api/currency/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 单位转换工具 ==========
+    "unit_convert": {
+        "id": "unit_convert",
+        "name": "单位转换",
+        "name_en": "Unit Convert",
+        "description": "转换单位",
+        "category": "unit",
+        "subcategory": "convert",
+        "api_endpoint": "/api/unit/convert",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "from", "type": "string", "required": True, "description": "源单位"},
+            {"name": "to", "type": "string", "required": True, "description": "目标单位"}
+        ],
+        "icon": "repeat"
+    },
+    "unit_length": {
+        "id": "unit_length",
+        "name": "长度单位转换",
+        "name_en": "Length Conversion",
+        "description": "长度单位转换",
+        "category": "unit",
+        "subcategory": "length",
+        "api_endpoint": "/api/unit/length",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "from", "type": "string", "required": True, "description": "源单位"},
+            {"name": "to", "type": "string", "required": True, "description": "目标单位"}
+        ],
+        "icon": "ruler"
+    },
+    "unit_weight": {
+        "id": "unit_weight",
+        "name": "重量单位转换",
+        "name_en": "Weight Conversion",
+        "description": "重量单位转换",
+        "category": "unit",
+        "subcategory": "weight",
+        "api_endpoint": "/api/unit/weight",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "from", "type": "string", "required": True, "description": "源单位"},
+            {"name": "to", "type": "string", "required": True, "description": "目标单位"}
+        ],
+        "icon": "scale"
+    },
+    "unit_temperature": {
+        "id": "unit_temperature",
+        "name": "温度单位转换",
+        "name_en": "Temperature Conversion",
+        "description": "温度单位转换",
+        "category": "unit",
+        "subcategory": "temperature",
+        "api_endpoint": "/api/unit/temperature",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "from", "type": "string", "required": True, "description": "源单位"},
+            {"name": "to", "type": "string", "required": True, "description": "目标单位"}
+        ],
+        "icon": "thermometer"
+    },
+    "unit_volume": {
+        "id": "unit_volume",
+        "name": "体积单位转换",
+        "name_en": "Volume Conversion",
+        "description": "体积单位转换",
+        "category": "unit",
+        "subcategory": "volume",
+        "api_endpoint": "/api/unit/volume",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "from", "type": "string", "required": True, "description": "源单位"},
+            {"name": "to", "type": "string", "required": True, "description": "目标单位"}
+        ],
+        "icon": "box"
+    },
+
+    # ========== 时区工具 ==========
+    "timezone_list": {
+        "id": "timezone_list",
+        "name": "时区列表",
+        "name_en": "Timezone List",
+        "description": "获取时区列表",
+        "category": "timezone",
+        "subcategory": "list",
+        "api_endpoint": "/api/timezone/list",
+        "method": "GET",
+        "params": [],
+        "icon": "globe"
+    },
+    "timezone_convert": {
+        "id": "timezone_convert",
+        "name": "时区转换",
+        "name_en": "Timezone Convert",
+        "description": "转换时区时间",
+        "category": "timezone",
+        "subcategory": "convert",
+        "api_endpoint": "/api/timezone/convert",
+        "method": "POST",
+        "params": [
+            {"name": "time", "type": "string", "required": True, "description": "时间"},
+            {"name": "from", "type": "string", "required": True, "description": "源时区"},
+            {"name": "to", "type": "string", "required": True, "description": "目标时区"}
+        ],
+        "icon": "clock"
+    },
+    "timezone_current": {
+        "id": "timezone_current",
+        "name": "当前时间",
+        "name_en": "Current Time",
+        "description": "获取指定时区当前时间",
+        "category": "timezone",
+        "subcategory": "current",
+        "api_endpoint": "/api/timezone/current",
+        "method": "POST",
+        "params": [
+            {"name": "timezone", "type": "string", "required": True, "description": "时区"}
+        ],
+        "icon": "clock"
+    },
+
+    # ========== 国际化和本地化工具 ==========
+    "i18n_translate": {
+        "id": "i18n_translate",
+        "name": "国际化翻译",
+        "name_en": "i18n Translate",
+        "description": "获取翻译文本",
+        "category": "i18n",
+        "subcategory": "translate",
+        "api_endpoint": "/api/i18n/translate",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "翻译键"},
+            {"name": "locale", "type": "string", "required": True, "description": "语言环境"}
+        ],
+        "icon": "globe"
+    },
+    "i18n_format": {
+        "id": "i18n_format",
+        "name": "国际化格式化",
+        "name_en": "i18n Format",
+        "description": "格式化国际化数字/日期",
+        "category": "i18n",
+        "subcategory": "format",
+        "api_endpoint": "/api/i18n/format",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "locale", "type": "string", "required": True, "description": "语言环境"},
+            {"name": "type", "type": "string", "required": True, "description": "类型(number/date)"}
+        ],
+        "icon": "globe"
+    },
+    "i18n_plural": {
+        "id": "i18n_plural",
+        "name": "国际化复数",
+        "name_en": "i18n Plural",
+        "description": "获取复数形式的翻译",
+        "category": "i18n",
+        "subcategory": "plural",
+        "api_endpoint": "/api/i18n/plural",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "翻译键"},
+            {"name": "count", "type": "number", "required": True, "description": "数量"},
+            {"name": "locale", "type": "string", "required": True, "description": "语言环境"}
+        ],
+        "icon": "globe"
     }
 }
 
