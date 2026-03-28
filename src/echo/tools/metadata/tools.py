@@ -663,6 +663,18 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "params": [],
         "icon": "folder"
     },
+    "time_utils": {
+        "id": "time_utils",
+        "name": "时间工具",
+        "name_en": "Time Utils",
+        "description": "时间操作：当前时间、时间戳转换、时间加减、格式化",
+        "category": "datetime",
+        "subcategory": "time",
+        "api_endpoint": "/api/time",
+        "method": "POST",
+        "params": [],
+        "icon": "clock"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
