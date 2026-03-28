@@ -349,6 +349,21 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "icon": "list"
     },
 
+    "list_sort": {
+        "id": "list_sort",
+        "name": "列表排序",
+        "name_en": "List Sort",
+        "description": "对列表进行排序、反转、打乱",
+        "category": "data_structures",
+        "subcategory": "list",
+        "api_endpoint": "/api/list-sort",
+        "method": "POST",
+        "params": [
+            {"name": "list", "type": "array", "required": True, "description": "源列表"},
+            {"name": "reverse", "type": "boolean", "required": False, "description": "降序"}
+        ],
+        "icon": "list"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
