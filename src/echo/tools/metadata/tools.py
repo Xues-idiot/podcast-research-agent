@@ -20155,6 +20155,278 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "minimize"
     },
+
+    # ========== 概率统计工具 ==========
+    "random_normal": {
+        "id": "random_normal",
+        "name": "正态分布随机数",
+        "name_en": "Normal Distribution",
+        "description": "生成正态分布随机数",
+        "category": "probability",
+        "subcategory": "normal",
+        "api_endpoint": "/api/random_normal",
+        "method": "POST",
+        "params": [
+            {"name": "mean", "type": "number", "required": False, "description": "均值", "default": 0},
+            {"name": "std", "type": "number", "required": False, "description": "标准差", "default": 1}
+        ],
+        "icon": "hash"
+    },
+    "random_uniform": {
+        "id": "random_uniform",
+        "name": "均匀分布随机数",
+        "name_en": "Uniform Distribution",
+        "description": "生成均匀分布随机数",
+        "category": "probability",
+        "subcategory": "uniform",
+        "api_endpoint": "/api/random_uniform",
+        "method": "POST",
+        "params": [
+            {"name": "min", "type": "number", "required": True, "description": "最小值"},
+            {"name": "max", "type": "number", "required": True, "description": "最大值"}
+        ],
+        "icon": "hash"
+    },
+    "random_exponential": {
+        "id": "random_exponential",
+        "name": "指数分布随机数",
+        "name_en": "Exponential Distribution",
+        "description": "生成指数分布随机数",
+        "category": "probability",
+        "subcategory": "exponential",
+        "api_endpoint": "/api/random_exponential",
+        "method": "POST",
+        "params": [
+            {"name": "lambda", "type": "number", "required": True, "description": "lambda参数"}
+        ],
+        "icon": "hash"
+    },
+    "mean": {
+        "id": "mean",
+        "name": "平均值",
+        "name_en": "Mean",
+        "description": "计算平均值",
+        "category": "statistics",
+        "subcategory": "average",
+        "api_endpoint": "/api/mean",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数值数组"}
+        ],
+        "icon": "percent"
+    },
+    "median": {
+        "id": "median",
+        "name": "中位数",
+        "name_en": "Median",
+        "description": "计算中位数",
+        "category": "statistics",
+        "subcategory": "middle",
+        "api_endpoint": "/api/median",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数值数组"}
+        ],
+        "icon": "percent"
+    },
+    "mode": {
+        "id": "mode",
+        "name": "众数",
+        "name_en": "Mode",
+        "description": "计算众数",
+        "category": "statistics",
+        "subcategory": "frequency",
+        "api_endpoint": "/api/mode",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数值数组"}
+        ],
+        "icon": "percent"
+    },
+    "variance": {
+        "id": "variance",
+        "name": "方差",
+        "name_en": "Variance",
+        "description": "计算方差",
+        "category": "statistics",
+        "subcategory": "dispersion",
+        "api_endpoint": "/api/variance",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数值数组"}
+        ],
+        "icon": "percent"
+    },
+    "std_dev": {
+        "id": "std_dev",
+        "name": "标准差",
+        "name_en": "Standard Deviation",
+        "description": "计算标准差",
+        "category": "statistics",
+        "subcategory": "dispersion",
+        "api_endpoint": "/api/std_dev",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数值数组"}
+        ],
+        "icon": "percent"
+    },
+    "skewness": {
+        "id": "skewness",
+        "name": "偏度",
+        "name_en": "Skewness",
+        "description": "计算偏度",
+        "category": "statistics",
+        "subcategory": "shape",
+        "api_endpoint": "/api/skewness",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数值数组"}
+        ],
+        "icon": "percent"
+    },
+    "kurtosis": {
+        "id": "kurtosis",
+        "name": "峰度",
+        "name_en": "Kurtosis",
+        "description": "计算峰度",
+        "category": "statistics",
+        "subcategory": "shape",
+        "api_endpoint": "/api/kurtosis",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数值数组"}
+        ],
+        "icon": "percent"
+    },
+    "linear_regression": {
+        "id": "linear_regression",
+        "name": "线性回归",
+        "name_en": "Linear Regression",
+        "description": "计算线性回归",
+        "category": "regression",
+        "subcategory": "linear",
+        "api_endpoint": "/api/linear_regression",
+        "method": "POST",
+        "params": [
+            {"name": "x", "type": "array", "required": True, "description": "X值数组"},
+            {"name": "y", "type": "array", "required": True, "description": "Y值数组"}
+        ],
+        "icon": "trending-up"
+    },
+    "polynomial_regression": {
+        "id": "polynomial_regression",
+        "name": "多项式回归",
+        "name_en": "Polynomial Regression",
+        "description": "计算多项式回归",
+        "category": "regression",
+        "subcategory": "polynomial",
+        "api_endpoint": "/api/polynomial_regression",
+        "method": "POST",
+        "params": [
+            {"name": "x", "type": "array", "required": True, "description": "X值数组"},
+            {"name": "y", "type": "array", "required": True, "description": "Y值数组"},
+            {"name": "degree", "type": "number", "required": False, "description": "多项式次数", "default": 2}
+        ],
+        "icon": "trending-up"
+    },
+    "lerp": {
+        "id": "lerp",
+        "name": "线性插值",
+        "name_en": "Linear Interpolation",
+        "description": "线性插值",
+        "category": "interpolation",
+        "subcategory": "linear",
+        "api_endpoint": "/api/lerp",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "起始值"},
+            {"name": "b", "type": "number", "required": True, "description": "结束值"},
+            {"name": "t", "type": "number", "required": True, "description": "插值参数"}
+        ],
+        "icon": "git-merge"
+    },
+    "slerp": {
+        "id": "slerp",
+        "name": "球面线性插值",
+        "name_en": "Spherical Lerp",
+        "description": "球面线性插值",
+        "category": "interpolation",
+        "subcategory": "spherical",
+        "api_endpoint": "/api/slerp",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "array", "required": True, "description": "起始向量"},
+            {"name": "b", "type": "array", "required": True, "description": "结束向量"},
+            {"name": "t", "type": "number", "required": True, "description": "插值参数"}
+        ],
+        "icon": "git-merge"
+    },
+    "bilinear_interpolate": {
+        "id": "bilinear_interpolate",
+        "name": "双线性插值",
+        "name_en": "Bilinear Interpolation",
+        "description": "双线性插值",
+        "category": "interpolation",
+        "subcategory": "bilinear",
+        "api_endpoint": "/api/bilinear_interpolate",
+        "method": "POST",
+        "params": [
+            {"name": "q11", "type": "number", "required": True, "description": "Q11值"},
+            {"name": "q12", "type": "number", "required": True, "description": "Q12值"},
+            {"name": "q21", "type": "number", "required": True, "description": "Q21值"},
+            {"name": "q22", "type": "number", "required": True, "description": "Q22值"},
+            {"name": "x", "type": "number", "required": True, "description": "X位置"},
+            {"name": "y", "type": "number", "required": True, "description": "Y位置"}
+        ],
+        "icon": "git-merge"
+    },
+    "moving_average": {
+        "id": "moving_average",
+        "name": "移动平均",
+        "name_en": "Moving Average",
+        "description": "计算移动平均",
+        "category": "smoothing",
+        "subcategory": "average",
+        "api_endpoint": "/api/moving_average",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数值数组"},
+            {"name": "window", "type": "number", "required": True, "description": "窗口大小"}
+        ],
+        "icon": "activity"
+    },
+    "exponential_smooth": {
+        "id": "exponential_smooth",
+        "name": "指数平滑",
+        "name_en": "Exponential Smoothing",
+        "description": "指数平滑",
+        "category": "smoothing",
+        "subcategory": "exponential",
+        "api_endpoint": "/api/exponential_smooth",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数值数组"},
+            {"name": "alpha", "type": "number", "required": False, "description": "平滑系数", "default": 0.3}
+        ],
+        "icon": "activity"
+    },
+    "savitzky_golay": {
+        "id": "savitzky_golay",
+        "name": "Savitzky-Golay滤波",
+        "name_en": "Savitzky-Golay Filter",
+        "description": "Savitzky-Golay平滑滤波",
+        "category": "smoothing",
+        "subcategory": "savitzky_golay",
+        "api_endpoint": "/api/savitzky_golay",
+        "method": "POST",
+        "params": [
+            {"name": "array", "type": "array", "required": True, "description": "数值数组"},
+            {"name": "window", "type": "number", "required": False, "description": "窗口大小", "default": 5},
+            {"name": "order", "type": "number", "required": False, "description": "多项式阶数", "default": 2}
+        ],
+        "icon": "activity"
+    },
 }
 
 
