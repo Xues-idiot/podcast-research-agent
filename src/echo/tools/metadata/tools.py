@@ -3458,6 +3458,106 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "text", "type": "string", "required": True, "description": "文本"}
         ],
         "icon": "minus"
+    },
+    "any": {
+        "id": "any",
+        "name": "任意为真",
+        "name_en": "Any",
+        "description": "检查是否有任意元素为真",
+        "category": "list",
+        "subcategory": "check",
+        "api_endpoint": "/api/any",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "check-square"
+    },
+    "all": {
+        "id": "all",
+        "name": "全部为真",
+        "name_en": "All",
+        "description": "检查是否所有元素都为真",
+        "category": "list",
+        "subcategory": "check",
+        "api_endpoint": "/api/all",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "check-square"
+    },
+    "none": {
+        "id": "none",
+        "name": "全为假",
+        "name_en": "None",
+        "description": "检查是否所有元素都为假",
+        "category": "list",
+        "subcategory": "check",
+        "api_endpoint": "/api/none",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "check-square"
+    },
+    "find": {
+        "id": "find",
+        "name": "查找元素",
+        "name_en": "Find",
+        "description": "查找满足条件的第一个元素",
+        "category": "list",
+        "subcategory": "search",
+        "api_endpoint": "/api/find",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "search"
+    },
+    "filter_list": {
+        "id": "filter_list",
+        "name": "过滤列表",
+        "name_en": "Filter List",
+        "description": "过滤列表元素",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/filter",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "filter"
+    },
+    "map_list": {
+        "id": "map_list",
+        "name": "映射列表",
+        "name_en": "Map List",
+        "description": "对列表每个元素应用函数",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/map",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "fn", "type": "string", "required": True, "description": "函数"}
+        ],
+        "icon": "map"
+    },
+    "reduce": {
+        "id": "reduce",
+        "name": "聚合",
+        "name_en": "Reduce",
+        "description": "将列表归约为单个值",
+        "category": "list",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/reduce",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "fn", "type": "string", "required": True, "description": "聚合函数"}
+        ],
+        "icon": "git_merge"
     }
 }
 
