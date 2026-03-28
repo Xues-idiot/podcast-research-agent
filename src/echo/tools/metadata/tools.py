@@ -20853,6 +20853,337 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "check"
     },
+
+    # ========== 压缩工具 ==========
+    "compress_gzip": {
+        "id": "compress_gzip",
+        "name": "Gzip压缩",
+        "name_en": "Gzip Compress",
+        "description": "使用Gzip压缩数据",
+        "category": "compression",
+        "subcategory": "gzip",
+        "api_endpoint": "/api/compress_gzip",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"}
+        ],
+        "icon": "archive"
+    },
+    "decompress_gzip": {
+        "id": "decompress_gzip",
+        "name": "Gzip解压",
+        "name_en": "Gzip Decompress",
+        "description": "解压Gzip数据",
+        "category": "compression",
+        "subcategory": "gzip",
+        "api_endpoint": "/api/decompress_gzip",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "压缩数据"}
+        ],
+        "icon": "archive"
+    },
+    "compress_zlib": {
+        "id": "compress_zlib",
+        "name": "Zlib压缩",
+        "name_en": "Zlib Compress",
+        "description": "使用Zlib压缩数据",
+        "category": "compression",
+        "subcategory": "zlib",
+        "api_endpoint": "/api/compress_zlib",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"}
+        ],
+        "icon": "archive"
+    },
+    "decompress_zlib": {
+        "id": "decompress_zlib",
+        "name": "Zlib解压",
+        "name_en": "Zlib Decompress",
+        "description": "解压Zlib数据",
+        "category": "compression",
+        "subcategory": "zlib",
+        "api_endpoint": "/api/decompress_zlib",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "压缩数据"}
+        ],
+        "icon": "archive"
+    },
+    "compress_bz2": {
+        "id": "compress_bz2",
+        "name": "BZ2压缩",
+        "name_en": "BZ2 Compress",
+        "description": "使用BZ2压缩数据",
+        "category": "compression",
+        "subcategory": "bz2",
+        "api_endpoint": "/api/compress_bz2",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"}
+        ],
+        "icon": "archive"
+    },
+    "decompress_bz2": {
+        "id": "decompress_bz2",
+        "name": "BZ2解压",
+        "name_en": "BZ2 Decompress",
+        "description": "解压BZ2数据",
+        "category": "compression",
+        "subcategory": "bz2",
+        "api_endpoint": "/api/decompress_bz2",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "压缩数据"}
+        ],
+        "icon": "archive"
+    },
+    "compress_lzma": {
+        "id": "compress_lzma",
+        "name": "LZMA压缩",
+        "name_en": "LZMA Compress",
+        "description": "使用LZMA压缩数据",
+        "category": "compression",
+        "subcategory": "lzma",
+        "api_endpoint": "/api/compress_lzma",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"}
+        ],
+        "icon": "archive"
+    },
+    "decompress_lzma": {
+        "id": "decompress_lzma",
+        "name": "LZMA解压",
+        "name_en": "LZMA Decompress",
+        "description": "解压LZMA数据",
+        "category": "compression",
+        "subcategory": "lzma",
+        "api_endpoint": "/api/decompress_lzma",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "压缩数据"}
+        ],
+        "icon": "archive"
+    },
+
+    # ========== 国际化工具 ==========
+    "detect_language": {
+        "id": "detect_language",
+        "name": "语言检测",
+        "name_en": "Detect Language",
+        "description": "检测文本语言",
+        "category": "i18n",
+        "subcategory": "detect",
+        "api_endpoint": "/api/detect_language",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "globe"
+    },
+    "translate": {
+        "id": "translate",
+        "name": "文本翻译",
+        "name_en": "Translate",
+        "description": "翻译文本",
+        "category": "i18n",
+        "subcategory": "translate",
+        "api_endpoint": "/api/translate",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "from_lang", "type": "string", "required": False, "description": "源语言"},
+            {"name": "to_lang", "type": "string", "required": True, "description": "目标语言"}
+        ],
+        "icon": "globe"
+    },
+    "to_pinyin": {
+        "id": "to_pinyin",
+        "name": "转拼音",
+        "name_en": "To Pinyin",
+        "description": "将中文转换为拼音",
+        "category": "i18n",
+        "subcategory": "pinyin",
+        "api_endpoint": "/api/to_pinyin",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "中文文本"}
+        ],
+        "icon": "type"
+    },
+    "to_traditional": {
+        "id": "to_traditional",
+        "name": "转繁体",
+        "name_en": "To Traditional",
+        "description": "将简体中文转换为繁体中文",
+        "category": "i18n",
+        "subcategory": "chinese",
+        "api_endpoint": "/api/to_traditional",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "简体中文"}
+        ],
+        "icon": "type"
+    },
+    "to_simplified": {
+        "id": "to_simplified",
+        "name": "转简体",
+        "name_en": "To Simplified",
+        "description": "将繁体中文转换为简体中文",
+        "category": "i18n",
+        "subcategory": "chinese",
+        "api_endpoint": "/api/to_simplified",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "繁体中文"}
+        ],
+        "icon": "type"
+    },
+    "locale_format": {
+        "id": "locale_format",
+        "name": "本地化格式化",
+        "name_en": "Locale Format",
+        "description": "根据区域格式化数字和日期",
+        "category": "i18n",
+        "subcategory": "format",
+        "api_endpoint": "/api/locale_format",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "any", "required": True, "description": "值"},
+            {"name": "locale", "type": "string", "required": False, "description": "区域", "default": "en_US"}
+        ],
+        "icon": "globe"
+    },
+
+    # ========== 国际化工具 ==========
+    "word_count": {
+        "id": "word_count",
+        "name": "字数统计",
+        "name_en": "Word Count",
+        "description": "统计文本字数",
+        "category": "text",
+        "subcategory": "count",
+        "api_endpoint": "/api/word_count",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "hash"
+    },
+    "char_count": {
+        "id": "char_count",
+        "name": "字符数统计",
+        "name_en": "Character Count",
+        "description": "统计文本字符数",
+        "category": "text",
+        "subcategory": "count",
+        "api_endpoint": "/api/char_count",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "hash"
+    },
+    "line_count": {
+        "id": "line_count",
+        "name": "行数统计",
+        "name_en": "Line Count",
+        "description": "统计文本行数",
+        "category": "text",
+        "subcategory": "count",
+        "api_endpoint": "/api/line_count",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "hash"
+    },
+    "paragraph_count": {
+        "id": "paragraph_count",
+        "name": "段落数统计",
+        "name_en": "Paragraph Count",
+        "description": "统计文本段落数",
+        "category": "text",
+        "subcategory": "count",
+        "api_endpoint": "/api/paragraph_count",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "hash"
+    },
+    "sentence_count": {
+        "id": "sentence_count",
+        "name": "句子数统计",
+        "name_en": "Sentence Count",
+        "description": "统计文本句子数",
+        "category": "text",
+        "subcategory": "count",
+        "api_endpoint": "/api/sentence_count",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "hash"
+    },
+    "unique_words": {
+        "id": "unique_words",
+        "name": "去重词统计",
+        "name_en": "Unique Words",
+        "description": "统计不重复词数",
+        "category": "text",
+        "subcategory": "count",
+        "api_endpoint": "/api/unique_words",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "hash"
+    },
+    "avg_word_length": {
+        "id": "avg_word_length",
+        "name": "平均词长",
+        "name_en": "Average Word Length",
+        "description": "计算平均词长度",
+        "category": "text",
+        "subcategory": "analysis",
+        "api_endpoint": "/api/avg_word_length",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "percent"
+    },
+    "avg_sentence_length": {
+        "id": "avg_sentence_length",
+        "name": "平均句长",
+        "name_en": "Average Sentence Length",
+        "description": "计算平均句子长度",
+        "category": "text",
+        "subcategory": "analysis",
+        "api_endpoint": "/api/avg_sentence_length",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "percent"
+    },
+    "readability_score": {
+        "id": "readability_score",
+        "name": "可读性评分",
+        "name_en": "Readability Score",
+        "description": "计算文本可读性评分",
+        "category": "text",
+        "subcategory": "analysis",
+        "api_endpoint": "/api/readability_score",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "percent"
+    },
 }
 
 
