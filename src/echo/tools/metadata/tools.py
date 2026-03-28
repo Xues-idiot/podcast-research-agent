@@ -23978,6 +23978,443 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "array", "type": "array", "required": True, "description": "数组"}
         ],
         "icon": "check"
+    },
+
+    # ========== 网络工具 ==========
+    "http_get": {
+        "id": "http_get",
+        "name": "HTTP GET请求",
+        "name_en": "HTTP GET",
+        "description": "发送HTTP GET请求",
+        "category": "network",
+        "subcategory": "http",
+        "api_endpoint": "/api/http/get",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "请求URL"}
+        ],
+        "icon": "globe"
+    },
+    "http_post": {
+        "id": "http_post",
+        "name": "HTTP POST请求",
+        "name_en": "HTTP POST",
+        "description": "发送HTTP POST请求",
+        "category": "network",
+        "subcategory": "http",
+        "api_endpoint": "/api/http/post",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "请求URL"},
+            {"name": "data", "type": "any", "required": False, "description": "请求数据"}
+        ],
+        "icon": "globe"
+    },
+    "http_headers": {
+        "id": "http_headers",
+        "name": "获取HTTP头",
+        "name_en": "Get HTTP Headers",
+        "description": "获取URL的HTTP响应头",
+        "category": "network",
+        "subcategory": "http",
+        "api_endpoint": "/api/http/headers",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "请求URL"}
+        ],
+        "icon": "globe"
+    },
+    "http_status": {
+        "id": "http_status",
+        "name": "获取HTTP状态码",
+        "name_en": "Get HTTP Status",
+        "description": "获取URL的HTTP状态码",
+        "category": "network",
+        "subcategory": "http",
+        "api_endpoint": "/api/http/status",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "请求URL"}
+        ],
+        "icon": "globe"
+    },
+    "dns_lookup": {
+        "id": "dns_lookup",
+        "name": "DNS查询",
+        "name_en": "DNS Lookup",
+        "description": "查询域名的DNS记录",
+        "category": "network",
+        "subcategory": "dns",
+        "api_endpoint": "/api/dns/lookup",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "globe"
+    },
+    "dns_reverse": {
+        "id": "dns_reverse",
+        "name": "反向DNS查询",
+        "name_en": "Reverse DNS Lookup",
+        "description": "通过IP获取域名",
+        "category": "network",
+        "subcategory": "dns",
+        "api_endpoint": "/api/dns/reverse",
+        "method": "POST",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP地址"}
+        ],
+        "icon": "globe"
+    },
+    "ip_info": {
+        "id": "ip_info",
+        "name": "IP信息查询",
+        "name_en": "IP Info",
+        "description": "获取IP地理位置信息",
+        "category": "network",
+        "subcategory": "ip",
+        "api_endpoint": "/api/ip/info",
+        "method": "POST",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP地址"}
+        ],
+        "icon": "globe"
+    },
+    "ping": {
+        "id": "ping",
+        "name": "Ping检测",
+        "name_en": "Ping",
+        "description": "检测主机是否可达",
+        "category": "network",
+        "subcategory": "ping",
+        "api_endpoint": "/api/ping",
+        "method": "POST",
+        "params": [
+            {"name": "host", "type": "string", "required": True, "description": "主机地址"}
+        ],
+        "icon": "globe"
+    },
+    "port_scan": {
+        "id": "port_scan",
+        "name": "端口扫描",
+        "name_en": "Port Scan",
+        "description": "扫描主机的开放端口",
+        "category": "network",
+        "subcategory": "scan",
+        "api_endpoint": "/api/port/scan",
+        "method": "POST",
+        "params": [
+            {"name": "host", "type": "string", "required": True, "description": "主机地址"},
+            {"name": "ports", "type": "array", "required": False, "description": "端口列表"}
+        ],
+        "icon": "globe"
+    },
+    "ssl_info": {
+        "id": "ssl_info",
+        "name": "SSL证书信息",
+        "name_en": "SSL Info",
+        "description": "获取网站的SSL证书信息",
+        "category": "network",
+        "subcategory": "ssl",
+        "api_endpoint": "/api/ssl/info",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "lock"
+    },
+    "user_agent": {
+        "id": "user_agent",
+        "name": "User-Agent解析",
+        "name_en": "Parse User-Agent",
+        "description": "解析User-Agent字符串",
+        "category": "network",
+        "subcategory": "parse",
+        "api_endpoint": "/api/user_agent",
+        "method": "POST",
+        "params": [
+            {"name": "ua", "type": "string", "required": True, "description": "User-Agent字符串"}
+        ],
+        "icon": "globe"
+    },
+    "json_to_query": {
+        "id": "json_to_query",
+        "name": "JSON转QueryString",
+        "name_en": "JSON to Query String",
+        "description": "将JSON对象转换为URL查询字符串",
+        "category": "network",
+        "subcategory": "convert",
+        "api_endpoint": "/api/json/to/query",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "object", "required": True, "description": "JSON对象"}
+        ],
+        "icon": "globe"
+    },
+    "query_to_json": {
+        "id": "query_to_json",
+        "name": "QueryString转JSON",
+        "name_en": "Query String to JSON",
+        "description": "将URL查询字符串转换为JSON对象",
+        "category": "network",
+        "subcategory": "convert",
+        "api_endpoint": "/api/query/to/json",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询字符串"}
+        ],
+        "icon": "globe"
+    },
+
+    # ========== 浏览器工具 ==========
+    "browser_open": {
+        "id": "browser_open",
+        "name": "打开网页",
+        "name_en": "Open Page",
+        "description": "在浏览器中打开指定网页",
+        "category": "browser",
+        "subcategory": "navigation",
+        "api_endpoint": "/api/browser/open",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网页URL"}
+        ],
+        "icon": "globe"
+    },
+    "browser_screenshot": {
+        "id": "browser_screenshot",
+        "name": "网页截图",
+        "name_en": "Take Screenshot",
+        "description": "对指定网页进行截图",
+        "category": "browser",
+        "subcategory": "screenshot",
+        "api_endpoint": "/api/browser/screenshot",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网页URL"}
+        ],
+        "icon": "image"
+    },
+    "browser_html": {
+        "id": "browser_html",
+        "name": "获取网页HTML",
+        "name_en": "Get Page HTML",
+        "description": "获取指定网页的HTML内容",
+        "category": "browser",
+        "subcategory": "content",
+        "api_endpoint": "/api/browser/html",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网页URL"}
+        ],
+        "icon": "code"
+    },
+    "browser_text": {
+        "id": "browser_text",
+        "name": "获取网页文本",
+        "name_en": "Get Page Text",
+        "description": "获取指定网页的文本内容",
+        "category": "browser",
+        "subcategory": "content",
+        "api_endpoint": "/api/browser/text",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网页URL"}
+        ],
+        "icon": "file-text"
+    },
+
+    # ========== 存储工具 ==========
+    "local_storage_get": {
+        "id": "local_storage_get",
+        "name": "获取本地存储",
+        "name_en": "Get Local Storage",
+        "description": "从本地存储获取值",
+        "category": "storage",
+        "subcategory": "local",
+        "api_endpoint": "/api/storage/local/get",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键名"}
+        ],
+        "icon": "database"
+    },
+    "local_storage_set": {
+        "id": "local_storage_set",
+        "name": "设置本地存储",
+        "name_en": "Set Local Storage",
+        "description": "设置本地存储的值",
+        "category": "storage",
+        "subcategory": "local",
+        "api_endpoint": "/api/storage/local/set",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键名"},
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "database"
+    },
+    "local_storage_remove": {
+        "id": "local_storage_remove",
+        "name": "删除本地存储",
+        "name_en": "Remove Local Storage",
+        "description": "删除本地存储的项",
+        "category": "storage",
+        "subcategory": "local",
+        "api_endpoint": "/api/storage/local/remove",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键名"}
+        ],
+        "icon": "database"
+    },
+    "session_storage_get": {
+        "id": "session_storage_get",
+        "name": "获取会话存储",
+        "name_en": "Get Session Storage",
+        "description": "从会话存储获取值",
+        "category": "storage",
+        "subcategory": "session",
+        "api_endpoint": "/api/storage/session/get",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键名"}
+        ],
+        "icon": "database"
+    },
+    "session_storage_set": {
+        "id": "session_storage_set",
+        "name": "设置会话存储",
+        "name_en": "Set Session Storage",
+        "description": "设置会话存储的值",
+        "category": "storage",
+        "subcategory": "session",
+        "api_endpoint": "/api/storage/session/set",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键名"},
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "database"
+    },
+    "cookie_get": {
+        "id": "cookie_get",
+        "name": "获取Cookie",
+        "name_en": "Get Cookie",
+        "description": "获取指定名称的Cookie",
+        "category": "storage",
+        "subcategory": "cookie",
+        "api_endpoint": "/api/storage/cookie/get",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "Cookie名称"}
+        ],
+        "icon": "database"
+    },
+    "cookie_set": {
+        "id": "cookie_set",
+        "name": "设置Cookie",
+        "name_en": "Set Cookie",
+        "description": "设置Cookie",
+        "category": "storage",
+        "subcategory": "cookie",
+        "api_endpoint": "/api/storage/cookie/set",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "Cookie名称"},
+            {"name": "value", "type": "string", "required": True, "description": "Cookie值"}
+        ],
+        "icon": "database"
+    },
+
+    # ========== 系统工具 ==========
+    "os_info": {
+        "id": "os_info",
+        "name": "操作系统信息",
+        "name_en": "OS Info",
+        "description": "获取操作系统信息",
+        "category": "system",
+        "subcategory": "info",
+        "api_endpoint": "/api/system/os",
+        "method": "GET",
+        "params": [],
+        "icon": "monitor"
+    },
+    "cpu_info": {
+        "id": "cpu_info",
+        "name": "CPU信息",
+        "name_en": "CPU Info",
+        "description": "获取CPU信息",
+        "category": "system",
+        "subcategory": "info",
+        "api_endpoint": "/api/system/cpu",
+        "method": "GET",
+        "params": [],
+        "icon": "cpu"
+    },
+    "memory_info": {
+        "id": "memory_info",
+        "name": "内存信息",
+        "name_en": "Memory Info",
+        "description": "获取内存使用情况",
+        "category": "system",
+        "subcategory": "info",
+        "api_endpoint": "/api/system/memory",
+        "method": "GET",
+        "params": [],
+        "icon": "database"
+    },
+    "disk_info": {
+        "id": "disk_info",
+        "name": "磁盘信息",
+        "name_en": "Disk Info",
+        "description": "获取磁盘使用情况",
+        "category": "system",
+        "subcategory": "info",
+        "api_endpoint": "/api/system/disk",
+        "method": "GET",
+        "params": [],
+        "icon": "hard-drive"
+    },
+    "process_list": {
+        "id": "process_list",
+        "name": "进程列表",
+        "name_en": "Process List",
+        "description": "获取运行中的进程列表",
+        "category": "system",
+        "subcategory": "process",
+        "api_endpoint": "/api/system/processes",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "env_get": {
+        "id": "env_get",
+        "name": "获取环境变量",
+        "name_en": "Get Environment Variable",
+        "description": "获取环境变量值",
+        "category": "system",
+        "subcategory": "env",
+        "api_endpoint": "/api/system/env",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "变量名"}
+        ],
+        "icon": "terminal"
+    },
+    "exec_command": {
+        "id": "exec_command",
+        "name": "执行命令",
+        "name_en": "Execute Command",
+        "description": "执行系统命令",
+        "category": "system",
+        "subcategory": "command",
+        "api_endpoint": "/api/system/exec",
+        "method": "POST",
+        "params": [
+            {"name": "command", "type": "string", "required": True, "description": "命令"}
+        ],
+        "icon": "terminal"
     }
 }
 
