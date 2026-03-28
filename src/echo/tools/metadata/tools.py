@@ -29697,6 +29697,572 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "mock_id", "type": "string", "required": True, "description": "Mock ID"}
         ],
         "icon": "trash"
+    },
+
+    # ========== GraphQL Federation工具 ==========
+    "federation_schema": {
+        "id": "federation_schema",
+        "name": "Federation Schema",
+        "name_en": "Federation Schema",
+        "description": "获取Federation Schema",
+        "category": "federation",
+        "subcategory": "schema",
+        "api_endpoint": "/api/federation/schema",
+        "method": "GET",
+        "params": [],
+        "icon": "git-branch"
+    },
+    "federation_validate": {
+        "id": "federation_validate",
+        "name": "验证Federation",
+        "name_en": "Validate Federation",
+        "description": "验证Federation Schema",
+        "category": "federation",
+        "subcategory": "validate",
+        "api_endpoint": "/api/federation/validate",
+        "method": "POST",
+        "params": [
+            {"name": "subgraphs", "type": "array", "required": True, "description": "子图数组"}
+        ],
+        "icon": "check"
+    },
+    "federation_compose": {
+        "id": "federation_compose",
+        "name": "组合Federation",
+        "name_en": "Compose Federation",
+        "description": "组合多个子图",
+        "category": "federation",
+        "subcategory": "compose",
+        "api_endpoint": "/api/federation/compose",
+        "method": "POST",
+        "params": [
+            {"name": "subgraphs", "type": "array", "required": True, "description": "子图数组"}
+        ],
+        "icon": "git-merge"
+    },
+
+    # ========== Schema注册表工具 ==========
+    "schema_registry_register": {
+        "id": "schema_registry_register",
+        "name": "注册Schema",
+        "name_en": "Register Schema",
+        "description": "注册Schema到注册表",
+        "category": "schemaregistry",
+        "subcategory": "register",
+        "api_endpoint": "/api/schema/register",
+        "method": "POST",
+        "params": [
+            {"name": "subject", "type": "string", "required": True, "description": "主题"},
+            {"name": "schema", "type": "string", "required": True, "description": "Schema定义"}
+        ],
+        "icon": "plus"
+    },
+    "schema_registry_get": {
+        "id": "schema_registry_get",
+        "name": "获取Schema",
+        "name_en": "Get Schema",
+        "description": "从注册表获取Schema",
+        "category": "schemaregistry",
+        "subcategory": "get",
+        "api_endpoint": "/api/schema/get",
+        "method": "POST",
+        "params": [
+            {"name": "subject", "type": "string", "required": True, "description": "主题"},
+            {"name": "version", "type": "string", "required": False, "description": "版本"}
+        ],
+        "icon": "download"
+    },
+    "schema_registry_list": {
+        "id": "schema_registry_list",
+        "name": "Schema列表",
+        "name_en": "Schema List",
+        "description": "获取注册的Schema列表",
+        "category": "schemaregistry",
+        "subcategory": "list",
+        "api_endpoint": "/api/schema/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "schema_registry_compatibility": {
+        "id": "schema_registry_compatibility",
+        "name": "检查兼容性",
+        "name_en": "Check Compatibility",
+        "description": "检查Schema兼容性",
+        "category": "schemaregistry",
+        "subcategory": "compatibility",
+        "api_endpoint": "/api/schema/compatibility",
+        "method": "POST",
+        "params": [
+            {"name": "subject", "type": "string", "required": True, "description": "主题"},
+            {"name": "schema", "type": "string", "required": True, "description": "Schema定义"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 契约测试工具 ==========
+    "contract_test": {
+        "id": "contract_test",
+        "name": "执行契约测试",
+        "name_en": "Run Contract Test",
+        "description": "执行API契约测试",
+        "category": "contract",
+        "subcategory": "test",
+        "api_endpoint": "/api/contract/test",
+        "method": "POST",
+        "params": [
+            {"name": "contract_file", "type": "string", "required": True, "description": "契约文件"}
+        ],
+        "icon": "check"
+    },
+    "contract_generate": {
+        "id": "contract_generate",
+        "name": "生成契约",
+        "name_en": "Generate Contract",
+        "description": "从API生成契约",
+        "category": "contract",
+        "subcategory": "generate",
+        "api_endpoint": "/api/contract/generate",
+        "method": "POST",
+        "params": [
+            {"name": "api_endpoint", "type": "string", "required": True, "description": "API端点"}
+        ],
+        "icon": "file-plus"
+    },
+    "contract_validate": {
+        "id": "contract_validate",
+        "name": "验证契约",
+        "name_en": "Validate Contract",
+        "description": "验证契约文件",
+        "category": "contract",
+        "subcategory": "validate",
+        "api_endpoint": "/api/contract/validate",
+        "method": "POST",
+        "params": [
+            {"name": "contract_file", "type": "string", "required": True, "description": "契约文件"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== API版本控制工具 ==========
+    "version_list": {
+        "id": "version_list",
+        "name": "API版本列表",
+        "name_en": "API Version List",
+        "description": "获取API版本列表",
+        "category": "apiversion",
+        "subcategory": "list",
+        "api_endpoint": "/api/version/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "version_deprecate": {
+        "id": "version_deprecate",
+        "name": "弃用版本",
+        "name_en": "Deprecate Version",
+        "description": "标记API版本为弃用",
+        "category": "apiversion",
+        "subcategory": "deprecate",
+        "api_endpoint": "/api/version/deprecate",
+        "method": "POST",
+        "params": [
+            {"name": "version", "type": "string", "required": True, "description": "版本号"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "version_sunset": {
+        "id": "version_sunset",
+        "name": "设置日落日期",
+        "name_en": "Set Sunset Date",
+        "description": "设置API版本的日落日期",
+        "category": "apiversion",
+        "subcategory": "sunset",
+        "api_endpoint": "/api/version/sunset",
+        "method": "POST",
+        "params": [
+            {"name": "version", "type": "string", "required": True, "description": "版本号"},
+            {"name": "date", "type": "string", "required": True, "description": "日期"}
+        ],
+        "icon": "sunset"
+    },
+
+    # ========== API监控工具 ==========
+    "monitor_api": {
+        "id": "monitor_api",
+        "name": "API监控",
+        "name_en": "API Monitoring",
+        "description": "监控API状态",
+        "category": "apimonitor",
+        "subcategory": "monitor",
+        "api_endpoint": "/api/monitor/api",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    "monitor_api_latency": {
+        "id": "monitor_api_latency",
+        "name": "延迟监控",
+        "name_en": "API Latency Monitor",
+        "description": "监控API延迟",
+        "category": "apimonitor",
+        "subcategory": "latency",
+        "api_endpoint": "/api/monitor/latency",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    "monitor_api_errors": {
+        "id": "monitor_api_errors",
+        "name": "错误监控",
+        "name_en": "API Error Monitor",
+        "description": "监控API错误",
+        "category": "apimonitor",
+        "subcategory": "errors",
+        "api_endpoint": "/api/monitor/errors",
+        "method": "GET",
+        "params": [],
+        "icon": "alert-circle"
+    },
+    "monitor_api_alerts": {
+        "id": "monitor_api_alerts",
+        "name": "设置告警",
+        "name_en": "Set API Alert",
+        "description": "设置API监控告警",
+        "category": "apimonitor",
+        "subcategory": "alerts",
+        "api_endpoint": "/api/monitor/alerts",
+        "method": "POST",
+        "params": [
+            {"name": "condition", "type": "string", "required": True, "description": "条件"},
+            {"name": "threshold", "type": "number", "required": True, "description": "阈值"}
+        ],
+        "icon": "bell"
+    },
+
+    # ========== OpenTelemetry工具 ==========
+    "otel_trace": {
+        "id": "otel_trace",
+        "name": "创建追踪",
+        "name_en": "Create Trace",
+        "description": "创建OpenTelemetry追踪",
+        "category": "otel",
+        "subcategory": "trace",
+        "api_endpoint": "/api/otel/trace",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "追踪名称"}
+        ],
+        "icon": "git-branch"
+    },
+    "otel_span": {
+        "id": "otel_span",
+        "name": "记录Span",
+        "name_en": "Record Span",
+        "description": "记录OpenTelemetry Span",
+        "category": "otel",
+        "subcategory": "span",
+        "api_endpoint": "/api/otel/span",
+        "method": "POST",
+        "params": [
+            {"name": "trace_id", "type": "string", "required": True, "description": "追踪ID"},
+            {"name": "name", "type": "string", "required": True, "description": "Span名称"},
+            {"name": "attributes", "type": "object", "required": False, "description": "属性"}
+        ],
+        "icon": "git-branch"
+    },
+    "otel_metric": {
+        "id": "otel_metric",
+        "name": "记录指标",
+        "name_en": "Record Metric",
+        "description": "记录OpenTelemetry指标",
+        "category": "otel",
+        "subcategory": "metric",
+        "api_endpoint": "/api/otel/metric",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "指标名称"},
+            {"name": "value", "type": "number", "required": True, "description": "值"},
+            {"name": "attributes", "type": "object", "required": False, "description": "属性"}
+        ],
+        "icon": "plus"
+    },
+
+    # ========== 可观测性工具 ==========
+    "observability_status": {
+        "id": "observability_status",
+        "name": "系统状态",
+        "name_en": "System Status",
+        "description": "获取系统可观测性状态",
+        "category": "observability",
+        "subcategory": "status",
+        "api_endpoint": "/api/observability/status",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    "observability_dashboard": {
+        "id": "observability_dashboard",
+        "name": "观测仪表板",
+        "name_en": "Observability Dashboard",
+        "description": "获取观测仪表板数据",
+        "category": "observability",
+        "subcategory": "dashboard",
+        "api_endpoint": "/api/observability/dashboard",
+        "method": "GET",
+        "params": [],
+        "icon": "layout"
+    },
+    "observability_incidents": {
+        "id": "observability_incidents",
+        "name": "事件列表",
+        "name_en": "Incident List",
+        "description": "获取事件列表",
+        "category": "observability",
+        "subcategory": "incidents",
+        "api_endpoint": "/api/observability/incidents",
+        "method": "GET",
+        "params": [],
+        "icon": "alert-triangle"
+    },
+
+    # ========== 身份认证工具 ==========
+    "auth_jwt_create": {
+        "id": "auth_jwt_create",
+        "name": "创建JWT",
+        "name_en": "Create JWT",
+        "description": "创建JWT令牌",
+        "category": "authentication",
+        "subcategory": "jwt",
+        "api_endpoint": "/api/auth/jwt/create",
+        "method": "POST",
+        "params": [
+            {"name": "claims", "type": "object", "required": True, "description": "声明"},
+            {"name": "expires", "type": "number", "required": False, "description": "过期时间(秒)"}
+        ],
+        "icon": "key"
+    },
+    "auth_jwt_verify": {
+        "id": "auth_jwt_verify",
+        "name": "验证JWT",
+        "name_en": "Verify JWT",
+        "description": "验证JWT令牌",
+        "category": "authentication",
+        "subcategory": "jwt",
+        "api_endpoint": "/api/auth/jwt/verify",
+        "method": "POST",
+        "params": [
+            {"name": "token", "type": "string", "required": True, "description": "令牌"}
+        ],
+        "icon": "check"
+    },
+    "auth_token_refresh": {
+        "id": "auth_token_refresh",
+        "name": "刷新令牌",
+        "name_en": "Refresh Token",
+        "description": "刷新访问令牌",
+        "category": "authentication",
+        "subcategory": "token",
+        "api_endpoint": "/api/auth/token/refresh",
+        "method": "POST",
+        "params": [
+            {"name": "refresh_token", "type": "string", "required": True, "description": "刷新令牌"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "auth_token_revoke": {
+        "id": "auth_token_revoke",
+        "name": "撤销令牌",
+        "name_en": "Revoke Token",
+        "description": "撤销访问令牌",
+        "category": "authentication",
+        "subcategory": "token",
+        "api_endpoint": "/api/auth/token/revoke",
+        "method": "POST",
+        "params": [
+            {"name": "token", "type": "string", "required": True, "description": "令牌"}
+        ],
+        "icon": "x"
+    },
+
+    # ========== OAuth工具 ==========
+    "oauth_authorize": {
+        "id": "oauth_authorize",
+        "name": "OAuth授权",
+        "name_en": "OAuth Authorize",
+        "description": "发起OAuth授权",
+        "category": "oauth",
+        "subcategory": "authorize",
+        "api_endpoint": "/api/oauth/authorize",
+        "method": "POST",
+        "params": [
+            {"name": "client_id", "type": "string", "required": True, "description": "客户端ID"},
+            {"name": "redirect_uri", "type": "string", "required": True, "description": "回调URI"},
+            {"name": "scope", "type": "string", "required": False, "description": "权限范围"}
+        ],
+        "icon": "key"
+    },
+    "oauth_token": {
+        "id": "oauth_token",
+        "name": "获取Token",
+        "name_en": "OAuth Token",
+        "description": "获取OAuth访问令牌",
+        "category": "oauth",
+        "subcategory": "token",
+        "api_endpoint": "/api/oauth/token",
+        "method": "POST",
+        "params": [
+            {"name": "grant_type", "type": "string", "required": True, "description": "授权类型"},
+            {"name": "code", "type": "string", "required": False, "description": "授权码"},
+            {"name": "refresh_token", "type": "string", "required": False, "description": "刷新令牌"}
+        ],
+        "icon": "key"
+    },
+    "oauth_revoke": {
+        "id": "oauth_revoke",
+        "name": "撤销OAuth",
+        "name_en": "Revoke OAuth",
+        "description": "撤销OAuth访问",
+        "category": "oauth",
+        "subcategory": "revoke",
+        "api_endpoint": "/api/oauth/revoke",
+        "method": "POST",
+        "params": [
+            {"name": "token", "type": "string", "required": True, "description": "令牌"}
+        ],
+        "icon": "x"
+    },
+
+    # ========== SSO工具 ==========
+    "sso_login": {
+        "id": "sso_login",
+        "name": "SSO登录",
+        "name_en": "SSO Login",
+        "description": "发起SSO登录",
+        "category": "sso",
+        "subcategory": "login",
+        "api_endpoint": "/api/sso/login",
+        "method": "POST",
+        "params": [
+            {"name": "provider", "type": "string", "required": True, "description": "提供商"}
+        ],
+        "icon": "log-in"
+    },
+    "sso_callback": {
+        "id": "sso_callback",
+        "name": "SSO回调",
+        "name_en": "SSO Callback",
+        "description": "处理SSO回调",
+        "category": "sso",
+        "subcategory": "callback",
+        "api_endpoint": "/api/sso/callback",
+        "method": "POST",
+        "params": [
+            {"name": "code", "type": "string", "required": True, "description": "授权码"}
+        ],
+        "icon": "check"
+    },
+    "sso_logout": {
+        "id": "sso_logout",
+        "name": "SSO登出",
+        "name_en": "SSO Logout",
+        "description": "发起SSO登出",
+        "category": "sso",
+        "subcategory": "logout",
+        "api_endpoint": "/api/sso/logout",
+        "method": "POST",
+        "params": [],
+        "icon": "log-out"
+    },
+
+    # ========== 多因素认证工具 ==========
+    "mfa_enable": {
+        "id": "mfa_enable",
+        "name": "启用MFA",
+        "name_en": "Enable MFA",
+        "description": "启用多因素认证",
+        "category": "mfa",
+        "subcategory": "enable",
+        "api_endpoint": "/api/mfa/enable",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "method", "type": "string", "required": True, "description": "MFA方法"}
+        ],
+        "icon": "shield"
+    },
+    "mfa_verify": {
+        "id": "mfa_verify",
+        "name": "验证MFA",
+        "name_en": "Verify MFA",
+        "description": "验证MFA验证码",
+        "category": "mfa",
+        "subcategory": "verify",
+        "api_endpoint": "/api/mfa/verify",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "code", "type": "string", "required": True, "description": "验证码"}
+        ],
+        "icon": "check"
+    },
+    "mfa_disable": {
+        "id": "mfa_disable",
+        "name": "禁用MFA",
+        "name_en": "Disable MFA",
+        "description": "禁用多因素认证",
+        "category": "mfa",
+        "subcategory": "disable",
+        "api_endpoint": "/api/mfa/disable",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "shield-off"
+    },
+
+    # ========== 访问控制工具 ==========
+    "rbac_assign": {
+        "id": "rbac_assign",
+        "name": "分配角色",
+        "name_en": "Assign Role",
+        "description": "为用户分配角色",
+        "category": "rbac",
+        "subcategory": "assign",
+        "api_endpoint": "/api/rbac/assign",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "role", "type": "string", "required": True, "description": "角色"}
+        ],
+        "icon": "user-plus"
+    },
+    "rbac_check": {
+        "id": "rbac_check",
+        "name": "检查权限",
+        "name_en": "Check Permission",
+        "description": "检查用户权限",
+        "category": "rbac",
+        "subcategory": "check",
+        "api_endpoint": "/api/rbac/check",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "permission", "type": "string", "required": True, "description": "权限"}
+        ],
+        "icon": "check"
+    },
+    "rbac_roles": {
+        "id": "rbac_roles",
+        "name": "角色列表",
+        "name_en": "Role List",
+        "description": "获取角色列表",
+        "category": "rbac",
+        "subcategory": "list",
+        "api_endpoint": "/api/rbac/roles",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
     }
 }
 
