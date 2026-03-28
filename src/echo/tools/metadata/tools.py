@@ -539,6 +539,18 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "book"
     },
+    "datetime_utils": {
+        "id": "datetime_utils",
+        "name": "日期时间",
+        "name_en": "DateTime Utils",
+        "description": "日期时间操作：获取当前、日期加减、格式转换",
+        "category": "datetime",
+        "subcategory": "datetime",
+        "api_endpoint": "/api/datetime",
+        "method": "POST",
+        "params": [],
+        "icon": "calendar"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
