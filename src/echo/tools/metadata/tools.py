@@ -4946,6 +4946,1038 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "new_items", "type": "array", "required": True, "description": "新元素"}
         ],
         "icon": "plus"
+    },
+    "sample": {
+        "id": "sample",
+        "name": "随机抽样",
+        "name_en": "Sample",
+        "description": "从数组中随机抽样",
+        "category": "array",
+        "subcategory": "random",
+        "api_endpoint": "/api/sample",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "count", "type": "number", "required": True, "description": "数量"}
+        ],
+        "icon": "shuffle"
+    },
+    "shuffle_copy": {
+        "id": "shuffle_copy",
+        "name": "随机打乱副本",
+        "name_en": "Shuffle Copy",
+        "description": "返回打乱后的数组副本",
+        "category": "array",
+        "subcategory": "random",
+        "api_endpoint": "/api/shuffle-copy",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "shuffle"
+    },
+    "random_ints": {
+        "id": "random_ints",
+        "name": "随机整数数组",
+        "name_en": "Random Integers",
+        "description": "生成随机整数数组",
+        "category": "array",
+        "subcategory": "generate",
+        "api_endpoint": "/api/random-ints",
+        "method": "POST",
+        "params": [
+            {"name": "count", "type": "number", "required": True, "description": "数量"},
+            {"name": "min", "type": "number", "required": False, "description": "最小值"},
+            {"name": "max", "type": "number", "required": False, "description": "最大值"}
+        ],
+        "icon": "hash"
+    },
+    "range_step": {
+        "id": "range_step",
+        "name": "带步长范围",
+        "name_en": "Range with Step",
+        "description": "生成带步长的数字范围",
+        "category": "array",
+        "subcategory": "generate",
+        "api_endpoint": "/api/range-step",
+        "method": "POST",
+        "params": [
+            {"name": "start", "type": "number", "required": True, "description": "起始"},
+            {"name": "end", "type": "number", "required": True, "description": "结束"},
+            {"name": "step", "type": "number", "required": False, "description": "步长"}
+        ],
+        "icon": "list"
+    },
+    "repeat_array": {
+        "id": "repeat_array",
+        "name": "重复数组",
+        "name_en": "Repeat Array",
+        "description": "重复数组N次",
+        "category": "array",
+        "subcategory": "generate",
+        "api_endpoint": "/api/repeat-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "count", "type": "number", "required": True, "description": "重复次数"}
+        ],
+        "icon": "copy"
+    },
+    "reverse_copy": {
+        "id": "reverse_copy",
+        "name": "反转副本",
+        "name_en": "Reverse Copy",
+        "description": "返回反转后的数组副本",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/reverse-copy",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "rotate-ccw"
+    },
+    "sum_array": {
+        "id": "sum_array",
+        "name": "数组求和",
+        "name_en": "Array Sum",
+        "description": "数组元素求和",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/sum-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "plus"
+    },
+    "avg_array": {
+        "id": "avg_array",
+        "name": "数组平均值",
+        "name_en": "Array Average",
+        "description": "计算数组平均值",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/avg-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "divide"
+    },
+    "min_array": {
+        "id": "min_array",
+        "name": "数组最小值",
+        "name_en": "Array Min",
+        "description": "获取数组最小值",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/min-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "arrow-down"
+    },
+    "max_array": {
+        "id": "max_array",
+        "name": "数组最大值",
+        "name_en": "Array Max",
+        "description": "获取数组最大值",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/max-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "arrow-up"
+    },
+    "count_array": {
+        "id": "count_array",
+        "name": "数组长度",
+        "name_en": "Array Count",
+        "description": "获取数组长度",
+        "category": "array",
+        "subcategory": "property",
+        "api_endpoint": "/api/count-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "hash"
+    },
+    "first_n": {
+        "id": "first_n",
+        "name": "前N个",
+        "name_en": "First N",
+        "description": "获取前N个元素",
+        "category": "array",
+        "subcategory": "access",
+        "api_endpoint": "/api/first-n",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "n", "type": "number", "required": True, "description": "数量"}
+        ],
+        "icon": "arrow-right"
+    },
+    "last_n": {
+        "id": "last_n",
+        "name": "后N个",
+        "name_en": "Last N",
+        "description": "获取后N个元素",
+        "category": "array",
+        "subcategory": "access",
+        "api_endpoint": "/api/last-n",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "n", "type": "number", "required": True, "description": "数量"}
+        ],
+        "icon": "arrow-left"
+    },
+    "drop_n": {
+        "id": "drop_n",
+        "name": "丢弃前N个",
+        "name_en": "Drop First N",
+        "description": "丢弃前N个元素",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/drop-n",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "n", "type": "number", "required": True, "description": "数量"}
+        ],
+        "icon": "arrow-right"
+    },
+    "product_array": {
+        "id": "product_array",
+        "name": "数组连乘",
+        "name_en": "Array Product",
+        "description": "数组元素连乘",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/product-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "x"
+    },
+    "variance_array": {
+        "id": "variance_array",
+        "name": "数组方差",
+        "name_en": "Array Variance",
+        "description": "计算数组方差",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/variance-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "bar-chart"
+    },
+    "stddev_array": {
+        "id": "stddev_array",
+        "name": "数组标准差",
+        "name_en": "Array StdDev",
+        "description": "计算数组标准差",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/stddev-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "bar-chart"
+    },
+    "median_array": {
+        "id": "median_array",
+        "name": "数组中位数",
+        "name_en": "Array Median",
+        "description": "计算数组中位数",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/median-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "bar-chart"
+    },
+    "mode_array": {
+        "id": "mode_array",
+        "name": "数组众数",
+        "name_en": "Array Mode",
+        "description": "计算数组众数",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/mode-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "bar-chart"
+    },
+    "percentile_array": {
+        "id": "percentile_array",
+        "name": "数组百分位数",
+        "name_en": "Array Percentile",
+        "description": "计算数组百分位数",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/percentile-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "p", "type": "number", "required": True, "description": "百分比"}
+        ],
+        "icon": "bar-chart"
+    },
+    "cumsum": {
+        "id": "cumsum",
+        "name": "累积和",
+        "name_en": "Cumulative Sum",
+        "description": "计算累积和",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/cumsum",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "plus"
+    },
+    "differences": {
+        "id": "differences",
+        "name": "差分",
+        "name_en": "Differences",
+        "description": "计算差分",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/differences",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "minus"
+    },
+    "shift": {
+        "id": "shift",
+        "name": "移位",
+        "name_en": "Shift",
+        "description": "数组元素移位",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/shift",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "by", "type": "number", "required": False, "description": "移位数"}
+        ],
+        "icon": "arrow-right"
+    },
+    "is_unique": {
+        "id": "is_unique",
+        "name": "是否唯一",
+        "name_en": "Is Unique",
+        "description": "检查数组是否所有元素唯一",
+        "category": "array",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-unique",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "check-circle"
+    },
+    "has_duplicates": {
+        "id": "has_duplicates",
+        "name": "是否有重复",
+        "name_en": "Has Duplicates",
+        "description": "检查数组是否有重复元素",
+        "category": "array",
+        "subcategory": "check",
+        "api_endpoint": "/api/has-duplicates",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "check-circle"
+    },
+    "duplicates": {
+        "id": "duplicates",
+        "name": "查找重复",
+        "name_en": "Find Duplicates",
+        "description": "查找数组中的重复元素",
+        "category": "array",
+        "subcategory": "search",
+        "api_endpoint": "/api/duplicates",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "copy"
+    },
+    "without": {
+        "id": "without",
+        "name": "排除元素",
+        "name_en": "Without",
+        "description": "排除数组中的指定元素",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/without",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "values", "type": "array", "required": True, "description": "要排除的值"}
+        ],
+        "icon": "minus"
+    },
+    "flatten_deep": {
+        "id": "flatten_deep",
+        "name": "深度扁平化",
+        "name_en": "Deep Flatten",
+        "description": "深度扁平化嵌套数组",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/flatten-deep",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "嵌套数组"}
+        ],
+        "icon": "minimize"
+    },
+    "chunk_overlap": {
+        "id": "chunk_overlap",
+        "name": "重叠分块",
+        "name_en": "Chunk with Overlap",
+        "description": "分块且有重叠",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/chunk-overlap",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "size", "type": "number", "required": True, "description": "块大小"},
+            {"name": "overlap", "type": "number", "required": False, "description": "重叠数"}
+        ],
+        "icon": "grid"
+    },
+    "split_every": {
+        "id": "split_every",
+        "name": "等分切割",
+        "name_en": "Split Every",
+        "description": "每N个元素切割一次",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/split-every",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "n", "type": "number", "required": True, "description": "每N个"}
+        ],
+        "icon": "scissors"
+    },
+    "zip_all": {
+        "id": "zip_all",
+        "name": "填充合并",
+        "name_en": "Zip All",
+        "description": "合并多个数组，缺失填充",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/zip-all",
+        "method": "POST",
+        "params": [
+            {"name": "arrays", "type": "array", "required": True, "description": "数组数组"},
+            {"name": "fill", "type": "string", "required": False, "description": "填充值"}
+        ],
+        "icon": "columns"
+    },
+    "count_occurrences": {
+        "id": "count_occurrences",
+        "name": "计数出现",
+        "name_en": "Count Occurrences",
+        "description": "统计元素出现次数",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/count-occurrences",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "hash"
+    },
+    "frequency": {
+        "id": "frequency",
+        "name": "频率分布",
+        "name_en": "Frequency Distribution",
+        "description": "计算频率分布",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/frequency",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "bar-chart"
+    },
+    "frequencies": {
+        "id": "frequencies",
+        "name": "频率字典",
+        "name_en": "Frequencies",
+        "description": "返回频率字典",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/frequencies",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "list"
+    },
+    "most_frequent": {
+        "id": "most_frequent",
+        "name": "最频繁",
+        "name_en": "Most Frequent",
+        "description": "获取最频繁的元素",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/most-frequent",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "n", "type": "number", "required": False, "description": "数量"}
+        ],
+        "icon": "star"
+    },
+    "least_frequent": {
+        "id": "least_frequent",
+        "name": "最不频繁",
+        "name_en": "Least Frequent",
+        "description": "获取最不频繁的元素",
+        "category": "array",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/least-frequent",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "n", "type": "number", "required": False, "description": "数量"}
+        ],
+        "icon": "star"
+    },
+    "sort_by_key": {
+        "id": "sort_by_key",
+        "name": "按键排序",
+        "name_en": "Sort by Key",
+        "description": "按指定键排序对象数组",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/sort-by-key",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "对象数组"},
+            {"name": "key", "type": "string", "required": True, "description": "键名"},
+            {"name": "reverse", "type": "boolean", "required": False, "description": "降序"}
+        ],
+        "icon": "arrow-up-down"
+    },
+    "index_where": {
+        "id": "index_where",
+        "name": "查找索引",
+        "name_en": "Index Where",
+        "description": "查找满足条件的第一个索引",
+        "category": "array",
+        "subcategory": "search",
+        "api_endpoint": "/api/index-where",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "search"
+    },
+    "find_index": {
+        "id": "find_index",
+        "name": "查找所有索引",
+        "name_en": "Find All Indexes",
+        "description": "查找所有满足条件的索引",
+        "category": "array",
+        "subcategory": "search",
+        "api_endpoint": "/api/find-index",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "value", "type": "string", "required": True, "description": "值"}
+        ],
+        "icon": "search"
+    },
+    "any_match": {
+        "id": "any_match",
+        "name": "任意匹配",
+        "name_en": "Any Match",
+        "description": "检查是否有任意元素满足条件",
+        "category": "array",
+        "subcategory": "check",
+        "api_endpoint": "/api/any-match",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "check-square"
+    },
+    "all_match": {
+        "id": "all_match",
+        "name": "全部匹配",
+        "name_en": "All Match",
+        "description": "检查是否所有元素都满足条件",
+        "category": "array",
+        "subcategory": "check",
+        "api_endpoint": "/api/all-match",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "check-square"
+    },
+    "none_match": {
+        "id": "none_match",
+        "name": "无匹配",
+        "name_en": "None Match",
+        "description": "检查是否没有元素满足条件",
+        "category": "array",
+        "subcategory": "check",
+        "api_endpoint": "/api/none-match",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "check-square"
+    },
+    "reject": {
+        "id": "reject",
+        "name": "拒绝元素",
+        "name_en": "Reject",
+        "description": "拒绝满足条件的元素",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/reject",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "filter"
+    },
+    "compact_array": {
+        "id": "compact_array",
+        "name": "紧凑数组",
+        "name_en": "Compact Array",
+        "description": "去除假值",
+        "category": "array",
+        "subcategory": "clean",
+        "api_endpoint": "/api/compact-array",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "filter"
+    },
+    "every_nth": {
+        "id": "every_nth",
+        "name": "每N个取一个",
+        "name_en": "Every Nth",
+        "description": "每隔N个取一个元素",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/every-nth",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "n", "type": "number", "required": True, "description": "间隔"}
+        ],
+        "icon": "list"
+    },
+    "take_while": {
+        "id": "take_while",
+        "name": "条件取值",
+        "name_en": "Take While",
+        "description": "取满足条件的连续元素",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/take-while",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "arrow-right"
+    },
+    "drop_while": {
+        "id": "drop_while",
+        "name": "条件丢弃",
+        "name_en": "Drop While",
+        "description": "丢弃满足条件的连续元素",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/drop-while",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "arrow-right"
+    },
+    "key_by": {
+        "id": "key_by",
+        "name": "按键索引",
+        "name_en": "Key By",
+        "description": "按键索引数组元素",
+        "category": "array",
+        "subcategory": "transform",
+        "api_endpoint": "/api/key-by",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"},
+            {"name": "key", "type": "string", "required": True, "description": "键名"}
+        ],
+        "icon": "key"
+    },
+    "key_of": {
+        "id": "key_of",
+        "name": "值找键",
+        "name_en": "Key Of",
+        "description": "根据值查找键",
+        "category": "object",
+        "subcategory": "search",
+        "api_endpoint": "/api/key-of",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "value", "type": "string", "required": True, "description": "值"}
+        ],
+        "icon": "search"
+    },
+    "invert_map": {
+        "id": "invert_map",
+        "name": "反转映射",
+        "name_en": "Invert Map",
+        "description": "反转键值映射",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/invert-map",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "merge_all": {
+        "id": "merge_all",
+        "name": "合并全部",
+        "name_en": "Merge All",
+        "description": "合并所有对象",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/merge-all",
+        "method": "POST",
+        "params": [
+            {"name": "objects", "type": "array", "required": True, "description": "对象数组"}
+        ],
+        "icon": "git_merge"
+    },
+    "deep_get": {
+        "id": "deep_get",
+        "name": "深度获取",
+        "name_en": "Deep Get",
+        "description": "获取嵌套属性",
+        "category": "object",
+        "subcategory": "access",
+        "api_endpoint": "/api/deep-get",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "path", "type": "string", "required": True, "description": "路径"}
+        ],
+        "icon": "key"
+    },
+    "deep_set": {
+        "id": "deep_set",
+        "name": "深度设置",
+        "name_en": "Deep Set",
+        "description": "设置嵌套属性",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/deep-set",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"},
+            {"name": "path", "type": "string", "required": True, "description": "路径"},
+            {"name": "value", "type": "string", "required": True, "description": "值"}
+        ],
+        "icon": "edit"
+    },
+    "object_to_entries": {
+        "id": "object_to_entries",
+        "name": "对象转条目",
+        "name_en": "Object to Entries",
+        "description": "对象转换为键值对数组",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/object-to-entries",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "对象"}
+        ],
+        "icon": "list"
+    },
+    "entries_to_object": {
+        "id": "entries_to_object",
+        "name": "条目转对象",
+        "name_en": "Entries to Object",
+        "description": "键值对数组转换为对象",
+        "category": "object",
+        "subcategory": "transform",
+        "api_endpoint": "/api/entries-to-object",
+        "method": "POST",
+        "params": [
+            {"name": "entries", "type": "array", "required": True, "description": "键值对数组"}
+        ],
+        "icon": "list"
+    },
+    "is_even": {
+        "id": "is_even",
+        "name": "偶数",
+        "name_en": "Is Even",
+        "description": "检查是否偶数",
+        "category": "math",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-even",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "数字"}
+        ],
+        "icon": "check-circle"
+    },
+    "is_odd": {
+        "id": "is_odd",
+        "name": "奇数",
+        "name_en": "Is Odd",
+        "description": "检查是否奇数",
+        "category": "math",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-odd",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "数字"}
+        ],
+        "icon": "check-circle"
+    },
+    "is_integer": {
+        "id": "is_integer",
+        "name": "整数检查",
+        "name_en": "Is Integer",
+        "description": "检查是否为整数",
+        "category": "math",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-integer",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "数字"}
+        ],
+        "icon": "check-circle"
+    },
+    "is_decimal": {
+        "id": "is_decimal",
+        "name": "小数检查",
+        "name_en": "Is Decimal",
+        "description": "检查是否为小数",
+        "category": "math",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-decimal",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "数字"}
+        ],
+        "icon": "check-circle"
+    },
+    "is_multiple": {
+        "id": "is_multiple",
+        "name": "倍数检查",
+        "name_en": "Is Multiple",
+        "description": "检查是否为倍数",
+        "category": "math",
+        "subcategory": "check",
+        "api_endpoint": "/api/is-multiple",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "数字"},
+            {"name": "divisor", "type": "number", "required": True, "description": "除数"}
+        ],
+        "icon": "check-circle"
+    },
+    "round_to": {
+        "id": "round_to",
+        "name": "四舍五入到",
+        "name_en": "Round To",
+        "description": "四舍五入到指定位数",
+        "category": "math",
+        "subcategory": "transform",
+        "api_endpoint": "/api/round-to",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "数字"},
+            {"name": "decimals", "type": "number", "required": False, "description": "小数位数"}
+        ],
+        "icon": "hash"
+    },
+    "floor_to": {
+        "id": "floor_to",
+        "name": "向下取整到",
+        "name_en": "Floor To",
+        "description": "向下取整到指定位数",
+        "category": "math",
+        "subcategory": "transform",
+        "api_endpoint": "/api/floor-to",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "数字"},
+            {"name": "decimals", "type": "number", "required": False, "description": "小数位数"}
+        ],
+        "icon": "arrow-down"
+    },
+    "ceil_to": {
+        "id": "ceil_to",
+        "name": "向上取整到",
+        "name_en": "Ceil To",
+        "description": "向上取整到指定位数",
+        "category": "math",
+        "subcategory": "transform",
+        "api_endpoint": "/api/ceil-to",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "数字"},
+            {"name": "decimals", "type": "number", "required": False, "description": "小数位数"}
+        ],
+        "icon": "arrow-up"
+    },
+    "clamp_to": {
+        "id": "clamp_to",
+        "name": "限制到范围",
+        "name_en": "Clamp To",
+        "description": "将数字限制在指定范围内",
+        "category": "math",
+        "subcategory": "transform",
+        "api_endpoint": "/api/clamp-to",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "数字"},
+            {"name": "min", "type": "number", "required": True, "description": "最小值"},
+            {"name": "max", "type": "number", "required": True, "description": "最大值"}
+        ],
+        "icon": "sliders"
+    },
+    "in_range": {
+        "id": "in_range",
+        "name": "在范围内",
+        "name_en": "In Range",
+        "description": "检查数字是否在范围内",
+        "category": "math",
+        "subcategory": "check",
+        "api_endpoint": "/api/in-range",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "数字"},
+            {"name": "min", "type": "number", "required": True, "description": "最小值"},
+            {"name": "max", "type": "number", "required": True, "description": "最大值"}
+        ],
+        "icon": "check-circle"
+    },
+    "percentage_of": {
+        "id": "percentage_of",
+        "name": "百分比计算",
+        "name_en": "Percentage Of",
+        "description": "计算某数是另数的百分之几",
+        "category": "math",
+        "subcategory": "calculate",
+        "api_endpoint": "/api/percentage-of",
+        "method": "POST",
+        "params": [
+            {"name": "part", "type": "number", "required": True, "description": "部分"},
+            {"name": "whole", "type": "number", "required": True, "description": "整体"}
+        ],
+        "icon": "percent"
+    },
+    "percentage_change": {
+        "id": "percentage_change",
+        "name": "百分比变化",
+        "name_en": "Percentage Change",
+        "description": "计算百分比变化",
+        "category": "math",
+        "subcategory": "calculate",
+        "api_endpoint": "/api/percentage-change",
+        "method": "POST",
+        "params": [
+            {"name": "old", "type": "number", "required": True, "description": "旧值"},
+            {"name": "new", "type": "number", "required": True, "description": "新值"}
+        ],
+        "icon": "percent"
+    },
+    "ratio": {
+        "id": "ratio",
+        "name": "比率",
+        "name_en": "Ratio",
+        "description": "计算两数的比率",
+        "category": "math",
+        "subcategory": "calculate",
+        "api_endpoint": "/api/ratio",
+        "method": "POST",
+        "params": [
+            {"name": "a", "type": "number", "required": True, "description": "数值A"},
+            {"name": "b", "type": "number", "required": True, "description": "数值B"}
+        ],
+        "icon": "divide"
+    },
+    "to_percent": {
+        "id": "to_percent",
+        "name": "转百分比",
+        "name_en": "To Percent",
+        "description": "小数转百分比",
+        "category": "math",
+        "subcategory": "convert",
+        "api_endpoint": "/api/to-percent",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "小数"}
+        ],
+        "icon": "percent"
+    },
+    "from_percent": {
+        "id": "from_percent",
+        "name": "从百分比",
+        "name_en": "From Percent",
+        "description": "百分比转小数",
+        "category": "math",
+        "subcategory": "convert",
+        "api_endpoint": "/api/from-percent",
+        "method": "POST",
+        "params": [
+            {"name": "n", "type": "number", "required": True, "description": "百分比"}
+        ],
+        "icon": "percent"
+    },
+    "sum_of_squares": {
+        "id": "sum_of_squares",
+        "name": "平方和",
+        "name_en": "Sum of Squares",
+        "description": "计算平方和",
+        "category": "math",
+        "subcategory": "calculate",
+        "api_endpoint": "/api/sum-of-squares",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "数组"}
+        ],
+        "icon": "x"
     }
 }
 
