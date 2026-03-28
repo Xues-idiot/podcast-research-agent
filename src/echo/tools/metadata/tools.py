@@ -4660,6 +4660,91 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "month", "type": "number", "required": True, "description": "月份"}
         ],
         "icon": "calendar"
+    },
+    "hash_md5": {
+        "id": "hash_md5",
+        "name": "MD5哈希",
+        "name_en": "MD5 Hash",
+        "description": "生成MD5哈希",
+        "category": "security",
+        "subcategory": "hash",
+        "api_endpoint": "/api/hash/md5",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "lock"
+    },
+    "hash_sha1": {
+        "id": "hash_sha1",
+        "name": "SHA1哈希",
+        "name_en": "SHA1 Hash",
+        "description": "生成SHA1哈希",
+        "category": "security",
+        "subcategory": "hash",
+        "api_endpoint": "/api/hash/sha1",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "lock"
+    },
+    "hash_sha256": {
+        "id": "hash_sha256",
+        "name": "SHA256哈希",
+        "name_en": "SHA256 Hash",
+        "description": "生成SHA256哈希",
+        "category": "security",
+        "subcategory": "hash",
+        "api_endpoint": "/api/hash/sha256",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "lock"
+    },
+    "bcrypt_hash": {
+        "id": "bcrypt_hash",
+        "name": "Bcrypt哈希",
+        "name_en": "Bcrypt Hash",
+        "description": "生成Bcrypt哈希",
+        "category": "security",
+        "subcategory": "hash",
+        "api_endpoint": "/api/hash/bcrypt",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "lock"
+    },
+    "verify_hash": {
+        "id": "verify_hash",
+        "name": "验证哈希",
+        "name_en": "Verify Hash",
+        "description": "验证哈希是否匹配",
+        "category": "security",
+        "subcategory": "verify",
+        "api_endpoint": "/api/verify-hash",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "hash", "type": "string", "required": True, "description": "哈希值"}
+        ],
+        "icon": "check-circle"
+    },
+    "generate_token": {
+        "id": "generate_token",
+        "name": "生成令牌",
+        "name_en": "Generate Token",
+        "description": "生成随机令牌",
+        "category": "security",
+        "subcategory": "token",
+        "api_endpoint": "/api/generate-token",
+        "method": "POST",
+        "params": [
+            {"name": "length", "type": "number", "required": False, "description": "长度"}
+        ],
+        "icon": "key"
     }
 }
 
