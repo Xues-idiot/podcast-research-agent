@@ -711,6 +711,18 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "params": [],
         "icon": "check"
     },
+    "logic_utils": {
+        "id": "logic_utils",
+        "name": "逻辑工具",
+        "name_en": "Logic Utils",
+        "description": "逻辑操作：空值检查、真假判断、条件选择、管道组合",
+        "category": "developer",
+        "subcategory": "logic",
+        "api_endpoint": "/api/logic",
+        "method": "POST",
+        "params": [],
+        "icon": "check"
+    },
     "list_unique": {
         "id": "list_unique",
         "name": "列表去重",
