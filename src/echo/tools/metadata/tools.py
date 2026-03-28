@@ -2161,6 +2161,94 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "items", "type": "array", "required": True, "description": "列表"}
         ],
         "icon": "folder"
+    },
+    "dict_get": {
+        "id": "dict_get",
+        "name": "获取值",
+        "name_en": "Dict Get",
+        "description": "获取字典中的值",
+        "category": "dict",
+        "subcategory": "access",
+        "api_endpoint": "/api/dict/get",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "字典"},
+            {"name": "key", "type": "string", "required": True, "description": "键"},
+            {"name": "default", "type": "string", "required": False, "description": "默认值"}
+        ],
+        "icon": "key"
+    },
+    "dict_keys": {
+        "id": "dict_keys",
+        "name": "获取键列表",
+        "name_en": "Dict Keys",
+        "description": "获取字典的所有键",
+        "category": "dict",
+        "subcategory": "property",
+        "api_endpoint": "/api/dict/keys",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "字典"}
+        ],
+        "icon": "list"
+    },
+    "dict_values": {
+        "id": "dict_values",
+        "name": "获取值列表",
+        "name_en": "Dict Values",
+        "description": "获取字典的所有值",
+        "category": "dict",
+        "subcategory": "property",
+        "api_endpoint": "/api/dict/values",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "字典"}
+        ],
+        "icon": "list"
+    },
+    "dict_merge": {
+        "id": "dict_merge",
+        "name": "合并字典",
+        "name_en": "Merge Dict",
+        "description": "合并多个字典",
+        "category": "dict",
+        "subcategory": "transform",
+        "api_endpoint": "/api/dict/merge",
+        "method": "POST",
+        "params": [
+            {"name": "dicts", "type": "array", "required": True, "description": "字典数组"}
+        ],
+        "icon": "plus"
+    },
+    "dict_filter": {
+        "id": "dict_filter",
+        "name": "过滤字典",
+        "name_en": "Filter Dict",
+        "description": "按键过滤字典",
+        "category": "dict",
+        "subcategory": "transform",
+        "api_endpoint": "/api/dict/filter",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "字典"},
+            {"name": "keys", "type": "array", "required": True, "description": "要保留的键"}
+        ],
+        "icon": "filter"
+    },
+    "dict_update": {
+        "id": "dict_update",
+        "name": "更新字典",
+        "name_en": "Update Dict",
+        "description": "更新字典内容",
+        "category": "dict",
+        "subcategory": "transform",
+        "api_endpoint": "/api/dict/update",
+        "method": "POST",
+        "params": [
+            {"name": "obj", "type": "object", "required": True, "description": "字典"},
+            {"name": "updates", "type": "object", "required": True, "description": "更新内容"}
+        ],
+        "icon": "refresh-cw"
     }
 }
 
