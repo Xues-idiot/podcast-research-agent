@@ -23052,6 +23052,237 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         ],
         "icon": "calculator"
     },
+
+    # ========== 验证工具 ==========
+    "validate_email": {
+        "id": "validate_email",
+        "name": "邮箱验证",
+        "name_en": "Validate Email",
+        "description": "验证邮箱地址",
+        "category": "validation",
+        "subcategory": "email",
+        "api_endpoint": "/api/validate_email",
+        "method": "POST",
+        "params": [
+            {"name": "email", "type": "string", "required": True, "description": "邮箱"}
+        ],
+        "icon": "check"
+    },
+    "validate_url": {
+        "id": "validate_url",
+        "name": "URL验证",
+        "name_en": "Validate URL",
+        "description": "验证URL格式",
+        "category": "validation",
+        "subcategory": "url",
+        "api_endpoint": "/api/validate_url",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"}
+        ],
+        "icon": "check"
+    },
+    "validate_phone": {
+        "id": "validate_phone",
+        "name": "电话验证",
+        "name_en": "Validate Phone",
+        "description": "验证电话号码",
+        "category": "validation",
+        "subcategory": "phone",
+        "api_endpoint": "/api/validate_phone",
+        "method": "POST",
+        "params": [
+            {"name": "phone", "type": "string", "required": True, "description": "电话"}
+        ],
+        "icon": "check"
+    },
+    "validate_credit_card": {
+        "id": "validate_credit_card",
+        "name": "信用卡验证",
+        "name_en": "Validate Credit Card",
+        "description": "验证信用卡号",
+        "category": "validation",
+        "subcategory": "credit_card",
+        "api_endpoint": "/api/validate_credit_card",
+        "method": "POST",
+        "params": [
+            {"name": "card", "type": "string", "required": True, "description": "卡号"}
+        ],
+        "icon": "credit-card"
+    },
+    "validate_luhn": {
+        "id": "validate_luhn",
+        "name": "Luhn验证",
+        "name_en": "Validate Luhn",
+        "description": "Luhn算法验证",
+        "category": "validation",
+        "subcategory": "luhn",
+        "api_endpoint": "/api/validate_luhn",
+        "method": "POST",
+        "params": [
+            {"name": "number", "type": "string", "required": True, "description": "号码"}
+        ],
+        "icon": "check"
+    },
+    "validate_postal_code": {
+        "id": "validate_postal_code",
+        "name": "邮编验证",
+        "name_en": "Validate Postal Code",
+        "description": "验证邮政编码",
+        "category": "validation",
+        "subcategory": "postal",
+        "api_endpoint": "/api/validate_postal_code",
+        "method": "POST",
+        "params": [
+            {"name": "code", "type": "string", "required": True, "description": "邮编"},
+            {"name": "country", "type": "string", "required": False, "description": "国家", "default": "US"}
+        ],
+        "icon": "check"
+    },
+    "validate_json_schema": {
+        "id": "validate_json_schema",
+        "name": "JSON Schema验证",
+        "name_en": "Validate JSON Schema",
+        "description": "用JSON Schema验证数据",
+        "category": "validation",
+        "subcategory": "json",
+        "api_endpoint": "/api/validate_json_schema",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"},
+            {"name": "schema", "type": "object", "required": True, "description": "Schema"}
+        ],
+        "icon": "check"
+    },
+    "validate_password_strength": {
+        "id": "validate_password_strength",
+        "name": "密码强度验证",
+        "name_en": "Validate Password Strength",
+        "description": "验证密码强度",
+        "category": "validation",
+        "subcategory": "password",
+        "api_endpoint": "/api/validate_password_strength",
+        "method": "POST",
+        "params": [
+            {"name": "password", "type": "string", "required": True, "description": "密码"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 转换工具 ==========
+    "convert_case": {
+        "id": "convert_case",
+        "name": "大小写转换",
+        "name_en": "Convert Case",
+        "description": "转换字符串大小写",
+        "category": "convert",
+        "subcategory": "case",
+        "api_endpoint": "/api/convert_case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "to", "type": "string", "required": True, "description": "目标格式"}
+        ],
+        "icon": "type"
+    },
+    "to_camel_case": {
+        "id": "to_camel_case",
+        "name": "驼峰命名",
+        "name_en": "To Camel Case",
+        "description": "转换为驼峰命名",
+        "category": "convert",
+        "subcategory": "case",
+        "api_endpoint": "/api/to_camel_case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "to_snake_case": {
+        "id": "to_snake_case",
+        "name": "蛇形命名",
+        "name_en": "To Snake Case",
+        "description": "转换为蛇形命名",
+        "category": "convert",
+        "subcategory": "case",
+        "api_endpoint": "/api/to_snake_case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "to_kebab_case": {
+        "id": "to_kebab_case",
+        "name": "串式命名",
+        "name_en": "To Kebab Case",
+        "description": "转换为串式命名",
+        "category": "convert",
+        "subcategory": "case",
+        "api_endpoint": "/api/to_kebab_case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "to_pascal_case": {
+        "id": "to_pascal_case",
+        "name": "帕斯卡命名",
+        "name_en": "To Pascal Case",
+        "description": "转换为帕斯卡命名",
+        "category": "convert",
+        "subcategory": "case",
+        "api_endpoint": "/api/to_pascal_case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "to_title_case": {
+        "id": "to_title_case",
+        "name": "标题大写",
+        "name_en": "To Title Case",
+        "description": "转换为标题大写",
+        "category": "convert",
+        "subcategory": "case",
+        "api_endpoint": "/api/to_title_case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "to_sentence_case": {
+        "id": "to_sentence_case",
+        "name": "句首大写",
+        "name_en": "To Sentence Case",
+        "description": "转换为句首大写",
+        "category": "convert",
+        "subcategory": "case",
+        "api_endpoint": "/api/to_sentence_case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    "to_inverse_case": {
+        "id": "to_inverse_case",
+        "name": "反向大小写",
+        "name_en": "To Inverse Case",
+        "description": "反转大小写",
+        "category": "convert",
+        "subcategory": "case",
+        "api_endpoint": "/api/to_inverse_case",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
 }
 
 
