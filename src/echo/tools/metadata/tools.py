@@ -1749,6 +1749,107 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "separator", "type": "string", "required": False, "description": "分隔符"}
         ],
         "icon": "plus"
+    },
+    "length": {
+        "id": "length",
+        "name": "长度",
+        "name_en": "Length",
+        "description": "获取列表或字符串长度",
+        "category": "list",
+        "subcategory": "property",
+        "api_endpoint": "/api/length",
+        "method": "POST",
+        "params": [
+            {"name": "item", "type": "array", "required": True, "description": "列表或字符串"}
+        ],
+        "icon": "hash"
+    },
+    "first_item": {
+        "id": "first_item",
+        "name": "首个元素",
+        "name_en": "First Item",
+        "description": "获取列表第一个元素",
+        "category": "list",
+        "subcategory": "access",
+        "api_endpoint": "/api/first",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "arrow-right"
+    },
+    "last_item": {
+        "id": "last_item",
+        "name": "末尾元素",
+        "name_en": "Last Item",
+        "description": "获取列表最后一个元素",
+        "category": "list",
+        "subcategory": "access",
+        "api_endpoint": "/api/last",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "arrow-left"
+    },
+    "nth_item": {
+        "id": "nth_item",
+        "name": "第N个元素",
+        "name_en": "Nth Item",
+        "description": "获取列表第N个元素",
+        "category": "list",
+        "subcategory": "access",
+        "api_endpoint": "/api/nth",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "index", "type": "number", "required": True, "description": "索引"}
+        ],
+        "icon": "list"
+    },
+    "contains": {
+        "id": "contains",
+        "name": "包含检查",
+        "name_en": "Contains",
+        "description": "检查列表是否包含元素",
+        "category": "list",
+        "subcategory": "check",
+        "api_endpoint": "/api/contains",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "value", "type": "string", "required": True, "description": "值"}
+        ],
+        "icon": "search"
+    },
+    "unique": {
+        "id": "unique",
+        "name": "去重",
+        "name_en": "Unique",
+        "description": "去除重复元素",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/unique",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"}
+        ],
+        "icon": "filter"
+    },
+    "sort_list": {
+        "id": "sort_list",
+        "name": "排序",
+        "name_en": "Sort List",
+        "description": "对列表排序",
+        "category": "list",
+        "subcategory": "transform",
+        "api_endpoint": "/api/sort",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "列表"},
+            {"name": "reverse", "type": "boolean", "required": False, "description": "降序"}
+        ],
+        "icon": "arrow-up-down"
     }
 }
 
