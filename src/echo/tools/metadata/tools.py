@@ -38881,6 +38881,169 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "permission", "type": "string", "required": True, "description": "权限名称"}
         ],
         "icon": "check-circle"
+    },
+    # ========== 审计日志工具 ==========
+    "audit_log": {
+        "id": "audit_log",
+        "name": "审计日志",
+        "name_en": "Audit Log",
+        "description": "记录审计日志",
+        "category": "audit",
+        "subcategory": "log",
+        "api_endpoint": "/api/audit/log",
+        "method": "POST",
+        "params": [
+            {"name": "action", "type": "string", "required": True, "description": "操作"},
+            {"name": "resource", "type": "string", "required": True, "description": "资源"},
+            {"name": "user_id", "type": "string", "required": False, "description": "用户ID"}
+        ],
+        "icon": "file-text"
+    },
+    "audit_query": {
+        "id": "audit_query",
+        "name": "查询审计",
+        "name_en": "Query Audit Logs",
+        "description": "查询审计日志",
+        "category": "audit",
+        "subcategory": "query",
+        "api_endpoint": "/api/audit/query",
+        "method": "GET",
+        "params": [
+            {"name": "start_time", "type": "string", "required": False, "description": "开始时间"},
+            {"name": "end_time", "type": "string", "required": False, "description": "结束时间"},
+            {"name": "user_id", "type": "string", "required": False, "description": "用户ID"}
+        ],
+        "icon": "search"
+    },
+    # ========== 合规工具 ==========
+    "compliance_check": {
+        "id": "compliance_check",
+        "name": "合规检查",
+        "name_en": "Compliance Check",
+        "description": "执行合规检查",
+        "category": "compliance",
+        "subcategory": "check",
+        "api_endpoint": "/api/compliance/check",
+        "method": "POST",
+        "params": [
+            {"name": "standard", "type": "string", "required": True, "description": "合规标准"}
+        ],
+        "icon": "shield"
+    },
+    "compliance_report": {
+        "id": "compliance_report",
+        "name": "合规报告",
+        "name_en": "Compliance Report",
+        "description": "生成合规报告",
+        "category": "compliance",
+        "subcategory": "report",
+        "api_endpoint": "/api/compliance/report",
+        "method": "GET",
+        "params": [
+            {"name": "period", "type": "string", "required": False, "description": "报告周期"}
+        ],
+        "icon": "file-text"
+    },
+    # ========== 风险评估工具 ==========
+    "risk_assess": {
+        "id": "risk_assess",
+        "name": "风险评估",
+        "name_en": "Risk Assessment",
+        "description": "进行风险评估",
+        "category": "risk",
+        "subcategory": "assess",
+        "api_endpoint": "/api/risk/assess",
+        "method": "POST",
+        "params": [
+            {"name": "asset", "type": "string", "required": True, "description": "资产"},
+            {"name": "threats", "type": "array", "required": False, "description": "威胁列表"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "risk_register": {
+        "id": "risk_register",
+        "name": "风险登记",
+        "name_en": "Risk Register",
+        "description": "查看风险登记",
+        "category": "risk",
+        "subcategory": "register",
+        "api_endpoint": "/api/risk/register",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    # ========== 数据分类工具 ==========
+    "data_classify": {
+        "id": "data_classify",
+        "name": "数据分类",
+        "name_en": "Data Classification",
+        "description": "对数据进行分类",
+        "category": "data_governance",
+        "subcategory": "classify",
+        "api_endpoint": "/api/data/classify",
+        "method": "POST",
+        "params": [
+            {"name": "data_id", "type": "string", "required": True, "description": "数据ID"},
+            {"name": "category", "type": "string", "required": True, "description": "类别"}
+        ],
+        "icon": "tag"
+    },
+    "data_lineage": {
+        "id": "data_lineage",
+        "name": "数据血缘",
+        "name_en": "Data Lineage",
+        "description": "查看数据血缘",
+        "category": "data_governance",
+        "subcategory": "lineage",
+        "api_endpoint": "/api/data/lineage",
+        "method": "GET",
+        "params": [
+            {"name": "data_id", "type": "string", "required": True, "description": "数据ID"}
+        ],
+        "icon": "git-branch"
+    },
+    # ========== GDPR合规工具 ==========
+    "gdpr_anonymize": {
+        "id": "gdpr_anonymize",
+        "name": "数据匿名化",
+        "name_en": "Anonymize Data",
+        "description": "匿名化个人数据",
+        "category": "gdpr",
+        "subcategory": "anonymize",
+        "api_endpoint": "/api/gdpr/anonymize",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "原始数据"}
+        ],
+        "icon": "eye-off"
+    },
+    "gdpr_erasure": {
+        "id": "gdpr_erasure",
+        "name": "被遗忘权",
+        "name_en": "Right to Erasure",
+        "description": "处理数据删除请求",
+        "category": "gdpr",
+        "subcategory": "erasure",
+        "api_endpoint": "/api/gdpr/erasure",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "trash"
+    },
+    "gdpr_portability": {
+        "id": "gdpr_portability",
+        "name": "数据可携权",
+        "name_en": "Data Portability",
+        "description": "导出用户数据",
+        "category": "gdpr",
+        "subcategory": "portability",
+        "api_endpoint": "/api/gdpr/portability",
+        "method": "GET",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "download"
     }
 }
 
