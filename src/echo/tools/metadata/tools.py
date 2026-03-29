@@ -36949,6 +36949,359 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "booking_id", "type": "string", "required": True, "description": "预约ID"}
         ],
         "icon": "x"
+    },
+    # ========== 提醒工具 ==========
+    "reminder_create": {
+        "id": "reminder_create",
+        "name": "创建提醒",
+        "name_en": "Create Reminder",
+        "description": "创建提醒事项",
+        "category": "reminder",
+        "subcategory": "create",
+        "api_endpoint": "/api/reminder/create",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "提醒标题"},
+            {"name": "datetime", "type": "string", "required": True, "description": "提醒时间"},
+            {"name": "repeat", "type": "string", "required": False, "description": "重复规则"}
+        ],
+        "icon": "bell"
+    },
+    "reminder_list": {
+        "id": "reminder_list",
+        "name": "列出提醒",
+        "name_en": "List Reminders",
+        "description": "获取所有提醒",
+        "category": "reminder",
+        "subcategory": "query",
+        "api_endpoint": "/api/reminder/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "reminder_delete": {
+        "id": "reminder_delete",
+        "name": "删除提醒",
+        "name_en": "Delete Reminder",
+        "description": "删除提醒",
+        "category": "reminder",
+        "subcategory": "delete",
+        "api_endpoint": "/api/reminder/delete",
+        "method": "POST",
+        "params": [
+            {"name": "reminder_id", "type": "string", "required": True, "description": "提醒ID"}
+        ],
+        "icon": "trash"
+    },
+    # ========== 任务队列工具 ==========
+    "queue_create": {
+        "id": "queue_create",
+        "name": "创建队列",
+        "name_en": "Create Queue",
+        "description": "创建任务队列",
+        "category": "queue",
+        "subcategory": "create",
+        "api_endpoint": "/api/queue/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "队列名称"}
+        ],
+        "icon": "list"
+    },
+    "queue_enqueue": {
+        "id": "queue_enqueue",
+        "name": "入队",
+        "name_en": "Enqueue",
+        "description": "添加任务到队列",
+        "category": "queue",
+        "subcategory": "enqueue",
+        "api_endpoint": "/api/queue/enqueue",
+        "method": "POST",
+        "params": [
+            {"name": "queue_id", "type": "string", "required": True, "description": "队列ID"},
+            {"name": "task", "type": "object", "required": True, "description": "任务数据"}
+        ],
+        "icon": "plus"
+    },
+    "queue_dequeue": {
+        "id": "queue_dequeue",
+        "name": "出队",
+        "name_en": "Dequeue",
+        "description": "从队列取出任务",
+        "category": "queue",
+        "subcategory": "dequeue",
+        "api_endpoint": "/api/queue/dequeue",
+        "method": "POST",
+        "params": [
+            {"name": "queue_id", "type": "string", "required": True, "description": "队列ID"}
+        ],
+        "icon": "minus"
+    },
+    # ========== 缓存工具 ==========
+    "cache_set": {
+        "id": "cache_set",
+        "name": "设置缓存",
+        "name_en": "Set Cache",
+        "description": "设置缓存数据",
+        "category": "cache",
+        "subcategory": "set",
+        "api_endpoint": "/api/cache/set",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "缓存键"},
+            {"name": "value", "type": "string", "required": True, "description": "缓存值"},
+            {"name": "ttl", "type": "number", "required": False, "description": "过期时间(秒)"}
+        ],
+        "icon": "database"
+    },
+    "cache_get": {
+        "id": "cache_get",
+        "name": "获取缓存",
+        "name_en": "Get Cache",
+        "description": "获取缓存数据",
+        "category": "cache",
+        "subcategory": "get",
+        "api_endpoint": "/api/cache/get",
+        "method": "GET",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "缓存键"}
+        ],
+        "icon": "database"
+    },
+    "cache_delete": {
+        "id": "cache_delete",
+        "name": "删除缓存",
+        "name_en": "Delete Cache",
+        "description": "删除缓存",
+        "category": "cache",
+        "subcategory": "delete",
+        "api_endpoint": "/api/cache/delete",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "缓存键"}
+        ],
+        "icon": "trash"
+    },
+    # ========== 锁工具 ==========
+    "lock_acquire": {
+        "id": "lock_acquire",
+        "name": "获取锁",
+        "name_en": "Acquire Lock",
+        "description": "获取分布式锁",
+        "category": "lock",
+        "subcategory": "acquire",
+        "api_endpoint": "/api/lock/acquire",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "锁键"},
+            {"name": "timeout", "type": "number", "required": False, "description": "超时时间"}
+        ],
+        "icon": "lock"
+    },
+    "lock_release": {
+        "id": "lock_release",
+        "name": "释放锁",
+        "name_en": "Release Lock",
+        "description": "释放分布式锁",
+        "category": "lock",
+        "subcategory": "release",
+        "api_endpoint": "/api/lock/release",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "锁键"}
+        ],
+        "icon": "unlock"
+    },
+    # ========== 限流工具 ==========
+    "ratelimit_check": {
+        "id": "ratelimit_check",
+        "name": "检查限流",
+        "name_en": "Check Rate Limit",
+        "description": "检查是否触发限流",
+        "category": "ratelimit",
+        "subcategory": "check",
+        "api_endpoint": "/api/ratelimit/check",
+        "method": "GET",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "限流键"}
+        ],
+        "icon": "zap"
+    },
+    "ratelimit_reset": {
+        "id": "ratelimit_reset",
+        "name": "重置限流",
+        "name_en": "Reset Rate Limit",
+        "description": "重置限流计数器",
+        "category": "ratelimit",
+        "subcategory": "reset",
+        "api_endpoint": "/api/ratelimit/reset",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "限流键"}
+        ],
+        "icon": "refresh"
+    },
+    # ========== 日志工具 ==========
+    "log_write": {
+        "id": "log_write",
+        "name": "写入日志",
+        "name_en": "Write Log",
+        "description": "写入日志记录",
+        "category": "log",
+        "subcategory": "write",
+        "api_endpoint": "/api/log/write",
+        "method": "POST",
+        "params": [
+            {"name": "level", "type": "string", "required": True, "description": "日志级别"},
+            {"name": "message", "type": "string", "required": True, "description": "日志内容"},
+            {"name": "metadata", "type": "object", "required": False, "description": "元数据"}
+        ],
+        "icon": "edit"
+    },
+    "log_query": {
+        "id": "log_query",
+        "name": "查询日志",
+        "name_en": "Query Logs",
+        "description": "查询日志记录",
+        "category": "log",
+        "subcategory": "query",
+        "api_endpoint": "/api/log/query",
+        "method": "GET",
+        "params": [
+            {"name": "level", "type": "string", "required": False, "description": "日志级别"},
+            {"name": "start_time", "type": "string", "required": False, "description": "开始时间"},
+            {"name": "end_time", "type": "string", "required": False, "description": "结束时间"}
+        ],
+        "icon": "search"
+    },
+    # ========== 监控工具 ==========
+    "monitor_health": {
+        "id": "monitor_health",
+        "name": "健康检查",
+        "name_en": "Health Check",
+        "description": "检查服务健康状态",
+        "category": "monitor",
+        "subcategory": "health",
+        "api_endpoint": "/api/monitor/health",
+        "method": "GET",
+        "params": [],
+        "icon": "heart"
+    },
+    "monitor_metrics": {
+        "id": "monitor_metrics",
+        "name": "获取指标",
+        "name_en": "Get Metrics",
+        "description": "获取系统指标",
+        "category": "monitor",
+        "subcategory": "metrics",
+        "api_endpoint": "/api/monitor/metrics",
+        "method": "GET",
+        "params": [],
+        "icon": "bar-chart"
+    },
+    "monitor_alert": {
+        "id": "monitor_alert",
+        "name": "设置告警",
+        "name_en": "Set Alert",
+        "description": "设置监控告警规则",
+        "category": "monitor",
+        "subcategory": "alert",
+        "api_endpoint": "/api/monitor/alert",
+        "method": "POST",
+        "params": [
+            {"name": "metric", "type": "string", "required": True, "description": "指标名称"},
+            {"name": "threshold", "type": "number", "required": True, "description": "阈值"},
+            {"name": "condition", "type": "string", "required": True, "description": "条件"}
+        ],
+        "icon": "alert-triangle"
+    },
+    # ========== 部署工具 ==========
+    "deploy_create": {
+        "id": "deploy_create",
+        "name": "创建部署",
+        "name_en": "Create Deployment",
+        "description": "创建新的部署任务",
+        "category": "deploy",
+        "subcategory": "create",
+        "api_endpoint": "/api/deploy/create",
+        "method": "POST",
+        "params": [
+            {"name": "environment", "type": "string", "required": True, "description": "部署环境"},
+            {"name": "version", "type": "string", "required": False, "description": "版本号"}
+        ],
+        "icon": "upload"
+    },
+    "deploy_status": {
+        "id": "deploy_status",
+        "name": "部署状态",
+        "name_en": "Deployment Status",
+        "description": "查看部署状态",
+        "category": "deploy",
+        "subcategory": "status",
+        "api_endpoint": "/api/deploy/status",
+        "method": "GET",
+        "params": [
+            {"name": "deploy_id", "type": "string", "required": True, "description": "部署ID"}
+        ],
+        "icon": "activity"
+    },
+    "deploy_rollback": {
+        "id": "deploy_rollback",
+        "name": "回滚部署",
+        "name_en": "Rollback Deployment",
+        "description": "回滚到上一版本",
+        "category": "deploy",
+        "subcategory": "rollback",
+        "api_endpoint": "/api/deploy/rollback",
+        "method": "POST",
+        "params": [
+            {"name": "deploy_id", "type": "string", "required": True, "description": "部署ID"}
+        ],
+        "icon": "rotate-ccw"
+    },
+    # ========== CI/CD工具 ==========
+    "cicd_pipeline": {
+        "id": "cicd_pipeline",
+        "name": "创建流水线",
+        "name_en": "Create Pipeline",
+        "description": "创建CI/CD流水线",
+        "category": "cicd",
+        "subcategory": "pipeline",
+        "api_endpoint": "/api/cicd/pipeline",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "流水线名称"},
+            {"name": "stages", "type": "array", "required": True, "description": "阶段列表"}
+        ],
+        "icon": "git-branch"
+    },
+    "cicd_run": {
+        "id": "cicd_run",
+        "name": "运行流水线",
+        "name_en": "Run Pipeline",
+        "description": "触发流水线运行",
+        "category": "cicd",
+        "subcategory": "run",
+        "api_endpoint": "/api/cicd/run",
+        "method": "POST",
+        "params": [
+            {"name": "pipeline_id", "type": "string", "required": True, "description": "流水线ID"}
+        ],
+        "icon": "play"
+    },
+    "cicd_status": {
+        "id": "cicd_status",
+        "name": "流水线状态",
+        "name_en": "Pipeline Status",
+        "description": "查看流水线状态",
+        "category": "cicd",
+        "subcategory": "status",
+        "api_endpoint": "/api/cicd/status",
+        "method": "GET",
+        "params": [
+            {"name": "pipeline_id", "type": "string", "required": True, "description": "流水线ID"}
+        ],
+        "icon": "activity"
     }
 }
 
