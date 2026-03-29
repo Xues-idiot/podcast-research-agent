@@ -30764,6 +30764,522 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "indicator", "type": "string", "required": True, "description": "威胁指标"}
         ],
         "icon": "activity"
+    },
+
+    # ========== SIEM工具 ==========
+    "siem_ingest": {
+        "id": "siem_ingest",
+        "name": "摄入日志",
+        "name_en": "Ingest Logs",
+        "description": "摄入日志到SIEM",
+        "category": "siem",
+        "subcategory": "ingest",
+        "api_endpoint": "/api/siem/ingest",
+        "method": "POST",
+        "params": [
+            {"name": "logs", "type": "array", "required": True, "description": "日志数组"}
+        ],
+        "icon": "upload"
+    },
+    "siem_search": {
+        "id": "siem_search",
+        "name": "SIEM搜索",
+        "name_en": "SIEM Search",
+        "description": "搜索SIEM日志",
+        "category": "siem",
+        "subcategory": "search",
+        "api_endpoint": "/api/siem/search",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询语句"}
+        ],
+        "icon": "search"
+    },
+    "siem_alert": {
+        "id": "siem_alert",
+        "name": "SIEM告警",
+        "name_en": "SIEM Alert",
+        "description": "创建SIEM告警规则",
+        "category": "siem",
+        "subcategory": "alert",
+        "api_endpoint": "/api/siem/alert",
+        "method": "POST",
+        "params": [
+            {"name": "rule", "type": "object", "required": True, "description": "告警规则"}
+        ],
+        "icon": "bell"
+    },
+    "siem_dashboard": {
+        "id": "siem_dashboard",
+        "name": "SIEM仪表板",
+        "name_en": "SIEM Dashboard",
+        "description": "获取SIEM仪表板数据",
+        "category": "siem",
+        "subcategory": "dashboard",
+        "api_endpoint": "/api/siem/dashboard",
+        "method": "GET",
+        "params": [],
+        "icon": "layout"
+    },
+
+    # ========== 威胁检测工具 ==========
+    "threat_detect_anomaly": {
+        "id": "threat_detect_anomaly",
+        "name": "异常检测",
+        "name_en": "Anomaly Detection",
+        "description": "检测异常行为",
+        "category": "threatdetection",
+        "subcategory": "anomaly",
+        "api_endpoint": "/api/threat/detect/anomaly",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "activity"
+    },
+    "threat_detect_pattern": {
+        "id": "threat_detect_pattern",
+        "name": "模式检测",
+        "name_en": "Pattern Detection",
+        "description": "检测威胁模式",
+        "category": "threatdetection",
+        "subcategory": "pattern",
+        "api_endpoint": "/api/threat/detect/pattern",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "search"
+    },
+    "threat_hunt": {
+        "id": "threat_hunt",
+        "name": "威胁狩猎",
+        "name_en": "Threat Hunting",
+        "description": "主动狩猎威胁",
+        "category": "threatdetection",
+        "subcategory": "hunt",
+        "api_endpoint": "/api/threat/hunt",
+        "method": "POST",
+        "params": [
+            {"name": "hypothesis", "type": "string", "required": True, "description": "假设"}
+        ],
+        "icon": "target"
+    },
+
+    # ========== 安全运营工具 ==========
+    "secops_incident": {
+        "id": "secops_incident",
+        "name": "安全事件",
+        "name_en": "Security Incident",
+        "description": "创建安全事件",
+        "category": "secops",
+        "subcategory": "incident",
+        "api_endpoint": "/api/secops/incident",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "标题"},
+            {"name": "severity", "type": "string", "required": True, "description": "严重程度"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "secops_triage": {
+        "id": "secops_triage",
+        "name": "事件分诊",
+        "name_en": "Incident Triage",
+        "description": "对安全事件分诊",
+        "category": "secops",
+        "subcategory": "triage",
+        "api_endpoint": "/api/secops/triage",
+        "method": "POST",
+        "params": [
+            {"name": "incident_id", "type": "string", "required": True, "description": "事件ID"}
+        ],
+        "icon": "check"
+    },
+    "secops_respond": {
+        "id": "secops_respond",
+        "name": "事件响应",
+        "name_en": "Incident Response",
+        "description": "响应安全事件",
+        "category": "secops",
+        "subcategory": "respond",
+        "api_endpoint": "/api/secops/respond",
+        "method": "POST",
+        "params": [
+            {"name": "incident_id", "type": "string", "required": True, "description": "事件ID"},
+            {"name": "action", "type": "string", "required": True, "description": "响应动作"}
+        ],
+        "icon": "zap"
+    },
+
+    # ========== 容器安全工具 ==========
+    "container_security_scan": {
+        "id": "container_security_scan",
+        "name": "容器安全扫描",
+        "name_en": "Container Security Scan",
+        "description": "扫描容器镜像安全",
+        "category": "containersecurity",
+        "subcategory": "scan",
+        "api_endpoint": "/api/container/security/scan",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "镜像名称"}
+        ],
+        "icon": "shield"
+    },
+    "container_vuln_list": {
+        "id": "container_vuln_list",
+        "name": "容器漏洞列表",
+        "name_en": "Container Vulnerability List",
+        "description": "获取容器漏洞列表",
+        "category": "containersecurity",
+        "subcategory": "vuln",
+        "api_endpoint": "/api/container/vuln/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "container_compliance": {
+        "id": "container_compliance",
+        "name": "容器合规检查",
+        "name_en": "Container Compliance",
+        "description": "检查容器合规性",
+        "category": "containersecurity",
+        "subcategory": "compliance",
+        "api_endpoint": "/api/container/compliance",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "镜像名称"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== Kubernetes安全工具 ==========
+    "k8s_security_scan": {
+        "id": "k8s_security_scan",
+        "name": "K8s安全扫描",
+        "name_en": "K8s Security Scan",
+        "description": "扫描Kubernetes安全",
+        "category": "k8ssecurity",
+        "subcategory": "scan",
+        "api_endpoint": "/api/k8s/security/scan",
+        "method": "GET",
+        "params": [],
+        "icon": "shield"
+    },
+    "k8s_network_policy": {
+        "id": "k8s_network_policy",
+        "name": "网络策略",
+        "name_en": "Network Policy",
+        "description": "管理K8s网络策略",
+        "category": "k8ssecurity",
+        "subcategory": "network",
+        "api_endpoint": "/api/k8s/network/policy",
+        "method": "POST",
+        "params": [
+            {"name": "policy", "type": "object", "required": True, "description": "策略配置"}
+        ],
+        "icon": "git-branch"
+    },
+    "k8s_rbac_audit": {
+        "id": "k8s_rbac_audit",
+        "name": "RBAC审计",
+        "name_en": "K8s RBAC Audit",
+        "description": "审计Kubernetes RBAC",
+        "category": "k8ssecurity",
+        "subcategory": "rbac",
+        "api_endpoint": "/api/k8s/rbac/audit",
+        "method": "GET",
+        "params": [],
+        "icon": "user-check"
+    },
+
+    # ========== 云安全工具 ==========
+    "cloud_security_assessment": {
+        "id": "cloud_security_assessment",
+        "name": "云安全评估",
+        "name_en": "Cloud Security Assessment",
+        "description": "评估云安全态势",
+        "category": "cloudsecurity",
+        "subcategory": "assessment",
+        "api_endpoint": "/api/cloud/security/assessment",
+        "method": "GET",
+        "params": [],
+        "icon": "shield"
+    },
+    "cloud_compliance_check": {
+        "id": "cloud_compliance_check",
+        "name": "云合规检查",
+        "name_en": "Cloud Compliance Check",
+        "description": "检查云资源合规性",
+        "category": "cloudsecurity",
+        "subcategory": "compliance",
+        "api_endpoint": "/api/cloud/compliance/check",
+        "method": "POST",
+        "params": [
+            {"name": "standard", "type": "string", "required": True, "description": "合规标准"}
+        ],
+        "icon": "check"
+    },
+    "cloud_misconfig": {
+        "id": "cloud_misconfig",
+        "name": "配置错误检测",
+        "name_en": "Misconfiguration Detection",
+        "description": "检测云配置错误",
+        "category": "cloudsecurity",
+        "subcategory": "misconfig",
+        "api_endpoint": "/api/cloud/misconfig",
+        "method": "GET",
+        "params": [],
+        "icon": "alert-triangle"
+    },
+
+    # ========== 身份威胁检测工具 ==========
+    "identity_threat_detect": {
+        "id": "identity_threat_detect",
+        "name": "身份威胁检测",
+        "name_en": "Identity Threat Detection",
+        "description": "检测身份威胁",
+        "category": "identitythreat",
+        "subcategory": "detect",
+        "api_endpoint": "/api/identity/threat/detect",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "user"
+    },
+    "identity_anomaly": {
+        "id": "identity_anomaly",
+        "name": "身份异常检测",
+        "name_en": "Identity Anomaly Detection",
+        "description": "检测身份异常行为",
+        "category": "identitythreat",
+        "subcategory": "anomaly",
+        "api_endpoint": "/api/identity/anomaly",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "activity"
+    },
+    "identity_access_review": {
+        "id": "identity_access_review",
+        "name": "访问审查",
+        "name_en": "Access Review",
+        "description": "审查用户访问权限",
+        "category": "identitythreat",
+        "subcategory": "review",
+        "api_endpoint": "/api/identity/review",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "user-check"
+    },
+
+    # ========== 邮件安全工具 ==========
+    "email_security_scan": {
+        "id": "email_security_scan",
+        "name": "邮件安全扫描",
+        "name_en": "Email Security Scan",
+        "description": "扫描邮件安全威胁",
+        "category": "emailsecurity",
+        "subcategory": "scan",
+        "api_endpoint": "/api/email/security/scan",
+        "method": "POST",
+        "params": [
+            {"name": "email_id", "type": "string", "required": True, "description": "邮件ID"}
+        ],
+        "icon": "shield"
+    },
+    "email_phishing_detect": {
+        "id": "email_phishing_detect",
+        "name": "钓鱼检测",
+        "name_en": "Phishing Detection",
+        "description": "检测钓鱼邮件",
+        "category": "emailsecurity",
+        "subcategory": "phishing",
+        "api_endpoint": "/api/email/phishing",
+        "method": "POST",
+        "params": [
+            {"name": "email_content", "type": "string", "required": True, "description": "邮件内容"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "email_spam_classify": {
+        "id": "email_spam_classify",
+        "name": "垃圾邮件分类",
+        "name_en": "Spam Classification",
+        "description": "分类邮件是否为垃圾",
+        "category": "emailsecurity",
+        "subcategory": "spam",
+        "api_endpoint": "/api/email/spam",
+        "method": "POST",
+        "params": [
+            {"name": "email_content", "type": "string", "required": True, "description": "邮件内容"}
+        ],
+        "icon": "tag"
+    },
+
+    # ========== 端点检测响应工具 ==========
+    "edr_scan": {
+        "id": "edr_scan",
+        "name": "端点扫描",
+        "name_en": "Endpoint Scan",
+        "description": "扫描端点威胁",
+        "category": "edr",
+        "subcategory": "scan",
+        "api_endpoint": "/api/edr/scan",
+        "method": "POST",
+        "params": [
+            {"name": "endpoint_id", "type": "string", "required": True, "description": "端点ID"}
+        ],
+        "icon": "search"
+    },
+    "edr_isolate": {
+        "id": "edr_isolate",
+        "name": "隔离端点",
+        "name_en": "Isolate Endpoint",
+        "description": "隔离问题端点",
+        "category": "edr",
+        "subcategory": "isolate",
+        "api_endpoint": "/api/edr/isolate",
+        "method": "POST",
+        "params": [
+            {"name": "endpoint_id", "type": "string", "required": True, "description": "端点ID"}
+        ],
+        "icon": "x"
+    },
+    "edr_collect": {
+        "id": "edr_collect",
+        "name": "采集取证",
+        "name_en": "Collect Forensics",
+        "description": "采集端点取证数据",
+        "category": "edr",
+        "subcategory": "collect",
+        "api_endpoint": "/api/edr/collect",
+        "method": "POST",
+        "params": [
+            {"name": "endpoint_id", "type": "string", "required": True, "description": "端点ID"}
+        ],
+        "icon": "download"
+    },
+
+    # ========== 安全配置管理工具 ==========
+    "scm_check": {
+        "id": "scm_check",
+        "name": "安全配置检查",
+        "name_en": "Security Configuration Check",
+        "description": "检查安全配置",
+        "category": "scm",
+        "subcategory": "check",
+        "api_endpoint": "/api/scm/check",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "check"
+    },
+    "scm_remediate": {
+        "id": "scm_remediate",
+        "name": "配置修复",
+        "name_en": "Configuration Remediation",
+        "description": "修复安全配置问题",
+        "category": "scm",
+        "subcategory": "remediate",
+        "api_endpoint": "/api/scm/remediate",
+        "method": "POST",
+        "params": [
+            {"name": "issue_id", "type": "string", "required": True, "description": "问题ID"}
+        ],
+        "icon": "tool"
+    },
+
+    # ========== 恶意软件分析工具 ==========
+    "malware_analyze": {
+        "id": "malware_analyze",
+        "name": "恶意软件分析",
+        "name_en": "Malware Analysis",
+        "description": "分析恶意软件",
+        "category": "malware",
+        "subcategory": "analyze",
+        "api_endpoint": "/api/malware/analyze",
+        "method": "POST",
+        "params": [
+            {"name": "file_hash", "type": "string", "required": True, "description": "文件哈希"}
+        ],
+        "icon": "bug"
+    },
+    "malware_sandbox": {
+        "id": "malware_sandbox",
+        "name": "沙箱分析",
+        "name_en": "Sandbox Analysis",
+        "description": "在沙箱中运行分析",
+        "category": "malware",
+        "subcategory": "sandbox",
+        "api_endpoint": "/api/malware/sandbox",
+        "method": "POST",
+        "params": [
+            {"name": "sample", "type": "string", "required": True, "description": "样本"}
+        ],
+        "icon": "box"
+    },
+    "malware_detect": {
+        "id": "malware_detect",
+        "name": "恶意软件检测",
+        "name_en": "Malware Detection",
+        "description": "检测恶意软件",
+        "category": "malware",
+        "subcategory": "detect",
+        "api_endpoint": "/api/malware/detect",
+        "method": "POST",
+        "params": [
+            {"name": "file_hash", "type": "string", "required": True, "description": "文件哈希"}
+        ],
+        "icon": "search"
+    },
+
+    # ========== 数字取证工具 ==========
+    "forensics_acquire": {
+        "id": "forensics_acquire",
+        "name": "获取证据",
+        "name_en": "Acquire Evidence",
+        "description": "获取数字证据",
+        "category": "forensics",
+        "subcategory": "acquire",
+        "api_endpoint": "/api/forensics/acquire",
+        "method": "POST",
+        "params": [
+            {"name": "source", "type": "string", "required": True, "description": "证据来源"}
+        ],
+        "icon": "download"
+    },
+    "forensics_analyze": {
+        "id": "forensics_analyze",
+        "name": "分析证据",
+        "name_en": "Analyze Evidence",
+        "description": "分析数字证据",
+        "category": "forensics",
+        "subcategory": "analyze",
+        "api_endpoint": "/api/forensics/analyze",
+        "method": "POST",
+        "params": [
+            {"name": "evidence_id", "type": "string", "required": True, "description": "证据ID"}
+        ],
+        "icon": "activity"
+    },
+    "forensics_chain": {
+        "id": "forensics_chain",
+        "name": "证据链",
+        "name_en": "Chain of Custody",
+        "description": "管理证据链",
+        "category": "forensics",
+        "subcategory": "chain",
+        "api_endpoint": "/api/forensics/chain",
+        "method": "GET",
+        "params": [],
+        "icon": "link"
     }
 }
 
