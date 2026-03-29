@@ -41823,6 +41823,110 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "code", "type": "string", "required": True, "description": "代码"}
         ],
         "icon": "refresh"
+    },
+    # ========== 语义搜索工具 ==========
+    "semantic_search": {
+        "id": "semantic_search",
+        "name": "语义搜索",
+        "name_en": "Semantic Search",
+        "description": "基于语义的搜索",
+        "category": "semantic_search",
+        "subcategory": "search",
+        "api_endpoint": "/api/semantic/search",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询"}
+        ],
+        "icon": "search"
+    },
+    "semantic_similarity": {
+        "id": "semantic_similarity",
+        "name": "语义相似度",
+        "name_en": "Semantic Similarity",
+        "description": "计算语义相似度",
+        "category": "semantic_search",
+        "subcategory": "similarity",
+        "api_endpoint": "/api/semantic/similarity",
+        "method": "POST",
+        "params": [
+            {"name": "text1", "type": "string", "required": True, "description": "文本1"},
+            {"name": "text2", "type": "string", "required": True, "description": "文本2"}
+        ],
+        "icon": "git-compare"
+    },
+    # ========== 文本嵌入工具 ==========
+    "embed_text": {
+        "id": "embed_text",
+        "name": "文本嵌入",
+        "name_en": "Text Embedding",
+        "description": "将文本转为向量",
+        "category": "embedding",
+        "subcategory": "text",
+        "api_endpoint": "/api/embed/text",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "hash"
+    },
+    "embed_document": {
+        "id": "embed_document",
+        "name": "文档嵌入",
+        "name_en": "Document Embedding",
+        "description": "将文档转为向量",
+        "category": "embedding",
+        "subcategory": "document",
+        "api_endpoint": "/api/embed/document",
+        "method": "POST",
+        "params": [
+            {"name": "doc", "type": "string", "required": True, "description": "文档"}
+        ],
+        "icon": "file"
+    },
+    # ========== 向量数据库工具 ==========
+    "vector_add": {
+        "id": "vector_add",
+        "name": "添加向量",
+        "name_en": "Add Vector",
+        "description": "添加向量到数据库",
+        "category": "vector_db",
+        "subcategory": "add",
+        "api_endpoint": "/api/vector/add",
+        "method": "POST",
+        "params": [
+            {"name": "id", "type": "string", "required": True, "description": "ID"},
+            {"name": "vector", "type": "array", "required": True, "description": "向量"}
+        ],
+        "icon": "plus"
+    },
+    "vector_search": {
+        "id": "vector_search",
+        "name": "向量搜索",
+        "name_en": "Vector Search",
+        "description": "向量相似度搜索",
+        "category": "vector_db",
+        "subcategory": "search",
+        "api_endpoint": "/api/vector/search",
+        "method": "POST",
+        "params": [
+            {"name": "vector", "type": "array", "required": True, "description": "查询向量"},
+            {"name": "limit", "type": "number", "required": False, "description": "数量"}
+        ],
+        "icon": "search"
+    },
+    "vector_delete": {
+        "id": "vector_delete",
+        "name": "删除向量",
+        "name_en": "Delete Vector",
+        "description": "删除向量",
+        "category": "vector_db",
+        "subcategory": "delete",
+        "api_endpoint": "/api/vector/delete",
+        "method": "POST",
+        "params": [
+            {"name": "id", "type": "string", "required": True, "description": "ID"}
+        ],
+        "icon": "trash"
     }
 }
 
