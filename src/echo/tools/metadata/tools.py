@@ -42047,6 +42047,138 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "topic", "type": "string", "required": True, "description": "话题"}
         ],
         "icon": "message-square"
+    },
+    # ========== 工作流编排工具 ==========
+    "workflow_add_step": {
+        "id": "workflow_add_step",
+        "name": "添加步骤",
+        "name_en": "Add Step",
+        "description": "工作流添加步骤",
+        "category": "workflow_orchestration",
+        "subcategory": "step",
+        "api_endpoint": "/api/workflow/step/add",
+        "method": "POST",
+        "params": [
+            {"name": "workflow_id", "type": "string", "required": True, "description": "工作流ID"},
+            {"name": "step", "type": "object", "required": True, "description": "步骤"}
+        ],
+        "icon": "plus"
+    },
+    "workflow_execute": {
+        "id": "workflow_execute",
+        "name": "执行工作流",
+        "name_en": "Execute Workflow",
+        "description": "执行编排的工作流",
+        "category": "workflow_orchestration",
+        "subcategory": "execute",
+        "api_endpoint": "/api/workflow/execute",
+        "method": "POST",
+        "params": [
+            {"name": "workflow_id", "type": "string", "required": True, "description": "工作流ID"},
+            {"name": "input", "type": "object", "required": False, "description": "输入"}
+        ],
+        "icon": "play"
+    },
+    "workflow_status": {
+        "id": "workflow_status",
+        "name": "工作流状态",
+        "name_en": "Workflow Status",
+        "description": "查看工作流状态",
+        "category": "workflow_orchestration",
+        "subcategory": "status",
+        "api_endpoint": "/api/workflow/status",
+        "method": "GET",
+        "params": [
+            {"name": "workflow_id", "type": "string", "required": True, "description": "工作流ID"}
+        ],
+        "icon": "activity"
+    },
+    # ========== 链式调用工具 ==========
+    "chain_llm": {
+        "id": "chain_llm",
+        "name": "LLM链",
+        "name_en": "LLM Chain",
+        "description": "LLM链式调用",
+        "category": "chain",
+        "subcategory": "llm",
+        "api_endpoint": "/api/chain/llm",
+        "method": "POST",
+        "params": [
+            {"name": "prompts", "type": "array", "required": True, "description": "提示词列表"}
+        ],
+        "icon": "link"
+    },
+    "chain_retrieval": {
+        "id": "chain_retrieval",
+        "name": "检索链",
+        "name_en": "Retrieval Chain",
+        "description": "检索增强链",
+        "category": "chain",
+        "subcategory": "retrieval",
+        "api_endpoint": "/api/chain/retrieval",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询"}
+        ],
+        "icon": "search"
+    },
+    "chain_conversation": {
+        "id": "chain_conversation",
+        "name": "对话链",
+        "name_en": "Conversation Chain",
+        "description": "对话记忆链",
+        "category": "chain",
+        "subcategory": "conversation",
+        "api_endpoint": "/api/chain/conversation",
+        "method": "POST",
+        "params": [
+            {"name": "messages", "type": "array", "required": True, "description": "消息列表"}
+        ],
+        "icon": "message-square"
+    },
+    # ========== 提示词工程工具 ==========
+    "prompt_template": {
+        "id": "prompt_template",
+        "name": "提示词模板",
+        "name_en": "Prompt Template",
+        "description": "创建提示词模板",
+        "category": "prompt_engineering",
+        "subcategory": "template",
+        "api_endpoint": "/api/prompt/template",
+        "method": "POST",
+        "params": [
+            {"name": "template", "type": "string", "required": True, "description": "模板"},
+            {"name": "variables", "type": "array", "required": False, "description": "变量"}
+        ],
+        "icon": "file-text"
+    },
+    "prompt_chain": {
+        "id": "prompt_chain",
+        "name": "提示词链",
+        "name_en": "Prompt Chaining",
+        "description": "提示词链式调用",
+        "category": "prompt_engineering",
+        "subcategory": "chain",
+        "api_endpoint": "/api/prompt/chain",
+        "method": "POST",
+        "params": [
+            {"name": "prompts", "type": "array", "required": True, "description": "提示词列表"}
+        ],
+        "icon": "link"
+    },
+    "prompt_optimize": {
+        "id": "prompt_optimize",
+        "name": "优化提示词",
+        "name_en": "Optimize Prompt",
+        "description": "AI优化提示词",
+        "category": "prompt_engineering",
+        "subcategory": "optimize",
+        "api_endpoint": "/api/prompt/optimize",
+        "method": "POST",
+        "params": [
+            {"name": "prompt", "type": "string", "required": True, "description": "提示词"}
+        ],
+        "icon": "edit"
     }
 }
 
