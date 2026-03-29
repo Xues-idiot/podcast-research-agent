@@ -41689,6 +41689,140 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
         ],
         "icon": "layers"
+    },
+    # ========== 图像生成工具 ==========
+    "image_generate": {
+        "id": "image_generate",
+        "name": "生成图像",
+        "name_en": "Generate Image",
+        "description": "AI生成图像",
+        "category": "image_generation",
+        "subcategory": "generate",
+        "api_endpoint": "/api/image/generate",
+        "method": "POST",
+        "params": [
+            {"name": "prompt", "type": "string", "required": True, "description": "提示词"}
+        ],
+        "icon": "image"
+    },
+    "image_edit": {
+        "id": "image_edit",
+        "name": "编辑图像",
+        "name_en": "Edit Image",
+        "description": "AI编辑图像",
+        "category": "image_generation",
+        "subcategory": "edit",
+        "api_endpoint": "/api/image/edit",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"},
+            {"name": "prompt", "type": "string", "required": True, "description": "提示词"}
+        ],
+        "icon": "edit"
+    },
+    "image_variation": {
+        "id": "image_variation",
+        "name": "图像变体",
+        "name_en": "Image Variation",
+        "description": "生成图像变体",
+        "category": "image_generation",
+        "subcategory": "variation",
+        "api_endpoint": "/api/image/variation",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "copy"
+    },
+    # ========== 视频生成工具 ==========
+    "video_generate": {
+        "id": "video_generate",
+        "name": "生成视频",
+        "name_en": "Generate Video",
+        "description": "AI生成视频",
+        "category": "video_generation",
+        "subcategory": "generate",
+        "api_endpoint": "/api/video/generate",
+        "method": "POST",
+        "params": [
+            {"name": "prompt", "type": "string", "required": True, "description": "提示词"}
+        ],
+        "icon": "film"
+    },
+    "video_edit": {
+        "id": "video_edit",
+        "name": "编辑视频",
+        "name_en": "Edit Video",
+        "description": "AI编辑视频",
+        "category": "video_generation",
+        "subcategory": "edit",
+        "api_endpoint": "/api/video/edit",
+        "method": "POST",
+        "params": [
+            {"name": "video_url", "type": "string", "required": True, "description": "视频URL"},
+            {"name": "prompt", "type": "string", "required": True, "description": "提示词"}
+        ],
+        "icon": "edit"
+    },
+    # ========== 音频生成工具 ==========
+    "audio_generate": {
+        "id": "audio_generate",
+        "name": "生成音频",
+        "name_en": "Generate Audio",
+        "description": "AI生成音频",
+        "category": "audio_generation",
+        "subcategory": "generate",
+        "api_endpoint": "/api/audio/generate",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "music"
+    },
+    # ========== 代码生成工具 ==========
+    "code_generate": {
+        "id": "code_generate",
+        "name": "生成代码",
+        "name_en": "Generate Code",
+        "description": "AI生成代码",
+        "category": "code_generation",
+        "subcategory": "generate",
+        "api_endpoint": "/api/code/generate",
+        "method": "POST",
+        "params": [
+            {"name": "prompt", "type": "string", "required": True, "description": "提示词"},
+            {"name": "language", "type": "string", "required": False, "description": "语言"}
+        ],
+        "icon": "code"
+    },
+    "code_complete": {
+        "id": "code_complete",
+        "name": "代码补全",
+        "name_en": "Code Completion",
+        "description": "代码自动补全",
+        "category": "code_generation",
+        "subcategory": "complete",
+        "api_endpoint": "/api/code/complete",
+        "method": "POST",
+        "params": [
+            {"name": "code", "type": "string", "required": True, "description": "代码"},
+            {"name": "language", "type": "string", "required": True, "description": "语言"}
+        ],
+        "icon": "code"
+    },
+    "code_refactor": {
+        "id": "code_refactor",
+        "name": "代码重构",
+        "name_en": "Code Refactor",
+        "description": "AI代码重构",
+        "category": "code_generation",
+        "subcategory": "refactor",
+        "api_endpoint": "/api/code/refactor",
+        "method": "POST",
+        "params": [
+            {"name": "code", "type": "string", "required": True, "description": "代码"}
+        ],
+        "icon": "refresh"
     }
 }
 
