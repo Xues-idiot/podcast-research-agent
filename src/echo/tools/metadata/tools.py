@@ -39251,6 +39251,169 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "length", "type": "number", "required": False, "description": "长度"}
         ],
         "icon": "hash"
+    },
+    # ========== 截图工具 ==========
+    "screenshot_url": {
+        "id": "screenshot_url",
+        "name": "网页截图",
+        "name_en": "Screenshot URL",
+        "description": "对URL进行截图",
+        "category": "screenshot",
+        "subcategory": "url",
+        "api_endpoint": "/api/screenshot/url",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网址"},
+            {"name": "width", "type": "number", "required": False, "description": "宽度"}
+        ],
+        "icon": "image"
+    },
+    "screenshot_element": {
+        "id": "screenshot_element",
+        "name": "元素截图",
+        "name_en": "Element Screenshot",
+        "description": "对页面元素截图",
+        "category": "screenshot",
+        "subcategory": "element",
+        "api_endpoint": "/api/screenshot/element",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网址"},
+            {"name": "selector", "type": "string", "required": True, "description": "CSS选择器"}
+        ],
+        "icon": "crop"
+    },
+    # ========== PDF工具 ==========
+    "pdf_from_url": {
+        "id": "pdf_from_url",
+        "name": "URL转PDF",
+        "name_en": "URL to PDF",
+        "description": "将网页转换为PDF",
+        "category": "pdf",
+        "subcategory": "from_url",
+        "api_endpoint": "/api/pdf/from_url",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网址"}
+        ],
+        "icon": "file-text"
+    },
+    "pdf_merge": {
+        "id": "pdf_merge",
+        "name": "合并PDF",
+        "name_en": "Merge PDFs",
+        "description": "合并多个PDF文件",
+        "category": "pdf",
+        "subcategory": "merge",
+        "api_endpoint": "/api/pdf/merge",
+        "method": "POST",
+        "params": [
+            {"name": "files", "type": "array", "required": True, "description": "PDF文件列表"}
+        ],
+        "icon": "file-plus"
+    },
+    "pdf_split": {
+        "id": "pdf_split",
+        "name": "分割PDF",
+        "name_en": "Split PDF",
+        "description": "分割PDF文件",
+        "category": "pdf",
+        "subcategory": "split",
+        "api_endpoint": "/api/pdf/split",
+        "method": "POST",
+        "params": [
+            {"name": "file", "type": "string", "required": True, "description": "PDF文件"},
+            {"name": "pages", "type": "array", "required": True, "description": "页码列表"}
+        ],
+        "icon": "scissors"
+    },
+    "pdf_extract_text": {
+        "id": "pdf_extract_text",
+        "name": "提取PDF文本",
+        "name_en": "Extract PDF Text",
+        "description": "从PDF提取文本",
+        "category": "pdf",
+        "subcategory": "extract",
+        "api_endpoint": "/api/pdf/extract",
+        "method": "POST",
+        "params": [
+            {"name": "file", "type": "string", "required": True, "description": "PDF文件"}
+        ],
+        "icon": "file-text"
+    },
+    "pdf_compress": {
+        "id": "pdf_compress",
+        "name": "压缩PDF",
+        "name_en": "Compress PDF",
+        "description": "压缩PDF文件",
+        "category": "pdf",
+        "subcategory": "compress",
+        "api_endpoint": "/api/pdf/compress",
+        "method": "POST",
+        "params": [
+            {"name": "file", "type": "string", "required": True, "description": "PDF文件"},
+            {"name": "quality", "type": "string", "required": False, "description": "质量"}
+        ],
+        "icon": "minimize"
+    },
+    # ========== 压缩解压工具 ==========
+    "archive_zip": {
+        "id": "archive_zip",
+        "name": "创建ZIP",
+        "name_en": "Create ZIP",
+        "description": "创建ZIP压缩包",
+        "category": "archive",
+        "subcategory": "zip",
+        "api_endpoint": "/api/archive/zip",
+        "method": "POST",
+        "params": [
+            {"name": "files", "type": "array", "required": True, "description": "文件列表"},
+            {"name": "output", "type": "string", "required": False, "description": "输出名称"}
+        ],
+        "icon": "archive"
+    },
+    "archive_unzip": {
+        "id": "archive_unzip",
+        "name": "解压ZIP",
+        "name_en": "Unzip",
+        "description": "解压ZIP文件",
+        "category": "archive",
+        "subcategory": "unzip",
+        "api_endpoint": "/api/archive/unzip",
+        "method": "POST",
+        "params": [
+            {"name": "file", "type": "string", "required": True, "description": "ZIP文件"},
+            {"name": "output_dir", "type": "string", "required": False, "description": "输出目录"}
+        ],
+        "icon": "folder-open"
+    },
+    "archive_tar": {
+        "id": "archive_tar",
+        "name": "创建TAR",
+        "name_en": "Create TAR",
+        "description": "创建TAR压缩包",
+        "category": "archive",
+        "subcategory": "tar",
+        "api_endpoint": "/api/archive/tar",
+        "method": "POST",
+        "params": [
+            {"name": "files", "type": "array", "required": True, "description": "文件列表"}
+        ],
+        "icon": "archive"
+    },
+    "archive_gzip": {
+        "id": "archive_gzip",
+        "name": "GZIP压缩",
+        "name_en": "GZIP Compress",
+        "description": "GZIP压缩数据",
+        "category": "archive",
+        "subcategory": "gzip",
+        "api_endpoint": "/api/archive/gzip",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"}
+        ],
+        "icon": "archive"
     }
 }
 
