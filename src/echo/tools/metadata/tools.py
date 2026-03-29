@@ -41162,6 +41162,124 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "param_dist", "type": "object", "required": True, "description": "参数分布"}
         ],
         "icon": "shuffle"
+    },
+    # ========== 集成学习工具 ==========
+    "ensemble_bagging": {
+        "id": "ensemble_bagging",
+        "name": "Bagging集成",
+        "name_en": "Bagging Ensemble",
+        "description": "Bagging集成学习",
+        "category": "ensemble",
+        "subcategory": "bagging",
+        "api_endpoint": "/api/ensemble/bagging",
+        "method": "POST",
+        "params": [
+            {"name": "base_model", "type": "string", "required": True, "description": "基础模型"}
+        ],
+        "icon": "git-branch"
+    },
+    "ensemble_boosting": {
+        "id": "ensemble_boosting",
+        "name": "Boosting集成",
+        "name_en": "Boosting Ensemble",
+        "description": "Boosting集成学习",
+        "category": "ensemble",
+        "subcategory": "boosting",
+        "api_endpoint": "/api/ensemble/boosting",
+        "method": "POST",
+        "params": [
+            {"name": "base_model", "type": "string", "required": True, "description": "基础模型"}
+        ],
+        "icon": "git-branch"
+    },
+    "ensemble_stacking": {
+        "id": "ensemble_stacking",
+        "name": "Stacking集成",
+        "name_en": "Stacking Ensemble",
+        "description": "Stacking集成学习",
+        "category": "ensemble",
+        "subcategory": "stacking",
+        "api_endpoint": "/api/ensemble/stacking",
+        "method": "POST",
+        "params": [
+            {"name": "models", "type": "array", "required": True, "description": "模型列表"}
+        ],
+        "icon": "git-branch"
+    },
+    # ========== 强化学习工具 ==========
+    "rl_q_learning": {
+        "id": "rl_q_learning",
+        "name": "Q学习",
+        "name_en": "Q-Learning",
+        "description": "Q学习算法",
+        "category": "reinforcement",
+        "subcategory": "q_learning",
+        "api_endpoint": "/api/rl/q_learning",
+        "method": "POST",
+        "params": [
+            {"name": "env", "type": "string", "required": True, "description": "环境"}
+        ],
+        "icon": "cpu"
+    },
+    "rl_dqn": {
+        "id": "rl_dqn",
+        "name": "深度Q网络",
+        "name_en": "Deep Q-Network",
+        "description": "深度Q网络算法",
+        "category": "reinforcement",
+        "subcategory": "dqn",
+        "api_endpoint": "/api/rl/dqn",
+        "method": "POST",
+        "params": [
+            {"name": "env", "type": "string", "required": True, "description": "环境"}
+        ],
+        "icon": "cpu"
+    },
+    # ========== 深度学习工具 ==========
+    "dl_train": {
+        "id": "dl_train",
+        "name": "训练模型",
+        "name_en": "Train Model",
+        "description": "训练深度学习模型",
+        "category": "deep_learning",
+        "subcategory": "train",
+        "api_endpoint": "/api/dl/train",
+        "method": "POST",
+        "params": [
+            {"name": "model_type", "type": "string", "required": True, "description": "模型类型"},
+            {"name": "train_data", "type": "array", "required": True, "description": "训练数据"}
+        ],
+        "icon": "activity"
+    },
+    "dl_predict": {
+        "id": "dl_predict",
+        "name": "深度学习预测",
+        "name_en": "Deep Learning Predict",
+        "description": "深度学习模型预测",
+        "category": "deep_learning",
+        "subcategory": "predict",
+        "api_endpoint": "/api/dl/predict",
+        "method": "POST",
+        "params": [
+            {"name": "model", "type": "string", "required": True, "description": "模型"},
+            {"name": "input", "type": "array", "required": True, "description": "输入"}
+        ],
+        "icon": "target"
+    },
+    "dl_layers": {
+        "id": "dl_layers",
+        "name": "层管理",
+        "name_en": "Layer Management",
+        "description": "管理神经网络层",
+        "category": "deep_learning",
+        "subcategory": "layers",
+        "api_endpoint": "/api/dl/layers",
+        "method": "POST",
+        "params": [
+            {"name": "model", "type": "string", "required": True, "description": "模型"},
+            {"name": "layers", "type": "array", "required": True, "description": "层配置"}
+        ],
+        "icon": "layers"
     }
 }
 
