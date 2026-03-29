@@ -41927,6 +41927,126 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "id", "type": "string", "required": True, "description": "ID"}
         ],
         "icon": "trash"
+    },
+    # ========== RAG工具 ==========
+    "rag_retrieve": {
+        "id": "rag_retrieve",
+        "name": "检索文档",
+        "name_en": "Retrieve Documents",
+        "description": "RAG检索相关文档",
+        "category": "rag",
+        "subcategory": "retrieve",
+        "api_endpoint": "/api/rag/retrieve",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询"}
+        ],
+        "icon": "search"
+    },
+    "rag_generate": {
+        "id": "rag_generate",
+        "name": "生成回答",
+        "name_en": "Generate Answer",
+        "description": "RAG生成回答",
+        "category": "rag",
+        "subcategory": "generate",
+        "api_endpoint": "/api/rag/generate",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询"},
+            {"name": "context", "type": "array", "required": True, "description": "上下文"}
+        ],
+        "icon": "cpu"
+    },
+    "rag_index": {
+        "id": "rag_index",
+        "name": "索引文档",
+        "name_en": "Index Document",
+        "description": "RAG索引文档",
+        "category": "rag",
+        "subcategory": "index",
+        "api_endpoint": "/api/rag/index",
+        "method": "POST",
+        "params": [
+            {"name": "doc", "type": "string", "required": True, "description": "文档"}
+        ],
+        "icon": "file-plus"
+    },
+    # ========== Agent工具 ==========
+    "agent_create": {
+        "id": "agent_create",
+        "name": "创建Agent",
+        "name_en": "Create Agent",
+        "description": "创建AI Agent",
+        "category": "agent",
+        "subcategory": "create",
+        "api_endpoint": "/api/agent/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"},
+            {"name": "tools", "type": "array", "required": False, "description": "工具列表"}
+        ],
+        "icon": "bot"
+    },
+    "agent_execute": {
+        "id": "agent_execute",
+        "name": "执行任务",
+        "name_en": "Execute Task",
+        "description": "Agent执行任务",
+        "category": "agent",
+        "subcategory": "execute",
+        "api_endpoint": "/api/agent/execute",
+        "method": "POST",
+        "params": [
+            {"name": "agent_id", "type": "string", "required": True, "description": "AgentID"},
+            {"name": "task", "type": "string", "required": True, "description": "任务"}
+        ],
+        "icon": "play"
+    },
+    "agent_plan": {
+        "id": "agent_plan",
+        "name": "制定计划",
+        "name_en": "Make Plan",
+        "description": "Agent制定执行计划",
+        "category": "agent",
+        "subcategory": "plan",
+        "api_endpoint": "/api/agent/plan",
+        "method": "POST",
+        "params": [
+            {"name": "agent_id", "type": "string", "required": True, "description": "AgentID"},
+            {"name": "goal", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "list"
+    },
+    # ========== 多Agent工具 ==========
+    "multi_agent_coordinate": {
+        "id": "multi_agent_coordinate",
+        "name": "协调Agent",
+        "name_en": "Coordinate Agents",
+        "description": "多Agent协调",
+        "category": "multi_agent",
+        "subcategory": "coordinate",
+        "api_endpoint": "/api/multi/coordinate",
+        "method": "POST",
+        "params": [
+            {"name": "agents", "type": "array", "required": True, "description": "Agent列表"},
+            {"name": "task", "type": "string", "required": True, "description": "任务"}
+        ],
+        "icon": "users"
+    },
+    "multi_agent_debate": {
+        "id": "multi_agent_debate",
+        "name": "Agent辩论",
+        "name_en": "Agent Debate",
+        "description": "多Agent辩论",
+        "category": "multi_agent",
+        "subcategory": "debate",
+        "api_endpoint": "/api/multi/debate",
+        "method": "POST",
+        "params": [
+            {"name": "topic", "type": "string", "required": True, "description": "话题"}
+        ],
+        "icon": "message-square"
     }
 }
 
