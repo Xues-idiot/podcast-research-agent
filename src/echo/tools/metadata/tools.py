@@ -40849,6 +40849,169 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "data", "type": "array", "required": True, "description": "数据"}
         ],
         "icon": "minimize"
+    },
+    # ========== 分类模型工具 ==========
+    "classify_knn": {
+        "id": "classify_knn",
+        "name": "KNN分类",
+        "name_en": "KNN Classification",
+        "description": "K近邻分类",
+        "category": "classification",
+        "subcategory": "knn",
+        "api_endpoint": "/api/classify/knn",
+        "method": "POST",
+        "params": [
+            {"name": "train_data", "type": "array", "required": True, "description": "训练数据"},
+            {"name": "k", "type": "number", "required": False, "description": "K值"}
+        ],
+        "icon": "git-branch"
+    },
+    "classify_decision_tree": {
+        "id": "classify_decision_tree",
+        "name": "决策树分类",
+        "name_en": "Decision Tree Classification",
+        "description": "决策树分类",
+        "category": "classification",
+        "subcategory": "decision_tree",
+        "api_endpoint": "/api/classify/decision_tree",
+        "method": "POST",
+        "params": [
+            {"name": "train_data", "type": "array", "required": True, "description": "训练数据"}
+        ],
+        "icon": "git-branch"
+    },
+    "classify_naive_bayes": {
+        "id": "classify_naive_bayes",
+        "name": "朴素贝叶斯分类",
+        "name_en": "Naive Bayes Classification",
+        "description": "朴素贝叶斯分类",
+        "category": "classification",
+        "subcategory": "naive_bayes",
+        "api_endpoint": "/api/classify/naive_bayes",
+        "method": "POST",
+        "params": [
+            {"name": "train_data", "type": "array", "required": True, "description": "训练数据"}
+        ],
+        "icon": "git-branch"
+    },
+    # ========== 回归模型工具 ==========
+    "regress_linear": {
+        "id": "regress_linear",
+        "name": "线性回归",
+        "name_en": "Linear Regression",
+        "description": "线性回归分析",
+        "category": "regression",
+        "subcategory": "linear",
+        "api_endpoint": "/api/regress/linear",
+        "method": "POST",
+        "params": [
+            {"name": "x", "type": "array", "required": True, "description": "自变量"},
+            {"name": "y", "type": "array", "required": True, "description": "因变量"}
+        ],
+        "icon": "trending-up"
+    },
+    "regress_polynomial": {
+        "id": "regress_polynomial",
+        "name": "多项式回归",
+        "name_en": "Polynomial Regression",
+        "description": "多项式回归分析",
+        "category": "regression",
+        "subcategory": "polynomial",
+        "api_endpoint": "/api/regress/polynomial",
+        "method": "POST",
+        "params": [
+            {"name": "x", "type": "array", "required": True, "description": "自变量"},
+            {"name": "y", "type": "array", "required": True, "description": "因变量"},
+            {"name": "degree", "type": "number", "required": False, "description": "阶数"}
+        ],
+        "icon": "trending-up"
+    },
+    "regress_logistic": {
+        "id": "regress_logistic",
+        "name": "逻辑回归",
+        "name_en": "Logistic Regression",
+        "description": "逻辑回归分析",
+        "category": "regression",
+        "subcategory": "logistic",
+        "api_endpoint": "/api/regress/logistic",
+        "method": "POST",
+        "params": [
+            {"name": "x", "type": "array", "required": True, "description": "自变量"},
+            {"name": "y", "type": "array", "required": True, "description": "因变量"}
+        ],
+        "icon": "trending-up"
+    },
+    # ========== 时间序列工具 ==========
+    "timeseries_decompose": {
+        "id": "timeseries_decompose",
+        "name": "时间序列分解",
+        "name_en": "Time Series Decomposition",
+        "description": "分解时间序列",
+        "category": "timeseries",
+        "subcategory": "decompose",
+        "api_endpoint": "/api/ts/decompose",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "时间序列数据"}
+        ],
+        "icon": "layers"
+    },
+    "timeseries_stationary": {
+        "id": "timeseries_stationary",
+        "name": "平稳性检验",
+        "name_en": "Stationarity Test",
+        "description": "检验时间序列平稳性",
+        "category": "timeseries",
+        "subcategory": "stationary",
+        "api_endpoint": "/api/ts/stationary",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "时间序列数据"}
+        ],
+        "icon": "activity"
+    },
+    # ========== 特征工程工具 ==========
+    "feature_scale": {
+        "id": "feature_scale",
+        "name": "特征缩放",
+        "name_en": "Feature Scaling",
+        "description": "标准化特征",
+        "category": "feature",
+        "subcategory": "scale",
+        "api_endpoint": "/api/feature/scale",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"}
+        ],
+        "icon": "sliders"
+    },
+    "feature_selection": {
+        "id": "feature_selection",
+        "name": "特征选择",
+        "name_en": "Feature Selection",
+        "description": "选择重要特征",
+        "category": "feature",
+        "subcategory": "selection",
+        "api_endpoint": "/api/feature/selection",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"}
+        ],
+        "icon": "check-square"
+    },
+    "feature_extraction": {
+        "id": "feature_extraction",
+        "name": "特征提取",
+        "name_en": "Feature Extraction",
+        "description": "提取数据特征",
+        "category": "feature",
+        "subcategory": "extraction",
+        "api_endpoint": "/api/feature/extraction",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"}
+        ],
+        "icon": "edit"
     }
 }
 
