@@ -34698,6 +34698,399 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "rule", "type": "object", "required": True, "description": "规则"}
         ],
         "icon": "bell"
+    },
+
+    # ========== 告警管理工具 ==========
+    "alert_create": {
+        "id": "alert_create",
+        "name": "创建告警",
+        "name_en": "Create Alert",
+        "description": "创建告警规则",
+        "category": "alertmanage",
+        "subcategory": "create",
+        "api_endpoint": "/api/alert/create",
+        "method": "POST",
+        "params": [
+            {"name": "rule", "type": "object", "required": True, "description": "规则"}
+        ],
+        "icon": "bell"
+    },
+    "alert_list": {
+        "id": "alert_list",
+        "name": "告警列表",
+        "name_en": "Alert List",
+        "description": "查看告警列表",
+        "category": "alertmanage",
+        "subcategory": "list",
+        "api_endpoint": "/api/alert/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "alert_ack": {
+        "id": "alert_ack",
+        "name": "确认告警",
+        "name_en": "Acknowledge Alert",
+        "description": "确认告警",
+        "category": "alertmanage",
+        "subcategory": "ack",
+        "api_endpoint": "/api/alert/ack",
+        "method": "POST",
+        "params": [
+            {"name": "alert_id", "type": "string", "required": True, "description": "告警ID"}
+        ],
+        "icon": "check"
+    },
+    "alert_resolve": {
+        "id": "alert_resolve",
+        "name": "解决告警",
+        "name_en": "Resolve Alert",
+        "description": "解决告警",
+        "category": "alertmanage",
+        "subcategory": "resolve",
+        "api_endpoint": "/api/alert/resolve",
+        "method": "POST",
+        "params": [
+            {"name": "alert_id", "type": "string", "required": True, "description": "告警ID"}
+        ],
+        "icon": "check-circle"
+    },
+
+    # ========== 事件管理工具 ==========
+    "event_create": {
+        "id": "event_create",
+        "name": "创建事件",
+        "name_en": "Create Event",
+        "description": "创建事件",
+        "category": "eventmanage",
+        "subcategory": "create",
+        "api_endpoint": "/api/event/create",
+        "method": "POST",
+        "params": [
+            {"name": "event", "type": "object", "required": True, "description": "事件"}
+        ],
+        "icon": "plus"
+    },
+    "event_list": {
+        "id": "event_list",
+        "name": "事件列表",
+        "name_en": "Event List",
+        "description": "查看事件列表",
+        "category": "eventmanage",
+        "subcategory": "list",
+        "api_endpoint": "/api/event/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "event_assign": {
+        "id": "event_assign",
+        "name": "分配事件",
+        "name_en": "Assign Event",
+        "description": "分配事件给用户",
+        "category": "eventmanage",
+        "subcategory": "assign",
+        "api_endpoint": "/api/event/assign",
+        "method": "POST",
+        "params": [
+            {"name": "event_id", "type": "string", "required": True, "description": "事件ID"},
+            {"name": "user", "type": "string", "required": True, "description": "用户"}
+        ],
+        "icon": "user"
+    },
+
+    # ========== 资产管理工具 ==========
+    "asset_create": {
+        "id": "asset_create",
+        "name": "创建资产",
+        "name_en": "Create Asset",
+        "description": "创建IT资产",
+        "category": "assetmanage",
+        "subcategory": "create",
+        "api_endpoint": "/api/asset/create",
+        "method": "POST",
+        "params": [
+            {"name": "asset", "type": "object", "required": True, "description": "资产"}
+        ],
+        "icon": "plus"
+    },
+    "asset_list": {
+        "id": "asset_list",
+        "name": "资产列表",
+        "name_en": "Asset List",
+        "description": "查看资产列表",
+        "category": "assetmanage",
+        "subcategory": "list",
+        "api_endpoint": "/api/asset/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "asset_scan": {
+        "id": "asset_scan",
+        "name": "资产扫描",
+        "name_en": "Asset Scan",
+        "description": "扫描发现资产",
+        "category": "assetmanage",
+        "subcategory": "scan",
+        "api_endpoint": "/api/asset/scan",
+        "method": "POST",
+        "params": [],
+        "icon": "search"
+    },
+
+    # ========== 配置管理工具 ==========
+    "config_get": {
+        "id": "config_get",
+        "name": "获取配置",
+        "name_en": "Get Configuration",
+        "description": "获取配置项",
+        "category": "configmanage",
+        "subcategory": "get",
+        "api_endpoint": "/api/config/get",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键"}
+        ],
+        "icon": "settings"
+    },
+    "config_set": {
+        "id": "config_set",
+        "name": "设置配置",
+        "name_en": "Set Configuration",
+        "description": "设置配置项",
+        "category": "configmanage",
+        "subcategory": "set",
+        "api_endpoint": "/api/config/set",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键"},
+            {"name": "value", "type": "any", "required": True, "description": "值"}
+        ],
+        "icon": "settings"
+    },
+    "config_list": {
+        "id": "config_list",
+        "name": "配置列表",
+        "name_en": "Configuration List",
+        "description": "列出所有配置",
+        "category": "configmanage",
+        "subcategory": "list",
+        "api_endpoint": "/api/config/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 变更管理工具 ==========
+    "change_create": {
+        "id": "change_create",
+        "name": "创建变更",
+        "name_en": "Create Change",
+        "description": "创建变更请求",
+        "category": "changemanage",
+        "subcategory": "create",
+        "api_endpoint": "/api/change/create",
+        "method": "POST",
+        "params": [
+            {"name": "change", "type": "object", "required": True, "description": "变更"}
+        ],
+        "icon": "plus"
+    },
+    "change_approve": {
+        "id": "change_approve",
+        "name": "审批变更",
+        "name_en": "Approve Change",
+        "description": "审批变更请求",
+        "category": "changemanage",
+        "subcategory": "approve",
+        "api_endpoint": "/api/change/approve",
+        "method": "POST",
+        "params": [
+            {"name": "change_id", "type": "string", "required": True, "description": "变更ID"}
+        ],
+        "icon": "check"
+    },
+    "change_implement": {
+        "id": "change_implement",
+        "name": "实施变更",
+        "name_en": "Implement Change",
+        "description": "实施变更",
+        "category": "changemanage",
+        "subcategory": "implement",
+        "api_endpoint": "/api/change/implement",
+        "method": "POST",
+        "params": [
+            {"name": "change_id", "type": "string", "required": True, "description": "变更ID"}
+        ],
+        "icon": "play"
+    },
+
+    # ========== 问题管理工具 ==========
+    "problem_create": {
+        "id": "problem_create",
+        "name": "创建问题",
+        "name_en": "Create Problem",
+        "description": "创建问题记录",
+        "category": "problemmange",
+        "subcategory": "create",
+        "api_endpoint": "/api/problem/create",
+        "method": "POST",
+        "params": [
+            {"name": "problem", "type": "object", "required": True, "description": "问题"}
+        ],
+        "icon": "plus"
+    },
+    "problem_link": {
+        "id": "problem_link",
+        "name": "关联事件",
+        "name_en": "Link Incident",
+        "description": "关联事件到问题",
+        "category": "problemmange",
+        "subcategory": "link",
+        "api_endpoint": "/api/problem/link",
+        "method": "POST",
+        "params": [
+            {"name": "problem_id", "type": "string", "required": True, "description": "问题ID"},
+            {"name": "incident_id", "type": "string", "required": True, "description": "事件ID"}
+        ],
+        "icon": "link"
+    },
+
+    # ========== 发布管理工具 ==========
+    "release_create": {
+        "id": "release_create",
+        "name": "创建发布",
+        "name_en": "Create Release",
+        "description": "创建发布计划",
+        "category": "releasemanage",
+        "subcategory": "create",
+        "api_endpoint": "/api/release/create",
+        "method": "POST",
+        "params": [
+            {"name": "release", "type": "object", "required": True, "description": "发布"}
+        ],
+        "icon": "package"
+    },
+    "release_approve": {
+        "id": "release_approve",
+        "name": "审批发布",
+        "name_en": "Approve Release",
+        "description": "审批发布计划",
+        "category": "releasemanage",
+        "subcategory": "approve",
+        "api_endpoint": "/api/release/approve",
+        "method": "POST",
+        "params": [
+            {"name": "release_id", "type": "string", "required": True, "description": "发布ID"}
+        ],
+        "icon": "check"
+    },
+    "release_deploy": {
+        "id": "release_deploy",
+        "name": "部署发布",
+        "name_en": "Deploy Release",
+        "description": "部署发布",
+        "category": "releasemanage",
+        "subcategory": "deploy",
+        "api_endpoint": "/api/release/deploy",
+        "method": "POST",
+        "params": [
+            {"name": "release_id", "type": "string", "required": True, "description": "发布ID"}
+        ],
+        "icon": "upload"
+    },
+
+    # ========== 知识库管理工具 ==========
+    "kb_article": {
+        "id": "kb_article",
+        "name": "知识文章",
+        "name_en": "Knowledge Article",
+        "description": "创建知识文章",
+        "category": "knowledgebase",
+        "subcategory": "article",
+        "api_endpoint": "/api/kb/article",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "标题"},
+            {"name": "content", "type": "string", "required": True, "description": "内容"}
+        ],
+        "icon": "file-text"
+    },
+    "kb_search": {
+        "id": "kb_search",
+        "name": "知识搜索",
+        "name_en": "Knowledge Search",
+        "description": "搜索知识库",
+        "category": "knowledgebase",
+        "subcategory": "search",
+        "api_endpoint": "/api/kb/search",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询"}
+        ],
+        "icon": "search"
+    },
+    "kb_link": {
+        "id": "kb_link",
+        "name": "关联知识",
+        "name_en": "Link to Knowledge",
+        "description": "关联事件到知识",
+        "category": "knowledgebase",
+        "subcategory": "link",
+        "api_endpoint": "/api/kb/link",
+        "method": "POST",
+        "params": [
+            {"name": "incident_id", "type": "string", "required": True, "description": "事件ID"},
+            {"name": "article_id", "type": "string", "required": True, "description": "文章ID"}
+        ],
+        "icon": "link"
+    },
+
+    # ========== 服务台工具 ==========
+    "helpdesk_ticket": {
+        "id": "helpdesk_ticket",
+        "name": "服务工单",
+        "name_en": "Helpdesk Ticket",
+        "description": "创建服务工单",
+        "category": "helpdesk",
+        "subcategory": "ticket",
+        "api_endpoint": "/api/helpdesk/ticket",
+        "method": "POST",
+        "params": [
+            {"name": "subject", "type": "string", "required": True, "description": "主题"},
+            {"name": "description", "type": "string", "required": True, "description": "描述"}
+        ],
+        "icon": "plus"
+    },
+    "helpdesk_assign": {
+        "id": "helpdesk_assign",
+        "name": "分配工单",
+        "name_en": "Assign Ticket",
+        "description": "分配工单",
+        "category": "helpdesk",
+        "subcategory": "assign",
+        "api_endpoint": "/api/helpdesk/assign",
+        "method": "POST",
+        "params": [
+            {"name": "ticket_id", "type": "string", "required": True, "description": "工单ID"},
+            {"name": "agent", "type": "string", "required": True, "description": "客服"}
+        ],
+        "icon": "user"
+    },
+    "helpdesk_close": {
+        "id": "helpdesk_close",
+        "name": "关闭工单",
+        "name_en": "Close Ticket",
+        "description": "关闭服务工单",
+        "category": "helpdesk",
+        "subcategory": "close",
+        "api_endpoint": "/api/helpdesk/close",
+        "method": "POST",
+        "params": [
+            {"name": "ticket_id", "type": "string", "required": True, "description": "工单ID"}
+        ],
+        "icon": "check-circle"
     }
 }
 
