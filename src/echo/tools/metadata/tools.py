@@ -33931,6 +33931,366 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "protocol", "type": "string", "required": True, "description": "协议"}
         ],
         "icon": "zap"
+    },
+
+    # ========== 渗透测试框架工具 ==========
+    "pentest_recon": {
+        "id": "pentest_recon",
+        "name": "侦察",
+        "name_en": "Reconnaissance",
+        "description": "执行渗透测试侦察",
+        "category": "pentestframework",
+        "subcategory": "recon",
+        "api_endpoint": "/api/pentest/recon",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "search"
+    },
+    "pentest_scan_vuln": {
+        "id": "pentest_scan_vuln",
+        "name": "漏洞扫描",
+        "name_en": "Vulnerability Scanning",
+        "description": "渗透测试漏洞扫描",
+        "category": "pentestframework",
+        "subcategory": "scan",
+        "api_endpoint": "/api/pentest/scan",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "search"
+    },
+    "pentest_exploit": {
+        "id": "pentest_exploit",
+        "name": "漏洞利用",
+        "name_en": "Exploitation",
+        "description": "执行漏洞利用",
+        "category": "pentestframework",
+        "subcategory": "exploit",
+        "api_endpoint": "/api/pentest/exploit",
+        "method": "POST",
+        "params": [
+            {"name": "vuln_id", "type": "string", "required": True, "description": "漏洞ID"}
+        ],
+        "icon": "zap"
+    },
+    "pentest_priv_esc": {
+        "id": "pentest_priv_esc",
+        "name": "权限提升",
+        "name_en": "Privilege Escalation",
+        "description": "尝试权限提升",
+        "category": "pentestframework",
+        "subcategory": "privesc",
+        "api_endpoint": "/api/pentest/privesc",
+        "method": "POST",
+        "params": [
+            {"name": "session_id", "type": "string", "required": True, "description": "会话ID"}
+        ],
+        "icon": "arrow-up"
+    },
+    "pentest_pivot": {
+        "id": "pentest_pivot",
+        "name": "横向移动",
+        "name_en": "Lateral Movement",
+        "description": "执行横向移动",
+        "category": "pentestframework",
+        "subcategory": "pivot",
+        "api_endpoint": "/api/pentest/pivot",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "arrow-right"
+    },
+
+    # ========== 漏洞利用开发工具 ==========
+    "exploit_develop": {
+        "id": "exploit_develop",
+        "name": "漏洞利用开发",
+        "name_en": "Exploit Development",
+        "description": "开发漏洞利用代码",
+        "category": "exploitdev",
+        "subcategory": "develop",
+        "api_endpoint": "/api/exploit/develop",
+        "method": "POST",
+        "params": [
+            {"name": "vuln_id", "type": "string", "required": True, "description": "漏洞ID"}
+        ],
+        "icon": "code"
+    },
+    "exploit_shellcode": {
+        "id": "exploit_shellcode",
+        "name": "Shellcode生成",
+        "name_en": "Shellcode Generation",
+        "description": "生成Shellcode",
+        "category": "exploitdev",
+        "subcategory": "shellcode",
+        "api_endpoint": "/api/exploit/shellcode",
+        "method": "POST",
+        "params": [
+            {"name": "target_os", "type": "string", "required": True, "description": "目标系统"}
+        ],
+        "icon": "terminal"
+    },
+    "exploit_test": {
+        "id": "exploit_test",
+        "name": "漏洞利用测试",
+        "name_en": "Exploit Testing",
+        "description": "测试漏洞利用",
+        "category": "exploitdev",
+        "subcategory": "test",
+        "api_endpoint": "/api/exploit/test",
+        "method": "POST",
+        "params": [
+            {"name": "exploit_id", "type": "string", "required": True, "description": "利用ID"}
+        ],
+        "icon": "play"
+    },
+
+    # ========== 社会工程工具 ==========
+    "se_phishing": {
+        "id": "se_phishing",
+        "name": "钓鱼攻击",
+        "name_en": "Phishing Attack",
+        "description": "执行钓鱼攻击",
+        "category": "socialengineering",
+        "subcategory": "phishing",
+        "api_endpoint": "/api/se/phishing",
+        "method": "POST",
+        "params": [
+            {"name": "template", "type": "string", "required": True, "description": "模板"}
+        ],
+        "icon": "mail"
+    },
+    "se_spear": {
+        "id": "se_spear",
+        "name": "鱼叉式钓鱼",
+        "name_en": "Spear Phishing",
+        "description": "执行鱼叉式钓鱼",
+        "category": "socialengineering",
+        "subcategory": "spear",
+        "api_endpoint": "/api/se/spear",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "object", "required": True, "description": "目标"}
+        ],
+        "icon": "target"
+    },
+    "se_pretext": {
+        "id": "se_pretext",
+        "name": "Pretext攻击",
+        "name_en": "Pretexting",
+        "description": "执行Pretext攻击",
+        "category": "socialengineering",
+        "subcategory": "pretext",
+        "api_endpoint": "/api/se/pretext",
+        "method": "POST",
+        "params": [
+            {"name": "scenario", "type": "string", "required": True, "description": "场景"}
+        ],
+        "icon": "user"
+    },
+    "se_baiting": {
+        "id": "se_baiting",
+        "name": "诱饵攻击",
+        "name_en": "Baiting",
+        "description": "执行诱饵攻击",
+        "category": "socialengineering",
+        "subcategory": "baiting",
+        "api_endpoint": "/api/se/baiting",
+        "method": "POST",
+        "params": [
+            {"name": "bait_type", "type": "string", "required": True, "description": "诱饵类型"}
+        ],
+        "icon": "gift"
+    },
+
+    # ========== 取证分析工具 ==========
+    "forensics_disk": {
+        "id": "forensics_disk",
+        "name": "磁盘取证",
+        "name_en": "Disk Forensics",
+        "description": "磁盘取证分析",
+        "category": "forensics",
+        "subcategory": "disk",
+        "api_endpoint": "/api/forensics/disk",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "镜像"}
+        ],
+        "icon": "hard-drive"
+    },
+    "forensics_memory": {
+        "id": "forensics_memory",
+        "name": "内存取证",
+        "name_en": "Memory Forensics",
+        "description": "内存取证分析",
+        "category": "forensics",
+        "subcategory": "memory",
+        "api_endpoint": "/api/forensics/memory",
+        "method": "POST",
+        "params": [
+            {"name": "dump", "type": "string", "required": True, "description": "内存转储"}
+        ],
+        "icon": "cpu"
+    },
+    "forensics_network": {
+        "id": "forensics_network",
+        "name": "网络取证",
+        "name_en": "Network Forensics",
+        "description": "网络取证分析",
+        "category": "forensics",
+        "subcategory": "network",
+        "api_endpoint": "/api/forensics/network",
+        "method": "POST",
+        "params": [
+            {"name": "capture", "type": "string", "required": True, "description": "抓包"}
+        ],
+        "icon": "globe"
+    },
+    "forensics_timeline": {
+        "id": "forensics_timeline",
+        "name": "时间线分析",
+        "name_en": "Timeline Analysis",
+        "description": "生成取证时间线",
+        "category": "forensics",
+        "subcategory": "timeline",
+        "api_endpoint": "/api/forensics/timeline",
+        "method": "POST",
+        "params": [
+            {"name": "evidence", "type": "array", "required": True, "description": "证据数组"}
+        ],
+        "icon": "clock"
+    },
+
+    # ========== 恶意软件检测工具 ==========
+    "malware_detect_static": {
+        "id": "malware_detect_static",
+        "name": "静态检测",
+        "name_en": "Static Malware Detection",
+        "description": "静态分析检测恶意软件",
+        "category": "malwaredetection",
+        "subcategory": "static",
+        "api_endpoint": "/api/malware/detect/static",
+        "method": "POST",
+        "params": [
+            {"name": "sample", "type": "string", "required": True, "description": "样本"}
+        ],
+        "icon": "search"
+    },
+    "malware_detect_dynamic": {
+        "id": "malware_detect_dynamic",
+        "name": "动态检测",
+        "name_en": "Dynamic Malware Detection",
+        "description": "动态分析检测恶意软件",
+        "category": "malwaredetection",
+        "subcategory": "dynamic",
+        "api_endpoint": "/api/malware/detect/dynamic",
+        "method": "POST",
+        "params": [
+            {"name": "sample", "type": "string", "required": True, "description": "样本"}
+        ],
+        "icon": "activity"
+    },
+    "malware_family": {
+        "id": "malware_family",
+        "name": "恶意软件家族",
+        "name_en": "Malware Family Classification",
+        "description": "识别恶意软件家族",
+        "category": "malwaredetection",
+        "subcategory": "family",
+        "api_endpoint": "/api/malware/family",
+        "method": "POST",
+        "params": [
+            {"name": "sample", "type": "string", "required": True, "description": "样本"}
+        ],
+        "icon": "tag"
+    },
+
+    # ========== 威胁检测工具 ==========
+    "threat_detect_behavior": {
+        "id": "threat_detect_behavior",
+        "name": "行为检测",
+        "name_en": "Behavioral Threat Detection",
+        "description": "基于行为的威胁检测",
+        "category": "threatdetection",
+        "subcategory": "behavior",
+        "api_endpoint": "/api/threat/detect/behavior",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "activity"
+    },
+    "threat_detect_signature": {
+        "id": "threat_detect_signature",
+        "name": "特征检测",
+        "name_en": "Signature-based Detection",
+        "description": "基于特征的威胁检测",
+        "category": "threatdetection",
+        "subcategory": "signature",
+        "api_endpoint": "/api/threat/detect/signature",
+        "method": "POST",
+        "params": [
+            {"name": "indicator", "type": "string", "required": True, "description": "指标"}
+        ],
+        "icon": "search"
+    },
+    "threat_detect_ai": {
+        "id": "threat_detect_ai",
+        "name": "AI威胁检测",
+        "name_en": "AI-powered Threat Detection",
+        "description": "使用AI检测威胁",
+        "category": "threatdetection",
+        "subcategory": "ai",
+        "api_endpoint": "/api/threat/detect/ai",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "cpu"
+    },
+
+    # ========== 入侵防御系统工具 ==========
+    "ips_config_rules": {
+        "id": "ips_config_rules",
+        "name": "IPS规则配置",
+        "name_en": "IPS Rules Configuration",
+        "description": "配置IPS规则",
+        "category": "ips",
+        "subcategory": "rules",
+        "api_endpoint": "/api/ips/rules",
+        "method": "POST",
+        "params": [
+            {"name": "rules", "type": "array", "required": True, "description": "规则"}
+        ],
+        "icon": "settings"
+    },
+    "ips_update": {
+        "id": "ips_update",
+        "name": "IPS更新",
+        "name_en": "IPS Update",
+        "description": "更新IPS规则库",
+        "category": "ips",
+        "subcategory": "update",
+        "api_endpoint": "/api/ips/update",
+        "method": "POST",
+        "params": [],
+        "icon": "refresh-cw"
+    },
+    "ips_statistics": {
+        "id": "ips_statistics",
+        "name": "IPS统计",
+        "name_en": "IPS Statistics",
+        "description": "获取IPS统计信息",
+        "category": "ips",
+        "subcategory": "stats",
+        "api_endpoint": "/api/ips/stats",
+        "method": "GET",
+        "params": [],
+        "icon": "bar-chart"
     }
 }
 
