@@ -32124,6 +32124,489 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "spec", "type": "string", "required": True, "description": "API规范"}
         ],
         "icon": "code"
+    },
+
+    # ========== 移动端安全工具 ==========
+    "mobile_security_scan": {
+        "id": "mobile_security_scan",
+        "name": "移动安全扫描",
+        "name_en": "Mobile Security Scan",
+        "description": "扫描移动应用安全",
+        "category": "mobilesecurity",
+        "subcategory": "scan",
+        "api_endpoint": "/api/mobile/security/scan",
+        "method": "POST",
+        "params": [
+            {"name": "app_id", "type": "string", "required": True, "description": "应用ID"}
+        ],
+        "icon": "smartphone"
+    },
+    "mobile_reversing": {
+        "id": "mobile_reversing",
+        "name": "移动逆向分析",
+        "name_en": "Mobile Reverse Engineering",
+        "description": "逆向分析移动应用",
+        "category": "mobilesecurity",
+        "subcategory": "reverse",
+        "api_endpoint": "/api/mobile/reverse",
+        "method": "POST",
+        "params": [
+            {"name": "app_id", "type": "string", "required": True, "description": "应用ID"}
+        ],
+        "icon": "tool"
+    },
+    "mobile_permissions": {
+        "id": "mobile_permissions",
+        "name": "权限分析",
+        "name_en": "Permission Analysis",
+        "description": "分析移动应用权限",
+        "category": "mobilesecurity",
+        "subcategory": "permissions",
+        "api_endpoint": "/api/mobile/permissions",
+        "method": "POST",
+        "params": [
+            {"name": "app_id", "type": "string", "required": True, "description": "应用ID"}
+        ],
+        "icon": "user"
+    },
+
+    # ========== 无线安全工具 ==========
+    "wifi_security_scan": {
+        "id": "wifi_security_scan",
+        "name": "WiFi安全扫描",
+        "name_en": "WiFi Security Scan",
+        "description": "扫描WiFi网络安全",
+        "category": "wifisecurity",
+        "subcategory": "scan",
+        "api_endpoint": "/api/wifi/security/scan",
+        "method": "POST",
+        "params": [
+            {"name": "ssid", "type": "string", "required": True, "description": "SSID"}
+        ],
+        "icon": "wifi"
+    },
+    "wifi_cracking": {
+        "id": "wifi_cracking",
+        "name": "WiFi密码破解检测",
+        "name_en": "WiFi Cracking Detection",
+        "description": "检测WiFi密码破解尝试",
+        "category": "wifisecurity",
+        "subcategory": "cracking",
+        "api_endpoint": "/api/wifi/cracking",
+        "method": "POST",
+        "params": [
+            {"name": "bssid", "type": "string", "required": True, "description": "BSSID"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "wifi_encryption": {
+        "id": "wifi_encryption",
+        "name": "WiFi加密检测",
+        "name_en": "WiFi Encryption Check",
+        "description": "检测WiFi加密方式",
+        "category": "wifisecurity",
+        "subcategory": "encryption",
+        "api_endpoint": "/api/wifi/encryption",
+        "method": "POST",
+        "params": [
+            {"name": "ssid", "type": "string", "required": True, "description": "SSID"}
+        ],
+        "icon": "lock"
+    },
+
+    # ========== 物联网安全工具 ==========
+    "iot_device_scan": {
+        "id": "iot_device_scan",
+        "name": "IoT设备扫描",
+        "name_en": "IoT Device Scan",
+        "description": "扫描IoT设备",
+        "category": "iotsecurity",
+        "subcategory": "scan",
+        "api_endpoint": "/api/iot/scan",
+        "method": "POST",
+        "params": [
+            {"name": "network", "type": "string", "required": True, "description": "网络"}
+        ],
+        "icon": "radio"
+    },
+    "iot_vuln_detect": {
+        "id": "iot_vuln_detect",
+        "name": "IoT漏洞检测",
+        "name_en": "IoT Vulnerability Detection",
+        "description": "检测IoT设备漏洞",
+        "category": "iotsecurity",
+        "subcategory": "vuln",
+        "api_endpoint": "/api/iot/vuln",
+        "method": "POST",
+        "params": [
+            {"name": "device_id", "type": "string", "required": True, "description": "设备ID"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "iot_firmware_analysis": {
+        "id": "iot_firmware_analysis",
+        "name": "固件分析",
+        "name_en": "Firmware Analysis",
+        "description": "分析IoT固件",
+        "category": "iotsecurity",
+        "subcategory": "firmware",
+        "api_endpoint": "/api/iot/firmware",
+        "method": "POST",
+        "params": [
+            {"name": "firmware", "type": "string", "required": True, "description": "固件"}
+        ],
+        "icon": "cpu"
+    },
+
+    # ========== 区块链安全工具 ==========
+    "blockchain_tx_verify": {
+        "id": "blockchain_tx_verify",
+        "name": "交易验证",
+        "name_en": "Verify Transaction",
+        "description": "验证区块链交易",
+        "category": "blockchainsecurity",
+        "subcategory": "tx",
+        "api_endpoint": "/api/blockchain/tx/verify",
+        "method": "POST",
+        "params": [
+            {"name": "tx_hash", "type": "string", "required": True, "description": "交易哈希"}
+        ],
+        "icon": "check"
+    },
+    "blockchain_smart_contract_audit": {
+        "id": "blockchain_smart_contract_audit",
+        "name": "智能合约审计",
+        "name_en": "Smart Contract Audit",
+        "description": "审计智能合约",
+        "category": "blockchainsecurity",
+        "subcategory": "contract",
+        "api_endpoint": "/api/blockchain/contract/audit",
+        "method": "POST",
+        "params": [
+            {"name": "contract", "type": "string", "required": True, "description": "合约代码"}
+        ],
+        "icon": "file-text"
+    },
+    "blockchain_wallet_audit": {
+        "id": "blockchain_wallet_audit",
+        "name": "钱包审计",
+        "name_en": "Wallet Audit",
+        "description": "审计区块链钱包",
+        "category": "blockchainsecurity",
+        "subcategory": "wallet",
+        "api_endpoint": "/api/blockchain/wallet/audit",
+        "method": "POST",
+        "params": [
+            {"name": "address", "type": "string", "required": True, "description": "地址"}
+        ],
+        "icon": "wallet"
+    },
+
+    # ========== 云原生安全工具 ==========
+    "cloudnative_security_score": {
+        "id": "cloudnative_security_score",
+        "name": "云原生安全评分",
+        "name_en": "Cloud Native Security Score",
+        "description": "评估云原生安全评分",
+        "category": "cloudnativesecurity",
+        "subcategory": "score",
+        "api_endpoint": "/api/cloudnative/score",
+        "method": "GET",
+        "params": [],
+        "icon": "bar-chart"
+    },
+    "cloudnative_runtime": {
+        "id": "cloudnative_runtime",
+        "name": "运行时安全",
+        "name_en": "Runtime Security",
+        "description": "云原生运行时安全检测",
+        "category": "cloudnativesecurity",
+        "subcategory": "runtime",
+        "api_endpoint": "/api/cloudnative/runtime",
+        "method": "GET",
+        "params": [],
+        "icon": "shield"
+    },
+    "cloudnative_compliance": {
+        "id": "cloudnative_compliance",
+        "name": "云原生合规",
+        "name_en": "Cloud Native Compliance",
+        "description": "检查云原生合规性",
+        "category": "cloudnativesecurity",
+        "subcategory": "compliance",
+        "api_endpoint": "/api/cloudnative/compliance",
+        "method": "GET",
+        "params": [],
+        "icon": "check"
+    },
+
+    # ========== 服务网格安全工具 ==========
+    "mesh_security_policy": {
+        "id": "mesh_security_policy",
+        "name": "服务网格安全策略",
+        "name_en": "Service Mesh Security Policy",
+        "description": "配置服务网格安全策略",
+        "category": "meshsecurity",
+        "subcategory": "policy",
+        "api_endpoint": "/api/mesh/security/policy",
+        "method": "POST",
+        "params": [
+            {"name": "policy", "type": "object", "required": True, "description": "策略"}
+        ],
+        "icon": "shield"
+    },
+    "mesh_mtls": {
+        "id": "mesh_mtls",
+        "name": "服务网格mTLS",
+        "name_en": "Service Mesh mTLS",
+        "description": "管理服务网格mTLS",
+        "category": "meshsecurity",
+        "subcategory": "mtls",
+        "api_endpoint": "/api/mesh/mtls",
+        "method": "POST",
+        "params": [
+            {"name": "service", "type": "string", "required": True, "description": "服务"}
+        ],
+        "icon": "lock"
+    },
+    "mesh_intent": {
+        "id": "mesh_intent",
+        "name": "授权策略",
+        "name_en": "Authorization Policy",
+        "description": "配置服务网格授权策略",
+        "category": "meshsecurity",
+        "subcategory": "authz",
+        "api_endpoint": "/api/mesh/authz",
+        "method": "POST",
+        "params": [
+            {"name": "policy", "type": "object", "required": True, "description": "策略"}
+        ],
+        "icon": "user-check"
+    },
+
+    # ========== 供应链安全工具 ==========
+    "supply_chain_audit": {
+        "id": "supply_chain_audit",
+        "name": "供应链审计",
+        "name_en": "Supply Chain Audit",
+        "description": "审计供应链安全",
+        "category": "supplychain",
+        "subcategory": "audit",
+        "api_endpoint": "/api/supply/chain/audit",
+        "method": "GET",
+        "params": [],
+        "icon": "git-branch"
+    },
+    "supply_chain_SBOM": {
+        "id": "supply_chain_SBOM",
+        "name": "生成SBOM",
+        "name_en": "Generate SBOM",
+        "description": "生成软件物料清单",
+        "category": "supplychain",
+        "subcategory": "sbom",
+        "api_endpoint": "/api/supply/sbom",
+        "method": "POST",
+        "params": [
+            {"name": "project", "type": "string", "required": True, "description": "项目"}
+        ],
+        "icon": "file-text"
+    },
+    "supply_chain_dependencies": {
+        "id": "supply_chain_dependencies",
+        "name": "依赖分析",
+        "name_en": "Dependency Analysis",
+        "description": "分析供应链依赖",
+        "category": "supplychain",
+        "subcategory": "dependencies",
+        "api_endpoint": "/api/supply/dependencies",
+        "method": "POST",
+        "params": [
+            {"name": "package", "type": "string", "required": True, "description": "包名"}
+        ],
+        "icon": "package"
+    },
+
+    # ========== DevSecOps工具 ==========
+    "devsecops_shift_left": {
+        "id": "devsecops_shift_left",
+        "name": "左移安全",
+        "name_en": "Shift Left Security",
+        "description": "在开发流程中嵌入安全",
+        "category": "devsecops",
+        "subcategory": "shiftleft",
+        "api_endpoint": "/api/devsecops/shiftleft",
+        "method": "POST",
+        "params": [
+            {"name": "pipeline_id", "type": "string", "required": True, "description": "流水线ID"}
+        ],
+        "icon": "git-branch"
+    },
+    "devsecops_integration": {
+        "id": "devsecops_integration",
+        "name": "安全集成",
+        "name_en": "Security Integration",
+        "description": "集成安全工具到CI/CD",
+        "category": "devsecops",
+        "subcategory": "integration",
+        "api_endpoint": "/api/devsecops/integration",
+        "method": "POST",
+        "params": [
+            {"name": "tool", "type": "string", "required": True, "description": "工具"},
+            {"name": "config", "type": "object", "required": True, "description": "配置"}
+        ],
+        "icon": "git-merge"
+    },
+    "devsecops_policy": {
+        "id": "devsecops_policy",
+        "name": "安全策略",
+        "name_en": "Security Policy",
+        "description": "管理DevSecOps安全策略",
+        "category": "devsecops",
+        "subcategory": "policy",
+        "api_endpoint": "/api/devsecops/policy",
+        "method": "POST",
+        "params": [
+            {"name": "policy", "type": "object", "required": True, "description": "策略"}
+        ],
+        "icon": "settings"
+    },
+
+    # ========== 安全培训工具 ==========
+    "training_phishing": {
+        "id": "training_phishing",
+        "name": "钓鱼培训",
+        "name_en": "Phishing Training",
+        "description": "进行钓鱼攻击培训",
+        "category": "training",
+        "subcategory": "phishing",
+        "api_endpoint": "/api/training/phishing",
+        "method": "POST",
+        "params": [
+            {"name": "users", "type": "array", "required": True, "description": "用户列表"}
+        ],
+        "icon": "mail"
+    },
+    "training_awareness": {
+        "id": "training_awareness",
+        "name": "安全意识培训",
+        "name_en": "Security Awareness Training",
+        "description": "安全意识培训",
+        "category": "training",
+        "subcategory": "awareness",
+        "api_endpoint": "/api/training/awareness",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "book"
+    },
+    "training_records": {
+        "id": "training_records",
+        "name": "培训记录",
+        "name_en": "Training Records",
+        "description": "获取培训记录",
+        "category": "training",
+        "subcategory": "records",
+        "api_endpoint": "/api/training/records",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 应急演练工具 ==========
+    "exercise_red_team": {
+        "id": "exercise_red_team",
+        "name": "红队演练",
+        "name_en": "Red Team Exercise",
+        "description": "执行红队演练",
+        "category": "exercise",
+        "subcategory": "redteam",
+        "api_endpoint": "/api/exercise/redteam",
+        "method": "POST",
+        "params": [
+            {"name": "scope", "type": "string", "required": True, "description": "范围"}
+        ],
+        "icon": "target"
+    },
+    "exercise_blue_team": {
+        "id": "exercise_blue_team",
+        "name": "蓝队演练",
+        "name_en": "Blue Team Exercise",
+        "description": "执行蓝队演练",
+        "category": "exercise",
+        "subcategory": "blueteam",
+        "api_endpoint": "/api/exercise/blueteam",
+        "method": "POST",
+        "params": [
+            {"name": "scenario", "type": "string", "required": True, "description": "场景"}
+        ],
+        "icon": "shield"
+    },
+    "exercise_purple_team": {
+        "id": "exercise_purple_team",
+        "name": "紫队演练",
+        "name_en": "Purple Team Exercise",
+        "description": "执行紫队演练",
+        "category": "exercise",
+        "subcategory": "purpleteam",
+        "api_endpoint": "/api/exercise/purpleteam",
+        "method": "POST",
+        "params": [
+            {"name": "scope", "type": "string", "required": True, "description": "范围"}
+        ],
+        "icon": "git-branch"
+    },
+    "exerciseTabletop": {
+        "id": "exerciseTabletop",
+        "name": "桌面演练",
+        "name_en": "Tabletop Exercise",
+        "description": "执行桌面演练",
+        "category": "exercise",
+        "subcategory": "tabletop",
+        "api_endpoint": "/api/exercise/tabletop",
+        "method": "POST",
+        "params": [
+            {"name": "scenario", "type": "string", "required": True, "description": "场景"}
+        ],
+        "icon": "users"
+    },
+
+    # ========== 安全评级工具 ==========
+    "rating_enterprise": {
+        "id": "rating_enterprise",
+        "name": "企业安全评级",
+        "name_en": "Enterprise Security Rating",
+        "description": "评估企业安全评级",
+        "category": "securityrating",
+        "subcategory": "enterprise",
+        "api_endpoint": "/api/rating/enterprise",
+        "method": "GET",
+        "params": [],
+        "icon": "bar-chart"
+    },
+    "rating_benchmark": {
+        "id": "rating_benchmark",
+        "name": "安全基准对比",
+        "name_en": "Security Benchmark Comparison",
+        "description": "与安全基准对比",
+        "category": "securityrating",
+        "subcategory": "benchmark",
+        "api_endpoint": "/api/rating/benchmark",
+        "method": "GET",
+        "params": [],
+        "icon": "git-compare"
+    },
+    "rating_trend": {
+        "id": "rating_trend",
+        "name": "安全趋势",
+        "name_en": "Security Rating Trend",
+        "description": "跟踪安全评级趋势",
+        "category": "securityrating",
+        "subcategory": "trend",
+        "api_endpoint": "/api/rating/trend",
+        "method": "GET",
+        "params": [],
+        "icon": "trending-up"
     }
 }
 
