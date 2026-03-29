@@ -36519,6 +36519,209 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "pages", "type": "array", "required": False, "description": "页码列表"}
         ],
         "icon": "file-text"
+    },
+    # ========== AI内容生成工具 ==========
+    "ai_generate_text": {
+        "id": "ai_generate_text",
+        "name": "AI文本生成",
+        "name_en": "AI Text Generation",
+        "description": "使用AI生成文本内容",
+        "category": "ai",
+        "subcategory": "text",
+        "api_endpoint": "/api/ai/generate/text",
+        "method": "POST",
+        "params": [
+            {"name": "prompt", "type": "string", "required": True, "description": "提示词"},
+            {"name": "max_tokens", "type": "number", "required": False, "description": "最大token数"},
+            {"name": "temperature", "type": "number", "required": False, "description": "温度参数"}
+        ],
+        "icon": "cpu"
+    },
+    "ai_summarize": {
+        "id": "ai_summarize",
+        "name": "AI摘要生成",
+        "name_en": "AI Summarization",
+        "description": "使用AI生成摘要",
+        "category": "ai",
+        "subcategory": "summarize",
+        "api_endpoint": "/api/ai/summarize",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "原始文本"},
+            {"name": "length", "type": "string", "required": False, "description": "摘要长度"}
+        ],
+        "icon": "file-text"
+    },
+    "ai_classify": {
+        "id": "ai_classify",
+        "name": "AI分类",
+        "name_en": "AI Classification",
+        "description": "使用AI进行内容分类",
+        "category": "ai",
+        "subcategory": "classify",
+        "api_endpoint": "/api/ai/classify",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "待分类文本"},
+            {"name": "categories", "type": "array", "required": True, "description": "分类列表"}
+        ],
+        "icon": "tag"
+    },
+    "ai_sentiment": {
+        "id": "ai_sentiment",
+        "name": "AI情感分析",
+        "name_en": "AI Sentiment Analysis",
+        "description": "分析文本情感倾向",
+        "category": "ai",
+        "subcategory": "sentiment",
+        "api_endpoint": "/api/ai/sentiment",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "待分析文本"}
+        ],
+        "icon": "heart"
+    },
+    "ai_extract_keywords": {
+        "id": "ai_extract_keywords",
+        "name": "AI关键词提取",
+        "name_en": "AI Keyword Extraction",
+        "description": "从文本中提取关键词",
+        "category": "ai",
+        "subcategory": "keywords",
+        "api_endpoint": "/api/ai/keywords",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "原始文本"},
+            {"name": "limit", "type": "number", "required": False, "description": "关键词数量"}
+        ],
+        "icon": "tag"
+    },
+    "ai_translate": {
+        "id": "ai_translate",
+        "name": "AI翻译",
+        "name_en": "AI Translation",
+        "description": "使用AI进行高质量翻译",
+        "category": "ai",
+        "subcategory": "translate",
+        "api_endpoint": "/api/ai/translate",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "待翻译文本"},
+            {"name": "source_lang", "type": "string", "required": False, "description": "源语言"},
+            {"name": "target_lang", "type": "string", "required": True, "description": "目标语言"}
+        ],
+        "icon": "globe"
+    },
+    # ========== 图片处理工具 ==========
+    "image_resize": {
+        "id": "image_resize",
+        "name": "调整图片大小",
+        "name_en": "Resize Image",
+        "description": "调整图片尺寸",
+        "category": "image",
+        "subcategory": "resize",
+        "api_endpoint": "/api/image/resize",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"},
+            {"name": "width", "type": "number", "required": True, "description": "目标宽度"},
+            {"name": "height", "type": "number", "required": True, "description": "目标高度"}
+        ],
+        "icon": "image"
+    },
+    "image_crop": {
+        "id": "image_crop",
+        "name": "裁剪图片",
+        "name_en": "Crop Image",
+        "description": "裁剪图片区域",
+        "category": "image",
+        "subcategory": "crop",
+        "api_endpoint": "/api/image/crop",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"},
+            {"name": "x", "type": "number", "required": True, "description": "X坐标"},
+            {"name": "y", "type": "number", "required": True, "description": "Y坐标"},
+            {"name": "width", "type": "number", "required": True, "description": "宽度"},
+            {"name": "height", "type": "number", "required": True, "description": "高度"}
+        ],
+        "icon": "crop"
+    },
+    "image_rotate": {
+        "id": "image_rotate",
+        "name": "旋转图片",
+        "name_en": "Rotate Image",
+        "description": "旋转图片角度",
+        "category": "image",
+        "subcategory": "rotate",
+        "api_endpoint": "/api/image/rotate",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"},
+            {"name": "angle", "type": "number", "required": True, "description": "旋转角度"}
+        ],
+        "icon": "rotate-cw"
+    },
+    "image_filter": {
+        "id": "image_filter",
+        "name": "图片滤镜",
+        "name_en": "Apply Image Filter",
+        "description": "应用图片滤镜效果",
+        "category": "image",
+        "subcategory": "filter",
+        "api_endpoint": "/api/image/filter",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"},
+            {"name": "filter", "type": "string", "required": True, "description": "滤镜类型"}
+        ],
+        "icon": "sliders"
+    },
+    # ========== 视频处理工具 ==========
+    "video_thumbnail": {
+        "id": "video_thumbnail",
+        "name": "生成缩略图",
+        "name_en": "Generate Thumbnail",
+        "description": "从视频生成缩略图",
+        "category": "video",
+        "subcategory": "thumbnail",
+        "api_endpoint": "/api/video/thumbnail",
+        "method": "POST",
+        "params": [
+            {"name": "video_url", "type": "string", "required": True, "description": "视频URL"},
+            {"name": "timestamp", "type": "number", "required": False, "description": "时间戳(秒)"}
+        ],
+        "icon": "image"
+    },
+    "video_info": {
+        "id": "video_info",
+        "name": "视频信息",
+        "name_en": "Video Info",
+        "description": "获取视频元信息",
+        "category": "video",
+        "subcategory": "info",
+        "api_endpoint": "/api/video/info",
+        "method": "GET",
+        "params": [
+            {"name": "video_url", "type": "string", "required": True, "description": "视频URL"}
+        ],
+        "icon": "info"
+    },
+    "video_trim": {
+        "id": "video_trim",
+        "name": "裁剪视频",
+        "name_en": "Trim Video",
+        "description": "裁剪视频片段",
+        "category": "video",
+        "subcategory": "trim",
+        "api_endpoint": "/api/video/trim",
+        "method": "POST",
+        "params": [
+            {"name": "video_url", "type": "string", "required": True, "description": "视频URL"},
+            {"name": "start", "type": "number", "required": True, "description": "开始时间"},
+            {"name": "end", "type": "number", "required": True, "description": "结束时间"}
+        ],
+        "icon": "scissors"
     }
 }
 
