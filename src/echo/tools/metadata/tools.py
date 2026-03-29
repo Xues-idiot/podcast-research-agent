@@ -42371,6 +42371,139 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "question", "type": "string", "required": True, "description": "问题"}
         ],
         "icon": "music"
+    },
+    # ========== 语音合成工具 ==========
+    "voice_clone": {
+        "id": "voice_clone",
+        "name": "克隆声音",
+        "name_en": "Voice Cloning",
+        "description": "克隆声音特征",
+        "category": "voice",
+        "subcategory": "clone",
+        "api_endpoint": "/api/voice/clone",
+        "method": "POST",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"}
+        ],
+        "icon": "user"
+    },
+    "voice_convert": {
+        "id": "voice_convert",
+        "name": "声音转换",
+        "name_en": "Voice Conversion",
+        "description": "转换声音风格",
+        "category": "voice",
+        "subcategory": "convert",
+        "api_endpoint": "/api/voice/convert",
+        "method": "POST",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"},
+            {"name": "target_voice", "type": "string", "required": True, "description": "目标声音"}
+        ],
+        "icon": "refresh"
+    },
+    # ========== 音乐生成工具 ==========
+    "music_generate": {
+        "id": "music_generate",
+        "name": "生成音乐",
+        "name_en": "Generate Music",
+        "description": "AI生成音乐",
+        "category": "music_generation",
+        "subcategory": "generate",
+        "api_endpoint": "/api/music/generate",
+        "method": "POST",
+        "params": [
+            {"name": "prompt", "type": "string", "required": True, "description": "提示词"}
+        ],
+        "icon": "music"
+    },
+    # ========== 3D生成工具 ==========
+    "model3d_generate": {
+        "id": "model3d_generate",
+        "name": "生成3D模型",
+        "name_en": "Generate 3D Model",
+        "description": "AI生成3D模型",
+        "category": "3d_generation",
+        "subcategory": "generate",
+        "api_endpoint": "/api/3d/generate",
+        "method": "POST",
+        "params": [
+            {"name": "prompt", "type": "string", "required": True, "description": "提示词"}
+        ],
+        "icon": "box"
+    },
+    "model3d_render": {
+        "id": "model3d_render",
+        "name": "渲染3D模型",
+        "name_en": "Render 3D Model",
+        "description": "渲染3D模型",
+        "category": "3d_generation",
+        "subcategory": "render",
+        "api_endpoint": "/api/3d/render",
+        "method": "POST",
+        "params": [
+            {"name": "model_url", "type": "string", "required": True, "description": "模型URL"}
+        ],
+        "icon": "image"
+    },
+    # ========== 数据增强工具 ==========
+    "augment_image": {
+        "id": "augment_image",
+        "name": "图像增强",
+        "name_en": "Augment Image",
+        "description": "数据增强图像",
+        "category": "data_augmentation",
+        "subcategory": "image",
+        "api_endpoint": "/api/augment/image",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "image"
+    },
+    "augment_text": {
+        "id": "augment_text",
+        "name": "文本增强",
+        "name_en": "Augment Text",
+        "description": "数据增强文本",
+        "category": "data_augmentation",
+        "subcategory": "text",
+        "api_endpoint": "/api/augment/text",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "type"
+    },
+    # ========== 数据集工具 ==========
+    "dataset_split": {
+        "id": "dataset_split",
+        "name": "划分数据集",
+        "name_en": "Split Dataset",
+        "description": "划分训练测试集",
+        "category": "dataset",
+        "subcategory": "split",
+        "api_endpoint": "/api/dataset/split",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"},
+            {"name": "ratio", "type": "number", "required": False, "description": "比例"}
+        ],
+        "icon": "split"
+    },
+    "dataset_balance": {
+        "id": "dataset_balance",
+        "name": "平衡数据集",
+        "name_en": "Balance Dataset",
+        "description": "平衡数据分布",
+        "category": "dataset",
+        "subcategory": "balance",
+        "api_endpoint": "/api/dataset/balance",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"}
+        ],
+        "icon": "scale"
     }
 }
 
