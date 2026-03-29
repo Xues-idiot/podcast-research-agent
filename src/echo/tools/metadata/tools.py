@@ -38605,6 +38605,282 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "method": "GET",
         "params": [],
         "icon": "list"
+    },
+    # ========== 验证码工具 ==========
+    "captcha_generate": {
+        "id": "captcha_generate",
+        "name": "生成验证码",
+        "name_en": "Generate Captcha",
+        "description": "生成图形验证码",
+        "category": "captcha",
+        "subcategory": "generate",
+        "api_endpoint": "/api/captcha/generate",
+        "method": "POST",
+        "params": [],
+        "icon": "image"
+    },
+    "captcha_verify": {
+        "id": "captcha_verify",
+        "name": "验证验证码",
+        "name_en": "Verify Captcha",
+        "description": "验证验证码",
+        "category": "captcha",
+        "subcategory": "verify",
+        "api_endpoint": "/api/captcha/verify",
+        "method": "POST",
+        "params": [
+            {"name": "captcha_id", "type": "string", "required": True, "description": "验证码ID"},
+            {"name": "answer", "type": "string", "required": True, "description": "用户答案"}
+        ],
+        "icon": "check"
+    },
+    "sms_code_send": {
+        "id": "sms_code_send",
+        "name": "发送短信验证码",
+        "name_en": "Send SMS Code",
+        "description": "发送短信验证码",
+        "category": "captcha",
+        "subcategory": "sms",
+        "api_endpoint": "/api/captcha/sms/send",
+        "method": "POST",
+        "params": [
+            {"name": "phone", "type": "string", "required": True, "description": "手机号"}
+        ],
+        "icon": "message-square"
+    },
+    "sms_code_verify": {
+        "id": "sms_code_verify",
+        "name": "验证短信验证码",
+        "name_en": "Verify SMS Code",
+        "description": "验证短信验证码",
+        "category": "captcha",
+        "subcategory": "sms",
+        "api_endpoint": "/api/captcha/sms/verify",
+        "method": "POST",
+        "params": [
+            {"name": "phone", "type": "string", "required": True, "description": "手机号"},
+            {"name": "code", "type": "string", "required": True, "description": "验证码"}
+        ],
+        "icon": "check"
+    },
+    # ========== 双因素认证工具 ==========
+    "totp_generate": {
+        "id": "totp_generate",
+        "name": "生成TOTP",
+        "name_en": "Generate TOTP",
+        "description": "生成TOTP密钥",
+        "category": "totp",
+        "subcategory": "generate",
+        "api_endpoint": "/api/totp/generate",
+        "method": "POST",
+        "params": [],
+        "icon": "key"
+    },
+    "totp_verify": {
+        "id": "totp_verify",
+        "name": "验证TOTP",
+        "name_en": "Verify TOTP",
+        "description": "验证TOTP令牌",
+        "category": "totp",
+        "subcategory": "verify",
+        "api_endpoint": "/api/totp/verify",
+        "method": "POST",
+        "params": [
+            {"name": "secret", "type": "string", "required": True, "description": "密钥"},
+            {"name": "token", "type": "string", "required": True, "description": "令牌"}
+        ],
+        "icon": "check-circle"
+    },
+    # ========== OAuth工具 ==========
+    "oauth_authorize": {
+        "id": "oauth_authorize",
+        "name": "OAuth授权",
+        "name_en": "OAuth Authorize",
+        "description": "发起OAuth授权",
+        "category": "oauth",
+        "subcategory": "authorize",
+        "api_endpoint": "/api/oauth/authorize",
+        "method": "GET",
+        "params": [
+            {"name": "provider", "type": "string", "required": True, "description": "提供商"}
+        ],
+        "icon": "log-in"
+    },
+    "oauth_callback": {
+        "id": "oauth_callback",
+        "name": "OAuth回调",
+        "name_en": "OAuth Callback",
+        "description": "处理OAuth回调",
+        "category": "oauth",
+        "subcategory": "callback",
+        "api_endpoint": "/api/oauth/callback",
+        "method": "POST",
+        "params": [
+            {"name": "code", "type": "string", "required": True, "description": "授权码"},
+            {"name": "state", "type": "string", "required": False, "description": "状态"}
+        ],
+        "icon": "check"
+    },
+    "oauth_revoke": {
+        "id": "oauth_revoke",
+        "name": "OAuth撤销",
+        "name_en": "OAuth Revoke",
+        "description": "撤销OAuth授权",
+        "category": "oauth",
+        "subcategory": "revoke",
+        "api_endpoint": "/api/oauth/revoke",
+        "method": "POST",
+        "params": [
+            {"name": "provider", "type": "string", "required": True, "description": "提供商"}
+        ],
+        "icon": "x"
+    },
+    # ========== 用户管理工具 ==========
+    "user_create": {
+        "id": "user_create",
+        "name": "创建用户",
+        "name_en": "Create User",
+        "description": "创建新用户",
+        "category": "user",
+        "subcategory": "create",
+        "api_endpoint": "/api/user/create",
+        "method": "POST",
+        "params": [
+            {"name": "username", "type": "string", "required": True, "description": "用户名"},
+            {"name": "email", "type": "string", "required": True, "description": "邮箱"},
+            {"name": "password", "type": "string", "required": True, "description": "密码"}
+        ],
+        "icon": "user-plus"
+    },
+    "user_get": {
+        "id": "user_get",
+        "name": "获取用户",
+        "name_en": "Get User",
+        "description": "获取用户信息",
+        "category": "user",
+        "subcategory": "get",
+        "api_endpoint": "/api/user/get",
+        "method": "GET",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "user"
+    },
+    "user_update": {
+        "id": "user_update",
+        "name": "更新用户",
+        "name_en": "Update User",
+        "description": "更新用户信息",
+        "category": "user",
+        "subcategory": "update",
+        "api_endpoint": "/api/user/update",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "username", "type": "string", "required": False, "description": "用户名"},
+            {"name": "email", "type": "string", "required": False, "description": "邮箱"}
+        ],
+        "icon": "edit"
+    },
+    "user_delete": {
+        "id": "user_delete",
+        "name": "删除用户",
+        "name_en": "Delete User",
+        "description": "删除用户",
+        "category": "user",
+        "subcategory": "delete",
+        "api_endpoint": "/api/user/delete",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "trash"
+    },
+    "user_list": {
+        "id": "user_list",
+        "name": "列出用户",
+        "name_en": "List Users",
+        "description": "获取用户列表",
+        "category": "user",
+        "subcategory": "list",
+        "api_endpoint": "/api/user/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "user_search": {
+        "id": "user_search",
+        "name": "搜索用户",
+        "name_en": "Search Users",
+        "description": "搜索用户",
+        "category": "user",
+        "subcategory": "search",
+        "api_endpoint": "/api/user/search",
+        "method": "GET",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "搜索关键词"}
+        ],
+        "icon": "search"
+    },
+    # ========== 角色权限工具 ==========
+    "role_create": {
+        "id": "role_create",
+        "name": "创建角色",
+        "name_en": "Create Role",
+        "description": "创建新角色",
+        "category": "role",
+        "subcategory": "create",
+        "api_endpoint": "/api/role/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "角色名称"},
+            {"name": "permissions", "type": "array", "required": False, "description": "权限列表"}
+        ],
+        "icon": "shield"
+    },
+    "role_assign": {
+        "id": "role_assign",
+        "name": "分配角色",
+        "name_en": "Assign Role",
+        "description": "为用户分配角色",
+        "category": "role",
+        "subcategory": "assign",
+        "api_endpoint": "/api/role/assign",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "role_id", "type": "string", "required": True, "description": "角色ID"}
+        ],
+        "icon": "user-check"
+    },
+    "role_permissions": {
+        "id": "role_permissions",
+        "name": "角色权限",
+        "name_en": "Role Permissions",
+        "description": "获取角色权限",
+        "category": "role",
+        "subcategory": "permissions",
+        "api_endpoint": "/api/role/permissions",
+        "method": "GET",
+        "params": [
+            {"name": "role_id", "type": "string", "required": True, "description": "角色ID"}
+        ],
+        "icon": "key"
+    },
+    "permission_check": {
+        "id": "permission_check",
+        "name": "检查权限",
+        "name_en": "Check Permission",
+        "description": "检查用户权限",
+        "category": "role",
+        "subcategory": "check",
+        "api_endpoint": "/api/permission/check",
+        "method": "GET",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "permission", "type": "string", "required": True, "description": "权限名称"}
+        ],
+        "icon": "check-circle"
     }
 }
 
