@@ -37814,6 +37814,243 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "trace_id", "type": "string", "required": True, "description": "追踪ID"}
         ],
         "icon": "file-text"
+    },
+    # ========== 负载均衡工具 ==========
+    "lb_add_backend": {
+        "id": "lb_add_backend",
+        "name": "添加后端",
+        "name_en": "Add Backend",
+        "description": "向负载均衡器添加后端",
+        "category": "loadbalancer",
+        "subcategory": "backend",
+        "api_endpoint": "/api/lb/backend/add",
+        "method": "POST",
+        "params": [
+            {"name": "backend", "type": "string", "required": True, "description": "后端地址"},
+            {"name": "weight", "type": "number", "required": False, "description": "权重"}
+        ],
+        "icon": "plus"
+    },
+    "lb_remove_backend": {
+        "id": "lb_remove_backend",
+        "name": "移除后端",
+        "name_en": "Remove Backend",
+        "description": "从负载均衡器移除后端",
+        "category": "loadbalancer",
+        "subcategory": "backend",
+        "api_endpoint": "/api/lb/backend/remove",
+        "method": "POST",
+        "params": [
+            {"name": "backend", "type": "string", "required": True, "description": "后端地址"}
+        ],
+        "icon": "minus"
+    },
+    "lb_status": {
+        "id": "lb_status",
+        "name": "负载状态",
+        "name_en": "Load Balancer Status",
+        "description": "查看负载均衡状态",
+        "category": "loadbalancer",
+        "subcategory": "status",
+        "api_endpoint": "/api/lb/status",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    # ========== DNS工具 ==========
+    "dns_resolve": {
+        "id": "dns_resolve",
+        "name": "DNS解析",
+        "name_en": "DNS Resolve",
+        "description": "执行DNS解析",
+        "category": "dns",
+        "subcategory": "resolve",
+        "api_endpoint": "/api/dns/resolve",
+        "method": "GET",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "globe"
+    },
+    "dns_records": {
+        "id": "dns_records",
+        "name": "DNS记录",
+        "name_en": "DNS Records",
+        "description": "获取域名DNS记录",
+        "category": "dns",
+        "subcategory": "records",
+        "api_endpoint": "/api/dns/records",
+        "method": "GET",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "list"
+    },
+    # ========== SSL证书工具 ==========
+    "ssl_check": {
+        "id": "ssl_check",
+        "name": "检查SSL证书",
+        "name_en": "Check SSL Certificate",
+        "description": "检查SSL证书状态",
+        "category": "ssl",
+        "subcategory": "check",
+        "api_endpoint": "/api/ssl/check",
+        "method": "GET",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "shield"
+    },
+    "ssl_issue": {
+        "id": "ssl_issue",
+        "name": "申请SSL证书",
+        "name_en": "Issue SSL Certificate",
+        "description": "申请SSL证书",
+        "category": "ssl",
+        "subcategory": "issue",
+        "api_endpoint": "/api/ssl/issue",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "key"
+    },
+    "ssl_renew": {
+        "id": "ssl_renew",
+        "name": "续期SSL证书",
+        "name_en": "Renew SSL Certificate",
+        "description": "续期SSL证书",
+        "category": "ssl",
+        "subcategory": "renew",
+        "api_endpoint": "/api/ssl/renew",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "refresh"
+    },
+    # ========== CDN工具 ==========
+    "cdn_purge": {
+        "id": "cdn_purge",
+        "name": "CDN缓存清除",
+        "name_en": "Purge CDN Cache",
+        "description": "清除CDN缓存",
+        "category": "cdn",
+        "subcategory": "purge",
+        "api_endpoint": "/api/cdn/purge",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"}
+        ],
+        "icon": "trash"
+    },
+    "cdn_invalidate": {
+        "id": "cdn_invalidate",
+        "name": "CDN失效",
+        "name_en": "Invalidate CDN",
+        "description": "使CDN内容失效",
+        "category": "cdn",
+        "subcategory": "invalidate",
+        "api_endpoint": "/api/cdn/invalidate",
+        "method": "POST",
+        "params": [
+            {"name": "path", "type": "string", "required": True, "description": "路径"}
+        ],
+        "icon": "x"
+    },
+    "cdn_stats": {
+        "id": "cdn_stats",
+        "name": "CDN统计",
+        "name_en": "CDN Statistics",
+        "description": "获取CDN统计数据",
+        "category": "cdn",
+        "subcategory": "stats",
+        "api_endpoint": "/api/cdn/stats",
+        "method": "GET",
+        "params": [],
+        "icon": "bar-chart"
+    },
+    # ========== 防火墙工具 ==========
+    "fw_add_rule": {
+        "id": "fw_add_rule",
+        "name": "添加防火墙规则",
+        "name_en": "Add Firewall Rule",
+        "description": "添加防火墙规则",
+        "category": "firewall",
+        "subcategory": "rule",
+        "api_endpoint": "/api/fw/rule/add",
+        "method": "POST",
+        "params": [
+            {"name": "port", "type": "string", "required": True, "description": "端口"},
+            {"name": "action", "type": "string", "required": True, "description": "动作"},
+            {"name": "protocol", "type": "string", "required": False, "description": "协议"}
+        ],
+        "icon": "shield"
+    },
+    "fw_list_rules": {
+        "id": "fw_list_rules",
+        "name": "列出防火墙规则",
+        "name_en": "List Firewall Rules",
+        "description": "列出所有防火墙规则",
+        "category": "firewall",
+        "subcategory": "list",
+        "api_endpoint": "/api/fw/rules",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "fw_delete_rule": {
+        "id": "fw_delete_rule",
+        "name": "删除防火墙规则",
+        "name_en": "Delete Firewall Rule",
+        "description": "删除防火墙规则",
+        "category": "firewall",
+        "subcategory": "rule",
+        "api_endpoint": "/api/fw/rule/delete",
+        "method": "POST",
+        "params": [
+            {"name": "rule_id", "type": "string", "required": True, "description": "规则ID"}
+        ],
+        "icon": "trash"
+    },
+    # ========== VPN工具 ==========
+    "vpn_connect": {
+        "id": "vpn_connect",
+        "name": "连接VPN",
+        "name_en": "Connect VPN",
+        "description": "建立VPN连接",
+        "category": "vpn",
+        "subcategory": "connect",
+        "api_endpoint": "/api/vpn/connect",
+        "method": "POST",
+        "params": [
+            {"name": "server", "type": "string", "required": True, "description": "VPN服务器"}
+        ],
+        "icon": "globe"
+    },
+    "vpn_disconnect": {
+        "id": "vpn_disconnect",
+        "name": "断开VPN",
+        "name_en": "Disconnect VPN",
+        "description": "断开VPN连接",
+        "category": "vpn",
+        "subcategory": "disconnect",
+        "api_endpoint": "/api/vpn/disconnect",
+        "method": "POST",
+        "params": [],
+        "icon": "x"
+    },
+    "vpn_status": {
+        "id": "vpn_status",
+        "name": "VPN状态",
+        "name_en": "VPN Status",
+        "description": "查看VPN状态",
+        "category": "vpn",
+        "subcategory": "status",
+        "api_endpoint": "/api/vpn/status",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
     }
 }
 
