@@ -37302,6 +37302,314 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "pipeline_id", "type": "string", "required": True, "description": "流水线ID"}
         ],
         "icon": "activity"
+    },
+    # ========== 容器工具 ==========
+    "container_start": {
+        "id": "container_start",
+        "name": "启动容器",
+        "name_en": "Start Container",
+        "description": "启动Docker容器",
+        "category": "container",
+        "subcategory": "start",
+        "api_endpoint": "/api/container/start",
+        "method": "POST",
+        "params": [
+            {"name": "image", "type": "string", "required": True, "description": "镜像名称"},
+            {"name": "name", "type": "string", "required": False, "description": "容器名称"}
+        ],
+        "icon": "play"
+    },
+    "container_stop": {
+        "id": "container_stop",
+        "name": "停止容器",
+        "name_en": "Stop Container",
+        "description": "停止Docker容器",
+        "category": "container",
+        "subcategory": "stop",
+        "api_endpoint": "/api/container/stop",
+        "method": "POST",
+        "params": [
+            {"name": "container_id", "type": "string", "required": True, "description": "容器ID"}
+        ],
+        "icon": "square"
+    },
+    "container_list": {
+        "id": "container_list",
+        "name": "列出容器",
+        "name_en": "List Containers",
+        "description": "列出所有容器",
+        "category": "container",
+        "subcategory": "list",
+        "api_endpoint": "/api/container/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "container_logs": {
+        "id": "container_logs",
+        "name": "容器日志",
+        "name_en": "Container Logs",
+        "description": "获取容器日志",
+        "category": "container",
+        "subcategory": "logs",
+        "api_endpoint": "/api/container/logs",
+        "method": "GET",
+        "params": [
+            {"name": "container_id", "type": "string", "required": True, "description": "容器ID"},
+            {"name": "tail", "type": "number", "required": False, "description": "日志行数"}
+        ],
+        "icon": "file-text"
+    },
+    # ========== Kubernetes工具 ==========
+    "k8s_deploy": {
+        "id": "k8s_deploy",
+        "name": "K8s部署",
+        "name_en": "K8s Deployment",
+        "description": "创建Kubernetes部署",
+        "category": "kubernetes",
+        "subcategory": "deploy",
+        "api_endpoint": "/api/k8s/deploy",
+        "method": "POST",
+        "params": [
+            {"name": "manifest", "type": "object", "required": True, "description": "部署清单"}
+        ],
+        "icon": "upload"
+    },
+    "k8s_scale": {
+        "id": "k8s_scale",
+        "name": "K8s扩缩容",
+        "name_en": "K8s Scale",
+        "description": "调整Pod副本数",
+        "category": "kubernetes",
+        "subcategory": "scale",
+        "api_endpoint": "/api/k8s/scale",
+        "method": "POST",
+        "params": [
+            {"name": "deployment", "type": "string", "required": True, "description": "部署名称"},
+            {"name": "replicas", "type": "number", "required": True, "description": "副本数"}
+        ],
+        "icon": "maximize"
+    },
+    "k8s_status": {
+        "id": "k8s_status",
+        "name": "K8s状态",
+        "name_en": "K8s Status",
+        "description": "查看K8s资源状态",
+        "category": "kubernetes",
+        "subcategory": "status",
+        "api_endpoint": "/api/k8s/status",
+        "method": "GET",
+        "params": [
+            {"name": "namespace", "type": "string", "required": False, "description": "命名空间"}
+        ],
+        "icon": "activity"
+    },
+    # ========== 数据库工具 ==========
+    "db_query": {
+        "id": "db_query",
+        "name": "数据库查询",
+        "name_en": "Database Query",
+        "description": "执行SQL查询",
+        "category": "database",
+        "subcategory": "query",
+        "api_endpoint": "/api/db/query",
+        "method": "POST",
+        "params": [
+            {"name": "sql", "type": "string", "required": True, "description": "SQL语句"}
+        ],
+        "icon": "database"
+    },
+    "db_tables": {
+        "id": "db_tables",
+        "name": "列出表",
+        "name_en": "List Tables",
+        "description": "列出数据库表",
+        "category": "database",
+        "subcategory": "tables",
+        "api_endpoint": "/api/db/tables",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "db_schema": {
+        "id": "db_schema",
+        "name": "表结构",
+        "name_en": "Table Schema",
+        "description": "获取表结构",
+        "category": "database",
+        "subcategory": "schema",
+        "api_endpoint": "/api/db/schema",
+        "method": "GET",
+        "params": [
+            {"name": "table", "type": "string", "required": True, "description": "表名"}
+        ],
+        "icon": "file-text"
+    },
+    # ========== 备份工具 ==========
+    "backup_create": {
+        "id": "backup_create",
+        "name": "创建备份",
+        "name_en": "Create Backup",
+        "description": "创建数据备份",
+        "category": "backup",
+        "subcategory": "create",
+        "api_endpoint": "/api/backup/create",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "备份目标"}
+        ],
+        "icon": "save"
+    },
+    "backup_restore": {
+        "id": "backup_restore",
+        "name": "恢复备份",
+        "name_en": "Restore Backup",
+        "description": "从备份恢复数据",
+        "category": "backup",
+        "subcategory": "restore",
+        "api_endpoint": "/api/backup/restore",
+        "method": "POST",
+        "params": [
+            {"name": "backup_id", "type": "string", "required": True, "description": "备份ID"}
+        ],
+        "icon": "rotate-ccw"
+    },
+    "backup_list": {
+        "id": "backup_list",
+        "name": "列出备份",
+        "name_en": "List Backups",
+        "description": "获取备份列表",
+        "category": "backup",
+        "subcategory": "list",
+        "api_endpoint": "/api/backup/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    # ========== 迁移工具 ==========
+    "migrate_up": {
+        "id": "migrate_up",
+        "name": "执行迁移",
+        "name_en": "Run Migration",
+        "description": "执行数据库迁移",
+        "category": "migrate",
+        "subcategory": "up",
+        "api_endpoint": "/api/migrate/up",
+        "method": "POST",
+        "params": [
+            {"name": "version", "type": "string", "required": False, "description": "迁移版本"}
+        ],
+        "icon": "upload"
+    },
+    "migrate_down": {
+        "id": "migrate_down",
+        "name": "回滚迁移",
+        "name_en": "Rollback Migration",
+        "description": "回滚数据库迁移",
+        "category": "migrate",
+        "subcategory": "down",
+        "api_endpoint": "/api/migrate/down",
+        "method": "POST",
+        "params": [
+            {"name": "version", "type": "string", "required": False, "description": "迁移版本"}
+        ],
+        "icon": "download"
+    },
+    "migrate_status": {
+        "id": "migrate_status",
+        "name": "迁移状态",
+        "name_en": "Migration Status",
+        "description": "查看迁移状态",
+        "category": "migrate",
+        "subcategory": "status",
+        "api_endpoint": "/api/migrate/status",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    # ========== 消息队列工具 ==========
+    "mq_publish": {
+        "id": "mq_publish",
+        "name": "发布消息",
+        "name_en": "Publish Message",
+        "description": "发布消息到队列",
+        "category": "mq",
+        "subcategory": "publish",
+        "api_endpoint": "/api/mq/publish",
+        "method": "POST",
+        "params": [
+            {"name": "topic", "type": "string", "required": True, "description": "主题"},
+            {"name": "message", "type": "string", "required": True, "description": "消息内容"}
+        ],
+        "icon": "send"
+    },
+    "mq_subscribe": {
+        "id": "mq_subscribe",
+        "name": "订阅消息",
+        "name_en": "Subscribe",
+        "description": "订阅消息主题",
+        "category": "mq",
+        "subcategory": "subscribe",
+        "api_endpoint": "/api/mq/subscribe",
+        "method": "POST",
+        "params": [
+            {"name": "topic", "type": "string", "required": True, "description": "主题"}
+        ],
+        "icon": "inbox"
+    },
+    "mq_topics": {
+        "id": "mq_topics",
+        "name": "列出主题",
+        "name_en": "List Topics",
+        "description": "列出所有主题",
+        "category": "mq",
+        "subcategory": "topics",
+        "api_endpoint": "/api/mq/topics",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    # ========== API网关工具 ==========
+    "gateway_route": {
+        "id": "gateway_route",
+        "name": "添加路由",
+        "name_en": "Add Route",
+        "description": "添加API路由",
+        "category": "gateway",
+        "subcategory": "route",
+        "api_endpoint": "/api/gateway/route",
+        "method": "POST",
+        "params": [
+            {"name": "path", "type": "string", "required": True, "description": "路由路径"},
+            {"name": "backend", "type": "string", "required": True, "description": "后端服务"}
+        ],
+        "icon": "corner-down-right"
+    },
+    "gateway_list": {
+        "id": "gateway_list",
+        "name": "列出路由",
+        "name_en": "List Routes",
+        "description": "列出所有路由",
+        "category": "gateway",
+        "subcategory": "list",
+        "api_endpoint": "/api/gateway/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "gateway_delete": {
+        "id": "gateway_delete",
+        "name": "删除路由",
+        "name_en": "Delete Route",
+        "description": "删除API路由",
+        "category": "gateway",
+        "subcategory": "delete",
+        "api_endpoint": "/api/gateway/delete",
+        "method": "POST",
+        "params": [
+            {"name": "route_id", "type": "string", "required": True, "description": "路由ID"}
+        ],
+        "icon": "trash"
     }
 }
 
