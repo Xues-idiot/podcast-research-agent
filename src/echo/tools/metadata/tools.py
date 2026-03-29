@@ -40163,6 +40163,212 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "text", "type": "string", "required": True, "description": "文本"}
         ],
         "icon": "map-pin"
+    },
+    # ========== 拼音工具 ==========
+    "pinyin_convert": {
+        "id": "pinyin_convert",
+        "name": "汉字转拼音",
+        "name_en": "Convert to Pinyin",
+        "description": "将汉字转换为拼音",
+        "category": "pinyin",
+        "subcategory": "convert",
+        "api_endpoint": "/api/pinyin/convert",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "中文文本"}
+        ],
+        "icon": "type"
+    },
+    "pinyin_first": {
+        "id": "pinyin_first",
+        "name": "获取首字母",
+        "name_en": "Get First Letters",
+        "description": "获取汉字拼音首字母",
+        "category": "pinyin",
+        "subcategory": "first",
+        "api_endpoint": "/api/pinyin/first",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "中文文本"}
+        ],
+        "icon": "type"
+    },
+    # ========== 中文分词工具 ==========
+    "jieba_cut": {
+        "id": "jieba_cut",
+        "name": "结巴分词",
+        "name_en": "Jieba Segment",
+        "description": "使用结巴分词",
+        "category": "chinese",
+        "subcategory": "segment",
+        "api_endpoint": "/api/chinese/cut",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "中文文本"}
+        ],
+        "icon": "divide"
+    },
+    "jieba_keywords": {
+        "id": "jieba_keywords",
+        "name": "结巴关键词",
+        "name_en": "Jieba Keywords",
+        "description": "使用结巴提取关键词",
+        "category": "chinese",
+        "subcategory": "keywords",
+        "api_endpoint": "/api/chinese/keywords",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "中文文本"},
+            {"name": "limit", "type": "number", "required": False, "description": "数量"}
+        ],
+        "icon": "tag"
+    },
+    # ========== 繁简转换工具 ==========
+    "zh_convert": {
+        "id": "zh_convert",
+        "name": "繁简转换",
+        "name_en": "Simplify/Traditional",
+        "description": "繁体简体互相转换",
+        "category": "chinese",
+        "subcategory": "convert",
+        "api_endpoint": "/api/chinese/convert",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "to", "type": "string", "required": True, "description": "目标类型"}
+        ],
+        "icon": "refresh"
+    },
+    # ========== 语音合成工具 ==========
+    "tts_convert": {
+        "id": "tts_convert",
+        "name": "文本转语音",
+        "name_en": "Text to Speech",
+        "description": "将文本转换为语音",
+        "category": "tts",
+        "subcategory": "convert",
+        "api_endpoint": "/api/tts/convert",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "voice", "type": "string", "required": False, "description": "声音"}
+        ],
+        "icon": "volume"
+    },
+    "tts_voices": {
+        "id": "tts_voices",
+        "name": "可用声音",
+        "name_en": "List Voices",
+        "description": "获取可用声音列表",
+        "category": "tts",
+        "subcategory": "voices",
+        "api_endpoint": "/api/tts/voices",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    # ========== 语音识别工具 ==========
+    "stt_convert": {
+        "id": "stt_convert",
+        "name": "语音转文本",
+        "name_en": "Speech to Text",
+        "description": "将语音转换为文本",
+        "category": "stt",
+        "subcategory": "convert",
+        "api_endpoint": "/api/stt/convert",
+        "method": "POST",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"},
+            {"name": "language", "type": "string", "required": False, "description": "语言"}
+        ],
+        "icon": "mic"
+    },
+    # ========== 图像识别工具 ==========
+    "ocr_general": {
+        "id": "ocr_general",
+        "name": "通用OCR",
+        "name_en": "General OCR",
+        "description": "通用图像文字识别",
+        "category": "ocr",
+        "subcategory": "general",
+        "api_endpoint": "/api/ocr/general",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "file-text"
+    },
+    "ocr_idcard": {
+        "id": "ocr_idcard",
+        "name": "身份证OCR",
+        "name_en": "ID Card OCR",
+        "description": "识别身份证信息",
+        "category": "ocr",
+        "subcategory": "idcard",
+        "api_endpoint": "/api/ocr/idcard",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "credit-card"
+    },
+    "ocr_business_card": {
+        "id": "ocr_business_card",
+        "name": "名片OCR",
+        "name_en": "Business Card OCR",
+        "description": "识别名片信息",
+        "category": "ocr",
+        "subcategory": "business_card",
+        "api_endpoint": "/api/ocr/business_card",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "credit-card"
+    },
+    # ========== 人脸识别工具 ==========
+    "face_detect": {
+        "id": "face_detect",
+        "name": "人脸检测",
+        "name_en": "Face Detection",
+        "description": "检测图像中的人脸",
+        "category": "face",
+        "subcategory": "detect",
+        "api_endpoint": "/api/face/detect",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "user"
+    },
+    "face_compare": {
+        "id": "face_compare",
+        "name": "人脸比对",
+        "name_en": "Face Compare",
+        "description": "比对两张人脸的相似度",
+        "category": "face",
+        "subcategory": "compare",
+        "api_endpoint": "/api/face/compare",
+        "method": "POST",
+        "params": [
+            {"name": "image1", "type": "string", "required": True, "description": "图片1"},
+            {"name": "image2", "type": "string", "required": True, "description": "图片2"}
+        ],
+        "icon": "users"
+    },
+    "face_landmark": {
+        "id": "face_landmark",
+        "name": "人脸关键点",
+        "name_en": "Face Landmarks",
+        "description": "检测人脸关键点",
+        "category": "face",
+        "subcategory": "landmark",
+        "api_endpoint": "/api/face/landmark",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "target"
     }
 }
 
