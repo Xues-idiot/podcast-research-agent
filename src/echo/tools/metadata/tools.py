@@ -41400,6 +41400,159 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "text", "type": "string", "required": True, "description": "文本"}
         ],
         "icon": "globe"
+    },
+    # ========== 对话系统工具 ==========
+    "dialog_create": {
+        "id": "dialog_create",
+        "name": "创建对话",
+        "name_en": "Create Dialog",
+        "description": "创建新对话会话",
+        "category": "dialog",
+        "subcategory": "create",
+        "api_endpoint": "/api/dialog/create",
+        "method": "POST",
+        "params": [
+            {"name": "context", "type": "string", "required": False, "description": "上下文"}
+        ],
+        "icon": "message-square"
+    },
+    "dialog_send": {
+        "id": "dialog_send",
+        "name": "发送消息",
+        "name_en": "Send Message",
+        "description": "在对话中发送消息",
+        "category": "dialog",
+        "subcategory": "send",
+        "api_endpoint": "/api/dialog/send",
+        "method": "POST",
+        "params": [
+            {"name": "dialog_id", "type": "string", "required": True, "description": "对话ID"},
+            {"name": "message", "type": "string", "required": True, "description": "消息"}
+        ],
+        "icon": "send"
+    },
+    "dialog_history": {
+        "id": "dialog_history",
+        "name": "对话历史",
+        "name_en": "Dialog History",
+        "description": "获取对话历史",
+        "category": "dialog",
+        "subcategory": "history",
+        "api_endpoint": "/api/dialog/history",
+        "method": "GET",
+        "params": [
+            {"name": "dialog_id", "type": "string", "required": True, "description": "对话ID"}
+        ],
+        "icon": "clock"
+    },
+    # ========== 知识图谱工具 ==========
+    "kg_create": {
+        "id": "kg_create",
+        "name": "创建图谱",
+        "name_en": "Create Knowledge Graph",
+        "description": "创建知识图谱",
+        "category": "knowledge_graph",
+        "subcategory": "create",
+        "api_endpoint": "/api/kg/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "图谱名称"}
+        ],
+        "icon": "git-branch"
+    },
+    "kg_add_entity": {
+        "id": "kg_add_entity",
+        "name": "添加实体",
+        "name_en": "Add Entity",
+        "description": "向图谱添加实体",
+        "category": "knowledge_graph",
+        "subcategory": "entity",
+        "api_endpoint": "/api/kg/entity/add",
+        "method": "POST",
+        "params": [
+            {"name": "graph_id", "type": "string", "required": True, "description": "图谱ID"},
+            {"name": "entity", "type": "object", "required": True, "description": "实体数据"}
+        ],
+        "icon": "plus"
+    },
+    "kg_add_relation": {
+        "id": "kg_add_relation",
+        "name": "添加关系",
+        "name_en": "Add Relation",
+        "description": "向图谱添加关系",
+        "category": "knowledge_graph",
+        "subcategory": "relation",
+        "api_endpoint": "/api/kg/relation/add",
+        "method": "POST",
+        "params": [
+            {"name": "graph_id", "type": "string", "required": True, "description": "图谱ID"},
+            {"name": "subject", "type": "string", "required": True, "description": "主体"},
+            {"name": "predicate", "type": "string", "required": True, "description": "谓词"},
+            {"name": "object", "type": "string", "required": True, "description": "客体"}
+        ],
+        "icon": "link"
+    },
+    "kg_query": {
+        "id": "kg_query",
+        "name": "图谱查询",
+        "name_en": "Query Knowledge Graph",
+        "description": "查询知识图谱",
+        "category": "knowledge_graph",
+        "subcategory": "query",
+        "api_endpoint": "/api/kg/query",
+        "method": "POST",
+        "params": [
+            {"name": "graph_id", "type": "string", "required": True, "description": "图谱ID"},
+            {"name": "query", "type": "string", "required": True, "description": "查询"}
+        ],
+        "icon": "search"
+    },
+    # ========== 意图识别工具 ==========
+    "intent_classify": {
+        "id": "intent_classify",
+        "name": "意图分类",
+        "name_en": "Intent Classification",
+        "description": "识别用户意图",
+        "category": "intent",
+        "subcategory": "classify",
+        "api_endpoint": "/api/intent/classify",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "target"
+    },
+    # ========== 槽位填充工具 ==========
+    "slot_fill": {
+        "id": "slot_fill",
+        "name": "槽位填充",
+        "name_en": "Slot Filling",
+        "description": "填充语义槽位",
+        "category": "slot",
+        "subcategory": "fill",
+        "api_endpoint": "/api/slot/fill",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "template", "type": "string", "required": True, "description": "模板"}
+        ],
+        "icon": "edit"
+    },
+    # ========== 情感检索工具 ==========
+    "sentiment_search": {
+        "id": "sentiment_search",
+        "name": "情感检索",
+        "name_en": "Sentiment Search",
+        "description": "按情感检索文本",
+        "category": "sentiment",
+        "subcategory": "search",
+        "api_endpoint": "/api/sentiment/search",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询"},
+            {"name": "sentiment", "type": "string", "required": True, "description": "情感"}
+        ],
+        "icon": "search"
     }
 }
 
