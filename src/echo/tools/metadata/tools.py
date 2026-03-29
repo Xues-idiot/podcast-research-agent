@@ -39044,6 +39044,213 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
         ],
         "icon": "download"
+    },
+    # ========== 加密工具 ==========
+    "encrypt_aes": {
+        "id": "encrypt_aes",
+        "name": "AES加密",
+        "name_en": "AES Encrypt",
+        "description": "AES对称加密",
+        "category": "crypto",
+        "subcategory": "encrypt",
+        "api_endpoint": "/api/crypto/aes/encrypt",
+        "method": "POST",
+        "params": [
+            {"name": "plaintext", "type": "string", "required": True, "description": "明文"},
+            {"name": "key", "type": "string", "required": True, "description": "密钥"}
+        ],
+        "icon": "lock"
+    },
+    "decrypt_aes": {
+        "id": "decrypt_aes",
+        "name": "AES解密",
+        "name_en": "AES Decrypt",
+        "description": "AES对称解密",
+        "category": "crypto",
+        "subcategory": "decrypt",
+        "api_endpoint": "/api/crypto/aes/decrypt",
+        "method": "POST",
+        "params": [
+            {"name": "ciphertext", "type": "string", "required": True, "description": "密文"},
+            {"name": "key", "type": "string", "required": True, "description": "密钥"}
+        ],
+        "icon": "unlock"
+    },
+    "encrypt_rsa": {
+        "id": "encrypt_rsa",
+        "name": "RSA加密",
+        "name_en": "RSA Encrypt",
+        "description": "RSA非对称加密",
+        "category": "crypto",
+        "subcategory": "encrypt",
+        "api_endpoint": "/api/crypto/rsa/encrypt",
+        "method": "POST",
+        "params": [
+            {"name": "plaintext", "type": "string", "required": True, "description": "明文"},
+            {"name": "public_key", "type": "string", "required": True, "description": "公钥"}
+        ],
+        "icon": "lock"
+    },
+    "decrypt_rsa": {
+        "id": "decrypt_rsa",
+        "name": "RSA解密",
+        "name_en": "RSA Decrypt",
+        "description": "RSA非对称解密",
+        "category": "crypto",
+        "subcategory": "decrypt",
+        "api_endpoint": "/api/crypto/rsa/decrypt",
+        "method": "POST",
+        "params": [
+            {"name": "ciphertext", "type": "string", "required": True, "description": "密文"},
+            {"name": "private_key", "type": "string", "required": True, "description": "私钥"}
+        ],
+        "icon": "unlock"
+    },
+    "hash_generate": {
+        "id": "hash_generate",
+        "name": "生成哈希",
+        "name_en": "Generate Hash",
+        "description": "生成数据哈希",
+        "category": "crypto",
+        "subcategory": "hash",
+        "api_endpoint": "/api/crypto/hash",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"},
+            {"name": "algorithm", "type": "string", "required": False, "description": "算法"}
+        ],
+        "icon": "hash"
+    },
+    "hmac_generate": {
+        "id": "hmac_generate",
+        "name": "生成HMAC",
+        "name_en": "Generate HMAC",
+        "description": "生成HMAC消息认证码",
+        "category": "crypto",
+        "subcategory": "hmac",
+        "api_endpoint": "/api/crypto/hmac",
+        "method": "POST",
+        "params": [
+            {"name": "message", "type": "string", "required": True, "description": "消息"},
+            {"name": "key", "type": "string", "required": True, "description": "密钥"}
+        ],
+        "icon": "key"
+    },
+    "sign_data": {
+        "id": "sign_data",
+        "name": "数字签名",
+        "name_en": "Sign Data",
+        "description": "对数据签名",
+        "category": "crypto",
+        "subcategory": "sign",
+        "api_endpoint": "/api/crypto/sign",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"},
+            {"name": "private_key", "type": "string", "required": True, "description": "私钥"}
+        ],
+        "icon": "edit"
+    },
+    "verify_signature": {
+        "id": "verify_signature",
+        "name": "验证签名",
+        "name_en": "Verify Signature",
+        "description": "验证数字签名",
+        "category": "crypto",
+        "subcategory": "verify",
+        "api_endpoint": "/api/crypto/verify",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"},
+            {"name": "signature", "type": "string", "required": True, "description": "签名"},
+            {"name": "public_key", "type": "string", "required": True, "description": "公钥"}
+        ],
+        "icon": "check-circle"
+    },
+    # ========== 随机数工具 ==========
+    "random_uuid": {
+        "id": "random_uuid",
+        "name": "生成UUID",
+        "name_en": "Generate UUID",
+        "description": "生成UUID",
+        "category": "random",
+        "subcategory": "uuid",
+        "api_endpoint": "/api/random/uuid",
+        "method": "GET",
+        "params": [],
+        "icon": "hash"
+    },
+    "random_string": {
+        "id": "random_string",
+        "name": "随机字符串",
+        "name_en": "Random String",
+        "description": "生成随机字符串",
+        "category": "random",
+        "subcategory": "string",
+        "api_endpoint": "/api/random/string",
+        "method": "GET",
+        "params": [
+            {"name": "length", "type": "number", "required": False, "description": "长度"}
+        ],
+        "icon": "type"
+    },
+    "random_int": {
+        "id": "random_int",
+        "name": "随机整数",
+        "name_en": "Random Integer",
+        "description": "生成随机整数",
+        "category": "random",
+        "subcategory": "int",
+        "api_endpoint": "/api/random/int",
+        "method": "GET",
+        "params": [
+            {"name": "min", "type": "number", "required": True, "description": "最小值"},
+            {"name": "max", "type": "number", "required": True, "description": "最大值"}
+        ],
+        "icon": "hash"
+    },
+    "random_choice": {
+        "id": "random_choice",
+        "name": "随机选择",
+        "name_en": "Random Choice",
+        "description": "从列表随机选择",
+        "category": "random",
+        "subcategory": "choice",
+        "api_endpoint": "/api/random/choice",
+        "method": "POST",
+        "params": [
+            {"name": "items", "type": "array", "required": True, "description": "选项列表"}
+        ],
+        "icon": "shuffle"
+    },
+    # ========== 验证码生成工具 ==========
+    "code_generate": {
+        "id": "code_generate",
+        "name": "生成验证码",
+        "name_en": "Generate Code",
+        "description": "生成数字/字母验证码",
+        "category": "code_gen",
+        "subcategory": "generate",
+        "api_endpoint": "/api/code/generate",
+        "method": "POST",
+        "params": [
+            {"name": "length", "type": "number", "required": False, "description": "长度"}
+        ],
+        "icon": "hash"
+    },
+    "pin_generate": {
+        "id": "pin_generate",
+        "name": "生成PIN码",
+        "name_en": "Generate PIN",
+        "description": "生成数字PIN码",
+        "category": "code_gen",
+        "subcategory": "pin",
+        "api_endpoint": "/api/code/pin",
+        "method": "POST",
+        "params": [
+            {"name": "length", "type": "number", "required": False, "description": "长度"}
+        ],
+        "icon": "hash"
     }
 }
 
