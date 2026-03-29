@@ -40369,6 +40369,168 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
         ],
         "icon": "target"
+    },
+    # ========== 物体检测工具 ==========
+    "object_detect": {
+        "id": "object_detect",
+        "name": "物体检测",
+        "name_en": "Object Detection",
+        "description": "检测图像中的物体",
+        "category": "object_detection",
+        "subcategory": "detect",
+        "api_endpoint": "/api/object/detect",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "box"
+    },
+    "object_segment": {
+        "id": "object_segment",
+        "name": "物体分割",
+        "name_en": "Object Segmentation",
+        "description": "分割图像中的物体",
+        "category": "object_detection",
+        "subcategory": "segment",
+        "api_endpoint": "/api/object/segment",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "scissors"
+    },
+    # ========== 场景识别工具 ==========
+    "scene_recognize": {
+        "id": "scene_recognize",
+        "name": "场景识别",
+        "name_en": "Scene Recognition",
+        "description": "识别图像场景",
+        "category": "scene",
+        "subcategory": "recognize",
+        "api_endpoint": "/api/scene/recognize",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "eye"
+    },
+    # ========== 图像分割工具 ==========
+    "segment_semantic": {
+        "id": "segment_semantic",
+        "name": "语义分割",
+        "name_en": "Semantic Segmentation",
+        "description": "语义分割图像",
+        "category": "segmentation",
+        "subcategory": "semantic",
+        "api_endpoint": "/api/segment/semantic",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "grid"
+    },
+    "segment_instance": {
+        "id": "segment_instance",
+        "name": "实例分割",
+        "name_en": "Instance Segmentation",
+        "description": "实例分割图像",
+        "category": "segmentation",
+        "subcategory": "instance",
+        "api_endpoint": "/api/segment/instance",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "grid"
+    },
+    # ========== 目标追踪工具 ==========
+    "track_object": {
+        "id": "track_object",
+        "name": "目标追踪",
+        "name_en": "Object Tracking",
+        "description": "追踪视频中的目标",
+        "category": "tracking",
+        "subcategory": "object",
+        "api_endpoint": "/api/track/object",
+        "method": "POST",
+        "params": [
+            {"name": "video_url", "type": "string", "required": True, "description": "视频URL"},
+            {"name": "object_id", "type": "string", "required": True, "description": "目标ID"}
+        ],
+        "icon": "navigation"
+    },
+    # ========== 视频分析工具 ==========
+    "video_classify": {
+        "id": "video_classify",
+        "name": "视频分类",
+        "name_en": "Video Classification",
+        "description": "对视频内容分类",
+        "category": "video_analysis",
+        "subcategory": "classify",
+        "api_endpoint": "/api/video/classify",
+        "method": "POST",
+        "params": [
+            {"name": "video_url", "type": "string", "required": True, "description": "视频URL"}
+        ],
+        "icon": "film"
+    },
+    "video_detect_scene": {
+        "id": "video_detect_scene",
+        "name": "场景检测",
+        "name_en": "Scene Detection",
+        "description": "检测视频场景切换",
+        "category": "video_analysis",
+        "subcategory": "scene",
+        "api_endpoint": "/api/video/scene",
+        "method": "POST",
+        "params": [
+            {"name": "video_url", "type": "string", "required": True, "description": "视频URL"}
+        ],
+        "icon": "film"
+    },
+    # ========== 音频分析工具 ==========
+    "audio_analyze": {
+        "id": "audio_analyze",
+        "name": "音频分析",
+        "name_en": "Audio Analysis",
+        "description": "分析音频特征",
+        "category": "audio_analysis",
+        "subcategory": "analyze",
+        "api_endpoint": "/api/audio/analyze",
+        "method": "POST",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"}
+        ],
+        "icon": "music"
+    },
+    "audio_classify": {
+        "id": "audio_classify",
+        "name": "音频分类",
+        "name_en": "Audio Classification",
+        "description": "对音频内容分类",
+        "category": "audio_analysis",
+        "subcategory": "classify",
+        "api_endpoint": "/api/audio/classify",
+        "method": "POST",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"}
+        ],
+        "icon": "music"
+    },
+    "audio_transcribe": {
+        "id": "audio_transcribe",
+        "name": "音频转录",
+        "name_en": "Audio Transcription",
+        "description": "将音频转录为文字",
+        "category": "audio_analysis",
+        "subcategory": "transcribe",
+        "api_endpoint": "/api/audio/transcribe",
+        "method": "POST",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"},
+            {"name": "language", "type": "string", "required": False, "description": "语言"}
+        ],
+        "icon": "file-text"
     }
 }
 
