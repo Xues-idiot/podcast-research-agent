@@ -31663,6 +31663,467 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "serial", "type": "string", "required": True, "description": "序列号"}
         ],
         "icon": "refresh-cw"
+    },
+
+    # ========== 隐私保护工具 ==========
+    "privacy_anonymize": {
+        "id": "privacy_anonymize",
+        "name": "匿名化数据",
+        "name_en": "Anonymize Data",
+        "description": "匿名化敏感数据",
+        "category": "privacy",
+        "subcategory": "anonymize",
+        "api_endpoint": "/api/privacy/anonymize",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"},
+            {"name": "fields", "type": "array", "required": True, "description": "敏感字段"}
+        ],
+        "icon": "eye-off"
+    },
+    "privacy_deidentify": {
+        "id": "privacy_deidentify",
+        "name": "去标识化",
+        "name_en": "De-identify Data",
+        "description": "去除数据标识",
+        "category": "privacy",
+        "subcategory": "deidentify",
+        "api_endpoint": "/api/privacy/deidentify",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "user-x"
+    },
+    "privacy_consent": {
+        "id": "privacy_consent",
+        "name": "同意管理",
+        "name_en": "Consent Management",
+        "description": "管理用户同意",
+        "category": "privacy",
+        "subcategory": "consent",
+        "api_endpoint": "/api/privacy/consent",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "consent_type", "type": "string", "required": True, "description": "同意类型"}
+        ],
+        "icon": "check"
+    },
+    "privacy_forget": {
+        "id": "privacy_forget",
+        "name": "被遗忘权",
+        "name_en": "Right to be Forgotten",
+        "description": "删除用户数据",
+        "category": "privacy",
+        "subcategory": "forget",
+        "api_endpoint": "/api/privacy/forget",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "trash"
+    },
+
+    # ========== 数据脱敏工具 ==========
+    "mask_email": {
+        "id": "mask_email",
+        "name": "邮箱脱敏",
+        "name_en": "Mask Email",
+        "description": "脱敏邮箱地址",
+        "category": "datamasking",
+        "subcategory": "email",
+        "api_endpoint": "/api/mask/email",
+        "method": "POST",
+        "params": [
+            {"name": "email", "type": "string", "required": True, "description": "邮箱"}
+        ],
+        "icon": "mail"
+    },
+    "mask_phone": {
+        "id": "mask_phone",
+        "name": "电话脱敏",
+        "name_en": "Mask Phone",
+        "description": "脱敏电话号码",
+        "category": "datamasking",
+        "subcategory": "phone",
+        "api_endpoint": "/api/mask/phone",
+        "method": "POST",
+        "params": [
+            {"name": "phone", "type": "string", "required": True, "description": "电话"}
+        ],
+        "icon": "phone"
+    },
+    "mask_ssn": {
+        "id": "mask_ssn",
+        "name": "SSN脱敏",
+        "name_en": "Mask SSN",
+        "description": "脱敏社会安全号",
+        "category": "datamasking",
+        "subcategory": "ssn",
+        "api_endpoint": "/api/mask/ssn",
+        "method": "POST",
+        "params": [
+            {"name": "ssn", "type": "string", "required": True, "description": "SSN"}
+        ],
+        "icon": "hash"
+    },
+    "mask_credit_card": {
+        "id": "mask_credit_card",
+        "name": "信用卡脱敏",
+        "name_en": "Mask Credit Card",
+        "description": "脱敏信用卡号",
+        "category": "datamasking",
+        "subcategory": "credit_card",
+        "api_endpoint": "/api/mask/credit-card",
+        "method": "POST",
+        "params": [
+            {"name": "card", "type": "string", "required": True, "description": "卡号"}
+        ],
+        "icon": "credit-card"
+    },
+    "mask_custom": {
+        "id": "mask_custom",
+        "name": "自定义脱敏",
+        "name_en": "Custom Masking",
+        "description": "自定义脱敏规则",
+        "category": "datamasking",
+        "subcategory": "custom",
+        "api_endpoint": "/api/mask/custom",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"},
+            {"name": "pattern", "type": "string", "required": True, "description": "正则模式"}
+        ],
+        "icon": "settings"
+    },
+
+    # ========== 访问日志工具 ==========
+    "accesslog_query": {
+        "id": "accesslog_query",
+        "name": "查询访问日志",
+        "name_en": "Query Access Logs",
+        "description": "查询访问日志",
+        "category": "accesslog",
+        "subcategory": "query",
+        "api_endpoint": "/api/access/log/query",
+        "method": "POST",
+        "params": [
+            {"name": "filters", "type": "object", "required": False, "description": "过滤条件"}
+        ],
+        "icon": "search"
+    },
+    "accesslog_export": {
+        "id": "accesslog_export",
+        "name": "导出访问日志",
+        "name_en": "Export Access Logs",
+        "description": "导出访问日志",
+        "category": "accesslog",
+        "subcategory": "export",
+        "api_endpoint": "/api/access/log/export",
+        "method": "POST",
+        "params": [
+            {"name": "from", "type": "string", "required": False, "description": "起始时间"},
+            {"name": "to", "type": "string", "required": False, "description": "结束时间"}
+        ],
+        "icon": "download"
+    },
+    "accesslog_analyze": {
+        "id": "accesslog_analyze",
+        "name": "分析访问日志",
+        "name_en": "Analyze Access Logs",
+        "description": "分析访问日志",
+        "category": "accesslog",
+        "subcategory": "analyze",
+        "api_endpoint": "/api/access/log/analyze",
+        "method": "POST",
+        "params": [
+            {"name": "time_range", "type": "string", "required": True, "description": "时间范围"}
+        ],
+        "icon": "activity"
+    },
+
+    # ========== 用户行为分析工具 ==========
+    "uba_analyze": {
+        "id": "uba_analyze",
+        "name": "用户行为分析",
+        "name_en": "User Behavior Analytics",
+        "description": "分析用户行为",
+        "category": "uba",
+        "subcategory": "analyze",
+        "api_endpoint": "/api/uba/analyze",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "activity"
+    },
+    "uba_baseline": {
+        "id": "uba_baseline",
+        "name": "建立基线",
+        "name_en": "Establish Baseline",
+        "description": "建立用户行为基线",
+        "category": "uba",
+        "subcategory": "baseline",
+        "api_endpoint": "/api/uba/baseline",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "git-branch"
+    },
+    "uba_anomaly_alert": {
+        "id": "uba_anomaly_alert",
+        "name": "异常告警",
+        "name_en": "Anomaly Alert",
+        "description": "用户行为异常告警",
+        "category": "uba",
+        "subcategory": "alert",
+        "api_endpoint": "/api/uba/alert",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "bell"
+    },
+
+    # ========== 网络流量分析工具 ==========
+    "netaudit_flow": {
+        "id": "netaudit_flow",
+        "name": "流量分析",
+        "name_en": "Flow Analysis",
+        "description": "分析网络流量",
+        "category": "netaudit",
+        "subcategory": "flow",
+        "api_endpoint": "/api/net/flow",
+        "method": "POST",
+        "params": [
+            {"name": "time_range", "type": "string", "required": True, "description": "时间范围"}
+        ],
+        "icon": "activity"
+    },
+    "netaudit_packet": {
+        "id": "netaudit_packet",
+        "name": "数据包分析",
+        "name_en": "Packet Analysis",
+        "description": "分析网络数据包",
+        "category": "netaudit",
+        "subcategory": "packet",
+        "api_endpoint": "/api/net/packet",
+        "method": "POST",
+        "params": [
+            {"name": "capture_file", "type": "string", "required": True, "description": "捕获文件"}
+        ],
+        "icon": "database"
+    },
+    "netaudit_dns": {
+        "id": "netaudit_dns",
+        "name": "DNS分析",
+        "name_en": "DNS Analysis",
+        "description": "分析DNS流量",
+        "category": "netaudit",
+        "subcategory": "dns",
+        "api_endpoint": "/api/net/dns",
+        "method": "GET",
+        "params": [],
+        "icon": "globe"
+    },
+
+    # ========== 数据库审计工具 ==========
+    "db_audit_query": {
+        "id": "db_audit_query",
+        "name": "数据库查询审计",
+        "name_en": "Database Query Audit",
+        "description": "审计数据库查询",
+        "category": "dbaudit",
+        "subcategory": "query",
+        "api_endpoint": "/api/db/audit/query",
+        "method": "POST",
+        "params": [
+            {"name": "db", "type": "string", "required": True, "description": "数据库"}
+        ],
+        "icon": "database"
+    },
+    "db_audit_access": {
+        "id": "db_audit_access",
+        "name": "数据库访问审计",
+        "name_en": "Database Access Audit",
+        "description": "审计数据库访问",
+        "category": "dbaudit",
+        "subcategory": "access",
+        "api_endpoint": "/api/db/audit/access",
+        "method": "GET",
+        "params": [],
+        "icon": "user"
+    },
+    "db_audit_change": {
+        "id": "db_audit_change",
+        "name": "数据库变更审计",
+        "name_en": "Database Change Audit",
+        "description": "审计数据库变更",
+        "category": "dbaudit",
+        "subcategory": "change",
+        "api_endpoint": "/api/db/audit/change",
+        "method": "GET",
+        "params": [],
+        "icon": "edit"
+    },
+
+    # ========== API审计工具 ==========
+    "api_audit_call": {
+        "id": "api_audit_call",
+        "name": "API调用审计",
+        "name_en": "API Call Audit",
+        "description": "审计API调用",
+        "category": "apiaudit",
+        "subcategory": "call",
+        "api_endpoint": "/api/audit/call",
+        "method": "GET",
+        "params": [],
+        "icon": "code"
+    },
+    "api_audit_error": {
+        "id": "api_audit_error",
+        "name": "API错误审计",
+        "name_en": "API Error Audit",
+        "description": "审计API错误",
+        "category": "apiaudit",
+        "subcategory": "error",
+        "api_endpoint": "/api/audit/error",
+        "method": "GET",
+        "params": [],
+        "icon": "alert-circle"
+    },
+    "api_audit_performance": {
+        "id": "api_audit_performance",
+        "name": "API性能审计",
+        "name_en": "API Performance Audit",
+        "description": "审计API性能",
+        "category": "apiaudit",
+        "subcategory": "performance",
+        "api_endpoint": "/api/audit/performance",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+
+    # ========== 合规报告工具 ==========
+    "compliance_report_generate": {
+        "id": "compliance_report_generate",
+        "name": "生成合规报告",
+        "name_en": "Generate Compliance Report",
+        "description": "生成合规报告",
+        "category": "compliancereport",
+        "subcategory": "generate",
+        "api_endpoint": "/api/compliance/report/generate",
+        "method": "POST",
+        "params": [
+            {"name": "standard", "type": "string", "required": True, "description": "合规标准"}
+        ],
+        "icon": "file-text"
+    },
+    "compliance_report_export": {
+        "id": "compliance_report_export",
+        "name": "导出合规报告",
+        "name_en": "Export Compliance Report",
+        "description": "导出合规报告",
+        "category": "compliancereport",
+        "subcategory": "export",
+        "api_endpoint": "/api/compliance/report/export",
+        "method": "POST",
+        "params": [
+            {"name": "report_id", "type": "string", "required": True, "description": "报告ID"},
+            {"name": "format", "type": "string", "required": False, "description": "格式"}
+        ],
+        "icon": "download"
+    },
+
+    # ========== 风险评估工具 ==========
+    "risk_assess": {
+        "id": "risk_assess",
+        "name": "风险评估",
+        "name_en": "Risk Assessment",
+        "description": "评估安全风险",
+        "category": "risk",
+        "subcategory": "assess",
+        "api_endpoint": "/api/risk/assess",
+        "method": "POST",
+        "params": [
+            {"name": "asset", "type": "string", "required": True, "description": "资产"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "risk_score": {
+        "id": "risk_score",
+        "name": "风险评分",
+        "name_en": "Risk Score",
+        "description": "计算风险评分",
+        "category": "risk",
+        "subcategory": "score",
+        "api_endpoint": "/api/risk/score",
+        "method": "POST",
+        "params": [
+            {"name": "factors", "type": "array", "required": True, "description": "风险因素"}
+        ],
+        "icon": "bar-chart"
+    },
+    "risk_mitigate": {
+        "id": "risk_mitigate",
+        "name": "风险缓解",
+        "name_en": "Risk Mitigation",
+        "description": "制定风险缓解措施",
+        "category": "risk",
+        "subcategory": "mitigate",
+        "api_endpoint": "/api/risk/mitigate",
+        "method": "POST",
+        "params": [
+            {"name": "risk_id", "type": "string", "required": True, "description": "风险ID"}
+        ],
+        "icon": "shield"
+    },
+
+    # ========== 漏洞扫描工具 ==========
+    "vuln_scan_web": {
+        "id": "vuln_scan_web",
+        "name": "Web漏洞扫描",
+        "name_en": "Web Vulnerability Scan",
+        "description": "扫描Web应用漏洞",
+        "category": "vulnscan",
+        "subcategory": "web",
+        "api_endpoint": "/api/vuln/scan/web",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"}
+        ],
+        "icon": "globe"
+    },
+    "vuln_scan_network": {
+        "id": "vuln_scan_network",
+        "name": "网络漏洞扫描",
+        "name_en": "Network Vulnerability Scan",
+        "description": "扫描网络漏洞",
+        "category": "vulnscan",
+        "subcategory": "network",
+        "api_endpoint": "/api/vuln/scan/network",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "network"
+    },
+    "vuln_scan_api": {
+        "id": "vuln_scan_api",
+        "name": "API漏洞扫描",
+        "name_en": "API Vulnerability Scan",
+        "description": "扫描API漏洞",
+        "category": "vulnscan",
+        "subcategory": "api",
+        "api_endpoint": "/api/vuln/scan/api",
+        "method": "POST",
+        "params": [
+            {"name": "spec", "type": "string", "required": True, "description": "API规范"}
+        ],
+        "icon": "code"
     }
 }
 
