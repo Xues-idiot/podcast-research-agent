@@ -33501,6 +33501,436 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "key_material", "type": "string", "required": True, "description": "密钥材料"}
         ],
         "icon": "upload"
+    },
+
+    # ========== 硬件安全模块工具 ==========
+    "hsm_init": {
+        "id": "hsm_init",
+        "name": "初始化HSM",
+        "name_en": "Initialize HSM",
+        "description": "初始化硬件安全模块",
+        "category": "hsm",
+        "subcategory": "init",
+        "api_endpoint": "/api/hsm/init",
+        "method": "POST",
+        "params": [],
+        "icon": "cpu"
+    },
+    "hsm_key_generate": {
+        "id": "hsm_key_generate",
+        "name": "HSM密钥生成",
+        "name_en": "HSM Key Generation",
+        "description": "在HSM中生成密钥",
+        "category": "hsm",
+        "subcategory": "key",
+        "api_endpoint": "/api/hsm/key/generate",
+        "method": "POST",
+        "params": [
+            {"name": "key_type", "type": "string", "required": True, "description": "密钥类型"}
+        ],
+        "icon": "key"
+    },
+    "hsm_sign": {
+        "id": "hsm_sign",
+        "name": "HSM签名",
+        "name_en": "HSM Signing",
+        "description": "使用HSM进行签名",
+        "category": "hsm",
+        "subcategory": "sign",
+        "api_endpoint": "/api/hsm/sign",
+        "method": "POST",
+        "params": [
+            {"name": "key_id", "type": "string", "required": True, "description": "密钥ID"},
+            {"name": "data", "type": "string", "required": True, "description": "数据"}
+        ],
+        "icon": "edit"
+    },
+
+    # ========== 安全多方计算工具 ==========
+    "mpc_compute": {
+        "id": "mpc_compute",
+        "name": "安全计算",
+        "name_en": "Secure Computation",
+        "description": "执行安全多方计算",
+        "category": "mpc",
+        "subcategory": "compute",
+        "api_endpoint": "/api/mpc/compute",
+        "method": "POST",
+        "params": [
+            {"name": "circuit", "type": "string", "required": True, "description": "电路"}
+        ],
+        "icon": "cpu"
+    },
+    "mpc_share": {
+        "id": "mpc_share",
+        "name": "秘密分享",
+        "name_en": "Secret Sharing",
+        "description": "秘密分享数据",
+        "category": "mpc",
+        "subcategory": "share",
+        "api_endpoint": "/api/mpc/share",
+        "method": "POST",
+        "params": [
+            {"name": "secret", "type": "string", "required": True, "description": "秘密"},
+            {"name": "parties", "type": "number", "required": True, "description": "方数"}
+        ],
+        "icon": "share"
+    },
+
+    # ========== 同态加密工具 ==========
+    "he_encrypt": {
+        "id": "he_encrypt",
+        "name": "同态加密",
+        "name_en": "Homomorphic Encryption",
+        "description": "同态加密数据",
+        "category": "he",
+        "subcategory": "encrypt",
+        "api_endpoint": "/api/he/encrypt",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "lock"
+    },
+    "he_compute": {
+        "id": "he_compute",
+        "name": "密文计算",
+        "name_en": "Compute on Ciphertext",
+        "description": "对密文进行计算",
+        "category": "he",
+        "subcategory": "compute",
+        "api_endpoint": "/api/he/compute",
+        "method": "POST",
+        "params": [
+            {"name": "ciphertext", "type": "string", "required": True, "description": "密文"},
+            {"name": "operation", "type": "string", "required": True, "description": "操作"}
+        ],
+        "icon": "cpu"
+    },
+    "he_decrypt": {
+        "id": "he_decrypt",
+        "name": "同态解密",
+        "name_en": "Homomorphic Decryption",
+        "description": "解密同态加密数据",
+        "category": "he",
+        "subcategory": "decrypt",
+        "api_endpoint": "/api/he/decrypt",
+        "method": "POST",
+        "params": [
+            {"name": "ciphertext", "type": "string", "required": True, "description": "密文"}
+        ],
+        "icon": "unlock"
+    },
+
+    # ========== 零知识证明工具 ==========
+    "zkp_prove": {
+        "id": "zkp_prove",
+        "name": "生成证明",
+        "name_en": "Generate Proof",
+        "description": "生成零知识证明",
+        "category": "zkp",
+        "subcategory": "prove",
+        "api_endpoint": "/api/zkp/prove",
+        "method": "POST",
+        "params": [
+            {"name": "statement", "type": "string", "required": True, "description": "声明"}
+        ],
+        "icon": "file-text"
+    },
+    "zkp_verify": {
+        "id": "zkp_verify",
+        "name": "验证证明",
+        "name_en": "Verify Proof",
+        "description": "验证零知识证明",
+        "category": "zkp",
+        "subcategory": "verify",
+        "api_endpoint": "/api/zkp/verify",
+        "method": "POST",
+        "params": [
+            {"name": "proof", "type": "string", "required": True, "description": "证明"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 联邦学习安全工具 ==========
+    "fl_secure_aggregate": {
+        "id": "fl_secure_aggregate",
+        "name": "安全聚合",
+        "name_en": "Secure Aggregation",
+        "description": "联邦学习安全聚合",
+        "category": "federatedlearning",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/fl/aggregate",
+        "method": "POST",
+        "params": [
+            {"name": "gradients", "type": "array", "required": True, "description": "梯度数组"}
+        ],
+        "icon": "git-merge"
+    },
+    "fl_differential_privacy": {
+        "id": "fl_differential_privacy",
+        "name": "差分隐私",
+        "name_en": "Differential Privacy",
+        "description": "添加差分隐私",
+        "category": "federatedlearning",
+        "subcategory": "privacy",
+        "api_endpoint": "/api/fl/privacy",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"},
+            {"name": "epsilon", "type": "number", "required": True, "description": "隐私预算"}
+        ],
+        "icon": "eye-off"
+    },
+
+    # ========== 可信执行环境工具 ==========
+    "tee_enclave_create": {
+        "id": "tee_enclave_create",
+        "name": "创建飞地",
+        "name_en": "Create Enclave",
+        "description": "创建可信执行环境飞地",
+        "category": "tee",
+        "subcategory": "enclave",
+        "api_endpoint": "/api/tee/enclave/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"}
+        ],
+        "icon": "plus"
+    },
+    "tee_attest": {
+        "id": "tee_attest",
+        "name": "远程认证",
+        "name_en": "Remote Attestation",
+        "description": "执行远程认证",
+        "category": "tee",
+        "subcategory": "attest",
+        "api_endpoint": "/api/tee/attest",
+        "method": "POST",
+        "params": [
+            {"name": "enclave_id", "type": "string", "required": True, "description": "飞地ID"}
+        ],
+        "icon": "shield"
+    },
+    "tee_seal": {
+        "id": "tee_seal",
+        "name": "密封数据",
+        "name_en": "Seal Data",
+        "description": "在TEE中密封数据",
+        "category": "tee",
+        "subcategory": "seal",
+        "api_endpoint": "/api/tee/seal",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "any", "required": True, "description": "数据"}
+        ],
+        "icon": "lock"
+    },
+
+    # ========== 代码签名工具 ==========
+    "codesign_sign": {
+        "id": "codesign_sign",
+        "name": "代码签名",
+        "name_en": "Code Signing",
+        "description": "对代码进行签名",
+        "category": "codesign",
+        "subcategory": "sign",
+        "api_endpoint": "/api/codesign/sign",
+        "method": "POST",
+        "params": [
+            {"name": "artifact", "type": "string", "required": True, "description": "制品"},
+            {"name": "key_id", "type": "string", "required": True, "description": "密钥ID"}
+        ],
+        "icon": "edit"
+    },
+    "codesign_verify": {
+        "id": "codesign_verify",
+        "name": "验证签名",
+        "name_en": "Verify Signature",
+        "description": "验证代码签名",
+        "category": "codesign",
+        "subcategory": "verify",
+        "api_endpoint": "/api/codesign/verify",
+        "method": "POST",
+        "params": [
+            {"name": "artifact", "type": "string", "required": True, "description": "制品"}
+        ],
+        "icon": "check"
+    },
+    "codesign_certificate": {
+        "id": "codesign_certificate",
+        "name": "代码签名证书",
+        "name_en": "Code Signing Certificate",
+        "description": "管理代码签名证书",
+        "category": "codesign",
+        "subcategory": "certificate",
+        "api_endpoint": "/api/codesign/certificate",
+        "method": "GET",
+        "params": [],
+        "icon": "file-text"
+    },
+
+    # ========== 软件物料清单工具 ==========
+    "sbom_generate": {
+        "id": "sbom_generate",
+        "name": "生成SBOM",
+        "name_en": "Generate SBOM",
+        "description": "生成软件物料清单",
+        "category": "sbom",
+        "subcategory": "generate",
+        "api_endpoint": "/api/sbom/generate",
+        "method": "POST",
+        "params": [
+            {"name": "project", "type": "string", "required": True, "description": "项目"}
+        ],
+        "icon": "file-plus"
+    },
+    "sbom_scan": {
+        "id": "sbom_scan",
+        "name": "SBOM扫描",
+        "name_en": "SBOM Scan",
+        "description": "扫描SBOM漏洞",
+        "category": "sbom",
+        "subcategory": "scan",
+        "api_endpoint": "/api/sbom/scan",
+        "method": "POST",
+        "params": [
+            {"name": "sbom", "type": "string", "required": True, "description": "SBOM"}
+        ],
+        "icon": "search"
+    },
+    "sbom_compare": {
+        "id": "sbom_compare",
+        "name": "SBOM对比",
+        "name_en": "Compare SBOMs",
+        "description": "对比两个SBOM",
+        "category": "sbom",
+        "subcategory": "compare",
+        "api_endpoint": "/api/sbom/compare",
+        "method": "POST",
+        "params": [
+            {"name": "sbom1", "type": "string", "required": True, "description": "SBOM1"},
+            {"name": "sbom2", "type": "string", "required": True, "description": "SBOM2"}
+        ],
+        "icon": "git-compare"
+    },
+
+    # ========== 软件供应链安全工具 ==========
+    "supplychain_sign": {
+        "id": "supplychain_sign",
+        "name": "供应链签名",
+        "name_en": "Supply Chain Signing",
+        "description": "签名供应链制品",
+        "category": "supplychainsecurity",
+        "subcategory": "sign",
+        "api_endpoint": "/api/supplychain/sign",
+        "method": "POST",
+        "params": [
+            {"name": "artifact", "type": "string", "required": True, "description": "制品"}
+        ],
+        "icon": "edit"
+    },
+    "supplychain_verify": {
+        "id": "supplychain_verify",
+        "name": "供应链验证",
+        "name_en": "Supply Chain Verification",
+        "description": "验证供应链完整性",
+        "category": "supplychainsecurity",
+        "subcategory": "verify",
+        "api_endpoint": "/api/supplychain/verify",
+        "method": "POST",
+        "params": [
+            {"name": "artifact", "type": "string", "required": True, "description": "制品"}
+        ],
+        "icon": "check"
+    },
+    "supplychain_policy": {
+        "id": "supplychain_policy",
+        "name": "供应链策略",
+        "name_en": "Supply Chain Policy",
+        "description": "配置供应链安全策略",
+        "category": "supplychainsecurity",
+        "subcategory": "policy",
+        "api_endpoint": "/api/supplychain/policy",
+        "method": "POST",
+        "params": [
+            {"name": "policy", "type": "object", "required": True, "description": "策略"}
+        ],
+        "icon": "settings"
+    },
+
+    # ========== 二进制分析工具 ==========
+    "binary_analyze": {
+        "id": "binary_analyze",
+        "name": "二进制分析",
+        "name_en": "Binary Analysis",
+        "description": "分析二进制文件",
+        "category": "binaryanalysis",
+        "subcategory": "analyze",
+        "api_endpoint": "/api/binary/analyze",
+        "method": "POST",
+        "params": [
+            {"name": "binary", "type": "string", "required": True, "description": "二进制"}
+        ],
+        "icon": "activity"
+    },
+    "binary_disassemble": {
+        "id": "binary_disassemble",
+        "name": "反汇编",
+        "name_en": "Disassemble",
+        "description": "反汇编二进制",
+        "category": "binaryanalysis",
+        "subcategory": "disassemble",
+        "api_endpoint": "/api/binary/disassemble",
+        "method": "POST",
+        "params": [
+            {"name": "binary", "type": "string", "required": True, "description": "二进制"}
+        ],
+        "icon": "code"
+    },
+    "binary_decompile": {
+        "id": "binary_decompile",
+        "name": "反编译",
+        "name_en": "Decompile",
+        "description": "反编译二进制为源码",
+        "category": "binaryanalysis",
+        "subcategory": "decompile",
+        "api_endpoint": "/api/binary/decompile",
+        "method": "POST",
+        "params": [
+            {"name": "binary", "type": "string", "required": True, "description": "二进制"}
+        ],
+        "icon": "file-code"
+    },
+
+    # ========== 协议分析工具 ==========
+    "protocol_analyze": {
+        "id": "protocol_analyze",
+        "name": "协议分析",
+        "name_en": "Protocol Analysis",
+        "description": "分析网络协议",
+        "category": "protocolanalysis",
+        "subcategory": "analyze",
+        "api_endpoint": "/api/protocol/analyze",
+        "method": "POST",
+        "params": [
+            {"name": "capture", "type": "string", "required": True, "description": "抓包"}
+        ],
+        "icon": "activity"
+    },
+    "protocol_fuzz": {
+        "id": "protocol_fuzz",
+        "name": "协议模糊测试",
+        "name_en": "Protocol Fuzzing",
+        "description": "对协议进行模糊测试",
+        "category": "protocolanalysis",
+        "subcategory": "fuzz",
+        "api_endpoint": "/api/protocol/fuzz",
+        "method": "POST",
+        "params": [
+            {"name": "protocol", "type": "string", "required": True, "description": "协议"}
+        ],
+        "icon": "zap"
     }
 }
 
