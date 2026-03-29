@@ -42504,6 +42504,157 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "data", "type": "array", "required": True, "description": "数据"}
         ],
         "icon": "scale"
+    },
+    # ========== AutoML工具 ==========
+    "automl_train": {
+        "id": "automl_train",
+        "name": "AutoML训练",
+        "name_en": "AutoML Training",
+        "description": "自动化机器学习训练",
+        "category": "automl",
+        "subcategory": "train",
+        "api_endpoint": "/api/automl/train",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"},
+            {"name": "task", "type": "string", "required": True, "description": "任务类型"}
+        ],
+        "icon": "cpu"
+    },
+    "automl_optimize": {
+        "id": "automl_optimize",
+        "name": "AutoML优化",
+        "name_en": "AutoML Optimization",
+        "description": "自动化超参数优化",
+        "category": "automl",
+        "subcategory": "optimize",
+        "api_endpoint": "/api/automl/optimize",
+        "method": "POST",
+        "params": [
+            {"name": "model", "type": "string", "required": True, "description": "模型"}
+        ],
+        "icon": "sliders"
+    },
+    "automl_select": {
+        "id": "automl_select",
+        "name": "AutoML选择",
+        "name_en": "AutoML Model Selection",
+        "description": "自动选择最佳模型",
+        "category": "automl",
+        "subcategory": "select",
+        "api_endpoint": "/api/automl/select",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"},
+            {"name": "task", "type": "string", "required": True, "description": "任务"}
+        ],
+        "icon": "check-square"
+    },
+    # ========== 可解释AI工具 ==========
+    "explain_feature": {
+        "id": "explain_feature",
+        "name": "特征重要性",
+        "name_en": "Feature Importance",
+        "description": "解释特征重要性",
+        "category": "explainability",
+        "subcategory": "feature",
+        "api_endpoint": "/api/explain/feature",
+        "method": "POST",
+        "params": [
+            {"name": "model", "type": "string", "required": True, "description": "模型"},
+            {"name": "input", "type": "array", "required": True, "description": "输入"}
+        ],
+        "icon": "bar-chart"
+    },
+    "explain_lime": {
+        "id": "explain_lime",
+        "name": "LIME解释",
+        "name_en": "LIME Explanation",
+        "description": "LIME模型解释",
+        "category": "explainability",
+        "subcategory": "lime",
+        "api_endpoint": "/api/explain/lime",
+        "method": "POST",
+        "params": [
+            {"name": "model", "type": "string", "required": True, "description": "模型"},
+            {"name": "input", "type": "array", "required": True, "description": "输入"}
+        ],
+        "icon": "help-circle"
+    },
+    "explain_shap": {
+        "id": "explain_shap",
+        "name": "SHAP解释",
+        "name_en": "SHAP Explanation",
+        "description": "SHAP模型解释",
+        "category": "explainability",
+        "subcategory": "shap",
+        "api_endpoint": "/api/explain/shap",
+        "method": "POST",
+        "params": [
+            {"name": "model", "type": "string", "required": True, "description": "模型"},
+            {"name": "input", "type": "array", "required": True, "description": "输入"}
+        ],
+        "icon": "help-circle"
+    },
+    # ========== 联邦学习工具 ==========
+    "federated_train": {
+        "id": "federated_train",
+        "name": "联邦训练",
+        "name_en": "Federated Training",
+        "description": "联邦学习训练",
+        "category": "federated_learning",
+        "subcategory": "train",
+        "api_endpoint": "/api/federated/train",
+        "method": "POST",
+        "params": [
+            {"name": "clients", "type": "array", "required": True, "description": "客户端"}
+        ],
+        "icon": "users"
+    },
+    "federated_aggregate": {
+        "id": "federated_aggregate",
+        "name": "聚合模型",
+        "name_en": "Aggregate Models",
+        "description": "聚合联邦模型",
+        "category": "federated_learning",
+        "subcategory": "aggregate",
+        "api_endpoint": "/api/federated/aggregate",
+        "method": "POST",
+        "params": [
+            {"name": "models", "type": "array", "required": True, "description": "模型列表"}
+        ],
+        "icon": "layers"
+    },
+    # ========== 持续学习工具 ==========
+    "continual_learn": {
+        "id": "continual_learn",
+        "name": "持续学习",
+        "name_en": "Continual Learning",
+        "description": "模型持续学习",
+        "category": "continual_learning",
+        "subcategory": "learn",
+        "api_endpoint": "/api/continual/learn",
+        "method": "POST",
+        "params": [
+            {"name": "model", "type": "string", "required": True, "description": "模型"},
+            {"name": "new_data", "type": "array", "required": True, "description": "新数据"}
+        ],
+        "icon": "refresh"
+    },
+    # ========== 神经架构搜索工具 ==========
+    "nas_search": {
+        "id": "nas_search",
+        "name": "搜索网络架构",
+        "name_en": "Neural Architecture Search",
+        "description": "自动搜索最优架构",
+        "category": "nas",
+        "subcategory": "search",
+        "api_endpoint": "/api/nas/search",
+        "method": "POST",
+        "params": [
+            {"name": "task", "type": "string", "required": True, "description": "任务"}
+        ],
+        "icon": "search"
     }
 }
 
