@@ -36263,6 +36263,262 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "content", "type": "string", "required": True, "description": "新内容"}
         ],
         "icon": "edit"
+    },
+    # ========== 分析工具 ==========
+    "analytics_track": {
+        "id": "analytics_track",
+        "name": "埋点追踪",
+        "name_en": "Track Event",
+        "description": "记录用户行为事件",
+        "category": "analytics",
+        "subcategory": "track",
+        "api_endpoint": "/api/analytics/track",
+        "method": "POST",
+        "params": [
+            {"name": "event", "type": "string", "required": True, "description": "事件名称"},
+            {"name": "properties", "type": "object", "required": False, "description": "事件属性"}
+        ],
+        "icon": "activity"
+    },
+    "analytics_report": {
+        "id": "analytics_report",
+        "name": "分析报告",
+        "name_en": "Analytics Report",
+        "description": "获取分析报告",
+        "category": "analytics",
+        "subcategory": "report",
+        "api_endpoint": "/api/analytics/report",
+        "method": "GET",
+        "params": [
+            {"name": "start_date", "type": "string", "required": True, "description": "开始日期"},
+            {"name": "end_date", "type": "string", "required": False, "description": "结束日期"}
+        ],
+        "icon": "bar-chart"
+    },
+    "analytics_funnel": {
+        "id": "analytics_funnel",
+        "name": "漏斗分析",
+        "name_en": "Funnel Analysis",
+        "description": "进行漏斗分析",
+        "category": "analytics",
+        "subcategory": "funnel",
+        "api_endpoint": "/api/analytics/funnel",
+        "method": "POST",
+        "params": [
+            {"name": "steps", "type": "array", "required": True, "description": "漏斗步骤"},
+            {"name": "date_range", "type": "object", "required": False, "description": "日期范围"}
+        ],
+        "icon": "trending-down"
+    },
+    "analytics_retention": {
+        "id": "analytics_retention",
+        "name": "留存分析",
+        "name_en": "Retention Analysis",
+        "description": "分析用户留存",
+        "category": "analytics",
+        "subcategory": "retention",
+        "api_endpoint": "/api/analytics/retention",
+        "method": "GET",
+        "params": [
+            {"name": "cohort_date", "type": "string", "required": True, "description": "队列日期"}
+        ],
+        "icon": "users"
+    },
+    # ========== A/B测试工具 ==========
+    "abtest_create": {
+        "id": "abtest_create",
+        "name": "创建A/B测试",
+        "name_en": "Create A/B Test",
+        "description": "创建A/B测试实验",
+        "category": "abtest",
+        "subcategory": "create",
+        "api_endpoint": "/api/abtest/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "实验名称"},
+            {"name": "variants", "type": "array", "required": True, "description": "变体列表"}
+        ],
+        "icon": "git-branch"
+    },
+    "abtest_assign": {
+        "id": "abtest_assign",
+        "name": "用户分组",
+        "name_en": "Assign Variant",
+        "description": "为用户分配测试组",
+        "category": "abtest",
+        "subcategory": "assign",
+        "api_endpoint": "/api/abtest/assign",
+        "method": "POST",
+        "params": [
+            {"name": "experiment_id", "type": "string", "required": True, "description": "实验ID"},
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "user"
+    },
+    "abtest_result": {
+        "id": "abtest_result",
+        "name": "测试结果",
+        "name_en": "Test Result",
+        "description": "获取A/B测试结果",
+        "category": "abtest",
+        "subcategory": "result",
+        "api_endpoint": "/api/abtest/result",
+        "method": "GET",
+        "params": [
+            {"name": "experiment_id", "type": "string", "required": True, "description": "实验ID"}
+        ],
+        "icon": "check-circle"
+    },
+    # ========== Webhook工具 ==========
+    "webhook_register": {
+        "id": "webhook_register",
+        "name": "注册Webhook",
+        "name_en": "Register Webhook",
+        "description": "注册Webhook回调",
+        "category": "webhook",
+        "subcategory": "register",
+        "api_endpoint": "/api/webhook/register",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "回调URL"},
+            {"name": "events", "type": "array", "required": True, "description": "监听事件"}
+        ],
+        "icon": "webhook"
+    },
+    "webhook_list": {
+        "id": "webhook_list",
+        "name": "列出Webhook",
+        "name_en": "List Webhooks",
+        "description": "获取Webhook列表",
+        "category": "webhook",
+        "subcategory": "query",
+        "api_endpoint": "/api/webhook/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "webhook_delete": {
+        "id": "webhook_delete",
+        "name": "删除Webhook",
+        "name_en": "Delete Webhook",
+        "description": "删除Webhook",
+        "category": "webhook",
+        "subcategory": "delete",
+        "api_endpoint": "/api/webhook/delete",
+        "method": "POST",
+        "params": [
+            {"name": "webhook_id", "type": "string", "required": True, "description": "Webhook ID"}
+        ],
+        "icon": "trash"
+    },
+    # ========== 搜索工具 ==========
+    "search_index": {
+        "id": "search_index",
+        "name": "创建索引",
+        "name_en": "Create Index",
+        "description": "为内容创建搜索索引",
+        "category": "search",
+        "subcategory": "index",
+        "api_endpoint": "/api/search/index",
+        "method": "POST",
+        "params": [
+            {"name": "content_id", "type": "string", "required": True, "description": "内容ID"},
+            {"name": "content", "type": "string", "required": True, "description": "内容文本"},
+            {"name": "metadata", "type": "object", "required": False, "description": "元数据"}
+        ],
+        "icon": "search"
+    },
+    "search_query": {
+        "id": "search_query",
+        "name": "搜索查询",
+        "name_en": "Search Query",
+        "description": "执行搜索查询",
+        "category": "search",
+        "subcategory": "query",
+        "api_endpoint": "/api/search/query",
+        "method": "GET",
+        "params": [
+            {"name": "q", "type": "string", "required": True, "description": "搜索词"},
+            {"name": "limit", "type": "number", "required": False, "description": "结果数量"}
+        ],
+        "icon": "search"
+    },
+    "search_suggest": {
+        "id": "search_suggest",
+        "name": "搜索建议",
+        "name_en": "Search Suggest",
+        "description": "获取搜索建议",
+        "category": "search",
+        "subcategory": "suggest",
+        "api_endpoint": "/api/search/suggest",
+        "method": "GET",
+        "params": [
+            {"name": "q", "type": "string", "required": True, "description": "搜索词"}
+        ],
+        "icon": "corner-down-right"
+    },
+    # ========== 翻译工具 ==========
+    "translate_text": {
+        "id": "translate_text",
+        "name": "翻译文本",
+        "name_en": "Translate Text",
+        "description": "翻译文本内容",
+        "category": "translate",
+        "subcategory": "text",
+        "api_endpoint": "/api/translate/text",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本内容"},
+            {"name": "source_lang", "type": "string", "required": False, "description": "源语言"},
+            {"name": "target_lang", "type": "string", "required": True, "description": "目标语言"}
+        ],
+        "icon": "globe"
+    },
+    "translate_batch": {
+        "id": "translate_batch",
+        "name": "批量翻译",
+        "name_en": "Batch Translate",
+        "description": "批量翻译文本",
+        "category": "translate",
+        "subcategory": "batch",
+        "api_endpoint": "/api/translate/batch",
+        "method": "POST",
+        "params": [
+            {"name": "texts", "type": "array", "required": True, "description": "文本列表"},
+            {"name": "target_lang", "type": "string", "required": True, "description": "目标语言"}
+        ],
+        "icon": "globe"
+    },
+    # ========== OCR工具 ==========
+    "ocr_image": {
+        "id": "ocr_image",
+        "name": "图片OCR",
+        "name_en": "OCR Image",
+        "description": "识别图片中的文字",
+        "category": "ocr",
+        "subcategory": "image",
+        "api_endpoint": "/api/ocr/image",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"},
+            {"name": "language", "type": "string", "required": False, "description": "语言"}
+        ],
+        "icon": "file-text"
+    },
+    "ocr_pdf": {
+        "id": "ocr_pdf",
+        "name": "PDF OCR",
+        "name_en": "OCR PDF",
+        "description": "识别PDF中的文字",
+        "category": "ocr",
+        "subcategory": "pdf",
+        "api_endpoint": "/api/ocr/pdf",
+        "method": "POST",
+        "params": [
+            {"name": "pdf_url", "type": "string", "required": True, "description": "PDF URL"},
+            {"name": "pages", "type": "array", "required": False, "description": "页码列表"}
+        ],
+        "icon": "file-text"
     }
 }
 
