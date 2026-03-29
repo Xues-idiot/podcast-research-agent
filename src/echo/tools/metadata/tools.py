@@ -41012,6 +41012,156 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "data", "type": "array", "required": True, "description": "数据"}
         ],
         "icon": "edit"
+    },
+    # ========== 模型评估工具 ==========
+    "eval_accuracy": {
+        "id": "eval_accuracy",
+        "name": "准确率评估",
+        "name_en": "Accuracy Evaluation",
+        "description": "评估模型准确率",
+        "category": "evaluation",
+        "subcategory": "accuracy",
+        "api_endpoint": "/api/eval/accuracy",
+        "method": "POST",
+        "params": [
+            {"name": "y_true", "type": "array", "required": True, "description": "真实值"},
+            {"name": "y_pred", "type": "array", "required": True, "description": "预测值"}
+        ],
+        "icon": "check-circle"
+    },
+    "eval_precision": {
+        "id": "eval_precision",
+        "name": "精确率评估",
+        "name_en": "Precision Evaluation",
+        "description": "评估模型精确率",
+        "category": "evaluation",
+        "subcategory": "precision",
+        "api_endpoint": "/api/eval/precision",
+        "method": "POST",
+        "params": [
+            {"name": "y_true", "type": "array", "required": True, "description": "真实值"},
+            {"name": "y_pred", "type": "array", "required": True, "description": "预测值"}
+        ],
+        "icon": "target"
+    },
+    "eval_recall": {
+        "id": "eval_recall",
+        "name": "召回率评估",
+        "name_en": "Recall Evaluation",
+        "description": "评估模型召回率",
+        "category": "evaluation",
+        "subcategory": "recall",
+        "api_endpoint": "/api/eval/recall",
+        "method": "POST",
+        "params": [
+            {"name": "y_true", "type": "array", "required": True, "description": "真实值"},
+            {"name": "y_pred", "type": "array", "required": True, "description": "预测值"}
+        ],
+        "icon": "rotate-cw"
+    },
+    "eval_f1": {
+        "id": "eval_f1",
+        "name": "F1评估",
+        "name_en": "F1 Score Evaluation",
+        "description": "评估F1分数",
+        "category": "evaluation",
+        "subcategory": "f1",
+        "api_endpoint": "/api/eval/f1",
+        "method": "POST",
+        "params": [
+            {"name": "y_true", "type": "array", "required": True, "description": "真实值"},
+            {"name": "y_pred", "type": "array", "required": True, "description": "预测值"}
+        ],
+        "icon": "percent"
+    },
+    "eval_roc": {
+        "id": "eval_roc",
+        "name": "ROC曲线",
+        "name_en": "ROC Curve",
+        "description": "绘制ROC曲线",
+        "category": "evaluation",
+        "subcategory": "roc",
+        "api_endpoint": "/api/eval/roc",
+        "method": "POST",
+        "params": [
+            {"name": "y_true", "type": "array", "required": True, "description": "真实值"},
+            {"name": "y_scores", "type": "array", "required": True, "description": "预测分数"}
+        ],
+        "icon": "activity"
+    },
+    "eval_confusion": {
+        "id": "eval_confusion",
+        "name": "混淆矩阵",
+        "name_en": "Confusion Matrix",
+        "description": "生成混淆矩阵",
+        "category": "evaluation",
+        "subcategory": "confusion",
+        "api_endpoint": "/api/eval/confusion",
+        "method": "POST",
+        "params": [
+            {"name": "y_true", "type": "array", "required": True, "description": "真实值"},
+            {"name": "y_pred", "type": "array", "required": True, "description": "预测值"}
+        ],
+        "icon": "grid"
+    },
+    # ========== 交叉验证工具 ==========
+    "cv_kfold": {
+        "id": "cv_kfold",
+        "name": "K折交叉验证",
+        "name_en": "K-Fold Cross Validation",
+        "description": "K折交叉验证",
+        "category": "cross_validation",
+        "subcategory": "kfold",
+        "api_endpoint": "/api/cv/kfold",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"},
+            {"name": "k", "type": "number", "required": False, "description": "折数"}
+        ],
+        "icon": "git-branch"
+    },
+    "cv_leave_one": {
+        "id": "cv_leave_one",
+        "name": "留一法",
+        "name_en": "Leave One Out",
+        "description": "留一法交叉验证",
+        "category": "cross_validation",
+        "subcategory": "leave_one",
+        "api_endpoint": "/api/cv/leave_one",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"}
+        ],
+        "icon": "git-branch"
+    },
+    # ========== 超参数调优工具 ==========
+    "tune_grid": {
+        "id": "tune_grid",
+        "name": "网格搜索",
+        "name_en": "Grid Search",
+        "description": "网格搜索调参",
+        "category": "tuning",
+        "subcategory": "grid",
+        "api_endpoint": "/api/tune/grid",
+        "method": "POST",
+        "params": [
+            {"name": "param_grid", "type": "object", "required": True, "description": "参数网格"}
+        ],
+        "icon": "grid"
+    },
+    "tune_random": {
+        "id": "tune_random",
+        "name": "随机搜索",
+        "name_en": "Random Search",
+        "description": "随机搜索调参",
+        "category": "tuning",
+        "subcategory": "random",
+        "api_endpoint": "/api/tune/random",
+        "method": "POST",
+        "params": [
+            {"name": "param_dist", "type": "object", "required": True, "description": "参数分布"}
+        ],
+        "icon": "shuffle"
     }
 }
 
