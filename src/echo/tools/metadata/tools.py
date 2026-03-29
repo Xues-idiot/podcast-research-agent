@@ -36722,6 +36722,233 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "end", "type": "number", "required": True, "description": "结束时间"}
         ],
         "icon": "scissors"
+    },
+    # ========== 音频处理工具 ==========
+    "audio_trim": {
+        "id": "audio_trim",
+        "name": "裁剪音频",
+        "name_en": "Trim Audio",
+        "description": "裁剪音频片段",
+        "category": "audio",
+        "subcategory": "trim",
+        "api_endpoint": "/api/audio/trim",
+        "method": "POST",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"},
+            {"name": "start", "type": "number", "required": True, "description": "开始时间"},
+            {"name": "end", "type": "number", "required": True, "description": "结束时间"}
+        ],
+        "icon": "scissors"
+    },
+    "audio_info": {
+        "id": "audio_info",
+        "name": "音频信息",
+        "name_en": "Audio Info",
+        "description": "获取音频元信息",
+        "category": "audio",
+        "subcategory": "info",
+        "api_endpoint": "/api/audio/info",
+        "method": "GET",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"}
+        ],
+        "icon": "info"
+    },
+    "audio_convert": {
+        "id": "audio_convert",
+        "name": "音频转换",
+        "name_en": "Convert Audio",
+        "description": "转换音频格式",
+        "category": "audio",
+        "subcategory": "convert",
+        "api_endpoint": "/api/audio/convert",
+        "method": "POST",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"},
+            {"name": "format", "type": "string", "required": True, "description": "目标格式"}
+        ],
+        "icon": "refresh"
+    },
+    "audio_volume": {
+        "id": "audio_volume",
+        "name": "调整音量",
+        "name_en": "Adjust Volume",
+        "description": "调整音频音量",
+        "category": "audio",
+        "subcategory": "volume",
+        "api_endpoint": "/api/audio/volume",
+        "method": "POST",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"},
+            {"name": "level", "type": "number", "required": True, "description": "音量级别"}
+        ],
+        "icon": "volume"
+    },
+    # ========== 表单工具 ==========
+    "form_create": {
+        "id": "form_create",
+        "name": "创建表单",
+        "name_en": "Create Form",
+        "description": "创建新表单",
+        "category": "form",
+        "subcategory": "create",
+        "api_endpoint": "/api/form/create",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "表单标题"},
+            {"name": "fields", "type": "array", "required": True, "description": "字段定义"}
+        ],
+        "icon": "file-plus"
+    },
+    "form_get": {
+        "id": "form_get",
+        "name": "获取表单",
+        "name_en": "Get Form",
+        "description": "获取表单详情",
+        "category": "form",
+        "subcategory": "query",
+        "api_endpoint": "/api/form/get",
+        "method": "GET",
+        "params": [
+            {"name": "form_id", "type": "string", "required": True, "description": "表单ID"}
+        ],
+        "icon": "file"
+    },
+    "form_submit": {
+        "id": "form_submit",
+        "name": "提交表单",
+        "name_en": "Submit Form",
+        "description": "提交表单数据",
+        "category": "form",
+        "subcategory": "submit",
+        "api_endpoint": "/api/form/submit",
+        "method": "POST",
+        "params": [
+            {"name": "form_id", "type": "string", "required": True, "description": "表单ID"},
+            {"name": "data", "type": "object", "required": True, "description": "表单数据"}
+        ],
+        "icon": "send"
+    },
+    "form_responses": {
+        "id": "form_responses",
+        "name": "表单响应",
+        "name_en": "Form Responses",
+        "description": "获取表单提交记录",
+        "category": "form",
+        "subcategory": "responses",
+        "api_endpoint": "/api/form/responses",
+        "method": "GET",
+        "params": [
+            {"name": "form_id", "type": "string", "required": True, "description": "表单ID"}
+        ],
+        "icon": "list"
+    },
+    # ========== 投票工具 ==========
+    "poll_create": {
+        "id": "poll_create",
+        "name": "创建投票",
+        "name_en": "Create Poll",
+        "description": "创建新投票",
+        "category": "poll",
+        "subcategory": "create",
+        "api_endpoint": "/api/poll/create",
+        "method": "POST",
+        "params": [
+            {"name": "question", "type": "string", "required": True, "description": "投票问题"},
+            {"name": "options", "type": "array", "required": True, "description": "选项列表"},
+            {"name": "multiple", "type": "boolean", "required": False, "description": "是否多选"}
+        ],
+        "icon": "bar-chart"
+    },
+    "poll_vote": {
+        "id": "poll_vote",
+        "name": "投票",
+        "name_en": "Vote",
+        "description": "参与投票",
+        "category": "poll",
+        "subcategory": "vote",
+        "api_endpoint": "/api/poll/vote",
+        "method": "POST",
+        "params": [
+            {"name": "poll_id", "type": "string", "required": True, "description": "投票ID"},
+            {"name": "options", "type": "array", "required": True, "description": "选择的选项"}
+        ],
+        "icon": "check-square"
+    },
+    # ========== 调查问卷工具 ==========
+    "survey_create": {
+        "id": "survey_create",
+        "name": "创建问卷",
+        "name_en": "Create Survey",
+        "description": "创建新问卷调查",
+        "category": "survey",
+        "subcategory": "create",
+        "api_endpoint": "/api/survey/create",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "问卷标题"},
+            {"name": "questions", "type": "array", "required": True, "description": "问题列表"}
+        ],
+        "icon": "clipboard"
+    },
+    "survey_result": {
+        "id": "survey_result",
+        "name": "问卷结果",
+        "name_en": "Survey Result",
+        "description": "获取问卷调查结果",
+        "category": "survey",
+        "subcategory": "result",
+        "api_endpoint": "/api/survey/result",
+        "method": "GET",
+        "params": [
+            {"name": "survey_id", "type": "string", "required": True, "description": "问卷ID"}
+        ],
+        "icon": "bar-chart"
+    },
+    # ========== 预约工具 ==========
+    "booking_create": {
+        "id": "booking_create",
+        "name": "创建预约",
+        "name_en": "Create Booking",
+        "description": "创建预约记录",
+        "category": "booking",
+        "subcategory": "create",
+        "api_endpoint": "/api/booking/create",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "预约标题"},
+            {"name": "datetime", "type": "string", "required": True, "description": "预约时间"},
+            {"name": "duration", "type": "number", "required": False, "description": "持续时间(分钟)"}
+        ],
+        "icon": "calendar"
+    },
+    "booking_confirm": {
+        "id": "booking_confirm",
+        "name": "确认预约",
+        "name_en": "Confirm Booking",
+        "description": "确认预约",
+        "category": "booking",
+        "subcategory": "confirm",
+        "api_endpoint": "/api/booking/confirm",
+        "method": "POST",
+        "params": [
+            {"name": "booking_id", "type": "string", "required": True, "description": "预约ID"}
+        ],
+        "icon": "check"
+    },
+    "booking_cancel": {
+        "id": "booking_cancel",
+        "name": "取消预约",
+        "name_en": "Cancel Booking",
+        "description": "取消预约",
+        "category": "booking",
+        "subcategory": "cancel",
+        "api_endpoint": "/api/booking/cancel",
+        "method": "POST",
+        "params": [
+            {"name": "booking_id", "type": "string", "required": True, "description": "预约ID"}
+        ],
+        "icon": "x"
     }
 }
 
