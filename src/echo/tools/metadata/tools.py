@@ -42282,6 +42282,95 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "agents", "type": "array", "required": True, "description": "Agent列表"}
         ],
         "icon": "git-compare"
+    },
+    # ========== LLM工具 ==========
+    "llm_complete": {
+        "id": "llm_complete",
+        "name": "文本补全",
+        "name_en": "Text Completion",
+        "description": "LLM文本补全",
+        "category": "llm",
+        "subcategory": "complete",
+        "api_endpoint": "/api/llm/complete",
+        "method": "POST",
+        "params": [
+            {"name": "prompt", "type": "string", "required": True, "description": "提示词"}
+        ],
+        "icon": "cpu"
+    },
+    "llm_chat": {
+        "id": "llm_chat",
+        "name": "对话",
+        "name_en": "Chat",
+        "description": "LLM对话",
+        "category": "llm",
+        "subcategory": "chat",
+        "api_endpoint": "/api/llm/chat",
+        "method": "POST",
+        "params": [
+            {"name": "messages", "type": "array", "required": True, "description": "消息列表"}
+        ],
+        "icon": "message-square"
+    },
+    "llm_embed": {
+        "id": "llm_embed",
+        "name": "文本嵌入",
+        "name_en": "Embedding",
+        "description": "LLM文本嵌入",
+        "category": "llm",
+        "subcategory": "embed",
+        "api_endpoint": "/api/llm/embed",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "hash"
+    },
+    # ========== 多模态工具 ==========
+    "multimodal_image": {
+        "id": "multimodal_image",
+        "name": "图像理解",
+        "name_en": "Image Understanding",
+        "description": "多模态图像理解",
+        "category": "multimodal",
+        "subcategory": "image",
+        "api_endpoint": "/api/multimodal/image",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"},
+            {"name": "question", "type": "string", "required": True, "description": "问题"}
+        ],
+        "icon": "image"
+    },
+    "multimodal_video": {
+        "id": "multimodal_video",
+        "name": "视频理解",
+        "name_en": "Video Understanding",
+        "description": "多模态视频理解",
+        "category": "multimodal",
+        "subcategory": "video",
+        "api_endpoint": "/api/multimodal/video",
+        "method": "POST",
+        "params": [
+            {"name": "video_url", "type": "string", "required": True, "description": "视频URL"},
+            {"name": "question", "type": "string", "required": True, "description": "问题"}
+        ],
+        "icon": "film"
+    },
+    "multimodal_audio": {
+        "id": "multimodal_audio",
+        "name": "音频理解",
+        "name_en": "Audio Understanding",
+        "description": "多模态音频理解",
+        "category": "multimodal",
+        "subcategory": "audio",
+        "api_endpoint": "/api/multimodal/audio",
+        "method": "POST",
+        "params": [
+            {"name": "audio_url", "type": "string", "required": True, "description": "音频URL"},
+            {"name": "question", "type": "string", "required": True, "description": "问题"}
+        ],
+        "icon": "music"
     }
 }
 
