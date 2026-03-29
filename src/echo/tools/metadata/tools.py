@@ -39971,6 +39971,198 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "operation", "type": "string", "required": True, "description": "操作"}
         ],
         "icon": "code"
+    },
+    # ========== 文本处理工具 ==========
+    "text_diff": {
+        "id": "text_diff",
+        "name": "文本差异比较",
+        "name_en": "Text Diff",
+        "description": "比较两个文本的差异",
+        "category": "text",
+        "subcategory": "diff",
+        "api_endpoint": "/api/text/diff",
+        "method": "POST",
+        "params": [
+            {"name": "text1", "type": "string", "required": True, "description": "文本1"},
+            {"name": "text2", "type": "string", "required": True, "description": "文本2"}
+        ],
+        "icon": "git-compare"
+    },
+    "text_similarity": {
+        "id": "text_similarity",
+        "name": "文本相似度",
+        "name_en": "Text Similarity",
+        "description": "计算文本相似度",
+        "category": "text",
+        "subcategory": "similarity",
+        "api_endpoint": "/api/text/similarity",
+        "method": "POST",
+        "params": [
+            {"name": "text1", "type": "string", "required": True, "description": "文本1"},
+            {"name": "text2", "type": "string", "required": True, "description": "文本2"}
+        ],
+        "icon": "git-compare"
+    },
+    "text_tokenize": {
+        "id": "text_tokenize",
+        "name": "文本分词",
+        "name_en": "Tokenize Text",
+        "description": "对文本进行分词",
+        "category": "text",
+        "subcategory": "tokenize",
+        "api_endpoint": "/api/text/tokenize",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "language", "type": "string", "required": False, "description": "语言"}
+        ],
+        "icon": "divide"
+    },
+    "text_stem": {
+        "id": "text_stem",
+        "name": "词干提取",
+        "name_en": "Stem Text",
+        "description": "提取单词词干",
+        "category": "text",
+        "subcategory": "stem",
+        "api_endpoint": "/api/text/stem",
+        "method": "POST",
+        "params": [
+            {"name": "word", "type": "string", "required": True, "description": "单词"}
+        ],
+        "icon": "edit"
+    },
+    "text_lemmatize": {
+        "id": "text_lemmatize",
+        "name": "词形还原",
+        "name_en": "Lemmatize Text",
+        "description": "还原单词词形",
+        "category": "text",
+        "subcategory": "lemmatize",
+        "api_endpoint": "/api/text/lemmatize",
+        "method": "POST",
+        "params": [
+            {"name": "word", "type": "string", "required": True, "description": "单词"}
+        ],
+        "icon": "edit"
+    },
+    "text_ngrams": {
+        "id": "text_ngrams",
+        "name": "N元语法",
+        "name_en": "Generate N-grams",
+        "description": "生成N元语法",
+        "category": "text",
+        "subcategory": "ngrams",
+        "api_endpoint": "/api/text/ngrams",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "n", "type": "number", "required": False, "description": "N值"}
+        ],
+        "icon": "hash"
+    },
+    # ========== 关键词提取工具 ==========
+    "keyword_tfidf": {
+        "id": "keyword_tfidf",
+        "name": "TF-IDF关键词",
+        "name_en": "TF-IDF Keywords",
+        "description": "使用TF-IDF提取关键词",
+        "category": "keyword",
+        "subcategory": "tfidf",
+        "api_endpoint": "/api/keyword/tfidf",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "limit", "type": "number", "required": False, "description": "数量"}
+        ],
+        "icon": "tag"
+    },
+    "keyword_textrank": {
+        "id": "keyword_textrank",
+        "name": "TextRank关键词",
+        "name_en": "TextRank Keywords",
+        "description": "使用TextRank提取关键词",
+        "category": "keyword",
+        "subcategory": "textrank",
+        "api_endpoint": "/api/keyword/textrank",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "limit", "type": "number", "required": False, "description": "数量"}
+        ],
+        "icon": "tag"
+    },
+    # ========== 情感分析工具 ==========
+    "sentiment_positive": {
+        "id": "sentiment_positive",
+        "name": "正面情感分析",
+        "name_en": "Positive Sentiment",
+        "description": "分析正面情感",
+        "category": "sentiment",
+        "subcategory": "positive",
+        "api_endpoint": "/api/sentiment/positive",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "thumbs-up"
+    },
+    "sentiment_negative": {
+        "id": "sentiment_negative",
+        "name": "负面情感分析",
+        "name_en": "Negative Sentiment",
+        "description": "分析负面情感",
+        "category": "sentiment",
+        "subcategory": "negative",
+        "api_endpoint": "/api/sentiment/negative",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "thumbs-down"
+    },
+    # ========== 命名实体识别工具 ==========
+    "ner_person": {
+        "id": "ner_person",
+        "name": "识别人名",
+        "name_en": "Recognize Person",
+        "description": "从文本中识别人名",
+        "category": "ner",
+        "subcategory": "person",
+        "api_endpoint": "/api/ner/person",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "user"
+    },
+    "ner_organization": {
+        "id": "ner_organization",
+        "name": "识别组织",
+        "name_en": "Recognize Organization",
+        "description": "从文本中识别组织名",
+        "category": "ner",
+        "subcategory": "organization",
+        "api_endpoint": "/api/ner/organization",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "users"
+    },
+    "ner_location": {
+        "id": "ner_location",
+        "name": "识别地点",
+        "name_en": "Recognize Location",
+        "description": "从文本中识别地点",
+        "category": "ner",
+        "subcategory": "location",
+        "api_endpoint": "/api/ner/location",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "map-pin"
     }
 }
 
