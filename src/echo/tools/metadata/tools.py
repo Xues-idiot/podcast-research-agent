@@ -40699,6 +40699,156 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "conversion", "type": "string", "required": True, "description": "转化事件"}
         ],
         "icon": "equal"
+    },
+    # ========== 异常检测工具 ==========
+    "anomaly_statistical": {
+        "id": "anomaly_statistical",
+        "name": "统计异常检测",
+        "name_en": "Statistical Anomaly Detection",
+        "description": "基于统计的异常检测",
+        "category": "anomaly",
+        "subcategory": "statistical",
+        "api_endpoint": "/api/anomaly/statistical",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"},
+            {"name": "threshold", "type": "number", "required": False, "description": "阈值"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "anomaly_ml": {
+        "id": "anomaly_ml",
+        "name": "ML异常检测",
+        "name_en": "ML Anomaly Detection",
+        "description": "基于机器学习的异常检测",
+        "category": "anomaly",
+        "subcategory": "ml",
+        "api_endpoint": "/api/anomaly/ml",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"}
+        ],
+        "icon": "cpu"
+    },
+    # ========== 趋势分析工具 ==========
+    "trend_linear": {
+        "id": "trend_linear",
+        "name": "线性趋势",
+        "name_en": "Linear Trend",
+        "description": "分析线性趋势",
+        "category": "trend",
+        "subcategory": "linear",
+        "api_endpoint": "/api/trend/linear",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"}
+        ],
+        "icon": "trending-up"
+    },
+    "trend_seasonal": {
+        "id": "trend_seasonal",
+        "name": "季节性分析",
+        "name_en": "Seasonal Analysis",
+        "description": "分析季节性模式",
+        "category": "trend",
+        "subcategory": "seasonal",
+        "api_endpoint": "/api/trend/seasonal",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"}
+        ],
+        "icon": "calendar"
+    },
+    # ========== 预测工具 ==========
+    "forecast_arima": {
+        "id": "forecast_arima",
+        "name": "ARIMA预测",
+        "name_en": "ARIMA Forecast",
+        "description": "使用ARIMA模型预测",
+        "category": "forecast",
+        "subcategory": "arima",
+        "api_endpoint": "/api/forecast/arima",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "历史数据"},
+            {"name": "periods", "type": "number", "required": True, "description": "预测周期"}
+        ],
+        "icon": "activity"
+    },
+    "forecast_exponential": {
+        "id": "forecast_exponential",
+        "name": "指数平滑预测",
+        "name_en": "Exponential Smoothing",
+        "description": "指数平滑预测",
+        "category": "forecast",
+        "subcategory": "exponential",
+        "api_endpoint": "/api/forecast/exponential",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "历史数据"},
+            {"name": "periods", "type": "number", "required": True, "description": "预测周期"}
+        ],
+        "icon": "activity"
+    },
+    # ========== 聚类分析工具 ==========
+    "cluster_kmeans": {
+        "id": "cluster_kmeans",
+        "name": "K-Means聚类",
+        "name_en": "K-Means Clustering",
+        "description": "K-Means聚类分析",
+        "category": "cluster",
+        "subcategory": "kmeans",
+        "api_endpoint": "/api/cluster/kmeans",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"},
+            {"name": "k", "type": "number", "required": True, "description": "聚类数"}
+        ],
+        "icon": "git-branch"
+    },
+    "cluster_hierarchical": {
+        "id": "cluster_hierarchical",
+        "name": "层次聚类",
+        "name_en": "Hierarchical Clustering",
+        "description": "层次聚类分析",
+        "category": "cluster",
+        "subcategory": "hierarchical",
+        "api_endpoint": "/api/cluster/hierarchical",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"}
+        ],
+        "icon": "git-branch"
+    },
+    # ========== 降维工具 ==========
+    "dimensionality_pca": {
+        "id": "dimensionality_pca",
+        "name": "PCA降维",
+        "name_en": "PCA Dimensionality Reduction",
+        "description": "主成分分析降维",
+        "category": "dimensionality",
+        "subcategory": "pca",
+        "api_endpoint": "/api/dim/pca",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"},
+            {"name": "n_components", "type": "number", "required": False, "description": "成分数"}
+        ],
+        "icon": "minimize"
+    },
+    "dimensionality_tsne": {
+        "id": "dimensionality_tsne",
+        "name": "t-SNE降维",
+        "name_en": "t-SNE Dimensionality Reduction",
+        "description": "t-SNE降维",
+        "category": "dimensionality",
+        "subcategory": "tsne",
+        "api_endpoint": "/api/dim/tsne",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "array", "required": True, "description": "数据"}
+        ],
+        "icon": "minimize"
     }
 }
 
