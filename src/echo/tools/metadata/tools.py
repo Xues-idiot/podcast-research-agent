@@ -39612,6 +39612,174 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "ratio", "type": "number", "required": False, "description": "比例"}
         ],
         "icon": "droplet"
+    },
+    # ========== 单位转换工具 ==========
+    "unit_length": {
+        "id": "unit_length",
+        "name": "长度转换",
+        "name_en": "Length Convert",
+        "description": "长度单位转换",
+        "category": "unit",
+        "subcategory": "length",
+        "api_endpoint": "/api/unit/length",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "from", "type": "string", "required": True, "description": "源单位"},
+            {"name": "to", "type": "string", "required": True, "description": "目标单位"}
+        ],
+        "icon": "ruler"
+    },
+    "unit_weight": {
+        "id": "unit_weight",
+        "name": "重量转换",
+        "name_en": "Weight Convert",
+        "description": "重量单位转换",
+        "category": "unit",
+        "subcategory": "weight",
+        "api_endpoint": "/api/unit/weight",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "from", "type": "string", "required": True, "description": "源单位"},
+            {"name": "to", "type": "string", "required": True, "description": "目标单位"}
+        ],
+        "icon": "scale"
+    },
+    "unit_temperature": {
+        "id": "unit_temperature",
+        "name": "温度转换",
+        "name_en": "Temperature Convert",
+        "description": "温度单位转换",
+        "category": "unit",
+        "subcategory": "temperature",
+        "api_endpoint": "/api/unit/temperature",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "from", "type": "string", "required": True, "description": "源单位"},
+            {"name": "to", "type": "string", "required": True, "description": "目标单位"}
+        ],
+        "icon": "thermometer"
+    },
+    "unit_data": {
+        "id": "unit_data",
+        "name": "数据转换",
+        "name_en": "Data Convert",
+        "description": "数据单位转换",
+        "category": "unit",
+        "subcategory": "data",
+        "api_endpoint": "/api/unit/data",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "from", "type": "string", "required": True, "description": "源单位"},
+            {"name": "to", "type": "string", "required": True, "description": "目标单位"}
+        ],
+        "icon": "database"
+    },
+    # ========== 格式化工具 ==========
+    "format_currency": {
+        "id": "format_currency",
+        "name": "货币格式化",
+        "name_en": "Format Currency",
+        "description": "格式化货币显示",
+        "category": "format",
+        "subcategory": "currency",
+        "api_endpoint": "/api/format/currency",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "金额"},
+            {"name": "currency", "type": "string", "required": False, "description": "货币代码"}
+        ],
+        "icon": "dollar-sign"
+    },
+    "format_date": {
+        "id": "format_date",
+        "name": "日期格式化",
+        "name_en": "Format Date",
+        "description": "格式化日期显示",
+        "category": "format",
+        "subcategory": "date",
+        "api_endpoint": "/api/format/date",
+        "method": "POST",
+        "params": [
+            {"name": "date", "type": "string", "required": True, "description": "日期"},
+            {"name": "format", "type": "string", "required": False, "description": "格式"}
+        ],
+        "icon": "calendar"
+    },
+    "format_number": {
+        "id": "format_number",
+        "name": "数字格式化",
+        "name_en": "Format Number",
+        "description": "格式化数字显示",
+        "category": "format",
+        "subcategory": "number",
+        "api_endpoint": "/api/format/number",
+        "method": "POST",
+        "params": [
+            {"name": "value", "type": "number", "required": True, "description": "数值"},
+            {"name": "decimals", "type": "number", "required": False, "description": "小数位"}
+        ],
+        "icon": "hash"
+    },
+    # ========== 验证工具 ==========
+    "validate_email": {
+        "id": "validate_email",
+        "name": "验证邮箱",
+        "name_en": "Validate Email",
+        "description": "验证邮箱格式",
+        "category": "validate",
+        "subcategory": "email",
+        "api_endpoint": "/api/validate/email",
+        "method": "POST",
+        "params": [
+            {"name": "email", "type": "string", "required": True, "description": "邮箱"}
+        ],
+        "icon": "check-circle"
+    },
+    "validate_phone": {
+        "id": "validate_phone",
+        "name": "验证手机号",
+        "name_en": "Validate Phone",
+        "description": "验证手机号格式",
+        "category": "validate",
+        "subcategory": "phone",
+        "api_endpoint": "/api/validate/phone",
+        "method": "POST",
+        "params": [
+            {"name": "phone", "type": "string", "required": True, "description": "手机号"}
+        ],
+        "icon": "check-circle"
+    },
+    "validate_url": {
+        "id": "validate_url",
+        "name": "验证URL",
+        "name_en": "Validate URL",
+        "description": "验证URL格式",
+        "category": "validate",
+        "subcategory": "url",
+        "api_endpoint": "/api/validate/url",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"}
+        ],
+        "icon": "check-circle"
+    },
+    "validate_credit_card": {
+        "id": "validate_credit_card",
+        "name": "验证信用卡",
+        "name_en": "Validate Credit Card",
+        "description": "验证信用卡号",
+        "category": "validate",
+        "subcategory": "credit_card",
+        "api_endpoint": "/api/validate/credit_card",
+        "method": "POST",
+        "params": [
+            {"name": "number", "type": "string", "required": True, "description": "卡号"}
+        ],
+        "icon": "credit-card"
     }
 }
 
