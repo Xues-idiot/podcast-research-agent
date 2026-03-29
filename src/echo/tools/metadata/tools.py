@@ -38268,6 +38268,196 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "body", "type": "string", "required": True, "description": "内容"}
         ],
         "icon": "radio"
+    },
+    # ========== 即时通讯工具 ==========
+    "im_send": {
+        "id": "im_send",
+        "name": "发送消息",
+        "name_en": "Send Message",
+        "description": "发送即时消息",
+        "category": "im",
+        "subcategory": "send",
+        "api_endpoint": "/api/im/send",
+        "method": "POST",
+        "params": [
+            {"name": "to", "type": "string", "required": True, "description": "接收者"},
+            {"name": "message", "type": "string", "required": True, "description": "消息内容"}
+        ],
+        "icon": "send"
+    },
+    "im_list_channels": {
+        "id": "im_list_channels",
+        "name": "列出频道",
+        "name_en": "List Channels",
+        "description": "获取频道列表",
+        "category": "im",
+        "subcategory": "channel",
+        "api_endpoint": "/api/im/channels",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "im_create_channel": {
+        "id": "im_create_channel",
+        "name": "创建频道",
+        "name_en": "Create Channel",
+        "description": "创建聊天频道",
+        "category": "im",
+        "subcategory": "channel",
+        "api_endpoint": "/api/im/channel/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "频道名称"},
+            {"name": "members", "type": "array", "required": False, "description": "成员列表"}
+        ],
+        "icon": "plus"
+    },
+    "im_join_channel": {
+        "id": "im_join_channel",
+        "name": "加入频道",
+        "name_en": "Join Channel",
+        "description": "加入聊天频道",
+        "category": "im",
+        "subcategory": "channel",
+        "api_endpoint": "/api/im/channel/join",
+        "method": "POST",
+        "params": [
+            {"name": "channel_id", "type": "string", "required": True, "description": "频道ID"}
+        ],
+        "icon": "log-in"
+    },
+    "im_leave_channel": {
+        "id": "im_leave_channel",
+        "name": "离开频道",
+        "name_en": "Leave Channel",
+        "description": "离开聊天频道",
+        "category": "im",
+        "subcategory": "channel",
+        "api_endpoint": "/api/im/channel/leave",
+        "method": "POST",
+        "params": [
+            {"name": "channel_id", "type": "string", "required": True, "description": "频道ID"}
+        ],
+        "icon": "log-out"
+    },
+    "im_messages": {
+        "id": "im_messages",
+        "name": "获取消息",
+        "name_en": "Get Messages",
+        "description": "获取频道消息",
+        "category": "im",
+        "subcategory": "message",
+        "api_endpoint": "/api/im/messages",
+        "method": "GET",
+        "params": [
+            {"name": "channel_id", "type": "string", "required": True, "description": "频道ID"},
+            {"name": "limit", "type": "number", "required": False, "description": "消息数量"}
+        ],
+        "icon": "message-square"
+    },
+    # ========== WebSocket工具 ==========
+    "ws_connect": {
+        "id": "ws_connect",
+        "name": "建立连接",
+        "name_en": "WebSocket Connect",
+        "description": "建立WebSocket连接",
+        "category": "websocket",
+        "subcategory": "connect",
+        "api_endpoint": "/api/ws/connect",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "WebSocket URL"}
+        ],
+        "icon": "link"
+    },
+    "ws_send": {
+        "id": "ws_send",
+        "name": "发送消息",
+        "name_en": "WebSocket Send",
+        "description": "通过WebSocket发送消息",
+        "category": "websocket",
+        "subcategory": "send",
+        "api_endpoint": "/api/ws/send",
+        "method": "POST",
+        "params": [
+            {"name": "connection_id", "type": "string", "required": True, "description": "连接ID"},
+            {"name": "message", "type": "string", "required": True, "description": "消息"}
+        ],
+        "icon": "send"
+    },
+    "ws_disconnect": {
+        "id": "ws_disconnect",
+        "name": "断开连接",
+        "name_en": "WebSocket Disconnect",
+        "description": "断开WebSocket连接",
+        "category": "websocket",
+        "subcategory": "disconnect",
+        "api_endpoint": "/api/ws/disconnect",
+        "method": "POST",
+        "params": [
+            {"name": "connection_id", "type": "string", "required": True, "description": "连接ID"}
+        ],
+        "icon": "x"
+    },
+    # ========== GraphQL工具 ==========
+    "graphql_query": {
+        "id": "graphql_query",
+        "name": "GraphQL查询",
+        "name_en": "GraphQL Query",
+        "description": "执行GraphQL查询",
+        "category": "graphql",
+        "subcategory": "query",
+        "api_endpoint": "/api/graphql/query",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询语句"},
+            {"name": "variables", "type": "object", "required": False, "description": "变量"}
+        ],
+        "icon": "code"
+    },
+    "graphql_mutate": {
+        "id": "graphql_mutate",
+        "name": "GraphQL变更",
+        "name_en": "GraphQL Mutation",
+        "description": "执行GraphQL变更",
+        "category": "graphql",
+        "subcategory": "mutation",
+        "api_endpoint": "/api/graphql/mutate",
+        "method": "POST",
+        "params": [
+            {"name": "mutation", "type": "string", "required": True, "description": "变更语句"},
+            {"name": "variables", "type": "object", "required": False, "description": "变量"}
+        ],
+        "icon": "edit"
+    },
+    # ========== gRPC工具 ==========
+    "grpc_call": {
+        "id": "grpc_call",
+        "name": "gRPC调用",
+        "name_en": "gRPC Call",
+        "description": "发起gRPC调用",
+        "category": "grpc",
+        "subcategory": "call",
+        "api_endpoint": "/api/grpc/call",
+        "method": "POST",
+        "params": [
+            {"name": "service", "type": "string", "required": True, "description": "服务名"},
+            {"name": "method", "type": "string", "required": True, "description": "方法名"},
+            {"name": "payload", "type": "object", "required": True, "description": "载荷"}
+        ],
+        "icon": "zap"
+    },
+    "grpc_list_services": {
+        "id": "grpc_list_services",
+        "name": "列出服务",
+        "name_en": "List Services",
+        "description": "列出可用gRPC服务",
+        "category": "grpc",
+        "subcategory": "list",
+        "api_endpoint": "/api/grpc/services",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
     }
 }
 
