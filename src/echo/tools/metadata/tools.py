@@ -41553,6 +41553,142 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "sentiment", "type": "string", "required": True, "description": "情感"}
         ],
         "icon": "search"
+    },
+    # ========== 聊天机器人工具 ==========
+    "chatbot_create": {
+        "id": "chatbot_create",
+        "name": "创建聊天机器人",
+        "name_en": "Create Chatbot",
+        "description": "创建聊天机器人",
+        "category": "chatbot",
+        "subcategory": "create",
+        "api_endpoint": "/api/chatbot/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"},
+            {"name": "persona", "type": "string", "required": False, "description": "人设"}
+        ],
+        "icon": "bot"
+    },
+    "chatbot_chat": {
+        "id": "chatbot_chat",
+        "name": "聊天",
+        "name_en": "Chat",
+        "description": "与聊天机器人对话",
+        "category": "chatbot",
+        "subcategory": "chat",
+        "api_endpoint": "/api/chatbot/chat",
+        "method": "POST",
+        "params": [
+            {"name": "bot_id", "type": "string", "required": True, "description": "机器人ID"},
+            {"name": "message", "type": "string", "required": True, "description": "消息"}
+        ],
+        "icon": "message-square"
+    },
+    "chatbot_train": {
+        "id": "chatbot_train",
+        "name": "训练聊天机器人",
+        "name_en": "Train Chatbot",
+        "description": "训练聊天机器人",
+        "category": "chatbot",
+        "subcategory": "train",
+        "api_endpoint": "/api/chatbot/train",
+        "method": "POST",
+        "params": [
+            {"name": "bot_id", "type": "string", "required": True, "description": "机器人ID"},
+            {"name": "data", "type": "array", "required": True, "description": "训练数据"}
+        ],
+        "icon": "activity"
+    },
+    # ========== 搜索引擎工具 ==========
+    "search_engine_index": {
+        "id": "search_engine_index",
+        "name": "索引文档",
+        "name_en": "Index Document",
+        "description": "为搜索引擎索引文档",
+        "category": "search_engine",
+        "subcategory": "index",
+        "api_endpoint": "/api/search/index",
+        "method": "POST",
+        "params": [
+            {"name": "doc_id", "type": "string", "required": True, "description": "文档ID"},
+            {"name": "content", "type": "string", "required": True, "description": "内容"}
+        ],
+        "icon": "file-plus"
+    },
+    "search_engine_query": {
+        "id": "search_engine_query",
+        "name": "搜索引擎查询",
+        "name_en": "Search Engine Query",
+        "description": "执行搜索引擎查询",
+        "category": "search_engine",
+        "subcategory": "query",
+        "api_endpoint": "/api/search/query",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询"}
+        ],
+        "icon": "search"
+    },
+    "search_engine_rank": {
+        "id": "search_engine_rank",
+        "name": "文档排序",
+        "name_en": "Document Ranking",
+        "description": "对搜索结果排序",
+        "category": "search_engine",
+        "subcategory": "rank",
+        "api_endpoint": "/api/search/rank",
+        "method": "POST",
+        "params": [
+            {"name": "docs", "type": "array", "required": True, "description": "文档列表"},
+            {"name": "query", "type": "string", "required": True, "description": "查询"}
+        ],
+        "icon": "list"
+    },
+    # ========== 推荐算法工具 ==========
+    "rec_collaborative": {
+        "id": "rec_collaborative",
+        "name": "协同过滤推荐",
+        "name_en": "Collaborative Filtering",
+        "description": "协同过滤推荐",
+        "category": "recommendation",
+        "subcategory": "collaborative",
+        "api_endpoint": "/api/rec/collaborative",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "items", "type": "array", "required": True, "description": "物品列表"}
+        ],
+        "icon": "users"
+    },
+    "rec_content": {
+        "id": "rec_content",
+        "name": "内容推荐",
+        "name_en": "Content-Based Recommendation",
+        "description": "基于内容的推荐",
+        "category": "recommendation",
+        "subcategory": "content",
+        "api_endpoint": "/api/rec/content",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "item_id", "type": "string", "required": True, "description": "物品ID"}
+        ],
+        "icon": "file-text"
+    },
+    "rec_hybrid": {
+        "id": "rec_hybrid",
+        "name": "混合推荐",
+        "name_en": "Hybrid Recommendation",
+        "description": "混合推荐算法",
+        "category": "recommendation",
+        "subcategory": "hybrid",
+        "api_endpoint": "/api/rec/hybrid",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "layers"
     }
 }
 
