@@ -34291,6 +34291,413 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "method": "GET",
         "params": [],
         "icon": "bar-chart"
+    },
+
+    # ========== 安全监控工具 ==========
+    "monitor_security_dashboard": {
+        "id": "monitor_security_dashboard",
+        "name": "安全仪表板",
+        "name_en": "Security Dashboard",
+        "description": "查看安全监控仪表板",
+        "category": "securitymonitor",
+        "subcategory": "dashboard",
+        "api_endpoint": "/api/monitor/security/dashboard",
+        "method": "GET",
+        "params": [],
+        "icon": "layout"
+    },
+    "monitor_security_alerts": {
+        "id": "monitor_security_alerts",
+        "name": "安全告警",
+        "name_en": "Security Alerts",
+        "description": "查看安全告警",
+        "category": "securitymonitor",
+        "subcategory": "alerts",
+        "api_endpoint": "/api/monitor/security/alerts",
+        "method": "GET",
+        "params": [],
+        "icon": "bell"
+    },
+    "monitor_security_metrics": {
+        "id": "monitor_security_metrics",
+        "name": "安全指标",
+        "name_en": "Security Metrics",
+        "description": "查看安全指标",
+        "category": "securitymonitor",
+        "subcategory": "metrics",
+        "api_endpoint": "/api/monitor/security/metrics",
+        "method": "GET",
+        "params": [],
+        "icon": "bar-chart"
+    },
+
+    # ========== 安全信息事件管理工具 ==========
+    "siem_dashboard": {
+        "id": "siem_dashboard",
+        "name": "SIEM仪表板",
+        "name_en": "SIEM Dashboard",
+        "description": "查看SIEM仪表板",
+        "category": "siem",
+        "subcategory": "dashboard",
+        "api_endpoint": "/api/siem/dashboard",
+        "method": "GET",
+        "params": [],
+        "icon": "layout"
+    },
+    "siem_correlation": {
+        "id": "siem_correlation",
+        "name": "日志关联",
+        "name_en": "Log Correlation",
+        "description": "关联分析日志",
+        "category": "siem",
+        "subcategory": "correlation",
+        "api_endpoint": "/api/siem/correlation",
+        "method": "POST",
+        "params": [
+            {"name": "events", "type": "array", "required": True, "description": "事件数组"}
+        ],
+        "icon": "git-merge"
+    },
+    "siem_threat_intelligence": {
+        "id": "siem_threat_intelligence",
+        "name": "威胁情报关联",
+        "name_en": "Threat Intelligence Correlation",
+        "description": "关联威胁情报",
+        "category": "siem",
+        "subcategory": "threat",
+        "api_endpoint": "/api/siem/threat",
+        "method": "POST",
+        "params": [
+            {"name": "events", "type": "array", "required": True, "description": "事件数组"}
+        ],
+        "icon": "activity"
+    },
+
+    # ========== 安全编排自动化响应工具 ==========
+    "soar_dashboard": {
+        "id": "soar_dashboard",
+        "name": "SOAR仪表板",
+        "name_en": "SOAR Dashboard",
+        "description": "查看SOAR仪表板",
+        "category": "soar",
+        "subcategory": "dashboard",
+        "api_endpoint": "/api/soar/dashboard",
+        "method": "GET",
+        "params": [],
+        "icon": "layout"
+    },
+    "soar_case": {
+        "id": "soar_case",
+        "name": "案例管理",
+        "name_en": "Case Management",
+        "description": "管理安全案例",
+        "category": "soar",
+        "subcategory": "case",
+        "api_endpoint": "/api/soar/case",
+        "method": "POST",
+        "params": [
+            {"name": "incident", "type": "object", "required": True, "description": "事件"}
+        ],
+        "icon": "folder"
+    },
+    "soar_workflow": {
+        "id": "soar_workflow",
+        "name": "工作流管理",
+        "name_en": "Workflow Management",
+        "description": "管理工作流",
+        "category": "soar",
+        "subcategory": "workflow",
+        "api_endpoint": "/api/soar/workflow",
+        "method": "POST",
+        "params": [
+            {"name": "workflow", "type": "object", "required": True, "description": "工作流"}
+        ],
+        "icon": "git-branch"
+    },
+
+    # ========== 威胁情报平台工具 ==========
+    "tip_dashboard": {
+        "id": "tip_dashboard",
+        "name": "威胁情报仪表板",
+        "name_en": "TIP Dashboard",
+        "description": "查看威胁情报仪表板",
+        "category": "tip",
+        "subcategory": "dashboard",
+        "api_endpoint": "/api/tip/dashboard",
+        "method": "GET",
+        "params": [],
+        "icon": "layout"
+    },
+    "tip_indicators": {
+        "id": "tip_indicators",
+        "name": "威胁指标",
+        "name_en": "Threat Indicators",
+        "description": "管理威胁指标",
+        "category": "tip",
+        "subcategory": "indicators",
+        "api_endpoint": "/api/tip/indicators",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    "tip_campaigns": {
+        "id": "tip_campaigns",
+        "name": "威胁活动",
+        "name_en": "Threat Campaigns",
+        "description": "跟踪威胁活动",
+        "category": "tip",
+        "subcategory": "campaigns",
+        "api_endpoint": "/api/tip/campaigns",
+        "method": "GET",
+        "params": [],
+        "icon": "target"
+    },
+
+    # ========== 漏洞管理平台工具 ==========
+    "vm_dashboard": {
+        "id": "vm_dashboard",
+        "name": "漏洞管理仪表板",
+        "name_en": "Vulnerability Dashboard",
+        "description": "查看漏洞管理仪表板",
+        "category": "vulnmanage",
+        "subcategory": "dashboard",
+        "api_endpoint": "/api/vm/dashboard",
+        "method": "GET",
+        "params": [],
+        "icon": "layout"
+    },
+    "vm_tracking": {
+        "id": "vm_tracking",
+        "name": "漏洞跟踪",
+        "name_en": "Vulnerability Tracking",
+        "description": "跟踪漏洞修复",
+        "category": "vulnmanage",
+        "subcategory": "tracking",
+        "api_endpoint": "/api/vm/tracking",
+        "method": "POST",
+        "params": [
+            {"name": "vuln_id", "type": "string", "required": True, "description": "漏洞ID"}
+        ],
+        "icon": "activity"
+    },
+    "vm_remediation": {
+        "id": "vm_remediation",
+        "name": "漏洞修复跟踪",
+        "name_en": "Remediation Tracking",
+        "description": "跟踪漏洞修复进度",
+        "category": "vulnmanage",
+        "subcategory": "remediation",
+        "api_endpoint": "/api/vm/remediation",
+        "method": "GET",
+        "params": [],
+        "icon": "tool"
+    },
+
+    # ========== 配置管理数据库工具 ==========
+    "cmdb_entry": {
+        "id": "cmdb_entry",
+        "name": "配置项",
+        "name_en": "Configuration Item",
+        "description": "管理配置项",
+        "category": "cmdb",
+        "subcategory": "entry",
+        "api_endpoint": "/api/cmdb/entry",
+        "method": "POST",
+        "params": [
+            {"name": "ci", "type": "object", "required": True, "description": "配置项"}
+        ],
+        "icon": "database"
+    },
+    "cmdb_relationship": {
+        "id": "cmdb_relationship",
+        "name": "配置关系",
+        "name_en": "Configuration Relationships",
+        "description": "管理配置项关系",
+        "category": "cmdb",
+        "subcategory": "relationship",
+        "api_endpoint": "/api/cmdb/relationship",
+        "method": "POST",
+        "params": [
+            {"name": "source", "type": "string", "required": True, "description": "源"},
+            {"name": "target", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "git-branch"
+    },
+    "cmdb_search": {
+        "id": "cmdb_search",
+        "name": "配置搜索",
+        "name_en": "Configuration Search",
+        "description": "搜索配置项",
+        "category": "cmdb",
+        "subcategory": "search",
+        "api_endpoint": "/api/cmdb/search",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询"}
+        ],
+        "icon": "search"
+    },
+
+    # ========== IT服务管理工具 ==========
+    "itsm_incident": {
+        "id": "itsm_incident",
+        "name": "事件管理",
+        "name_en": "Incident Management",
+        "description": "管理IT事件",
+        "category": "itsm",
+        "subcategory": "incident",
+        "api_endpoint": "/api/itsm/incident",
+        "method": "POST",
+        "params": [
+            {"name": "incident", "type": "object", "required": True, "description": "事件"}
+        ],
+        "icon": "alert-triangle"
+    },
+    "itsm_problem": {
+        "id": "itsm_problem",
+        "name": "问题管理",
+        "name_en": "Problem Management",
+        "description": "管理IT问题",
+        "category": "itsm",
+        "subcategory": "problem",
+        "api_endpoint": "/api/itsm/problem",
+        "method": "POST",
+        "params": [
+            {"name": "problem", "type": "object", "required": True, "description": "问题"}
+        ],
+        "icon": "help-circle"
+    },
+    "itsm_change": {
+        "id": "itsm_change",
+        "name": "变更管理",
+        "name_en": "Change Management",
+        "description": "管理IT变更",
+        "category": "itsm",
+        "subcategory": "change",
+        "api_endpoint": "/api/itsm/change",
+        "method": "POST",
+        "params": [
+            {"name": "change", "type": "object", "required": True, "description": "变更"}
+        ],
+        "icon": "refresh-cw"
+    },
+
+    # ========== 网络监控工具 ==========
+    "netmon_dashboard": {
+        "id": "netmon_dashboard",
+        "name": "网络监控仪表板",
+        "name_en": "Network Monitor Dashboard",
+        "description": "查看网络监控仪表板",
+        "category": "networkmonitor",
+        "subcategory": "dashboard",
+        "api_endpoint": "/api/netmon/dashboard",
+        "method": "GET",
+        "params": [],
+        "icon": "layout"
+    },
+    "netmon_status": {
+        "id": "netmon_status",
+        "name": "网络状态",
+        "name_en": "Network Status",
+        "description": "查看网络状态",
+        "category": "networkmonitor",
+        "subcategory": "status",
+        "api_endpoint": "/api/netmon/status",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    "netmon_performance": {
+        "id": "netmon_performance",
+        "name": "网络性能",
+        "name_en": "Network Performance",
+        "description": "查看网络性能指标",
+        "category": "networkmonitor",
+        "subcategory": "performance",
+        "api_endpoint": "/api/netmon/performance",
+        "method": "GET",
+        "params": [],
+        "icon": "trending-up"
+    },
+
+    # ========== 应用性能监控工具 ==========
+    "apm_dashboard": {
+        "id": "apm_dashboard",
+        "name": "APM仪表板",
+        "name_en": "APM Dashboard",
+        "description": "查看应用性能监控仪表板",
+        "category": "apm",
+        "subcategory": "dashboard",
+        "api_endpoint": "/api/apm/dashboard",
+        "method": "GET",
+        "params": [],
+        "icon": "layout"
+    },
+    "apm_traces": {
+        "id": "apm_traces",
+        "name": "分布式追踪",
+        "name_en": "Distributed Tracing",
+        "description": "查看分布式追踪",
+        "category": "apm",
+        "subcategory": "traces",
+        "api_endpoint": "/api/apm/traces",
+        "method": "GET",
+        "params": [],
+        "icon": "git-branch"
+    },
+    "apm_metrics": {
+        "id": "apm_metrics",
+        "name": "应用指标",
+        "name_en": "Application Metrics",
+        "description": "查看应用指标",
+        "category": "apm",
+        "subcategory": "metrics",
+        "api_endpoint": "/api/apm/metrics",
+        "method": "GET",
+        "params": [],
+        "icon": "bar-chart"
+    },
+
+    # ========== 日志管理工具 ==========
+    "logm_dashboard": {
+        "id": "logm_dashboard",
+        "name": "日志仪表板",
+        "name_en": "Log Dashboard",
+        "description": "查看日志仪表板",
+        "category": "logmanage",
+        "subcategory": "dashboard",
+        "api_endpoint": "/api/logm/dashboard",
+        "method": "GET",
+        "params": [],
+        "icon": "layout"
+    },
+    "logm_search": {
+        "id": "logm_search",
+        "name": "日志搜索",
+        "name_en": "Log Search",
+        "description": "搜索日志",
+        "category": "logmanage",
+        "subcategory": "search",
+        "api_endpoint": "/api/logm/search",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询"}
+        ],
+        "icon": "search"
+    },
+    "logm_alerts": {
+        "id": "logm_alerts",
+        "name": "日志告警",
+        "name_en": "Log Alerts",
+        "description": "配置日志告警",
+        "category": "logmanage",
+        "subcategory": "alerts",
+        "api_endpoint": "/api/logm/alerts",
+        "method": "POST",
+        "params": [
+            {"name": "rule", "type": "object", "required": True, "description": "规则"}
+        ],
+        "icon": "bell"
     }
 }
 
