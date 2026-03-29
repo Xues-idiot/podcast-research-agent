@@ -39414,6 +39414,204 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "data", "type": "string", "required": True, "description": "数据"}
         ],
         "icon": "archive"
+    },
+    # ========== 二维码工具 ==========
+    "qr_generate": {
+        "id": "qr_generate",
+        "name": "生成二维码",
+        "name_en": "Generate QR Code",
+        "description": "生成二维码图片",
+        "category": "qrcode",
+        "subcategory": "generate",
+        "api_endpoint": "/api/qr/generate",
+        "method": "POST",
+        "params": [
+            {"name": "content", "type": "string", "required": True, "description": "内容"},
+            {"name": "size", "type": "number", "required": False, "description": "大小"}
+        ],
+        "icon": "maximize"
+    },
+    "qr_read": {
+        "id": "qr_read",
+        "name": "读取二维码",
+        "name_en": "Read QR Code",
+        "description": "识别二维码内容",
+        "category": "qrcode",
+        "subcategory": "read",
+        "api_endpoint": "/api/qr/read",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "minimize"
+    },
+    # ========== 条形码工具 ==========
+    "barcode_generate": {
+        "id": "barcode_generate",
+        "name": "生成条形码",
+        "name_en": "Generate Barcode",
+        "description": "生成条形码图片",
+        "category": "barcode",
+        "subcategory": "generate",
+        "api_endpoint": "/api/barcode/generate",
+        "method": "POST",
+        "params": [
+            {"name": "content", "type": "string", "required": True, "description": "内容"},
+            {"name": "format", "type": "string", "required": False, "description": "格式"}
+        ],
+        "icon": "align-left"
+    },
+    "barcode_read": {
+        "id": "barcode_read",
+        "name": "读取条形码",
+        "name_en": "Read Barcode",
+        "description": "识别条形码内容",
+        "category": "barcode",
+        "subcategory": "read",
+        "api_endpoint": "/api/barcode/read",
+        "method": "POST",
+        "params": [
+            {"name": "image_url", "type": "string", "required": True, "description": "图片URL"}
+        ],
+        "icon": "align-left"
+    },
+    # ========== 地理位置工具 ==========
+    "geo_encode": {
+        "id": "geo_encode",
+        "name": "地址转坐标",
+        "name_en": "Geocode",
+        "description": "将地址转换为坐标",
+        "category": "geo",
+        "subcategory": "encode",
+        "api_endpoint": "/api/geo/encode",
+        "method": "POST",
+        "params": [
+            {"name": "address", "type": "string", "required": True, "description": "地址"}
+        ],
+        "icon": "map-pin"
+    },
+    "geo_decode": {
+        "id": "geo_decode",
+        "name": "坐标转地址",
+        "name_en": "Reverse Geocode",
+        "description": "将坐标转换为地址",
+        "category": "geo",
+        "subcategory": "decode",
+        "api_endpoint": "/api/geo/decode",
+        "method": "POST",
+        "params": [
+            {"name": "lat", "type": "number", "required": True, "description": "纬度"},
+            {"name": "lng", "type": "number", "required": True, "description": "经度"}
+        ],
+        "icon": "map"
+    },
+    "geo_distance": {
+        "id": "geo_distance",
+        "name": "距离计算",
+        "name_en": "Distance Calculation",
+        "description": "计算两点间距离",
+        "category": "geo",
+        "subcategory": "distance",
+        "api_endpoint": "/api/geo/distance",
+        "method": "POST",
+        "params": [
+            {"name": "lat1", "type": "number", "required": True, "description": "起点纬度"},
+            {"name": "lng1", "type": "number", "required": True, "description": "起点经度"},
+            {"name": "lat2", "type": "number", "required": True, "description": "终点纬度"},
+            {"name": "lng2", "type": "number", "required": True, "description": "终点经度"}
+        ],
+        "icon": "map-pin"
+    },
+    "geo_search": {
+        "id": "geo_search",
+        "name": "附近搜索",
+        "name_en": "Nearby Search",
+        "description": "搜索附近的地点",
+        "category": "geo",
+        "subcategory": "search",
+        "api_endpoint": "/api/geo/search",
+        "method": "POST",
+        "params": [
+            {"name": "lat", "type": "number", "required": True, "description": "纬度"},
+            {"name": "lng", "type": "number", "required": True, "description": "经度"},
+            {"name": "radius", "type": "number", "required": False, "description": "半径(米)"}
+        ],
+        "icon": "search"
+    },
+    # ========== 时区工具 ==========
+    "tz_convert": {
+        "id": "tz_convert",
+        "name": "时区转换",
+        "name_en": "Timezone Convert",
+        "description": "转换不同时区的时间",
+        "category": "timezone",
+        "subcategory": "convert",
+        "api_endpoint": "/api/tz/convert",
+        "method": "POST",
+        "params": [
+            {"name": "time", "type": "string", "required": True, "description": "时间"},
+            {"name": "from_tz", "type": "string", "required": True, "description": "源时区"},
+            {"name": "to_tz", "type": "string", "required": True, "description": "目标时区"}
+        ],
+        "icon": "globe"
+    },
+    "tz_current": {
+        "id": "tz_current",
+        "name": "当前时间",
+        "name_en": "Current Time",
+        "description": "获取指定时区的当前时间",
+        "category": "timezone",
+        "subcategory": "current",
+        "api_endpoint": "/api/tz/current",
+        "method": "GET",
+        "params": [
+            {"name": "timezone", "type": "string", "required": True, "description": "时区"}
+        ],
+        "icon": "clock"
+    },
+    "tz_list": {
+        "id": "tz_list",
+        "name": "时区列表",
+        "name_en": "List Timezones",
+        "description": "获取所有可用时区",
+        "category": "timezone",
+        "subcategory": "list",
+        "api_endpoint": "/api/tz/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    # ========== 颜色工具 ==========
+    "color_convert": {
+        "id": "color_convert",
+        "name": "颜色转换",
+        "name_en": "Color Convert",
+        "description": "不同颜色格式转换",
+        "category": "color",
+        "subcategory": "convert",
+        "api_endpoint": "/api/color/convert",
+        "method": "POST",
+        "params": [
+            {"name": "color", "type": "string", "required": True, "description": "颜色值"},
+            {"name": "format", "type": "string", "required": True, "description": "目标格式"}
+        ],
+        "icon": "droplet"
+    },
+    "color_blend": {
+        "id": "color_blend",
+        "name": "颜色混合",
+        "name_en": "Blend Colors",
+        "description": "混合两种颜色",
+        "category": "color",
+        "subcategory": "blend",
+        "api_endpoint": "/api/color/blend",
+        "method": "POST",
+        "params": [
+            {"name": "color1", "type": "string", "required": True, "description": "颜色1"},
+            {"name": "color2", "type": "string", "required": True, "description": "颜色2"},
+            {"name": "ratio", "type": "number", "required": False, "description": "比例"}
+        ],
+        "icon": "droplet"
     }
 }
 
