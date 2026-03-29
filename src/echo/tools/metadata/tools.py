@@ -37610,6 +37610,210 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "route_id", "type": "string", "required": True, "description": "路由ID"}
         ],
         "icon": "trash"
+    },
+    # ========== 服务发现工具 ==========
+    "discovery_register": {
+        "id": "discovery_register",
+        "name": "注册服务",
+        "name_en": "Register Service",
+        "description": "注册服务到发现中心",
+        "category": "discovery",
+        "subcategory": "register",
+        "api_endpoint": "/api/discovery/register",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "服务名称"},
+            {"name": "host", "type": "string", "required": True, "description": "服务主机"},
+            {"name": "port", "type": "number", "required": True, "description": "服务端口"}
+        ],
+        "icon": "plus"
+    },
+    "discovery_deregister": {
+        "id": "discovery_deregister",
+        "name": "注销服务",
+        "name_en": "Deregister Service",
+        "description": "从发现中心注销服务",
+        "category": "discovery",
+        "subcategory": "deregister",
+        "api_endpoint": "/api/discovery/deregister",
+        "method": "POST",
+        "params": [
+            {"name": "service_id", "type": "string", "required": True, "description": "服务ID"}
+        ],
+        "icon": "x"
+    },
+    "discovery_find": {
+        "id": "discovery_find",
+        "name": "查找服务",
+        "name_en": "Find Service",
+        "description": "查找可用服务",
+        "category": "discovery",
+        "subcategory": "find",
+        "api_endpoint": "/api/discovery/find",
+        "method": "GET",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "服务名称"}
+        ],
+        "icon": "search"
+    },
+    # ========== 配置中心工具 ==========
+    "config_center_get": {
+        "id": "config_center_get",
+        "name": "获取配置",
+        "name_en": "Get Config",
+        "description": "从配置中心获取配置",
+        "category": "config_center",
+        "subcategory": "get",
+        "api_endpoint": "/api/config/get",
+        "method": "GET",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "配置键"}
+        ],
+        "icon": "file"
+    },
+    "config_center_set": {
+        "id": "config_center_set",
+        "name": "设置配置",
+        "name_en": "Set Config",
+        "description": "设置配置到中心",
+        "category": "config_center",
+        "subcategory": "set",
+        "api_endpoint": "/api/config/set",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "配置键"},
+            {"name": "value", "type": "string", "required": True, "description": "配置值"}
+        ],
+        "icon": "save"
+    },
+    "config_center_list": {
+        "id": "config_center_list",
+        "name": "列出配置",
+        "name_en": "List Configs",
+        "description": "列出所有配置",
+        "category": "config_center",
+        "subcategory": "list",
+        "api_endpoint": "/api/config/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    # ========== 密钥管理工具 ==========
+    "secret_create": {
+        "id": "secret_create",
+        "name": "创建密钥",
+        "name_en": "Create Secret",
+        "description": "创建加密密钥",
+        "category": "secret",
+        "subcategory": "create",
+        "api_endpoint": "/api/secret/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "密钥名称"},
+            {"name": "value", "type": "string", "required": True, "description": "密钥值"}
+        ],
+        "icon": "key"
+    },
+    "secret_get": {
+        "id": "secret_get",
+        "name": "获取密钥",
+        "name_en": "Get Secret",
+        "description": "获取密钥值",
+        "category": "secret",
+        "subcategory": "get",
+        "api_endpoint": "/api/secret/get",
+        "method": "GET",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "密钥名称"}
+        ],
+        "icon": "key"
+    },
+    "secret_delete": {
+        "id": "secret_delete",
+        "name": "删除密钥",
+        "name_en": "Delete Secret",
+        "description": "删除密钥",
+        "category": "secret",
+        "subcategory": "delete",
+        "api_endpoint": "/api/secret/delete",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "密钥名称"}
+        ],
+        "icon": "trash"
+    },
+    # ========== 服务网格工具 ==========
+    "mesh_register": {
+        "id": "mesh_register",
+        "name": "注册服务网格",
+        "name_en": "Register Mesh",
+        "description": "注册到服务网格",
+        "category": "service_mesh",
+        "subcategory": "register",
+        "api_endpoint": "/api/mesh/register",
+        "method": "POST",
+        "params": [
+            {"name": "service", "type": "string", "required": True, "description": "服务名"}
+        ],
+        "icon": "grid"
+    },
+    "mesh_circuit_break": {
+        "id": "mesh_circuit_break",
+        "name": "设置熔断",
+        "name_en": "Set Circuit Breaker",
+        "description": "设置服务熔断规则",
+        "category": "service_mesh",
+        "subcategory": "circuit_breaker",
+        "api_endpoint": "/api/mesh/circuit",
+        "method": "POST",
+        "params": [
+            {"name": "service", "type": "string", "required": True, "description": "服务名"},
+            {"name": "threshold", "type": "number", "required": True, "description": "熔断阈值"}
+        ],
+        "icon": "alert-triangle"
+    },
+    # ========== 追踪工具 ==========
+    "trace_start": {
+        "id": "trace_start",
+        "name": "开始追踪",
+        "name_en": "Start Trace",
+        "description": "开始分布式追踪",
+        "category": "trace",
+        "subcategory": "start",
+        "api_endpoint": "/api/trace/start",
+        "method": "POST",
+        "params": [
+            {"name": "operation", "type": "string", "required": True, "description": "操作名称"}
+        ],
+        "icon": "activity"
+    },
+    "trace_end": {
+        "id": "trace_end",
+        "name": "结束追踪",
+        "name_en": "End Trace",
+        "description": "结束分布式追踪",
+        "category": "trace",
+        "subcategory": "end",
+        "api_endpoint": "/api/trace/end",
+        "method": "POST",
+        "params": [
+            {"name": "trace_id", "type": "string", "required": True, "description": "追踪ID"}
+        ],
+        "icon": "check"
+    },
+    "trace_get": {
+        "id": "trace_get",
+        "name": "获取追踪",
+        "name_en": "Get Trace",
+        "description": "获取追踪详情",
+        "category": "trace",
+        "subcategory": "get",
+        "api_endpoint": "/api/trace/get",
+        "method": "GET",
+        "params": [
+            {"name": "trace_id", "type": "string", "required": True, "description": "追踪ID"}
+        ],
+        "icon": "file-text"
     }
 }
 
