@@ -35091,6 +35091,720 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "ticket_id", "type": "string", "required": True, "description": "工单ID"}
         ],
         "icon": "check-circle"
+    },
+    # ========== 工作流工具 ==========
+    "workflow_create": {
+        "id": "workflow_create",
+        "name": "创建工作流",
+        "name_en": "Create Workflow",
+        "description": "创建新的自动化工作流",
+        "category": "workflow",
+        "subcategory": "create",
+        "api_endpoint": "/api/workflow/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "工作流名称"},
+            {"name": "steps", "type": "array", "required": True, "description": "步骤列表"}
+        ],
+        "icon": "git-branch"
+    },
+    "workflow_run": {
+        "id": "workflow_run",
+        "name": "执行工作流",
+        "name_en": "Run Workflow",
+        "description": "执行指定工作流",
+        "category": "workflow",
+        "subcategory": "execute",
+        "api_endpoint": "/api/workflow/run",
+        "method": "POST",
+        "params": [
+            {"name": "workflow_id", "type": "string", "required": True, "description": "工作流ID"},
+            {"name": "input", "type": "object", "required": False, "description": "输入参数"}
+        ],
+        "icon": "play"
+    },
+    "workflow_pause": {
+        "id": "workflow_pause",
+        "name": "暂停工作流",
+        "name_en": "Pause Workflow",
+        "description": "暂停正在执行的工作流",
+        "category": "workflow",
+        "subcategory": "control",
+        "api_endpoint": "/api/workflow/pause",
+        "method": "POST",
+        "params": [
+            {"name": "workflow_id", "type": "string", "required": True, "description": "工作流ID"}
+        ],
+        "icon": "pause"
+    },
+    "workflow_resume": {
+        "id": "workflow_resume",
+        "name": "恢复工作流",
+        "name_en": "Resume Workflow",
+        "description": "恢复暂停的工作流",
+        "category": "workflow",
+        "subcategory": "control",
+        "api_endpoint": "/api/workflow/resume",
+        "method": "POST",
+        "params": [
+            {"name": "workflow_id", "type": "string", "required": True, "description": "工作流ID"}
+        ],
+        "icon": "play-circle"
+    },
+    "workflow_cancel": {
+        "id": "workflow_cancel",
+        "name": "取消工作流",
+        "name_en": "Cancel Workflow",
+        "description": "取消正在执行的工作流",
+        "category": "workflow",
+        "subcategory": "control",
+        "api_endpoint": "/api/workflow/cancel",
+        "method": "POST",
+        "params": [
+            {"name": "workflow_id", "type": "string", "required": True, "description": "工作流ID"}
+        ],
+        "icon": "x-circle"
+    },
+    "workflow_list": {
+        "id": "workflow_list",
+        "name": "列出工作流",
+        "name_en": "List Workflows",
+        "description": "获取所有工作流列表",
+        "category": "workflow",
+        "subcategory": "query",
+        "api_endpoint": "/api/workflow/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "workflow_status": {
+        "id": "workflow_status",
+        "name": "工作流状态",
+        "name_en": "Workflow Status",
+        "description": "获取工作流执行状态",
+        "category": "workflow",
+        "subcategory": "query",
+        "api_endpoint": "/api/workflow/status",
+        "method": "GET",
+        "params": [
+            {"name": "workflow_id", "type": "string", "required": True, "description": "工作流ID"}
+        ],
+        "icon": "activity"
+    },
+    "workflow_history": {
+        "id": "workflow_history",
+        "name": "工作流历史",
+        "name_en": "Workflow History",
+        "description": "获取工作流执行历史",
+        "category": "workflow",
+        "subcategory": "query",
+        "api_endpoint": "/api/workflow/history",
+        "method": "GET",
+        "params": [
+            {"name": "workflow_id", "type": "string", "required": True, "description": "工作流ID"}
+        ],
+        "icon": "clock"
+    },
+    # ========== 看板工具 ==========
+    "board_create": {
+        "id": "board_create",
+        "name": "创建看板",
+        "name_en": "Create Board",
+        "description": "创建新看板",
+        "category": "board",
+        "subcategory": "create",
+        "api_endpoint": "/api/board/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "看板名称"},
+            {"name": "columns", "type": "array", "required": False, "description": "列定义"}
+        ],
+        "icon": "columns"
+    },
+    "board_add_column": {
+        "id": "board_add_column",
+        "name": "添加列",
+        "name_en": "Add Column",
+        "description": "向看板添加新列",
+        "category": "board",
+        "subcategory": "column",
+        "api_endpoint": "/api/board/column/add",
+        "method": "POST",
+        "params": [
+            {"name": "board_id", "type": "string", "required": True, "description": "看板ID"},
+            {"name": "name", "type": "string", "required": True, "description": "列名称"},
+            {"name": "position", "type": "number", "required": False, "description": "位置"}
+        ],
+        "icon": "plus"
+    },
+    "board_add_card": {
+        "id": "board_add_card",
+        "name": "添加卡片",
+        "name_en": "Add Card",
+        "description": "向列添加新卡片",
+        "category": "board",
+        "subcategory": "card",
+        "api_endpoint": "/api/board/card/add",
+        "method": "POST",
+        "params": [
+            {"name": "column_id", "type": "string", "required": True, "description": "列ID"},
+            {"name": "title", "type": "string", "required": True, "description": "卡片标题"},
+            {"name": "description", "type": "string", "required": False, "description": "卡片描述"}
+        ],
+        "icon": "file-plus"
+    },
+    "board_move_card": {
+        "id": "board_move_card",
+        "name": "移动卡片",
+        "name_en": "Move Card",
+        "description": "将卡片移动到另一列",
+        "category": "board",
+        "subcategory": "card",
+        "api_endpoint": "/api/board/card/move",
+        "method": "POST",
+        "params": [
+            {"name": "card_id", "type": "string", "required": True, "description": "卡片ID"},
+            {"name": "target_column_id", "type": "string", "required": True, "description": "目标列ID"},
+            {"name": "position", "type": "number", "required": False, "description": "目标位置"}
+        ],
+        "icon": "move"
+    },
+    "board_delete_card": {
+        "id": "board_delete_card",
+        "name": "删除卡片",
+        "name_en": "Delete Card",
+        "description": "删除看板卡片",
+        "category": "board",
+        "subcategory": "card",
+        "api_endpoint": "/api/board/card/delete",
+        "method": "POST",
+        "params": [
+            {"name": "card_id", "type": "string", "required": True, "description": "卡片ID"}
+        ],
+        "icon": "trash"
+    },
+    "board_get": {
+        "id": "board_get",
+        "name": "获取看板",
+        "name_en": "Get Board",
+        "description": "获取看板详情",
+        "category": "board",
+        "subcategory": "query",
+        "api_endpoint": "/api/board/get",
+        "method": "GET",
+        "params": [
+            {"name": "board_id", "type": "string", "required": True, "description": "看板ID"}
+        ],
+        "icon": "layout"
+    },
+    "board_list": {
+        "id": "board_list",
+        "name": "列出看板",
+        "name_en": "List Boards",
+        "description": "获取所有看板列表",
+        "category": "board",
+        "subcategory": "query",
+        "api_endpoint": "/api/board/list",
+        "method": "GET",
+        "params": [],
+        "icon": "grid"
+    },
+    # ========== 日历工具 ==========
+    "calendar_event": {
+        "id": "calendar_event",
+        "name": "创建事件",
+        "name_en": "Create Event",
+        "description": "在日历上创建事件",
+        "category": "calendar",
+        "subcategory": "event",
+        "api_endpoint": "/api/calendar/event",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "事件标题"},
+            {"name": "start", "type": "string", "required": True, "description": "开始时间"},
+            {"name": "end", "type": "string", "required": False, "description": "结束时间"},
+            {"name": "description", "type": "string", "required": False, "description": "描述"}
+        ],
+        "icon": "calendar"
+    },
+    "calendar_list": {
+        "id": "calendar_list",
+        "name": "列出事件",
+        "name_en": "List Events",
+        "description": "获取日期范围内的事件",
+        "category": "calendar",
+        "subcategory": "query",
+        "api_endpoint": "/api/calendar/list",
+        "method": "GET",
+        "params": [
+            {"name": "start_date", "type": "string", "required": True, "description": "开始日期"},
+            {"name": "end_date", "type": "string", "required": False, "description": "结束日期"}
+        ],
+        "icon": "list"
+    },
+    "calendar_update": {
+        "id": "calendar_update",
+        "name": "更新事件",
+        "name_en": "Update Event",
+        "description": "更新日历事件",
+        "category": "calendar",
+        "subcategory": "event",
+        "api_endpoint": "/api/calendar/update",
+        "method": "POST",
+        "params": [
+            {"name": "event_id", "type": "string", "required": True, "description": "事件ID"},
+            {"name": "title", "type": "string", "required": False, "description": "标题"},
+            {"name": "start", "type": "string", "required": False, "description": "开始时间"},
+            {"name": "end", "type": "string", "required": False, "description": "结束时间"}
+        ],
+        "icon": "edit"
+    },
+    "calendar_delete": {
+        "id": "calendar_delete",
+        "name": "删除事件",
+        "name_en": "Delete Event",
+        "description": "删除日历事件",
+        "category": "calendar",
+        "subcategory": "event",
+        "api_endpoint": "/api/calendar/delete",
+        "method": "POST",
+        "params": [
+            {"name": "event_id", "type": "string", "required": True, "description": "事件ID"}
+        ],
+        "icon": "trash"
+    },
+    "calendar_today": {
+        "id": "calendar_today",
+        "name": "今日事件",
+        "name_en": "Today's Events",
+        "description": "获取今天的所有事件",
+        "category": "calendar",
+        "subcategory": "query",
+        "api_endpoint": "/api/calendar/today",
+        "method": "GET",
+        "params": [],
+        "icon": "sun"
+    },
+    "calendar_upcoming": {
+        "id": "calendar_upcoming",
+        "name": "即将到来",
+        "name_en": "Upcoming Events",
+        "description": "获取即将到来的事件",
+        "category": "calendar",
+        "subcategory": "query",
+        "api_endpoint": "/api/calendar/upcoming",
+        "method": "GET",
+        "params": [
+            {"name": "days", "type": "number", "required": False, "description": "天数,默认7天"}
+        ],
+        "icon": "clock"
+    },
+    # ========== 笔记工具 ==========
+    "note_create": {
+        "id": "note_create",
+        "name": "创建笔记",
+        "name_en": "Create Note",
+        "description": "创建新笔记",
+        "category": "note",
+        "subcategory": "create",
+        "api_endpoint": "/api/note/create",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "笔记标题"},
+            {"name": "content", "type": "string", "required": False, "description": "笔记内容"}
+        ],
+        "icon": "file-plus"
+    },
+    "note_get": {
+        "id": "note_get",
+        "name": "获取笔记",
+        "name_en": "Get Note",
+        "description": "获取笔记详情",
+        "category": "note",
+        "subcategory": "query",
+        "api_endpoint": "/api/note/get",
+        "method": "GET",
+        "params": [
+            {"name": "note_id", "type": "string", "required": True, "description": "笔记ID"}
+        ],
+        "icon": "file"
+    },
+    "note_update": {
+        "id": "note_update",
+        "name": "更新笔记",
+        "name_en": "Update Note",
+        "description": "更新笔记内容",
+        "category": "note",
+        "subcategory": "update",
+        "api_endpoint": "/api/note/update",
+        "method": "POST",
+        "params": [
+            {"name": "note_id", "type": "string", "required": True, "description": "笔记ID"},
+            {"name": "title", "type": "string", "required": False, "description": "标题"},
+            {"name": "content", "type": "string", "required": False, "description": "内容"}
+        ],
+        "icon": "edit"
+    },
+    "note_delete": {
+        "id": "note_delete",
+        "name": "删除笔记",
+        "name_en": "Delete Note",
+        "description": "删除笔记",
+        "category": "note",
+        "subcategory": "delete",
+        "api_endpoint": "/api/note/delete",
+        "method": "POST",
+        "params": [
+            {"name": "note_id", "type": "string", "required": True, "description": "笔记ID"}
+        ],
+        "icon": "trash"
+    },
+    "note_list": {
+        "id": "note_list",
+        "name": "列出笔记",
+        "name_en": "List Notes",
+        "description": "获取所有笔记",
+        "category": "note",
+        "subcategory": "query",
+        "api_endpoint": "/api/note/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "note_search": {
+        "id": "note_search",
+        "name": "搜索笔记",
+        "name_en": "Search Notes",
+        "description": "搜索笔记内容",
+        "category": "note",
+        "subcategory": "query",
+        "api_endpoint": "/api/note/search",
+        "method": "GET",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "搜索关键词"}
+        ],
+        "icon": "search"
+    },
+    # ========== 书签工具 ==========
+    "bookmark_add": {
+        "id": "bookmark_add",
+        "name": "添加书签",
+        "name_en": "Add Bookmark",
+        "description": "添加网页书签",
+        "category": "bookmark",
+        "subcategory": "create",
+        "api_endpoint": "/api/bookmark/add",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "网址"},
+            {"name": "title", "type": "string", "required": False, "description": "标题"},
+            {"name": "tags", "type": "array", "required": False, "description": "标签"}
+        ],
+        "icon": "bookmark"
+    },
+    "bookmark_list": {
+        "id": "bookmark_list",
+        "name": "列出书签",
+        "name_en": "List Bookmarks",
+        "description": "获取所有书签",
+        "category": "bookmark",
+        "subcategory": "query",
+        "api_endpoint": "/api/bookmark/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "bookmark_delete": {
+        "id": "bookmark_delete",
+        "name": "删除书签",
+        "name_en": "Delete Bookmark",
+        "description": "删除书签",
+        "category": "bookmark",
+        "subcategory": "delete",
+        "api_endpoint": "/api/bookmark/delete",
+        "method": "POST",
+        "params": [
+            {"name": "bookmark_id", "type": "string", "required": True, "description": "书签ID"}
+        ],
+        "icon": "trash"
+    },
+    "bookmark_search": {
+        "id": "bookmark_search",
+        "name": "搜索书签",
+        "name_en": "Search Bookmarks",
+        "description": "搜索书签",
+        "category": "bookmark",
+        "subcategory": "query",
+        "api_endpoint": "/api/bookmark/search",
+        "method": "GET",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "搜索关键词"}
+        ],
+        "icon": "search"
+    },
+    # ========== 联系人工具 ==========
+    "contact_add": {
+        "id": "contact_add",
+        "name": "添加联系人",
+        "name_en": "Add Contact",
+        "description": "添加新联系人",
+        "category": "contact",
+        "subcategory": "create",
+        "api_endpoint": "/api/contact/add",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "姓名"},
+            {"name": "email", "type": "string", "required": False, "description": "邮箱"},
+            {"name": "phone", "type": "string", "required": False, "description": "电话"},
+            {"name": "company", "type": "string", "required": False, "description": "公司"}
+        ],
+        "icon": "user-plus"
+    },
+    "contact_get": {
+        "id": "contact_get",
+        "name": "获取联系人",
+        "name_en": "Get Contact",
+        "description": "获取联系人详情",
+        "category": "contact",
+        "subcategory": "query",
+        "api_endpoint": "/api/contact/get",
+        "method": "GET",
+        "params": [
+            {"name": "contact_id", "type": "string", "required": True, "description": "联系人ID"}
+        ],
+        "icon": "user"
+    },
+    "contact_update": {
+        "id": "contact_update",
+        "name": "更新联系人",
+        "name_en": "Update Contact",
+        "description": "更新联系人信息",
+        "category": "contact",
+        "subcategory": "update",
+        "api_endpoint": "/api/contact/update",
+        "method": "POST",
+        "params": [
+            {"name": "contact_id", "type": "string", "required": True, "description": "联系人ID"},
+            {"name": "name", "type": "string", "required": False, "description": "姓名"},
+            {"name": "email", "type": "string", "required": False, "description": "邮箱"},
+            {"name": "phone", "type": "string", "required": False, "description": "电话"}
+        ],
+        "icon": "edit"
+    },
+    "contact_delete": {
+        "id": "contact_delete",
+        "name": "删除联系人",
+        "name_en": "Delete Contact",
+        "description": "删除联系人",
+        "category": "contact",
+        "subcategory": "delete",
+        "api_endpoint": "/api/contact/delete",
+        "method": "POST",
+        "params": [
+            {"name": "contact_id", "type": "string", "required": True, "description": "联系人ID"}
+        ],
+        "icon": "trash"
+    },
+    "contact_list": {
+        "id": "contact_list",
+        "name": "列出联系人",
+        "name_en": "List Contacts",
+        "description": "获取所有联系人",
+        "category": "contact",
+        "subcategory": "query",
+        "api_endpoint": "/api/contact/list",
+        "method": "GET",
+        "params": [],
+        "icon": "users"
+    },
+    "contact_search": {
+        "id": "contact_search",
+        "name": "搜索联系人",
+        "name_en": "Search Contacts",
+        "description": "搜索联系人",
+        "category": "contact",
+        "subcategory": "query",
+        "api_endpoint": "/api/contact/search",
+        "method": "GET",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "搜索关键词"}
+        ],
+        "icon": "search"
+    },
+    # ========== 仪表盘工具 ==========
+    "dashboard_create": {
+        "id": "dashboard_create",
+        "name": "创建仪表盘",
+        "name_en": "Create Dashboard",
+        "description": "创建新仪表盘",
+        "category": "dashboard",
+        "subcategory": "create",
+        "api_endpoint": "/api/dashboard/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "仪表盘名称"},
+            {"name": "widgets", "type": "array", "required": False, "description": "小部件配置"}
+        ],
+        "icon": "layout"
+    },
+    "dashboard_add_widget": {
+        "id": "dashboard_add_widget",
+        "name": "添加小部件",
+        "name_en": "Add Widget",
+        "description": "向仪表盘添加小部件",
+        "category": "dashboard",
+        "subcategory": "widget",
+        "api_endpoint": "/api/dashboard/widget/add",
+        "method": "POST",
+        "params": [
+            {"name": "dashboard_id", "type": "string", "required": True, "description": "仪表盘ID"},
+            {"name": "widget_type", "type": "string", "required": True, "description": "小部件类型"},
+            {"name": "config", "type": "object", "required": False, "description": "配置"}
+        ],
+        "icon": "plus"
+    },
+    "dashboard_get": {
+        "id": "dashboard_get",
+        "name": "获取仪表盘",
+        "name_en": "Get Dashboard",
+        "description": "获取仪表盘详情",
+        "category": "dashboard",
+        "subcategory": "query",
+        "api_endpoint": "/api/dashboard/get",
+        "method": "GET",
+        "params": [
+            {"name": "dashboard_id", "type": "string", "required": True, "description": "仪表盘ID"}
+        ],
+        "icon": "bar-chart"
+    },
+    "dashboard_list": {
+        "id": "dashboard_list",
+        "name": "列出仪表盘",
+        "name_en": "List Dashboards",
+        "description": "获取所有仪表盘",
+        "category": "dashboard",
+        "subcategory": "query",
+        "api_endpoint": "/api/dashboard/list",
+        "method": "GET",
+        "params": [],
+        "icon": "grid"
+    },
+    # ========== 报告工具 ==========
+    "report_generate": {
+        "id": "report_generate",
+        "name": "生成报告",
+        "name_en": "Generate Report",
+        "description": "生成数据分析报告",
+        "category": "report",
+        "subcategory": "generate",
+        "api_endpoint": "/api/report/generate",
+        "method": "POST",
+        "params": [
+            {"name": "type", "type": "string", "required": True, "description": "报告类型"},
+            {"name": "date_range", "type": "object", "required": False, "description": "日期范围"},
+            {"name": "format", "type": "string", "required": False, "description": "输出格式"}
+        ],
+        "icon": "file-text"
+    },
+    "report_schedule": {
+        "id": "report_schedule",
+        "name": "定时报告",
+        "name_en": "Schedule Report",
+        "description": "设置报告定时生成",
+        "category": "report",
+        "subcategory": "schedule",
+        "api_endpoint": "/api/report/schedule",
+        "method": "POST",
+        "params": [
+            {"name": "report_type", "type": "string", "required": True, "description": "报告类型"},
+            {"name": "cron", "type": "string", "required": True, "description": "Cron表达式"},
+            {"name": "recipients", "type": "array", "required": False, "description": "收件人"}
+        ],
+        "icon": "clock"
+    },
+    "report_list": {
+        "id": "report_list",
+        "name": "列出报告",
+        "name_en": "List Reports",
+        "description": "获取报告列表",
+        "category": "report",
+        "subcategory": "query",
+        "api_endpoint": "/api/report/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "report_download": {
+        "id": "report_download",
+        "name": "下载报告",
+        "name_en": "Download Report",
+        "description": "下载报告文件",
+        "category": "report",
+        "subcategory": "download",
+        "api_endpoint": "/api/report/download",
+        "method": "GET",
+        "params": [
+            {"name": "report_id", "type": "string", "required": True, "description": "报告ID"}
+        ],
+        "icon": "download"
+    },
+    # ========== 通知工具 ==========
+    "notify_send": {
+        "id": "notify_send",
+        "name": "发送通知",
+        "name_en": "Send Notification",
+        "description": "发送通知消息",
+        "category": "notification",
+        "subcategory": "send",
+        "api_endpoint": "/api/notify/send",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "通知标题"},
+            {"name": "message", "type": "string", "required": True, "description": "通知内容"},
+            {"name": "channel", "type": "string", "required": False, "description": "渠道"},
+            {"name": "recipients", "type": "array", "required": False, "description": "接收人"}
+        ],
+        "icon": "bell"
+    },
+    "notify_list": {
+        "id": "notify_list",
+        "name": "列出通知",
+        "name_en": "List Notifications",
+        "description": "获取通知列表",
+        "category": "notification",
+        "subcategory": "query",
+        "api_endpoint": "/api/notify/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "notify_mark_read": {
+        "id": "notify_mark_read",
+        "name": "标记已读",
+        "name_en": "Mark as Read",
+        "description": "标记通知为已读",
+        "category": "notification",
+        "subcategory": "update",
+        "api_endpoint": "/api/notify/mark-read",
+        "method": "POST",
+        "params": [
+            {"name": "notification_id", "type": "string", "required": True, "description": "通知ID"}
+        ],
+        "icon": "check"
+    },
+    "notify_delete": {
+        "id": "notify_delete",
+        "name": "删除通知",
+        "name_en": "Delete Notification",
+        "description": "删除通知",
+        "category": "notification",
+        "subcategory": "delete",
+        "api_endpoint": "/api/notify/delete",
+        "method": "POST",
+        "params": [
+            {"name": "notification_id", "type": "string", "required": True, "description": "通知ID"}
+        ],
+        "icon": "trash"
     }
 }
 
