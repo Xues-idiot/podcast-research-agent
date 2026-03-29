@@ -35805,6 +35805,464 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "notification_id", "type": "string", "required": True, "description": "通知ID"}
         ],
         "icon": "trash"
+    },
+    # ========== 项目管理工具 ==========
+    "project_create": {
+        "id": "project_create",
+        "name": "创建项目",
+        "name_en": "Create Project",
+        "description": "创建新项目",
+        "category": "project",
+        "subcategory": "create",
+        "api_endpoint": "/api/project/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "项目名称"},
+            {"name": "description", "type": "string", "required": False, "description": "项目描述"}
+        ],
+        "icon": "folder-plus"
+    },
+    "project_get": {
+        "id": "project_get",
+        "name": "获取项目",
+        "name_en": "Get Project",
+        "description": "获取项目详情",
+        "category": "project",
+        "subcategory": "query",
+        "api_endpoint": "/api/project/get",
+        "method": "GET",
+        "params": [
+            {"name": "project_id", "type": "string", "required": True, "description": "项目ID"}
+        ],
+        "icon": "folder"
+    },
+    "project_update": {
+        "id": "project_update",
+        "name": "更新项目",
+        "name_en": "Update Project",
+        "description": "更新项目信息",
+        "category": "project",
+        "subcategory": "update",
+        "api_endpoint": "/api/project/update",
+        "method": "POST",
+        "params": [
+            {"name": "project_id", "type": "string", "required": True, "description": "项目ID"},
+            {"name": "name", "type": "string", "required": False, "description": "项目名称"},
+            {"name": "description", "type": "string", "required": False, "description": "项目描述"}
+        ],
+        "icon": "edit"
+    },
+    "project_delete": {
+        "id": "project_delete",
+        "name": "删除项目",
+        "name_en": "Delete Project",
+        "description": "删除项目",
+        "category": "project",
+        "subcategory": "delete",
+        "api_endpoint": "/api/project/delete",
+        "method": "POST",
+        "params": [
+            {"name": "project_id", "type": "string", "required": True, "description": "项目ID"}
+        ],
+        "icon": "trash"
+    },
+    "project_list": {
+        "id": "project_list",
+        "name": "列出项目",
+        "name_en": "List Projects",
+        "description": "获取所有项目",
+        "category": "project",
+        "subcategory": "query",
+        "api_endpoint": "/api/project/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "project_add_member": {
+        "id": "project_add_member",
+        "name": "添加成员",
+        "name_en": "Add Member",
+        "description": "向项目添加成员",
+        "category": "project",
+        "subcategory": "member",
+        "api_endpoint": "/api/project/member/add",
+        "method": "POST",
+        "params": [
+            {"name": "project_id", "type": "string", "required": True, "description": "项目ID"},
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "role", "type": "string", "required": False, "description": "角色"}
+        ],
+        "icon": "user-plus"
+    },
+    "project_task": {
+        "id": "project_task",
+        "name": "创建任务",
+        "name_en": "Create Task",
+        "description": "在项目中创建任务",
+        "category": "project",
+        "subcategory": "task",
+        "api_endpoint": "/api/project/task",
+        "method": "POST",
+        "params": [
+            {"name": "project_id", "type": "string", "required": True, "description": "项目ID"},
+            {"name": "title", "type": "string", "required": True, "description": "任务标题"},
+            {"name": "description", "type": "string", "required": False, "description": "任务描述"},
+            {"name": "assignee", "type": "string", "required": False, "description": "负责人"}
+        ],
+        "icon": "check-square"
+    },
+    "project_tasks": {
+        "id": "project_tasks",
+        "name": "列出任务",
+        "name_en": "List Tasks",
+        "description": "获取项目任务列表",
+        "category": "project",
+        "subcategory": "task",
+        "api_endpoint": "/api/project/tasks",
+        "method": "GET",
+        "params": [
+            {"name": "project_id", "type": "string", "required": True, "description": "项目ID"}
+        ],
+        "icon": "list"
+    },
+    # ========== 团队协作工具 ==========
+    "team_create": {
+        "id": "team_create",
+        "name": "创建团队",
+        "name_en": "Create Team",
+        "description": "创建新团队",
+        "category": "team",
+        "subcategory": "create",
+        "api_endpoint": "/api/team/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "团队名称"},
+            {"name": "members", "type": "array", "required": False, "description": "成员列表"}
+        ],
+        "icon": "users"
+    },
+    "team_add_member": {
+        "id": "team_add_member",
+        "name": "添加团队成员",
+        "name_en": "Add Team Member",
+        "description": "向团队添加成员",
+        "category": "team",
+        "subcategory": "member",
+        "api_endpoint": "/api/team/member/add",
+        "method": "POST",
+        "params": [
+            {"name": "team_id", "type": "string", "required": True, "description": "团队ID"},
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "user-plus"
+    },
+    "team_remove_member": {
+        "id": "team_remove_member",
+        "name": "移除团队成员",
+        "name_en": "Remove Team Member",
+        "description": "从团队移除成员",
+        "category": "team",
+        "subcategory": "member",
+        "api_endpoint": "/api/team/member/remove",
+        "method": "POST",
+        "params": [
+            {"name": "team_id", "type": "string", "required": True, "description": "团队ID"},
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "user-minus"
+    },
+    "team_list": {
+        "id": "team_list",
+        "name": "列出团队",
+        "name_en": "List Teams",
+        "description": "获取所有团队",
+        "category": "team",
+        "subcategory": "query",
+        "api_endpoint": "/api/team/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "team_roles": {
+        "id": "team_roles",
+        "name": "团队角色",
+        "name_en": "Team Roles",
+        "description": "获取团队成员角色",
+        "category": "team",
+        "subcategory": "query",
+        "api_endpoint": "/api/team/roles",
+        "method": "GET",
+        "params": [
+            {"name": "team_id", "type": "string", "required": True, "description": "团队ID"}
+        ],
+        "icon": "shield"
+    },
+    # ========== 文档工具 ==========
+    "doc_create": {
+        "id": "doc_create",
+        "name": "创建文档",
+        "name_en": "Create Document",
+        "description": "创建新文档",
+        "category": "doc",
+        "subcategory": "create",
+        "api_endpoint": "/api/doc/create",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "文档标题"},
+            {"name": "content", "type": "string", "required": False, "description": "文档内容"},
+            {"name": "folder_id", "type": "string", "required": False, "description": "文件夹ID"}
+        ],
+        "icon": "file-plus"
+    },
+    "doc_get": {
+        "id": "doc_get",
+        "name": "获取文档",
+        "name_en": "Get Document",
+        "description": "获取文档内容",
+        "category": "doc",
+        "subcategory": "query",
+        "api_endpoint": "/api/doc/get",
+        "method": "GET",
+        "params": [
+            {"name": "doc_id", "type": "string", "required": True, "description": "文档ID"}
+        ],
+        "icon": "file"
+    },
+    "doc_update": {
+        "id": "doc_update",
+        "name": "更新文档",
+        "name_en": "Update Document",
+        "description": "更新文档内容",
+        "category": "doc",
+        "subcategory": "update",
+        "api_endpoint": "/api/doc/update",
+        "method": "POST",
+        "params": [
+            {"name": "doc_id", "type": "string", "required": True, "description": "文档ID"},
+            {"name": "title", "type": "string", "required": False, "description": "标题"},
+            {"name": "content", "type": "string", "required": False, "description": "内容"}
+        ],
+        "icon": "edit"
+    },
+    "doc_delete": {
+        "id": "doc_delete",
+        "name": "删除文档",
+        "name_en": "Delete Document",
+        "description": "删除文档",
+        "category": "doc",
+        "subcategory": "delete",
+        "api_endpoint": "/api/doc/delete",
+        "method": "POST",
+        "params": [
+            {"name": "doc_id", "type": "string", "required": True, "description": "文档ID"}
+        ],
+        "icon": "trash"
+    },
+    "doc_list": {
+        "id": "doc_list",
+        "name": "列出文档",
+        "name_en": "List Documents",
+        "description": "获取文档列表",
+        "category": "doc",
+        "subcategory": "query",
+        "api_endpoint": "/api/doc/list",
+        "method": "GET",
+        "params": [
+            {"name": "folder_id", "type": "string", "required": False, "description": "文件夹ID"}
+        ],
+        "icon": "list"
+    },
+    "doc_share": {
+        "id": "doc_share",
+        "name": "分享文档",
+        "name_en": "Share Document",
+        "description": "分享文档给他人",
+        "category": "doc",
+        "subcategory": "share",
+        "api_endpoint": "/api/doc/share",
+        "method": "POST",
+        "params": [
+            {"name": "doc_id", "type": "string", "required": True, "description": "文档ID"},
+            {"name": "users", "type": "array", "required": True, "description": "分享用户列表"},
+            {"name": "permission", "type": "string", "required": False, "description": "权限"}
+        ],
+        "icon": "share"
+    },
+    # ========== 文件夹工具 ==========
+    "folder_create": {
+        "id": "folder_create",
+        "name": "创建文件夹",
+        "name_en": "Create Folder",
+        "description": "创建新文件夹",
+        "category": "folder",
+        "subcategory": "create",
+        "api_endpoint": "/api/folder/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "文件夹名称"},
+            {"name": "parent_id", "type": "string", "required": False, "description": "父文件夹ID"}
+        ],
+        "icon": "folder-plus"
+    },
+    "folder_list": {
+        "id": "folder_list",
+        "name": "列出文件夹",
+        "name_en": "List Folders",
+        "description": "获取文件夹列表",
+        "category": "folder",
+        "subcategory": "query",
+        "api_endpoint": "/api/folder/list",
+        "method": "GET",
+        "params": [
+            {"name": "parent_id", "type": "string", "required": False, "description": "父文件夹ID"}
+        ],
+        "icon": "folder"
+    },
+    "folder_delete": {
+        "id": "folder_delete",
+        "name": "删除文件夹",
+        "name_en": "Delete Folder",
+        "description": "删除文件夹",
+        "category": "folder",
+        "subcategory": "delete",
+        "api_endpoint": "/api/folder/delete",
+        "method": "POST",
+        "params": [
+            {"name": "folder_id", "type": "string", "required": True, "description": "文件夹ID"}
+        ],
+        "icon": "trash"
+    },
+    "folder_rename": {
+        "id": "folder_rename",
+        "name": "重命名文件夹",
+        "name_en": "Rename Folder",
+        "description": "重命名文件夹",
+        "category": "folder",
+        "subcategory": "update",
+        "api_endpoint": "/api/folder/rename",
+        "method": "POST",
+        "params": [
+            {"name": "folder_id", "type": "string", "required": True, "description": "文件夹ID"},
+            {"name": "name", "type": "string", "required": True, "description": "新名称"}
+        ],
+        "icon": "edit"
+    },
+    # ========== 标签工具 ==========
+    "tag_create": {
+        "id": "tag_create",
+        "name": "创建标签",
+        "name_en": "Create Tag",
+        "description": "创建新标签",
+        "category": "tag",
+        "subcategory": "create",
+        "api_endpoint": "/api/tag/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "标签名称"},
+            {"name": "color", "type": "string", "required": False, "description": "标签颜色"}
+        ],
+        "icon": "tag"
+    },
+    "tag_list": {
+        "id": "tag_list",
+        "name": "列出标签",
+        "name_en": "List Tags",
+        "description": "获取所有标签",
+        "category": "tag",
+        "subcategory": "query",
+        "api_endpoint": "/api/tag/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "tag_delete": {
+        "id": "tag_delete",
+        "name": "删除标签",
+        "name_en": "Delete Tag",
+        "description": "删除标签",
+        "category": "tag",
+        "subcategory": "delete",
+        "api_endpoint": "/api/tag/delete",
+        "method": "POST",
+        "params": [
+            {"name": "tag_id", "type": "string", "required": True, "description": "标签ID"}
+        ],
+        "icon": "trash"
+    },
+    "tag_items": {
+        "id": "tag_items",
+        "name": "标签内容",
+        "name_en": "Tag Items",
+        "description": "获取标签关联的内容",
+        "category": "tag",
+        "subcategory": "query",
+        "api_endpoint": "/api/tag/items",
+        "method": "GET",
+        "params": [
+            {"name": "tag_id", "type": "string", "required": True, "description": "标签ID"}
+        ],
+        "icon": "tag"
+    },
+    # ========== 评论工具 ==========
+    "comment_add": {
+        "id": "comment_add",
+        "name": "添加评论",
+        "name_en": "Add Comment",
+        "description": "添加评论",
+        "category": "comment",
+        "subcategory": "create",
+        "api_endpoint": "/api/comment/add",
+        "method": "POST",
+        "params": [
+            {"name": "target_type", "type": "string", "required": True, "description": "目标类型"},
+            {"name": "target_id", "type": "string", "required": True, "description": "目标ID"},
+            {"name": "content", "type": "string", "required": True, "description": "评论内容"}
+        ],
+        "icon": "message-square"
+    },
+    "comment_list": {
+        "id": "comment_list",
+        "name": "列出评论",
+        "name_en": "List Comments",
+        "description": "获取评论列表",
+        "category": "comment",
+        "subcategory": "query",
+        "api_endpoint": "/api/comment/list",
+        "method": "GET",
+        "params": [
+            {"name": "target_type", "type": "string", "required": True, "description": "目标类型"},
+            {"name": "target_id", "type": "string", "required": True, "description": "目标ID"}
+        ],
+        "icon": "list"
+    },
+    "comment_delete": {
+        "id": "comment_delete",
+        "name": "删除评论",
+        "name_en": "Delete Comment",
+        "description": "删除评论",
+        "category": "comment",
+        "subcategory": "delete",
+        "api_endpoint": "/api/comment/delete",
+        "method": "POST",
+        "params": [
+            {"name": "comment_id", "type": "string", "required": True, "description": "评论ID"}
+        ],
+        "icon": "trash"
+    },
+    "comment_update": {
+        "id": "comment_update",
+        "name": "更新评论",
+        "name_en": "Update Comment",
+        "description": "更新评论内容",
+        "category": "comment",
+        "subcategory": "update",
+        "api_endpoint": "/api/comment/update",
+        "method": "POST",
+        "params": [
+            {"name": "comment_id", "type": "string", "required": True, "description": "评论ID"},
+            {"name": "content", "type": "string", "required": True, "description": "新内容"}
+        ],
+        "icon": "edit"
     }
 }
 
