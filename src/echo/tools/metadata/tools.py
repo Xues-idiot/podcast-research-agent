@@ -40531,6 +40531,174 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "language", "type": "string", "required": False, "description": "语言"}
         ],
         "icon": "file-text"
+    },
+    # ========== 推荐系统工具 ==========
+    "recommend_items": {
+        "id": "recommend_items",
+        "name": "物品推荐",
+        "name_en": "Item Recommendation",
+        "description": "推荐相关物品",
+        "category": "recommendation",
+        "subcategory": "items",
+        "api_endpoint": "/api/recommend/items",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "category", "type": "string", "required": False, "description": "类别"},
+            {"name": "limit", "type": "number", "required": False, "description": "数量"}
+        ],
+        "icon": "thumbs-up"
+    },
+    "recommend_similar": {
+        "id": "recommend_similar",
+        "name": "相似推荐",
+        "name_en": "Similar Recommendation",
+        "description": "推荐相似物品",
+        "category": "recommendation",
+        "subcategory": "similar",
+        "api_endpoint": "/api/recommend/similar",
+        "method": "POST",
+        "params": [
+            {"name": "item_id", "type": "string", "required": True, "description": "物品ID"},
+            {"name": "limit", "type": "number", "required": False, "description": "数量"}
+        ],
+        "icon": "copy"
+    },
+    "recommend_popular": {
+        "id": "recommend_popular",
+        "name": "热门推荐",
+        "name_en": "Popular Recommendation",
+        "description": "推荐热门物品",
+        "category": "recommendation",
+        "subcategory": "popular",
+        "api_endpoint": "/api/recommend/popular",
+        "method": "GET",
+        "params": [
+            {"name": "category", "type": "string", "required": False, "description": "类别"},
+            {"name": "limit", "type": "number", "required": False, "description": "数量"}
+        ],
+        "icon": "trending-up"
+    },
+    # ========== 个性化工具 ==========
+    "personalize_user": {
+        "id": "personalize_user",
+        "name": "用户画像",
+        "name_en": "User Profile",
+        "description": "获取用户画像",
+        "category": "personalization",
+        "subcategory": "user",
+        "api_endpoint": "/api/personalize/user",
+        "method": "GET",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"}
+        ],
+        "icon": "user"
+    },
+    "personalize_update": {
+        "id": "personalize_update",
+        "name": "更新画像",
+        "name_en": "Update Profile",
+        "description": "更新用户画像",
+        "category": "personalization",
+        "subcategory": "update",
+        "api_endpoint": "/api/personalize/update",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "data", "type": "object", "required": True, "description": "数据"}
+        ],
+        "icon": "edit"
+    },
+    # ========== A/B测试分析工具 ==========
+    "abtest_analyze": {
+        "id": "abtest_analyze",
+        "name": "A/B测试分析",
+        "name_en": "A/B Test Analysis",
+        "description": "分析A/B测试结果",
+        "category": "abtest",
+        "subcategory": "analyze",
+        "api_endpoint": "/api/abtest/analyze",
+        "method": "POST",
+        "params": [
+            {"name": "experiment_id", "type": "string", "required": True, "description": "实验ID"}
+        ],
+        "icon": "bar-chart"
+    },
+    "abtest_significance": {
+        "id": "abtest_significance",
+        "name": "显著性检验",
+        "name_en": "Significance Test",
+        "description": "检验结果显著性",
+        "category": "abtest",
+        "subcategory": "significance",
+        "api_endpoint": "/api/abtest/significance",
+        "method": "POST",
+        "params": [
+            {"name": "control", "type": "array", "required": True, "description": "对照组"},
+            {"name": "treatment", "type": "array", "required": True, "description": "实验组"}
+        ],
+        "icon": "check-circle"
+    },
+    # ========== 漏斗分析工具 ==========
+    "funnel_analyze": {
+        "id": "funnel_analyze",
+        "name": "漏斗分析",
+        "name_en": "Funnel Analysis",
+        "description": "分析转化漏斗",
+        "category": "funnel",
+        "subcategory": "analyze",
+        "api_endpoint": "/api/funnel/analyze",
+        "method": "POST",
+        "params": [
+            {"name": "steps", "type": "array", "required": True, "description": "漏斗步骤"}
+        ],
+        "icon": "trending-down"
+    },
+    # ========== 归因分析工具 ==========
+    "attribution_first": {
+        "id": "attribution_first",
+        "name": "首次归因",
+        "name_en": "First Touch Attribution",
+        "description": "首次触点归因",
+        "category": "attribution",
+        "subcategory": "first",
+        "api_endpoint": "/api/attribution/first",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "conversion", "type": "string", "required": True, "description": "转化事件"}
+        ],
+        "icon": "home"
+    },
+    "attribution_last": {
+        "id": "attribution_last",
+        "name": "末次归因",
+        "name_en": "Last Touch Attribution",
+        "description": "末次触点归因",
+        "category": "attribution",
+        "subcategory": "last",
+        "api_endpoint": "/api/attribution/last",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "conversion", "type": "string", "required": True, "description": "转化事件"}
+        ],
+        "icon": "flag"
+    },
+    "attribution_linear": {
+        "id": "attribution_linear",
+        "name": "线性归因",
+        "name_en": "Linear Attribution",
+        "description": "线性归因模型",
+        "category": "attribution",
+        "subcategory": "linear",
+        "api_endpoint": "/api/attribution/linear",
+        "method": "POST",
+        "params": [
+            {"name": "user_id", "type": "string", "required": True, "description": "用户ID"},
+            {"name": "conversion", "type": "string", "required": True, "description": "转化事件"}
+        ],
+        "icon": "equal"
     }
 }
 
