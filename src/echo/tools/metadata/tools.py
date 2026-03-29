@@ -31280,6 +31280,389 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "method": "GET",
         "params": [],
         "icon": "link"
+    },
+
+    # ========== 事件响应工具 ==========
+    "ir_playbook": {
+        "id": "ir_playbook",
+        "name": "响应手册",
+        "name_en": "IR Playbook",
+        "description": "执行事件响应手册",
+        "category": "incidentresponse",
+        "subcategory": "playbook",
+        "api_endpoint": "/api/ir/playbook",
+        "method": "POST",
+        "params": [
+            {"name": "playbook_id", "type": "string", "required": True, "description": "手册ID"},
+            {"name": "incident_id", "type": "string", "required": True, "description": "事件ID"}
+        ],
+        "icon": "book"
+    },
+    "ir_contain": {
+        "id": "ir_contain",
+        "name": "遏制威胁",
+        "name_en": "Contain Threat",
+        "description": "遏制安全威胁",
+        "category": "incidentresponse",
+        "subcategory": "contain",
+        "api_endpoint": "/api/ir/contain",
+        "method": "POST",
+        "params": [
+            {"name": "threat_id", "type": "string", "required": True, "description": "威胁ID"}
+        ],
+        "icon": "x"
+    },
+    "ir_eradicate": {
+        "id": "ir_eradicate",
+        "name": "根除威胁",
+        "name_en": "Eradicate Threat",
+        "description": "根除安全威胁",
+        "category": "incidentresponse",
+        "subcategory": "eradicate",
+        "api_endpoint": "/api/ir/eradicate",
+        "method": "POST",
+        "params": [
+            {"name": "threat_id", "type": "string", "required": True, "description": "威胁ID"}
+        ],
+        "icon": "trash"
+    },
+    "ir_recover": {
+        "id": "ir_recover",
+        "name": "恢复系统",
+        "name_en": "Recover System",
+        "description": "恢复受影响系统",
+        "category": "incidentresponse",
+        "subcategory": "recover",
+        "api_endpoint": "/api/ir/recover",
+        "method": "POST",
+        "params": [
+            {"name": "system_id", "type": "string", "required": True, "description": "系统ID"}
+        ],
+        "icon": "refresh-cw"
+    },
+
+    # ========== 零信任工具 ==========
+    "zt_verify": {
+        "id": "zt_verify",
+        "name": "零信任验证",
+        "name_en": "Zero Trust Verify",
+        "description": "零信任身份验证",
+        "category": "zerotrust",
+        "subcategory": "verify",
+        "api_endpoint": "/api/zt/verify",
+        "method": "POST",
+        "params": [
+            {"name": "identity", "type": "string", "required": True, "description": "身份"},
+            {"name": "resource", "type": "string", "required": True, "description": "资源"}
+        ],
+        "icon": "shield"
+    },
+    "zt_policy": {
+        "id": "zt_policy",
+        "name": "零信任策略",
+        "name_en": "Zero Trust Policy",
+        "description": "管理零信任策略",
+        "category": "zerotrust",
+        "subcategory": "policy",
+        "api_endpoint": "/api/zt/policy",
+        "method": "POST",
+        "params": [
+            {"name": "policy", "type": "object", "required": True, "description": "策略"}
+        ],
+        "icon": "settings"
+    },
+    "zt_access": {
+        "id": "zt_access",
+        "name": "持续验证",
+        "name_en": "Continuous Verification",
+        "description": "持续验证访问",
+        "category": "zerotrust",
+        "subcategory": "access",
+        "api_endpoint": "/api/zt/access",
+        "method": "POST",
+        "params": [
+            {"name": "session_id", "type": "string", "required": True, "description": "会话ID"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 安全自动化工具 ==========
+    "secauto_create": {
+        "id": "secauto_create",
+        "name": "创建安全自动化",
+        "name_en": "Create Security Automation",
+        "description": "创建安全自动化流程",
+        "category": "secauto",
+        "subcategory": "create",
+        "api_endpoint": "/api/sec/auto/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"},
+            {"name": "trigger", "type": "object", "required": True, "description": "触发器"},
+            {"name": "actions", "type": "array", "required": True, "description": "动作"}
+        ],
+        "icon": "zap"
+    },
+    "secauto_run": {
+        "id": "secauto_run",
+        "name": "运行安全自动化",
+        "name_en": "Run Security Automation",
+        "description": "运行安全自动化",
+        "category": "secauto",
+        "subcategory": "run",
+        "api_endpoint": "/api/sec/auto/run",
+        "method": "POST",
+        "params": [
+            {"name": "automation_id", "type": "string", "required": True, "description": "自动化ID"}
+        ],
+        "icon": "play"
+    },
+    "secauto_list": {
+        "id": "secauto_list",
+        "name": "安全自动化列表",
+        "name_en": "Security Automation List",
+        "description": "获取安全自动化列表",
+        "category": "secauto",
+        "subcategory": "list",
+        "api_endpoint": "/api/sec/auto/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 密码学工具 ==========
+    "crypto_generate_key": {
+        "id": "crypto_generate_key",
+        "name": "生成密钥",
+        "name_en": "Generate Key",
+        "description": "生成加密密钥",
+        "category": "crypto",
+        "subcategory": "key",
+        "api_endpoint": "/api/crypto/key/generate",
+        "method": "POST",
+        "params": [
+            {"name": "algorithm", "type": "string", "required": True, "description": "算法"},
+            {"name": "length", "type": "number", "required": False, "description": "密钥长度"}
+        ],
+        "icon": "key"
+    },
+    "crypto_encrypt": {
+        "id": "crypto_encrypt",
+        "name": "加密数据",
+        "name_en": "Encrypt Data",
+        "description": "加密数据",
+        "category": "crypto",
+        "subcategory": "encrypt",
+        "api_endpoint": "/api/crypto/encrypt",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"},
+            {"name": "key", "type": "string", "required": True, "description": "密钥"}
+        ],
+        "icon": "lock"
+    },
+    "crypto_decrypt": {
+        "id": "crypto_decrypt",
+        "name": "解密数据",
+        "name_en": "Decrypt Data",
+        "description": "解密数据",
+        "category": "crypto",
+        "subcategory": "decrypt",
+        "api_endpoint": "/api/crypto/decrypt",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"},
+            {"name": "key", "type": "string", "required": True, "description": "密钥"}
+        ],
+        "icon": "unlock"
+    },
+    "crypto_hash": {
+        "id": "crypto_hash",
+        "name": "计算哈希",
+        "name_en": "Compute Hash",
+        "description": "计算数据哈希",
+        "category": "crypto",
+        "subcategory": "hash",
+        "api_endpoint": "/api/crypto/hash",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"},
+            {"name": "algorithm", "type": "string", "required": False, "description": "算法"}
+        ],
+        "icon": "hash"
+    },
+    "crypto_sign": {
+        "id": "crypto_sign",
+        "name": "数字签名",
+        "name_en": "Digital Sign",
+        "description": "创建数字签名",
+        "category": "crypto",
+        "subcategory": "sign",
+        "api_endpoint": "/api/crypto/sign",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"},
+            {"name": "private_key", "type": "string", "required": True, "description": "私钥"}
+        ],
+        "icon": "edit"
+    },
+    "crypto_verify": {
+        "id": "crypto_verify",
+        "name": "验证签名",
+        "name_en": "Verify Signature",
+        "description": "验证数字签名",
+        "category": "crypto",
+        "subcategory": "verify",
+        "api_endpoint": "/api/crypto/verify",
+        "method": "POST",
+        "params": [
+            {"name": "data", "type": "string", "required": True, "description": "数据"},
+            {"name": "signature", "type": "string", "required": True, "description": "签名"},
+            {"name": "public_key", "type": "string", "required": True, "description": "公钥"}
+        ],
+        "icon": "check"
+    },
+
+    # ========== 密钥库工具 ==========
+    "vault_create": {
+        "id": "vault_create",
+        "name": "创建密钥库",
+        "name_en": "Create Vault",
+        "description": "创建密钥库",
+        "category": "vault",
+        "subcategory": "create",
+        "api_endpoint": "/api/vault/create",
+        "method": "POST",
+        "params": [
+            {"name": "name", "type": "string", "required": True, "description": "名称"}
+        ],
+        "icon": "plus"
+    },
+    "vault_store": {
+        "id": "vault_store",
+        "name": "存储密钥",
+        "name_en": "Store Secret",
+        "description": "存储密钥到密钥库",
+        "category": "vault",
+        "subcategory": "store",
+        "api_endpoint": "/api/vault/store",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "密钥名"},
+            {"name": "value", "type": "string", "required": True, "description": "密钥值"}
+        ],
+        "icon": "lock"
+    },
+    "vault_retrieve": {
+        "id": "vault_retrieve",
+        "name": "获取密钥",
+        "name_en": "Retrieve Secret",
+        "description": "从密钥库获取密钥",
+        "category": "vault",
+        "subcategory": "retrieve",
+        "api_endpoint": "/api/vault/retrieve",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "密钥名"}
+        ],
+        "icon": "key"
+    },
+    "vault_delete": {
+        "id": "vault_delete",
+        "name": "删除密钥",
+        "name_en": "Delete Secret",
+        "description": "从密钥库删除密钥",
+        "category": "vault",
+        "subcategory": "delete",
+        "api_endpoint": "/api/vault/delete",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "密钥名"}
+        ],
+        "icon": "trash"
+    },
+    "vault_list": {
+        "id": "vault_list",
+        "name": "密钥列表",
+        "name_en": "List Secrets",
+        "description": "列出密钥库中的密钥",
+        "category": "vault",
+        "subcategory": "list",
+        "api_endpoint": "/api/vault/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 证书管理工具 ==========
+    "cert_create": {
+        "id": "cert_create",
+        "name": "创建证书",
+        "name_en": "Create Certificate",
+        "description": "创建证书",
+        "category": "certificate",
+        "subcategory": "create",
+        "api_endpoint": "/api/cert/create",
+        "method": "POST",
+        "params": [
+            {"name": "cn", "type": "string", "required": True, "description": "通用名称"},
+            {"name": "duration", "type": "number", "required": False, "description": "有效期(天)"}
+        ],
+        "icon": "plus"
+    },
+    "cert_sign": {
+        "id": "cert_sign",
+        "name": "签发证书",
+        "name_en": "Sign Certificate",
+        "description": "签发证书",
+        "category": "certificate",
+        "subcategory": "sign",
+        "api_endpoint": "/api/cert/sign",
+        "method": "POST",
+        "params": [
+            {"name": "csr", "type": "string", "required": True, "description": "CSR"}
+        ],
+        "icon": "edit"
+    },
+    "cert_revoke": {
+        "id": "cert_revoke",
+        "name": "吊销证书",
+        "name_en": "Revoke Certificate",
+        "description": "吊销证书",
+        "category": "certificate",
+        "subcategory": "revoke",
+        "api_endpoint": "/api/cert/revoke",
+        "method": "POST",
+        "params": [
+            {"name": "serial", "type": "string", "required": True, "description": "序列号"}
+        ],
+        "icon": "x"
+    },
+    "cert_list": {
+        "id": "cert_list",
+        "name": "证书列表",
+        "name_en": "Certificate List",
+        "description": "获取证书列表",
+        "category": "certificate",
+        "subcategory": "list",
+        "api_endpoint": "/api/cert/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "cert_renew": {
+        "id": "cert_renew",
+        "name": "续期证书",
+        "name_en": "Renew Certificate",
+        "description": "续期证书",
+        "category": "certificate",
+        "subcategory": "renew",
+        "api_endpoint": "/api/cert/renew",
+        "method": "POST",
+        "params": [
+            {"name": "serial", "type": "string", "required": True, "description": "序列号"}
+        ],
+        "icon": "refresh-cw"
     }
 }
 
