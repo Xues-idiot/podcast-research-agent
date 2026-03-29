@@ -39780,6 +39780,197 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "number", "type": "string", "required": True, "description": "卡号"}
         ],
         "icon": "credit-card"
+    },
+    # ========== IP信息工具 ==========
+    "ip_info": {
+        "id": "ip_info",
+        "name": "IP信息查询",
+        "name_en": "IP Info",
+        "description": "查询IP详细信息",
+        "category": "ip",
+        "subcategory": "info",
+        "api_endpoint": "/api/ip/info",
+        "method": "GET",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP地址"}
+        ],
+        "icon": "globe"
+    },
+    "ip_check": {
+        "id": "ip_check",
+        "name": "IP黑名单检查",
+        "name_en": "IP Blacklist Check",
+        "description": "检查IP是否在黑名单",
+        "category": "ip",
+        "subcategory": "check",
+        "api_endpoint": "/api/ip/check",
+        "method": "GET",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP地址"}
+        ],
+        "icon": "shield"
+    },
+    "ip_whois": {
+        "id": "ip_whois",
+        "name": "IP WHOIS查询",
+        "name_en": "IP WHOIS",
+        "description": "查询IP的WHOIS信息",
+        "category": "ip",
+        "subcategory": "whois",
+        "api_endpoint": "/api/ip/whois",
+        "method": "GET",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP地址"}
+        ],
+        "icon": "search"
+    },
+    # ========== 域名工具 ==========
+    "domain_whois": {
+        "id": "domain_whois",
+        "name": "域名WHOIS",
+        "name_en": "Domain WHOIS",
+        "description": "查询域名的WHOIS信息",
+        "category": "domain",
+        "subcategory": "whois",
+        "api_endpoint": "/api/domain/whois",
+        "method": "GET",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "search"
+    },
+    "domain_dns": {
+        "id": "domain_dns",
+        "name": "域名DNS查询",
+        "name_en": "Domain DNS Lookup",
+        "description": "查询域名的DNS记录",
+        "category": "domain",
+        "subcategory": "dns",
+        "api_endpoint": "/api/domain/dns",
+        "method": "GET",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"},
+            {"name": "type", "type": "string", "required": False, "description": "记录类型"}
+        ],
+        "icon": "globe"
+    },
+    "domain_availability": {
+        "id": "domain_availability",
+        "name": "域名可用性",
+        "name_en": "Domain Availability",
+        "description": "检查域名是否可注册",
+        "category": "domain",
+        "subcategory": "availability",
+        "api_endpoint": "/api/domain/availability",
+        "method": "GET",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "check-circle"
+    },
+    # ========== SSL证书工具 ==========
+    "ssl_info": {
+        "id": "ssl_info",
+        "name": "SSL证书信息",
+        "name_en": "SSL Certificate Info",
+        "description": "获取SSL证书详细信息",
+        "category": "ssl",
+        "subcategory": "info",
+        "api_endpoint": "/api/ssl/info",
+        "method": "GET",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "shield"
+    },
+    "ssl_expiry": {
+        "id": "ssl_expiry",
+        "name": "SSL证书过期",
+        "name_en": "SSL Expiry Check",
+        "description": "检查SSL证书过期时间",
+        "category": "ssl",
+        "subcategory": "expiry",
+        "api_endpoint": "/api/ssl/expiry",
+        "method": "GET",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "clock"
+    },
+    # ========== HTTP状态工具 ==========
+    "http_status": {
+        "id": "http_status",
+        "name": "HTTP状态码",
+        "name_en": "HTTP Status",
+        "description": "检查URL的HTTP状态",
+        "category": "http",
+        "subcategory": "status",
+        "api_endpoint": "/api/http/status",
+        "method": "GET",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"}
+        ],
+        "icon": "activity"
+    },
+    "http_headers": {
+        "id": "http_headers",
+        "name": "HTTP响应头",
+        "name_en": "HTTP Headers",
+        "description": "获取URL的HTTP响应头",
+        "category": "http",
+        "subcategory": "headers",
+        "api_endpoint": "/api/http/headers",
+        "method": "GET",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"}
+        ],
+        "icon": "file-text"
+    },
+    # ========== URL工具 ==========
+    "url_parse": {
+        "id": "url_parse",
+        "name": "URL解析",
+        "name_en": "Parse URL",
+        "description": "解析URL各部分",
+        "category": "url",
+        "subcategory": "parse",
+        "api_endpoint": "/api/url/parse",
+        "method": "POST",
+        "params": [
+            {"name": "url", "type": "string", "required": True, "description": "URL"}
+        ],
+        "icon": "link"
+    },
+    "url_build": {
+        "id": "url_build",
+        "name": "URL构建",
+        "name_en": "Build URL",
+        "description": "构建完整URL",
+        "category": "url",
+        "subcategory": "build",
+        "api_endpoint": "/api/url/build",
+        "method": "POST",
+        "params": [
+            {"name": "scheme", "type": "string", "required": True, "description": "协议"},
+            {"name": "host", "type": "string", "required": True, "description": "主机"},
+            {"name": "path", "type": "string", "required": False, "description": "路径"}
+        ],
+        "icon": "link"
+    },
+    "url_encode_decode": {
+        "id": "url_encode_decode",
+        "name": "URL编码解码",
+        "name_en": "URL Encode/Decode",
+        "description": "URL编码或解码",
+        "category": "url",
+        "subcategory": "encode",
+        "api_endpoint": "/api/url/encode_decode",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "operation", "type": "string", "required": True, "description": "操作"}
+        ],
+        "icon": "code"
     }
 }
 
