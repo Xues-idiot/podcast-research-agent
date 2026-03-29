@@ -32607,6 +32607,474 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "method": "GET",
         "params": [],
         "icon": "trending-up"
+    },
+
+    # ========== 威胁情报平台工具 ==========
+    "tip_enrich": {
+        "id": "tip_enrich",
+        "name": "威胁情报丰富化",
+        "name_en": "Threat Intel Enrichment",
+        "description": "丰富威胁情报数据",
+        "category": "tip",
+        "subcategory": "enrich",
+        "api_endpoint": "/api/tip/enrich",
+        "method": "POST",
+        "params": [
+            {"name": "indicator", "type": "string", "required": True, "description": "威胁指标"}
+        ],
+        "icon": "plus"
+    },
+    "tip_correlate": {
+        "id": "tip_correlate",
+        "name": "威胁情报关联",
+        "name_en": "Threat Intel Correlation",
+        "description": "关联威胁情报",
+        "category": "tip",
+        "subcategory": "correlate",
+        "api_endpoint": "/api/tip/correlate",
+        "method": "POST",
+        "params": [
+            {"name": "indicator", "type": "string", "required": True, "description": "威胁指标"}
+        ],
+        "icon": "git-branch"
+    },
+    "tip_predict": {
+        "id": "tip_predict",
+        "name": "威胁预测",
+        "name_en": "Threat Prediction",
+        "description": "预测潜在威胁",
+        "category": "tip",
+        "subcategory": "predict",
+        "api_endpoint": "/api/tip/predict",
+        "method": "POST",
+        "params": [
+            {"name": "indicators", "type": "array", "required": True, "description": "指标数组"}
+        ],
+        "icon": "activity"
+    },
+
+    # ========== 安全编排自动化响应工具 ==========
+    "soar_playbook": {
+        "id": "soar_playbook",
+        "name": "SOAR剧本",
+        "name_en": "SOAR Playbook",
+        "description": "执行SOAR安全剧本",
+        "category": "soar",
+        "subcategory": "playbook",
+        "api_endpoint": "/api/soar/playbook",
+        "method": "POST",
+        "params": [
+            {"name": "playbook_id", "type": "string", "required": True, "description": "剧本ID"},
+            {"name": "incident_id", "type": "string", "required": True, "description": "事件ID"}
+        ],
+        "icon": "book"
+    },
+    "soar_investigate": {
+        "id": "soar_investigate",
+        "name": "自动化调查",
+        "name_en": "Automated Investigation",
+        "description": "自动化安全调查",
+        "category": "soar",
+        "subcategory": "investigate",
+        "api_endpoint": "/api/soar/investigate",
+        "method": "POST",
+        "params": [
+            {"name": "incident_id", "type": "string", "required": True, "description": "事件ID"}
+        ],
+        "icon": "search"
+    },
+    "soar_contain": {
+        "id": "soar_contain",
+        "name": "自动化遏制",
+        "name_en": "Automated Containment",
+        "description": "自动化威胁遏制",
+        "category": "soar",
+        "subcategory": "contain",
+        "api_endpoint": "/api/soar/contain",
+        "method": "POST",
+        "params": [
+            {"name": "threat_id", "type": "string", "required": True, "description": "威胁ID"}
+        ],
+        "icon": "x"
+    },
+
+    # ========== 威胁狩猎工具 ==========
+    "threat_hunt_start": {
+        "id": "threat_hunt_start",
+        "name": "开始狩猎",
+        "name_en": "Start Threat Hunt",
+        "description": "开始威胁狩猎任务",
+        "category": "threathunt",
+        "subcategory": "start",
+        "api_endpoint": "/api/hunt/start",
+        "method": "POST",
+        "params": [
+            {"name": "hypothesis", "type": "string", "required": True, "description": "假设"}
+        ],
+        "icon": "target"
+    },
+    "threat_hunt_evidence": {
+        "id": "threat_hunt_evidence",
+        "name": "收集证据",
+        "name_en": "Collect Evidence",
+        "description": "收集狩猎证据",
+        "category": "threathunt",
+        "subcategory": "evidence",
+        "api_endpoint": "/api/hunt/evidence",
+        "method": "POST",
+        "params": [
+            {"name": "hunt_id", "type": "string", "required": True, "description": "狩猎ID"}
+        ],
+        "icon": "download"
+    },
+    "threat_hunt_report": {
+        "id": "threat_hunt_report",
+        "name": "狩猎报告",
+        "name_en": "Threat Hunt Report",
+        "description": "生成威胁狩猎报告",
+        "category": "threathunt",
+        "subcategory": "report",
+        "api_endpoint": "/api/hunt/report",
+        "method": "POST",
+        "params": [
+            {"name": "hunt_id", "type": "string", "required": True, "description": "狩猎ID"}
+        ],
+        "icon": "file-text"
+    },
+
+    # ========== 恶意软件分析平台工具 ==========
+    "malware_platform_submit": {
+        "id": "malware_platform_submit",
+        "name": "提交样本",
+        "name_en": "Submit Sample",
+        "description": "提交恶意软件样本",
+        "category": "malwareplatform",
+        "subcategory": "submit",
+        "api_endpoint": "/api/malware/submit",
+        "method": "POST",
+        "params": [
+            {"name": "sample", "type": "string", "required": True, "description": "样本"}
+        ],
+        "icon": "upload"
+    },
+    "malware_platform_analysis": {
+        "id": "malware_platform_analysis",
+        "name": "分析报告",
+        "name_en": "Analysis Report",
+        "description": "获取分析报告",
+        "category": "malwareplatform",
+        "subcategory": "analysis",
+        "api_endpoint": "/api/malware/analysis",
+        "method": "POST",
+        "params": [
+            {"name": "sample_id", "type": "string", "required": True, "description": "样本ID"}
+        ],
+        "icon": "file-text"
+    },
+    "malware_platform_yara": {
+        "id": "malware_platform_yara",
+        "name": "YARA规则",
+        "name_en": "YARA Rules",
+        "description": "管理YARA规则",
+        "category": "malwareplatform",
+        "subcategory": "yara",
+        "api_endpoint": "/api/malware/yara",
+        "method": "POST",
+        "params": [
+            {"name": "rules", "type": "array", "required": True, "description": "规则数组"}
+        ],
+        "icon": "file"
+    },
+
+    # ========== 数字风险保护工具 ==========
+    "drp_brand_monitor": {
+        "id": "drp_brand_monitor",
+        "name": "品牌监控",
+        "name_en": "Brand Monitoring",
+        "description": "监控品牌风险",
+        "category": "drp",
+        "subcategory": "brand",
+        "api_endpoint": "/api/drp/brand",
+        "method": "GET",
+        "params": [],
+        "icon": "eye"
+    },
+    "drp_domain_protection": {
+        "id": "drp_domain_protection",
+        "name": "域名保护",
+        "name_en": "Domain Protection",
+        "description": "保护域名免受侵害",
+        "category": "drp",
+        "subcategory": "domain",
+        "api_endpoint": "/api/drp/domain",
+        "method": "GET",
+        "params": [],
+        "icon": "shield"
+    },
+    "drp_social_engineering": {
+        "id": "drp_social_engineering",
+        "name": "社会工程检测",
+        "name_en": "Social Engineering Detection",
+        "description": "检测社会工程攻击",
+        "category": "drp",
+        "subcategory": "social",
+        "api_endpoint": "/api/drp/social",
+        "method": "GET",
+        "params": [],
+        "icon": "users"
+    },
+
+    # ========== API保护工具 ==========
+    "api_protect_rate_limit": {
+        "id": "api_protect_rate_limit",
+        "name": "API速率限制",
+        "name_en": "API Rate Limiting",
+        "description": "配置API速率限制",
+        "category": "apiprotect",
+        "subcategory": "ratelimit",
+        "api_endpoint": "/api/protect/ratelimit",
+        "method": "POST",
+        "params": [
+            {"name": "endpoint", "type": "string", "required": True, "description": "端点"},
+            {"name": "limit", "type": "number", "required": True, "description": "限制"}
+        ],
+        "icon": "gauge"
+    },
+    "api_protect_quota": {
+        "id": "api_protect_quota",
+        "name": "API配额管理",
+        "name_en": "API Quota Management",
+        "description": "管理API配额",
+        "category": "apiprotect",
+        "subcategory": "quota",
+        "api_endpoint": "/api/protect/quota",
+        "method": "POST",
+        "params": [
+            {"name": "client_id", "type": "string", "required": True, "description": "客户端ID"},
+            {"name": "quota", "type": "number", "required": True, "description": "配额"}
+        ],
+        "icon": "database"
+    },
+    "api_protect_blocklist": {
+        "id": "api_protect_blocklist",
+        "name": "API阻止列表",
+        "name_en": "API Blocklist",
+        "description": "管理API阻止列表",
+        "category": "apiprotect",
+        "subcategory": "blocklist",
+        "api_endpoint": "/api/protect/blocklist",
+        "method": "POST",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP地址"}
+        ],
+        "icon": "x"
+    },
+
+    # ========== 应用安全工具 ==========
+    "appsec_scan": {
+        "id": "appsec_scan",
+        "name": "应用安全扫描",
+        "name_en": "Application Security Scan",
+        "description": "扫描应用安全漏洞",
+        "category": "appsec",
+        "subcategory": "scan",
+        "api_endpoint": "/api/appsec/scan",
+        "method": "POST",
+        "params": [
+            {"name": "app_id", "type": "string", "required": True, "description": "应用ID"}
+        ],
+        "icon": "shield"
+    },
+    "appsec_iar": {
+        "id": "appsec_iar",
+        "name": "交互式应用安全测试",
+        "name_en": "IAST",
+        "description": "交互式应用安全测试",
+        "category": "appsec",
+        "subcategory": "iast",
+        "api_endpoint": "/api/appsec/iast",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+    "appsec_ra": {
+        "id": "appsec_ra",
+        "name": "运行时应用安全",
+        "name_en": "RASP",
+        "description": "运行时应用自保护",
+        "category": "appsec",
+        "subcategory": "rasp",
+        "api_endpoint": "/api/appsec/rasp",
+        "method": "GET",
+        "params": [],
+        "icon": "shield"
+    },
+
+    # ========== 漏洞赏金工具 ==========
+    "bugbounty_programs": {
+        "id": "bugbounty_programs",
+        "name": "赏金计划",
+        "name_en": "Bug Bounty Programs",
+        "description": "获取漏洞赏金计划",
+        "category": "bugbounty",
+        "subcategory": "programs",
+        "api_endpoint": "/api/bugbounty/programs",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "bugbounty_submit": {
+        "id": "bugbounty_submit",
+        "name": "提交漏洞",
+        "name_en": "Submit Vulnerability",
+        "description": "提交漏洞报告",
+        "category": "bugbounty",
+        "subcategory": "submit",
+        "api_endpoint": "/api/bugbounty/submit",
+        "method": "POST",
+        "params": [
+            {"name": "program_id", "type": "string", "required": True, "description": "计划ID"},
+            {"name": "vulnerability", "type": "object", "required": True, "description": "漏洞信息"}
+        ],
+        "icon": "upload"
+    },
+    "bugbounty_status": {
+        "id": "bugbounty_status",
+        "name": "漏洞状态",
+        "name_en": "Vulnerability Status",
+        "description": "查询漏洞状态",
+        "category": "bugbounty",
+        "subcategory": "status",
+        "api_endpoint": "/api/bugbounty/status",
+        "method": "POST",
+        "params": [
+            {"name": "report_id", "type": "string", "required": True, "description": "报告ID"}
+        ],
+        "icon": "info"
+    },
+
+    # ========== 入侵检测工具 ==========
+    "ids_alert": {
+        "id": "ids_alert",
+        "name": "入侵告警",
+        "name_en": "Intrusion Alert",
+        "description": "查看入侵告警",
+        "category": "ids",
+        "subcategory": "alert",
+        "api_endpoint": "/api/ids/alert",
+        "method": "GET",
+        "params": [],
+        "icon": "alert-triangle"
+    },
+    "ids_block": {
+        "id": "ids_block",
+        "name": "入侵阻止",
+        "name_en": "Block Intrusion",
+        "description": "阻止入侵行为",
+        "category": "ids",
+        "subcategory": "block",
+        "api_endpoint": "/api/ids/block",
+        "method": "POST",
+        "params": [
+            {"name": "alert_id", "type": "string", "required": True, "description": "告警ID"}
+        ],
+        "icon": "x"
+    },
+    "ids_analyze": {
+        "id": "ids_analyze",
+        "name": "入侵分析",
+        "name_en": "Intrusion Analysis",
+        "description": "分析入侵行为",
+        "category": "ids",
+        "subcategory": "analyze",
+        "api_endpoint": "/api/ids/analyze",
+        "method": "POST",
+        "params": [
+            {"name": "alert_id", "type": "string", "required": True, "description": "告警ID"}
+        ],
+        "icon": "search"
+    },
+
+    # ========== 入侵防御工具 ==========
+    "ips_config": {
+        "id": "ips_config",
+        "name": "IPS配置",
+        "name_en": "IPS Configuration",
+        "description": "配置入侵防御系统",
+        "category": "ips",
+        "subcategory": "config",
+        "api_endpoint": "/api/ips/config",
+        "method": "POST",
+        "params": [
+            {"name": "rules", "type": "array", "required": True, "description": "规则"}
+        ],
+        "icon": "settings"
+    },
+    "ips_enable": {
+        "id": "ips_enable",
+        "name": "启用IPS",
+        "name_en": "Enable IPS",
+        "description": "启用入侵防御",
+        "category": "ips",
+        "subcategory": "enable",
+        "api_endpoint": "/api/ips/enable",
+        "method": "POST",
+        "params": [],
+        "icon": "shield"
+    },
+    "ips_disable": {
+        "id": "ips_disable",
+        "name": "禁用IPS",
+        "name_en": "Disable IPS",
+        "description": "禁用入侵防御",
+        "category": "ips",
+        "subcategory": "disable",
+        "api_endpoint": "/api/ips/disable",
+        "method": "POST",
+        "params": [],
+        "icon": "shield-off"
+    },
+
+    # ========== 防火墙工具 ==========
+    "firewall_rules": {
+        "id": "firewall_rules",
+        "name": "防火墙规则",
+        "name_en": "Firewall Rules",
+        "description": "管理防火墙规则",
+        "category": "firewall",
+        "subcategory": "rules",
+        "api_endpoint": "/api/firewall/rules",
+        "method": "GET",
+        "params": [],
+        "icon": "shield"
+    },
+    "firewall_add_rule": {
+        "id": "firewall_add_rule",
+        "name": "添加入站规则",
+        "name_en": "Add Firewall Rule",
+        "description": "添加入站规则",
+        "category": "firewall",
+        "subcategory": "add",
+        "api_endpoint": "/api/firewall/add",
+        "method": "POST",
+        "params": [
+            {"name": "rule", "type": "object", "required": True, "description": "规则"}
+        ],
+        "icon": "plus"
+    },
+    "firewall_remove_rule": {
+        "id": "firewall_remove_rule",
+        "name": "删除规则",
+        "name_en": "Remove Firewall Rule",
+        "description": "删除防火墙规则",
+        "category": "firewall",
+        "subcategory": "remove",
+        "api_endpoint": "/api/firewall/remove",
+        "method": "POST",
+        "params": [
+            {"name": "rule_id", "type": "string", "required": True, "description": "规则ID"}
+        ],
+        "icon": "trash"
     }
 }
 
