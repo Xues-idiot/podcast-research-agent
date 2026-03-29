@@ -33075,6 +33075,432 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "rule_id", "type": "string", "required": True, "description": "规则ID"}
         ],
         "icon": "trash"
+    },
+
+    # ========== VPN工具 ==========
+    "vpn_connect": {
+        "id": "vpn_connect",
+        "name": "连接VPN",
+        "name_en": "Connect VPN",
+        "description": "建立VPN连接",
+        "category": "vpn",
+        "subcategory": "connect",
+        "api_endpoint": "/api/vpn/connect",
+        "method": "POST",
+        "params": [
+            {"name": "server", "type": "string", "required": True, "description": "服务器"}
+        ],
+        "icon": "globe"
+    },
+    "vpn_disconnect": {
+        "id": "vpn_disconnect",
+        "name": "断开VPN",
+        "name_en": "Disconnect VPN",
+        "description": "断开VPN连接",
+        "category": "vpn",
+        "subcategory": "disconnect",
+        "api_endpoint": "/api/vpn/disconnect",
+        "method": "POST",
+        "params": [],
+        "icon": "x"
+    },
+    "vpn_status": {
+        "id": "vpn_status",
+        "name": "VPN状态",
+        "name_en": "VPN Status",
+        "description": "获取VPN状态",
+        "category": "vpn",
+        "subcategory": "status",
+        "api_endpoint": "/api/vpn/status",
+        "method": "GET",
+        "params": [],
+        "icon": "activity"
+    },
+
+    # ========== 代理工具 ==========
+    "proxy_forward": {
+        "id": "proxy_forward",
+        "name": "代理转发",
+        "name_en": "Proxy Forward",
+        "description": "配置代理转发",
+        "category": "proxy",
+        "subcategory": "forward",
+        "api_endpoint": "/api/proxy/forward",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "arrow-right"
+    },
+    "proxy_rotate": {
+        "id": "proxy_rotate",
+        "name": "代理轮换",
+        "name_en": "Proxy Rotation",
+        "description": "轮换代理IP",
+        "category": "proxy",
+        "subcategory": "rotate",
+        "api_endpoint": "/api/proxy/rotate",
+        "method": "POST",
+        "params": [],
+        "icon": "refresh-cw"
+    },
+    "proxy_pool": {
+        "id": "proxy_pool",
+        "name": "代理池",
+        "name_en": "Proxy Pool",
+        "description": "管理代理池",
+        "category": "proxy",
+        "subcategory": "pool",
+        "api_endpoint": "/api/proxy/pool",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+
+    # ========== 负载均衡器工具 ==========
+    "lb_health_check": {
+        "id": "lb_health_check",
+        "name": "健康检查",
+        "name_en": "Health Check",
+        "description": "检查后端健康状态",
+        "category": "loadbalancer",
+        "subcategory": "health",
+        "api_endpoint": "/api/lb/health",
+        "method": "POST",
+        "params": [
+            {"name": "lb_id", "type": "string", "required": True, "description": "负载均衡器ID"}
+        ],
+        "icon": "heart"
+    },
+    "lb_failover": {
+        "id": "lb_failover",
+        "name": "故障转移",
+        "name_en": "Failover",
+        "description": "触发故障转移",
+        "category": "loadbalancer",
+        "subcategory": "failover",
+        "api_endpoint": "/api/lb/failover",
+        "method": "POST",
+        "params": [
+            {"name": "lb_id", "type": "string", "required": True, "description": "负载均衡器ID"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "lb_session": {
+        "id": "lb_session",
+        "name": "会话保持",
+        "name_en": "Session Persistence",
+        "description": "配置会话保持",
+        "category": "loadbalancer",
+        "subcategory": "session",
+        "api_endpoint": "/api/lb/session",
+        "method": "POST",
+        "params": [
+            {"name": "lb_id", "type": "string", "required": True, "description": "负载均衡器ID"},
+            {"name": "type", "type": "string", "required": True, "description": "类型"}
+        ],
+        "icon": "user"
+    },
+
+    # ========== CDN管理工具 ==========
+    "cdn_config": {
+        "id": "cdn_config",
+        "name": "CDN配置",
+        "name_en": "CDN Configuration",
+        "description": "配置CDN设置",
+        "category": "cdn",
+        "subcategory": "config",
+        "api_endpoint": "/api/cdn/config",
+        "method": "POST",
+        "params": [
+            {"name": "settings", "type": "object", "required": True, "description": "设置"}
+        ],
+        "icon": "settings"
+    },
+    "cdn_cache_invalidate": {
+        "id": "cdn_cache_invalidate",
+        "name": "缓存失效",
+        "name_en": "Cache Invalidation",
+        "description": "批量失效缓存",
+        "category": "cdn",
+        "subcategory": "invalidate",
+        "api_endpoint": "/api/cdn/invalidate",
+        "method": "POST",
+        "params": [
+            {"name": "paths", "type": "array", "required": True, "description": "路径数组"}
+        ],
+        "icon": "x"
+    },
+    "cdn_bandwidth": {
+        "id": "cdn_bandwidth",
+        "name": "带宽报告",
+        "name_en": "Bandwidth Report",
+        "description": "获取带宽使用报告",
+        "category": "cdn",
+        "subcategory": "bandwidth",
+        "api_endpoint": "/api/cdn/bandwidth",
+        "method": "GET",
+        "params": [],
+        "icon": "bar-chart"
+    },
+
+    # ========== DNS管理工具 ==========
+    "dns_zone": {
+        "id": "dns_zone",
+        "name": "DNS区域管理",
+        "name_en": "DNS Zone Management",
+        "description": "管理DNS区域",
+        "category": "dns",
+        "subcategory": "zone",
+        "api_endpoint": "/api/dns/zone",
+        "method": "GET",
+        "params": [],
+        "icon": "globe"
+    },
+    "dns_sec": {
+        "id": "dns_sec",
+        "name": "DNSSEC配置",
+        "name_en": "DNSSEC Configuration",
+        "description": "配置DNSSEC",
+        "category": "dns",
+        "subcategory": "dnssec",
+        "api_endpoint": "/api/dns/dnssec",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "lock"
+    },
+    "dns_failover": {
+        "id": "dns_failover",
+        "name": "DNS故障转移",
+        "name_en": "DNS Failover",
+        "description": "配置DNS故障转移",
+        "category": "dns",
+        "subcategory": "failover",
+        "api_endpoint": "/api/dns/failover",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"},
+            {"name": "targets", "type": "array", "required": True, "description": "目标数组"}
+        ],
+        "icon": "refresh-cw"
+    },
+
+    # ========== 邮件安全网关工具 ==========
+    "msgw_scan": {
+        "id": "msgw_scan",
+        "name": "邮件扫描",
+        "name_en": "Message Scan",
+        "description": "扫描邮件内容",
+        "category": "msgateway",
+        "subcategory": "scan",
+        "api_endpoint": "/api/msgw/scan",
+        "method": "POST",
+        "params": [
+            {"name": "message_id", "type": "string", "required": True, "description": "邮件ID"}
+        ],
+        "icon": "search"
+    },
+    "msgw_filter": {
+        "id": "msgw_filter",
+        "name": "邮件过滤",
+        "name_en": "Message Filter",
+        "description": "配置邮件过滤规则",
+        "category": "msgateway",
+        "subcategory": "filter",
+        "api_endpoint": "/api/msgw/filter",
+        "method": "POST",
+        "params": [
+            {"name": "rules", "type": "array", "required": True, "description": "规则数组"}
+        ],
+        "icon": "filter"
+    },
+    "msgw_quarantine": {
+        "id": "msgw_quarantine",
+        "name": "隔离管理",
+        "name_en": "Quarantine Management",
+        "description": "管理邮件隔离区",
+        "category": "msgateway",
+        "subcategory": "quarantine",
+        "api_endpoint": "/api/msgw/quarantine",
+        "method": "GET",
+        "params": [],
+        "icon": "inbox"
+    },
+
+    # ========== Web应用防火墙工具 ==========
+    "waf_policy": {
+        "id": "waf_policy",
+        "name": "WAF策略",
+        "name_en": "WAF Policy",
+        "description": "配置WAF防护策略",
+        "category": "waf",
+        "subcategory": "policy",
+        "api_endpoint": "/api/waf/policy",
+        "method": "POST",
+        "params": [
+            {"name": "policy", "type": "object", "required": True, "description": "策略"}
+        ],
+        "icon": "shield"
+    },
+    "waf_whitelist": {
+        "id": "waf_whitelist",
+        "name": "WAF白名单",
+        "name_en": "WAF Whitelist",
+        "description": "管理WAF白名单",
+        "category": "waf",
+        "subcategory": "whitelist",
+        "api_endpoint": "/api/waf/whitelist",
+        "method": "POST",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP"}
+        ],
+        "icon": "check"
+    },
+    "waf_blacklist": {
+        "id": "waf_blacklist",
+        "name": "WAF黑名单",
+        "name_en": "WAF Blacklist",
+        "description": "管理WAF黑名单",
+        "category": "waf",
+        "subcategory": "blacklist",
+        "api_endpoint": "/api/waf/blacklist",
+        "method": "POST",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP"}
+        ],
+        "icon": "x"
+    },
+    "waf_logs": {
+        "id": "waf_logs",
+        "name": "WAF日志",
+        "name_en": "WAF Logs",
+        "description": "查看WAF日志",
+        "category": "waf",
+        "subcategory": "logs",
+        "api_endpoint": "/api/waf/logs",
+        "method": "GET",
+        "params": [],
+        "icon": "file-text"
+    },
+
+    # ========== DDoS防护工具 ==========
+    "ddos_config": {
+        "id": "ddos_config",
+        "name": "DDoS配置",
+        "name_en": "DDoS Configuration",
+        "description": "配置DDoS防护",
+        "category": "ddos",
+        "subcategory": "config",
+        "api_endpoint": "/api/ddos/config",
+        "method": "POST",
+        "params": [
+            {"name": "threshold", "type": "number", "required": True, "description": "阈值"}
+        ],
+        "icon": "settings"
+    },
+    "ddos_blackhole": {
+        "id": "ddos_blackhole",
+        "name": "黑洞路由",
+        "name_en": "Blackhole Routing",
+        "description": "配置DDoS黑洞路由",
+        "category": "ddos",
+        "subcategory": "blackhole",
+        "api_endpoint": "/api/ddos/blackhole",
+        "method": "POST",
+        "params": [
+            {"name": "ip", "type": "string", "required": True, "description": "IP"}
+        ],
+        "icon": "x"
+    },
+    "ddos_scrubbing": {
+        "id": "ddos_scrubbing",
+        "name": "流量清洗",
+        "name_en": "Traffic Scrubbing",
+        "description": "启用流量清洗",
+        "category": "ddos",
+        "subcategory": "scrubbing",
+        "api_endpoint": "/api/ddos/scrubbing",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "目标"}
+        ],
+        "icon": "shield"
+    },
+
+    # ========== 证书透明度日志工具 ==========
+    "ct_logs": {
+        "id": "ct_logs",
+        "name": "CT日志查询",
+        "name_en": "Certificate Transparency Logs",
+        "description": "查询证书透明度日志",
+        "category": "certtransparency",
+        "subcategory": "logs",
+        "api_endpoint": "/api/ct/logs",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "file-text"
+    },
+    "ct_monitor": {
+        "id": "ct_monitor",
+        "name": "CT监控",
+        "name_en": "CT Monitoring",
+        "description": "监控新证书签发",
+        "category": "certtransparency",
+        "subcategory": "monitor",
+        "api_endpoint": "/api/ct/monitor",
+        "method": "POST",
+        "params": [
+            {"name": "domain", "type": "string", "required": True, "description": "域名"}
+        ],
+        "icon": "eye"
+    },
+
+    # ========== 密钥管理服务工具 ==========
+    "kms_key_create": {
+        "id": "kms_key_create",
+        "name": "创建密钥",
+        "name_en": "Create Key",
+        "description": "在KMS中创建密钥",
+        "category": "kms",
+        "subcategory": "create",
+        "api_endpoint": "/api/kms/key/create",
+        "method": "POST",
+        "params": [
+            {"name": "key_type", "type": "string", "required": True, "description": "密钥类型"}
+        ],
+        "icon": "plus"
+    },
+    "kms_key_rotate": {
+        "id": "kms_key_rotate",
+        "name": "轮换密钥",
+        "name_en": "Rotate Key",
+        "description": "轮换加密密钥",
+        "category": "kms",
+        "subcategory": "rotate",
+        "api_endpoint": "/api/kms/key/rotate",
+        "method": "POST",
+        "params": [
+            {"name": "key_id", "type": "string", "required": True, "description": "密钥ID"}
+        ],
+        "icon": "refresh-cw"
+    },
+    "kms_key_import": {
+        "id": "kms_key_import",
+        "name": "导入密钥",
+        "name_en": "Import Key",
+        "description": "导入外部密钥",
+        "category": "kms",
+        "subcategory": "import",
+        "api_endpoint": "/api/kms/key/import",
+        "method": "POST",
+        "params": [
+            {"name": "key_material", "type": "string", "required": True, "description": "密钥材料"}
+        ],
+        "icon": "upload"
     }
 }
 
