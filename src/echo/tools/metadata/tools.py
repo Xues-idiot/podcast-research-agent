@@ -42179,6 +42179,109 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "prompt", "type": "string", "required": True, "description": "提示词"}
         ],
         "icon": "edit"
+    },
+    # ========== 内存管理工具 ==========
+    "memory_store": {
+        "id": "memory_store",
+        "name": "存储记忆",
+        "name_en": "Store Memory",
+        "description": "存储AI记忆",
+        "category": "memory",
+        "subcategory": "store",
+        "api_endpoint": "/api/memory/store",
+        "method": "POST",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键"},
+            {"name": "value", "type": "string", "required": True, "description": "值"}
+        ],
+        "icon": "database"
+    },
+    "memory_retrieve": {
+        "id": "memory_retrieve",
+        "name": "检索记忆",
+        "name_en": "Retrieve Memory",
+        "description": "检索AI记忆",
+        "category": "memory",
+        "subcategory": "retrieve",
+        "api_endpoint": "/api/memory/retrieve",
+        "method": "GET",
+        "params": [
+            {"name": "key", "type": "string", "required": True, "description": "键"}
+        ],
+        "icon": "search"
+    },
+    "memory_search": {
+        "id": "memory_search",
+        "name": "搜索记忆",
+        "name_en": "Search Memory",
+        "description": "语义搜索记忆",
+        "category": "memory",
+        "subcategory": "search",
+        "api_endpoint": "/api/memory/search",
+        "method": "POST",
+        "params": [
+            {"name": "query", "type": "string", "required": True, "description": "查询"}
+        ],
+        "icon": "search"
+    },
+    # ========== 工具学习工具 ==========
+    "tool_learn": {
+        "id": "tool_learn",
+        "name": "学习工具使用",
+        "name_en": "Learn Tool Use",
+        "description": "AI学习使用新工具",
+        "category": "tool_learning",
+        "subcategory": "learn",
+        "api_endpoint": "/api/tool/learn",
+        "method": "POST",
+        "params": [
+            {"name": "tool_desc", "type": "string", "required": True, "description": "工具描述"}
+        ],
+        "icon": "book"
+    },
+    "tool_selection": {
+        "id": "tool_selection",
+        "name": "选择工具",
+        "name_en": "Select Tool",
+        "description": "AI选择合适工具",
+        "category": "tool_learning",
+        "subcategory": "selection",
+        "api_endpoint": "/api/tool/selection",
+        "method": "POST",
+        "params": [
+            {"name": "task", "type": "string", "required": True, "description": "任务"}
+        ],
+        "icon": "check-square"
+    },
+    # ========== Agent评估工具 ==========
+    "agent_eval": {
+        "id": "agent_eval",
+        "name": "评估Agent",
+        "name_en": "Evaluate Agent",
+        "description": "评估Agent性能",
+        "category": "agent_evaluation",
+        "subcategory": "eval",
+        "api_endpoint": "/api/agent/eval",
+        "method": "POST",
+        "params": [
+            {"name": "agent_id", "type": "string", "required": True, "description": "AgentID"},
+            {"name": "tasks", "type": "array", "required": True, "description": "任务列表"}
+        ],
+        "icon": "activity"
+    },
+    "agent_compare": {
+        "id": "agent_compare",
+        "name": "比较Agent",
+        "name_en": "Compare Agents",
+        "description": "比较多个Agent性能",
+        "category": "agent_evaluation",
+        "subcategory": "compare",
+        "api_endpoint": "/api/agent/compare",
+        "method": "POST",
+        "params": [
+            {"name": "agents", "type": "array", "required": True, "description": "Agent列表"}
+        ],
+        "icon": "git-compare"
     }
 }
 
