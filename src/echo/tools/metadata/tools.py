@@ -38458,6 +38458,153 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "method": "GET",
         "params": [],
         "icon": "list"
+    },
+    # ========== 支付工具 ==========
+    "payment_create_order": {
+        "id": "payment_create_order",
+        "name": "创建订单",
+        "name_en": "Create Order",
+        "description": "创建支付订单",
+        "category": "payment",
+        "subcategory": "order",
+        "api_endpoint": "/api/payment/order",
+        "method": "POST",
+        "params": [
+            {"name": "amount", "type": "number", "required": True, "description": "金额"},
+            {"name": "currency", "type": "string", "required": False, "description": "货币"},
+            {"name": "description", "type": "string", "required": False, "description": "描述"}
+        ],
+        "icon": "credit-card"
+    },
+    "payment_pay": {
+        "id": "payment_pay",
+        "name": "支付",
+        "name_en": "Pay",
+        "description": "完成支付",
+        "category": "payment",
+        "subcategory": "pay",
+        "api_endpoint": "/api/payment/pay",
+        "method": "POST",
+        "params": [
+            {"name": "order_id", "type": "string", "required": True, "description": "订单ID"},
+            {"name": "method", "type": "string", "required": True, "description": "支付方式"}
+        ],
+        "icon": "check-circle"
+    },
+    "payment_refund": {
+        "id": "payment_refund",
+        "name": "退款",
+        "name_en": "Refund",
+        "description": "申请退款",
+        "category": "payment",
+        "subcategory": "refund",
+        "api_endpoint": "/api/payment/refund",
+        "method": "POST",
+        "params": [
+            {"name": "order_id", "type": "string", "required": True, "description": "订单ID"},
+            {"name": "amount", "type": "number", "required": False, "description": "退款金额"}
+        ],
+        "icon": "rotate-ccw"
+    },
+    "payment_status": {
+        "id": "payment_status",
+        "name": "支付状态",
+        "name_en": "Payment Status",
+        "description": "查询支付状态",
+        "category": "payment",
+        "subcategory": "status",
+        "api_endpoint": "/api/payment/status",
+        "method": "GET",
+        "params": [
+            {"name": "order_id", "type": "string", "required": True, "description": "订单ID"}
+        ],
+        "icon": "activity"
+    },
+    # ========== 订阅工具 ==========
+    "subscription_create": {
+        "id": "subscription_create",
+        "name": "创建订阅",
+        "name_en": "Create Subscription",
+        "description": "创建订阅",
+        "category": "subscription",
+        "subcategory": "create",
+        "api_endpoint": "/api/subscription/create",
+        "method": "POST",
+        "params": [
+            {"name": "plan", "type": "string", "required": True, "description": "套餐"},
+            {"name": "interval", "type": "string", "required": True, "description": "周期"}
+        ],
+        "icon": "refresh"
+    },
+    "subscription_cancel": {
+        "id": "subscription_cancel",
+        "name": "取消订阅",
+        "name_en": "Cancel Subscription",
+        "description": "取消订阅",
+        "category": "subscription",
+        "subcategory": "cancel",
+        "api_endpoint": "/api/subscription/cancel",
+        "method": "POST",
+        "params": [
+            {"name": "subscription_id", "type": "string", "required": True, "description": "订阅ID"}
+        ],
+        "icon": "x"
+    },
+    "subscription_status": {
+        "id": "subscription_status",
+        "name": "订阅状态",
+        "name_en": "Subscription Status",
+        "description": "查看订阅状态",
+        "category": "subscription",
+        "subcategory": "status",
+        "api_endpoint": "/api/subscription/status",
+        "method": "GET",
+        "params": [
+            {"name": "subscription_id", "type": "string", "required": True, "description": "订阅ID"}
+        ],
+        "icon": "activity"
+    },
+    # ========== 发票工具 ==========
+    "invoice_create": {
+        "id": "invoice_create",
+        "name": "创建发票",
+        "name_en": "Create Invoice",
+        "description": "创建发票",
+        "category": "invoice",
+        "subcategory": "create",
+        "api_endpoint": "/api/invoice/create",
+        "method": "POST",
+        "params": [
+            {"name": "order_id", "type": "string", "required": True, "description": "订单ID"},
+            {"name": "type", "type": "string", "required": False, "description": "发票类型"}
+        ],
+        "icon": "file-text"
+    },
+    "invoice_get": {
+        "id": "invoice_get",
+        "name": "获取发票",
+        "name_en": "Get Invoice",
+        "description": "获取发票详情",
+        "category": "invoice",
+        "subcategory": "get",
+        "api_endpoint": "/api/invoice/get",
+        "method": "GET",
+        "params": [
+            {"name": "invoice_id", "type": "string", "required": True, "description": "发票ID"}
+        ],
+        "icon": "file"
+    },
+    "invoice_list": {
+        "id": "invoice_list",
+        "name": "列出发票",
+        "name_en": "List Invoices",
+        "description": "获取发票列表",
+        "category": "invoice",
+        "subcategory": "list",
+        "api_endpoint": "/api/invoice/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
     }
 }
 
