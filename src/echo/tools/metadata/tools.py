@@ -38051,6 +38051,223 @@ TOOL_REGISTRY: Dict[str, Dict] = {
         "method": "GET",
         "params": [],
         "icon": "activity"
+    },
+    # ========== 代理工具 ==========
+    "proxy_create": {
+        "id": "proxy_create",
+        "name": "创建代理",
+        "name_en": "Create Proxy",
+        "description": "创建HTTP代理",
+        "category": "proxy",
+        "subcategory": "create",
+        "api_endpoint": "/api/proxy/create",
+        "method": "POST",
+        "params": [
+            {"name": "port", "type": "number", "required": True, "description": "端口"}
+        ],
+        "icon": "globe"
+    },
+    "proxy_list": {
+        "id": "proxy_list",
+        "name": "列出代理",
+        "name_en": "List Proxies",
+        "description": "列出所有代理",
+        "category": "proxy",
+        "subcategory": "list",
+        "api_endpoint": "/api/proxy/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "proxy_delete": {
+        "id": "proxy_delete",
+        "name": "删除代理",
+        "name_en": "Delete Proxy",
+        "description": "删除代理",
+        "category": "proxy",
+        "subcategory": "delete",
+        "api_endpoint": "/api/proxy/delete",
+        "method": "POST",
+        "params": [
+            {"name": "proxy_id", "type": "string", "required": True, "description": "代理ID"}
+        ],
+        "icon": "trash"
+    },
+    # ========== 端口扫描工具 ==========
+    "scan_port": {
+        "id": "scan_port",
+        "name": "端口扫描",
+        "name_en": "Port Scan",
+        "description": "扫描目标端口",
+        "category": "network",
+        "subcategory": "scan",
+        "api_endpoint": "/api/scan/port",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "目标主机"},
+            {"name": "ports", "type": "string", "required": False, "description": "端口范围"}
+        ],
+        "icon": "search"
+    },
+    "scan_network": {
+        "id": "scan_network",
+        "name": "网络扫描",
+        "name_en": "Network Scan",
+        "description": "扫描网络设备",
+        "category": "network",
+        "subcategory": "scan",
+        "api_endpoint": "/api/scan/network",
+        "method": "POST",
+        "params": [
+            {"name": "subnet", "type": "string", "required": True, "description": "子网"}
+        ],
+        "icon": "globe"
+    },
+    # ========== 带宽测试工具 ==========
+    "bandwidth_test": {
+        "id": "bandwidth_test",
+        "name": "带宽测试",
+        "name_en": "Bandwidth Test",
+        "description": "测试网络带宽",
+        "category": "network",
+        "subcategory": "bandwidth",
+        "api_endpoint": "/api/network/bandwidth",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": False, "description": "目标服务器"}
+        ],
+        "icon": "activity"
+    },
+    "latency_test": {
+        "id": "latency_test",
+        "name": "延迟测试",
+        "name_en": "Latency Test",
+        "description": "测试网络延迟",
+        "category": "network",
+        "subcategory": "latency",
+        "api_endpoint": "/api/network/latency",
+        "method": "POST",
+        "params": [
+            {"name": "target", "type": "string", "required": True, "description": "目标服务器"}
+        ],
+        "icon": "clock"
+    },
+    # ========== 邮件工具 ==========
+    "email_send": {
+        "id": "email_send",
+        "name": "发送邮件",
+        "name_en": "Send Email",
+        "description": "发送电子邮件",
+        "category": "email",
+        "subcategory": "send",
+        "api_endpoint": "/api/email/send",
+        "method": "POST",
+        "params": [
+            {"name": "to", "type": "string", "required": True, "description": "收件人"},
+            {"name": "subject", "type": "string", "required": True, "description": "主题"},
+            {"name": "body", "type": "string", "required": True, "description": "正文"}
+        ],
+        "icon": "mail"
+    },
+    "email_list": {
+        "id": "email_list",
+        "name": "列出邮件",
+        "name_en": "List Emails",
+        "description": "获取邮件列表",
+        "category": "email",
+        "subcategory": "list",
+        "api_endpoint": "/api/email/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    "email_read": {
+        "id": "email_read",
+        "name": "读取邮件",
+        "name_en": "Read Email",
+        "description": "读取邮件内容",
+        "category": "email",
+        "subcategory": "read",
+        "api_endpoint": "/api/email/read",
+        "method": "GET",
+        "params": [
+            {"name": "email_id", "type": "string", "required": True, "description": "邮件ID"}
+        ],
+        "icon": "file-text"
+    },
+    "email_delete": {
+        "id": "email_delete",
+        "name": "删除邮件",
+        "name_en": "Delete Email",
+        "description": "删除邮件",
+        "category": "email",
+        "subcategory": "delete",
+        "api_endpoint": "/api/email/delete",
+        "method": "POST",
+        "params": [
+            {"name": "email_id", "type": "string", "required": True, "description": "邮件ID"}
+        ],
+        "icon": "trash"
+    },
+    # ========== SMS工具 ==========
+    "sms_send": {
+        "id": "sms_send",
+        "name": "发送短信",
+        "name_en": "Send SMS",
+        "description": "发送短信",
+        "category": "sms",
+        "subcategory": "send",
+        "api_endpoint": "/api/sms/send",
+        "method": "POST",
+        "params": [
+            {"name": "phone", "type": "string", "required": True, "description": "手机号"},
+            {"name": "message", "type": "string", "required": True, "description": "短信内容"}
+        ],
+        "icon": "message-square"
+    },
+    "sms_list": {
+        "id": "sms_list",
+        "name": "列出短信",
+        "name_en": "List SMS",
+        "description": "获取短信列表",
+        "category": "sms",
+        "subcategory": "list",
+        "api_endpoint": "/api/sms/list",
+        "method": "GET",
+        "params": [],
+        "icon": "list"
+    },
+    # ========== 推送通知工具 ==========
+    "push_send": {
+        "id": "push_send",
+        "name": "发送推送",
+        "name_en": "Send Push",
+        "description": "发送推送通知",
+        "category": "push",
+        "subcategory": "send",
+        "api_endpoint": "/api/push/send",
+        "method": "POST",
+        "params": [
+            {"name": "token", "type": "string", "required": True, "description": "设备Token"},
+            {"name": "title", "type": "string", "required": True, "description": "标题"},
+            {"name": "body", "type": "string", "required": True, "description": "内容"}
+        ],
+        "icon": "bell"
+    },
+    "push_broadcast": {
+        "id": "push_broadcast",
+        "name": "广播推送",
+        "name_en": "Broadcast Push",
+        "description": "广播推送通知",
+        "category": "push",
+        "subcategory": "broadcast",
+        "api_endpoint": "/api/push/broadcast",
+        "method": "POST",
+        "params": [
+            {"name": "title", "type": "string", "required": True, "description": "标题"},
+            {"name": "body", "type": "string", "required": True, "description": "内容"}
+        ],
+        "icon": "radio"
     }
 }
 
