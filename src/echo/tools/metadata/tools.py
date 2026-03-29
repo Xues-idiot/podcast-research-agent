@@ -41280,6 +41280,126 @@ TOOL_REGISTRY: Dict[str, Dict] = {
             {"name": "layers", "type": "array", "required": True, "description": "层配置"}
         ],
         "icon": "layers"
+    },
+    # ========== 自然语言生成工具 ==========
+    "nlg_template": {
+        "id": "nlg_template",
+        "name": "模板生成",
+        "name_en": "Template Generation",
+        "description": "基于模板生成文本",
+        "category": "nlg",
+        "subcategory": "template",
+        "api_endpoint": "/api/nlg/template",
+        "method": "POST",
+        "params": [
+            {"name": "template", "type": "string", "required": True, "description": "模板"},
+            {"name": "data", "type": "object", "required": True, "description": "数据"}
+        ],
+        "icon": "file-text"
+    },
+    "nlg_sentence": {
+        "id": "nlg_sentence",
+        "name": "句子生成",
+        "name_en": "Sentence Generation",
+        "description": "生成完整句子",
+        "category": "nlg",
+        "subcategory": "sentence",
+        "api_endpoint": "/api/nlg/sentence",
+        "method": "POST",
+        "params": [
+            {"name": "words", "type": "array", "required": True, "description": "词汇"}
+        ],
+        "icon": "type"
+    },
+    # ========== 问答系统工具 ==========
+    "qa_extract": {
+        "id": "qa_extract",
+        "name": "问答提取",
+        "name_en": "QA Extraction",
+        "description": "从文本提取问答对",
+        "category": "qa",
+        "subcategory": "extract",
+        "api_endpoint": "/api/qa/extract",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "help-circle"
+    },
+    "qa_answer": {
+        "id": "qa_answer",
+        "name": "问答回答",
+        "name_en": "QA Answer",
+        "description": "回答问题",
+        "category": "qa",
+        "subcategory": "answer",
+        "api_endpoint": "/api/qa/answer",
+        "method": "POST",
+        "params": [
+            {"name": "question", "type": "string", "required": True, "description": "问题"},
+            {"name": "context", "type": "string", "required": True, "description": "上下文"}
+        ],
+        "icon": "help-circle"
+    },
+    # ========== 文本摘要工具 ==========
+    "summarize_extract": {
+        "id": "summarize_extract",
+        "name": "抽取式摘要",
+        "name_en": "Extractive Summarization",
+        "description": "抽取式文本摘要",
+        "category": "summarize",
+        "subcategory": "extract",
+        "api_endpoint": "/api/summarize/extract",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"},
+            {"name": "ratio", "type": "number", "required": False, "description": "压缩比"}
+        ],
+        "icon": "file-text"
+    },
+    "summarize_absract": {
+        "id": "summarize_absract",
+        "name": "生成式摘要",
+        "name_en": "Abstractive Summarization",
+        "description": "生成式文本摘要",
+        "category": "summarize",
+        "subcategory": "abstract",
+        "api_endpoint": "/api/summarize/abstract",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "file-text"
+    },
+    # ========== 机器翻译工具 ==========
+    "translate_batch_text": {
+        "id": "translate_batch_text",
+        "name": "批量翻译文本",
+        "name_en": "Batch Translate",
+        "description": "批量翻译多个文本",
+        "category": "translation",
+        "subcategory": "batch",
+        "api_endpoint": "/api/translate/batch",
+        "method": "POST",
+        "params": [
+            {"name": "texts", "type": "array", "required": True, "description": "文本列表"},
+            {"name": "target_lang", "type": "string", "required": True, "description": "目标语言"}
+        ],
+        "icon": "globe"
+    },
+    "translate_detect": {
+        "id": "translate_detect",
+        "name": "检测语言",
+        "name_en": "Detect Language",
+        "description": "检测文本语言",
+        "category": "translation",
+        "subcategory": "detect",
+        "api_endpoint": "/api/translate/detect",
+        "method": "POST",
+        "params": [
+            {"name": "text", "type": "string", "required": True, "description": "文本"}
+        ],
+        "icon": "globe"
     }
 }
 
